@@ -15,6 +15,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<mvc:resources location="/template/" mapping="/template/**" />
 	<mvc:resources location="/controller/" mapping="/controller/**" />
 	<mvc:resources location="/services/" mapping="/services/**" />
+	<mvc:resources location="/style/" mapping="/style/**" />
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">

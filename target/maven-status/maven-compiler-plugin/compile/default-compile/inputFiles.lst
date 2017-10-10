@@ -6,4 +6,5 @@
 /home/bridgeit/Documents/todoApp/todo/src/main/java/com/bridgelabz/model/User.java
 /home/bridgeit/Documents/todoApp/todo/src/main/java/com/bridgelabz/controller/UserCredential.java
 /home/bridgeit/Documents/todoApp/todo/src/main/java/com/bridgelabz/services/UserServiceImpl.java
+/home/bridgeit/Documents/todoApp/todo/src/main/java/com/bridgelabz/model/MyErrorMessage.java
 /home/bridgeit/Documents/todoApp/todo/src/main/java/com/bridgelabz/dao/UserDaoImpl.java

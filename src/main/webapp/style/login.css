@@ -1,0 +1,21 @@
+ .compositeButton{
+ 	height:45px;color:white;width:80%;
+ }
+ #password{
+ 	height:45px;width:80%;
+ }
+ #facebook{
+ 	background-color:blue;
+ }
+ #google{
+ background-color:black;
+ }
+ #submit{
+	 background-color:rgba(79, 222, 222, 0.72);
+}
+#email{
+	height:45px;width:80%;
+}
+#right{
+	border-left:1px solid;
+}

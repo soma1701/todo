@@ -5,6 +5,7 @@ import com.bridgelabz.model.User;
 public class RegistrationValidationImpl {
 
 	public boolean validator(User user) {
+		System.out.println("this is user " + user);
 		boolean isValid = false;
 		String regexForEmail = "/^[a-z0-9]+@[a-z]+.[a-z]{3}/";
 		String regexForName="[A-Za-z]";

@@ -56,6 +56,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User login(User user) {
+		System.out.println("Email: " + user.getEmail() + " Password: " + user.getPassword());
 		session = sessionFactory.openSession();
 		tx = session.beginTransaction();
 		Criteria cr = session.createCriteria(User.class);
@@ -65,7 +66,7 @@ public class UserDaoImpl implements UserDao {
 		User userLogin = (User) cr.uniqueResult();
 		if (userLogin == null) {
 			System.out.println("logged in user " + userLogin);
-			return null;
+			return userLogin;
 		} else {
 			return userLogin;
 

@@ -1,6 +1,7 @@
 var toDoApp = angular.module('toDoApp');
 
 toDoApp.factory('registrationServices', function($http) {
+	
 	var register = {};
 	
 	register.registerUser2 = function(user) {

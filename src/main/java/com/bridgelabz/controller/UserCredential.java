@@ -51,6 +51,7 @@ public class UserCredential {
 			  userService.register(user);
 			  
 			  userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "emailVerification",url2+"/"+"verifyUser"+"/"+user.getId());
+			  
 			  System.out.println("you are successfully registerd");
 			  }
 			  else {
@@ -60,7 +61,7 @@ public class UserCredential {
 		  } catch (Exception e) {
 			  e.printStackTrace();
 			  errorMessage.setErrorMessage("your credential is wrong");
-			  return ResponseEntity.status(HttpStatus.CONFLICT).body(errorMessage);
+			  return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
 		  }
 		  errorMessage.setErrorMessage("registeredSuccess");
 		return  ResponseEntity.ok(errorMessage);
@@ -76,17 +77,17 @@ public class UserCredential {
 			}
 		    
 		}
-		@RequestMapping("/login")
-		public ResponseEntity<String>  login(@RequestBody User user,HttpServletRequest request,HttpSession session) {
+		@RequestMapping(value = "/login", method = RequestMethod.POST)
+		public ResponseEntity<MyErrorMessage>  login(@RequestBody User user,HttpServletRequest request,HttpSession session) {
 			
 			User userLogin = userService.login( user);
 			if(userLogin == null) {
 				System.out.println("Login user " + userLogin);
-				return new ResponseEntity<String>("Your credentials are wrong",HttpStatus.BAD_GATEWAY);
+				errorMessage.setErrorMessage("invalid user unable to login");
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
 			}
 			String accessToken = UUID.randomUUID().toString().replaceAll("-", "");
 			System.out.println(accessToken);
-			/*Token token = new Token();*/
 			token.setGenerateToken(accessToken);
 			userService.saveTokenInRedis(token);
 			String url = request.getRequestURL().toString();
@@ -97,8 +98,8 @@ public class UserCredential {
 				e.printStackTrace();
 			}
 			session = request.getSession();
-			
-			return new ResponseEntity<String>("login successfully",HttpStatus.OK );
+			errorMessage.setErrorMessage("login successfully");
+			return ResponseEntity.ok(errorMessage);
 			
 		}
 		

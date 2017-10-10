@@ -11,6 +11,11 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
 	<context:component-scan base-package="com.bridgelabz.controller" />
 	<mvc:annotation-driven />
+	<mvc:resources location="/script/" mapping="/script/**" />
+	<mvc:resources location="/template/" mapping="/template/**" />
+	<mvc:resources location="/controller/" mapping="/controller/**" />
+	<mvc:resources location="/services/" mapping="/services/**" />
+	<mvc:resources location="/style/" mapping="/style/**" />
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -39,8 +44,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
-	
+	<bean id="errorMessage" class ="com.bridgelabz.model.MyErrorMessage"></bean>
+	<bean id="token" class="com.bridgelabz.model.Token"></bean>	
 	<bean id="persistenceExceptionTranslationPostProcessor"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 	<bean id="userDao" class="com.bridgelabz.dao.UserDaoImpl" />

@@ -1,0 +1,24 @@
+	<div class="container" ng-controller="loginController">
+		<h2>sign in</h2>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+					<h2>ues other account</h2>
+					<p>You can also sign in using facebook account and google account</p>
+					<button id="facebook" class="compositeButton" >login using facebook</button>
+					<button id="google" type="button" class="compositeButton">login using google</button>
+				</div>
+			</div>
+			<div class="col-sm-6 right">
+				<div class="form-group">
+					<h3>Using your account</h3>
+					<input id="email" type="text" name="email" placeholder="Enter ur mail" ng-model="user.email"><br>
+					<input id="password" type="password" name="password" placeholder="Enter ur password" ng-model="user.password"><br>
+					<button id="submit" type="button" class="compositeButton submit" data-ng-click="loginUser()">Submit</button>
+					<a href="">Forgot your password?</a><a href="registration.html">register</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
