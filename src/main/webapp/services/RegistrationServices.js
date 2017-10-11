@@ -12,7 +12,7 @@ toDoApp.factory('registrationServices', function($http) {
 		}).then(function(response) {
 			console.log(response.data.errorMessage);
 		}, function(response) {
-			console.log(response.data.errorMessage)
+			console.log(response.data.errorMessage);
 		});
 	}
 	

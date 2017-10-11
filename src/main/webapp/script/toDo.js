@@ -12,6 +12,6 @@ toDoApp.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : 'template/login.html'
 	});
 
-	$urlRouterProvider.otherwise('registrationpage');
+	$urlRouterProvider.otherwise('loginpage');
 });
 

@@ -41,18 +41,14 @@ public class UserCredential {
 		@RequestMapping(value = "/register", method = RequestMethod.POST)  
 		 public ResponseEntity<MyErrorMessage>  register(@RequestBody User user, HttpServletRequest request) {  
 		  try { 
+			  
 			  String url= request.getRequestURL().toString();
 			  int a = url.lastIndexOf("/");
 			  String url2 = url.substring(0, a);
-			  System.out.println(url2);
 			  boolean regvValid = registerValidation.validator(user);
 			  if(regvValid) {
-				  
 			  userService.register(user);
-			  
 			  userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "emailVerification",url2+"/"+"verifyUser"+"/"+user.getId());
-			  
-			  System.out.println("you are successfully registerd");
 			  }
 			  else {
 				  errorMessage.setErrorMessage("your credential is wrong");
@@ -63,7 +59,7 @@ public class UserCredential {
 			  errorMessage.setErrorMessage("your credential is wrong");
 			  return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
 		  }
-		  errorMessage.setErrorMessage("registeredSuccess");
+		  errorMessage.setErrorMessage("registration Success");
 		return  ResponseEntity.ok(errorMessage);
 		 
 	
@@ -78,11 +74,10 @@ public class UserCredential {
 		    
 		}
 		@RequestMapping(value = "/login", method = RequestMethod.POST)
-		public ResponseEntity<MyErrorMessage>  login(@RequestBody User user,HttpServletRequest request,HttpSession session) {
+		public ResponseEntity<MyErrorMessage>  login(@RequestBody User user,HttpServletRequest request) {
 			
 			User userLogin = userService.login( user);
 			if(userLogin == null) {
-				System.out.println("Login user " + userLogin);
 				errorMessage.setErrorMessage("invalid user unable to login");
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
 			}
@@ -97,7 +92,6 @@ public class UserCredential {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			session = request.getSession();
 			errorMessage.setErrorMessage("login successfully");
 			return ResponseEntity.ok(errorMessage);
 			

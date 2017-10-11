@@ -6,8 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -93,8 +91,6 @@ public class User {
 	public void setValid(boolean isValid) {
 		this.isValid = isValid;
 	}
-	
-	
 	
 
 }

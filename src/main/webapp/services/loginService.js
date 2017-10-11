@@ -10,7 +10,7 @@ toDoApp.factory('loginService', function($http){
 			url : 'login',
 			data : user,
 		}).then(function(response) {
-			console.log(response.data.errorMessage);
+			console.log(response.data.errorMessage)
 		}, function(response) {
 			console.log(response.data.errorMessage)
 		});

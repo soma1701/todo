@@ -30,6 +30,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 		<property name="annotatedClasses">
 			<list>
 				<value>com.bridgelabz.model.User</value>
+				<value>com.bridgelabz.model.Notes</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -48,9 +49,12 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<bean id="token" class="com.bridgelabz.model.Token"></bean>	
 	<bean id="persistenceExceptionTranslationPostProcessor"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+		
 	<bean id="userDao" class="com.bridgelabz.dao.UserDaoImpl" />
 	<bean id="userService" class="com.bridgelabz.services.UserServiceImpl" />
 	<bean id="registerValidation" class="com.bridgelabz.validator.RegistrationValidationImpl"></bean>
+	<bean id="notesService" class="com.bridgelabz.services.NotesServiceImpl"> </bean>
+	<bean id="notesDao" class="com.bridgelabz.dao.NotesDaoImpl"></bean>
 	
 	<bean id="mailMessage" class="org.springframework.mail.SimpleMailMessage"></bean>
 	
