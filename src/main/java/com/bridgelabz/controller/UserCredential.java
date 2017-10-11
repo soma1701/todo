@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bridgelabz.model.User;
 import com.bridgelabz.services.UserService;
 import com.bridgelabz.validator.RegistrationValidationImpl;
-import com.bridgelabz.model.MyErrorMessage;
+import com.bridgelabz.model.MyResponse;
 import com.bridgelabz.model.Token;
 
 @RestController
@@ -33,13 +33,13 @@ public class UserCredential {
 	UserService userService;
 	
 	@Autowired
-	MyErrorMessage errorMessage;
+	MyResponse MyResponse;
 	
 	@Autowired
 	Token token;
 	
 		@RequestMapping(value = "/register", method = RequestMethod.POST)  
-		 public ResponseEntity<MyErrorMessage>  register(@RequestBody User user, HttpServletRequest request) {  
+		 public ResponseEntity<MyResponse>  register(@RequestBody User user, HttpServletRequest request) {  
 		  try { 
 			  
 			  String url= request.getRequestURL().toString();
@@ -51,16 +51,16 @@ public class UserCredential {
 			  userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "emailVerification",url2+"/"+"verifyUser"+"/"+user.getId());
 			  }
 			  else {
-				  errorMessage.setErrorMessage("your credential is wrong");
-				  return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(errorMessage);
+				  MyResponse.setResponseMessage("your credential is wrong");
+				  return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(MyResponse);
 			  }
 		  } catch (Exception e) {
 			  e.printStackTrace();
-			  errorMessage.setErrorMessage("your credential is wrong");
-			  return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+			  MyResponse.setResponseMessage("your credential is wrong");
+			  return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(MyResponse);
 		  }
-		  errorMessage.setErrorMessage("registration Success");
-		return  ResponseEntity.ok(errorMessage);
+		  MyResponse.setResponseMessage("registration Success");
+		return  ResponseEntity.ok(MyResponse);
 		 
 	
 		 }
@@ -74,12 +74,12 @@ public class UserCredential {
 		    
 		}
 		@RequestMapping(value = "/login", method = RequestMethod.POST)
-		public ResponseEntity<MyErrorMessage>  login(@RequestBody User user,HttpServletRequest request) {
+		public ResponseEntity<MyResponse>  login(@RequestBody User user,HttpServletRequest request) {
 			
 			User userLogin = userService.login( user);
 			if(userLogin == null) {
-				errorMessage.setErrorMessage("invalid user unable to login");
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+				MyResponse.setResponseMessage("invalid user unable to login");
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(MyResponse);
 			}
 			String accessToken = UUID.randomUUID().toString().replaceAll("-", "");
 			System.out.println(accessToken);
@@ -92,8 +92,8 @@ public class UserCredential {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			errorMessage.setErrorMessage("login successfully");
-			return ResponseEntity.ok(errorMessage);
+			MyResponse.setResponseMessage("login successfully");
+			return ResponseEntity.ok(MyResponse);
 			
 		}
 		

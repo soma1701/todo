@@ -1,9 +1,10 @@
 package com.bridgelabz.dao;
 
-import com.bridgelabz.controller.NotesDetails;
+import com.bridgelabz.model.Notes;
 
 public interface NotesDAO {
 
-	void saveNote(NotesDetails notesDetails);
+	void saveNote(Notes notes);
+	boolean deleteNoteById(int id);
 
 }
