@@ -1,14 +1,17 @@
 package com.bridgelabz.services;
 
-import java.util.Date;
-
-import com.bridgelabz.controller.NotesDetails;
+import java.util.List;
 import com.bridgelabz.model.Notes;
+import com.bridgelabz.model.User;
 
 public interface NotesService {
 
-	void saveNote(Notes notes,Date date);
+	void saveNote(Notes notes);
 
 	boolean deleteById(int id);
+	
+	public  List<Notes> getNotes(User user);
+
+	boolean editNotes(Notes notes);
 
 }

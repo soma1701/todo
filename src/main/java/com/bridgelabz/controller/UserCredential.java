@@ -46,6 +46,7 @@ public class UserCredential {
 			  int a = url.lastIndexOf("/");
 			  String url2 = url.substring(0, a);
 			  boolean regvValid = registerValidation.validator(user);
+			  System.out.println(regvValid);
 			  if(regvValid) {
 			  userService.register(user);
 			  userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "emailVerification",url2+"/"+"verifyUser"+"/"+user.getId());
@@ -61,7 +62,7 @@ public class UserCredential {
 		  }
 		  MyResponse.setResponseMessage("registration Success");
 		return  ResponseEntity.ok(MyResponse);
-		 
+		  
 	
 		 }
 		@RequestMapping("/verifyUser/{id}")
@@ -74,21 +75,21 @@ public class UserCredential {
 		    
 		}
 		@RequestMapping(value = "/login", method = RequestMethod.POST)
-		public ResponseEntity<MyResponse>  login(@RequestBody User user,HttpServletRequest request) {
+		public ResponseEntity<MyResponse>  login(@RequestBody User user,HttpServletRequest request,HttpSession session) {
 			
 			User userLogin = userService.login( user);
+			session.setAttribute("userLogin", userLogin);
 			if(userLogin == null) {
 				MyResponse.setResponseMessage("invalid user unable to login");
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(MyResponse);
 			}
 			String accessToken = UUID.randomUUID().toString().replaceAll("-", "");
-			System.out.println(accessToken);
 			token.setGenerateToken(accessToken);
 			userService.saveTokenInRedis(token);
 			String url = request.getRequestURL().toString();
 			url = url.substring(0,url.lastIndexOf("/"))+"/"+"finalLogin"+"/"+accessToken;
 			try {
-				userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "finalLogin", url);
+				//userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "finalLogin", url);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -109,7 +110,7 @@ public class UserCredential {
 		return new ResponseEntity<String>("Unsuccessfull login",HttpStatus.BAD_REQUEST);
 	}
 		 
-		@RequestMapping("/forgotpassword")
+		@RequestMapping("/forgotpassword/")
 		public  ResponseEntity<String> forgotPassword(@RequestBody User user,HttpServletRequest request){
 			String url = request.getRequestURL().toString();
 			int lastIndex = url.lastIndexOf("/");
@@ -118,7 +119,6 @@ public class UserCredential {
 				userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "resetPassword", urlofForgotPassword+"/"+"resetPassword");
 				
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return new ResponseEntity<>("url of forgotPassword has been sent",HttpStatus.OK);

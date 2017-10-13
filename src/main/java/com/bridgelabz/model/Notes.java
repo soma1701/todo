@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="notes")
 public class Notes {
@@ -35,6 +37,7 @@ public class Notes {
 
 	@ManyToOne
 	@JoinColumn(name="user_id")
+	@JsonIgnore
 	User user;
 	
 	public int getNotesId() {

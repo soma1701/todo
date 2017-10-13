@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="user")
 public class User {
@@ -40,8 +42,8 @@ public class User {
 	@Column(name="isValid")
 	private boolean isValid;
 	
-	@OneToMany
-	@JoinColumn(name="notes_id")
+	@OneToMany(mappedBy="user")
+	@JsonIgnore
 	private List<Notes>  notes;
 
 	public int getId() {
