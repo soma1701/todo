@@ -8,7 +8,7 @@ toDoApp.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : 'template/registration.html'
 	})
 	.state('loginPage',{
-		url: '/loginpage',
+		url: '/loginPage',
 		templateUrl : 'template/login.html'
 	})
 	.state('homePage',{

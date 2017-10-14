@@ -1,13 +1,29 @@
-<div class="container">
-	<nav class="navbar navbar-inverse">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">FundooNotes</a>
-	    </div>
-	    <ul class="nav navbar-nav navbar-right">
-	      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-	      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-	    </ul>
-	  </div>
+<div class="container" ng-controller="notesController"> 
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></button>
+		</div>
+		<a class="navbar-brand" href="#">ToDoNotes</a>
+		<div class="navbar-collapse" class="navbar" data-toggle="collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">logout</a></li>
+			</ul>
+		</div>
 	</nav>
-</div>
+	<div class="form-group">
+	<label for="title">Note Title</label>
+		 {{note.title}}
+	</div>
+	<div class="from-group">
+		<label for="description">Notes Description</label>
+		<input type="text" class="form-control" ng-model="note.description">
+	</div>
+	<div class="from-group">
+	<label for="date">Notes Date</label>
+	<input type="date" class="form-control" ng-model="note.createdTime">
+	</div>
+	<div class="form-group">
+	<button type="button" class="btn" data-ng-click="saveNotes"></button>
+	</div>
+	
+</div> 

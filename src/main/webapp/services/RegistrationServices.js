@@ -15,6 +15,5 @@ toDoApp.factory('registrationServices', function($http) {
 			console.log(response.data.errorMessage);
 		});
 	}
-	
 	return register;
 });
