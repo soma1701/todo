@@ -16,6 +16,6 @@ toDoApp.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl :'template/homePage.html'
 	})
 	
-	$urlRouterProvider.otherwise('homePage');
+	$urlRouterProvider.otherwise('loginPage');
 });
 

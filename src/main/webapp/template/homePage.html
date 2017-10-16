@@ -1,7 +1,8 @@
-<div class="container" ng-controller="notesController"> 
+<div class="homecontainer" ng-controller="notesController">
 	<nav class="navbar navbar-inverse" role="navigation">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></button>
+		<div class="navbar-header style">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse"></button>
 		</div>
 		<a class="navbar-brand" href="#">ToDoNotes</a>
 		<div class="navbar-collapse" class="navbar" data-toggle="collapse">
@@ -10,20 +11,19 @@
 			</ul>
 		</div>
 	</nav>
-	<div class="form-group">
-	<label for="title">Note Title</label>
-		 {{note.title}}
+
+	<div ng-repeat="note in notes" place-holder="notes details.." class="card">
+		<div class="form-group" place-holder="title">
+			 {{note.title}}
+		</div>
+		<div class="from-group" place-holder="description" >
+			{{note.description}}
+		</div>
+		<div class="from-group" place-holder="notes time" >
+			 {{note.createdTime | date :"dd/MM/yyyy hh:mm:ss"}}
+		</div>
+		<div class="form-group">
+			<button type="button" class="btn" data-ng-click="saveNotes">saveNotes</button>
+		</div>
 	</div>
-	<div class="from-group">
-		<label for="description">Notes Description</label>
-		<input type="text" class="form-control" ng-model="note.description">
-	</div>
-	<div class="from-group">
-	<label for="date">Notes Date</label>
-	<input type="date" class="form-control" ng-model="note.createdTime">
-	</div>
-	<div class="form-group">
-	<button type="button" class="btn" data-ng-click="saveNotes"></button>
-	</div>
-	
-</div> 
+</div>

@@ -1,6 +1,6 @@
 var toDoApp = angular.module('toDoApp');
 
-toDoApp.factory('loginService', function($http){
+toDoApp.factory('loginService', function($http, $location){
 	
 	var login = {};
 	
@@ -10,9 +10,10 @@ toDoApp.factory('loginService', function($http){
 			url : 'login',
 			data : user,
 		}).then(function(response) {
-			console.log(response.data.errorMessage)
+			console.log(response.data.responseMessage)
+			$location.path('homePage')
 		}, function(response) {
-			console.log(response.data.errorMessage)
+			console.log(response.data.responseMessage)
 		});
 	}
 	

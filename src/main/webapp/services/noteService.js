@@ -15,5 +15,11 @@ toDoApp.factory('saveNotesService',function($http){
 			console.log(response.data.errorMessage);
 		});
 	}
+	note.getNotes = function() {
+		return $http({
+			method:"GET",
+			url: 'getNotes'
+		})
+	}
 	return note;
 });
