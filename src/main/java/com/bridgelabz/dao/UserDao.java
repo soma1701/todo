@@ -1,6 +1,5 @@
 package com.bridgelabz.dao;
 
-import java.util.List;
 
 import com.bridgelabz.model.Token;
 import com.bridgelabz.model.User;

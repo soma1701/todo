@@ -1,14 +1,15 @@
-var toDoApp = angular.module('toDoApp');
+/*var toDoApp = angular.module('toDoApp');*/
 
 toDoApp.factory('saveNotesService',function($http){
 	var note ={};
 	
 	note.saveNotes = function(notes){
-		
+		console.log(notes);
 		$http({
 			method:"POST",
 			url:'saveNotes',
-			data: notes
+			data: notes,
+			
 		}).then(function(response){
 			console.log(response.data.errorMessage);
 		},function(response){

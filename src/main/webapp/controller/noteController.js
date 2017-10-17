@@ -1,11 +1,11 @@
-var todoApp = angular.module('toDoApp');
+/*var todoApp = angular.module('toDoApp');*/
 toDoApp.controller('notesController', function($scope, saveNotesService) {
-
-	
-
-	// $scope.note = {};
+	var addNote={};
 	$scope.saveNotes = function() {
-		saveNotesService.saveNotes($scope.note);
+		addNote.title=document.getElementById("note-title").innerHTML;
+		addNote.description=document.getElementById("note-description").innerHTML;
+		console.log(addNote);
+		saveNotesService.saveNotes(addNote);
 	}
 	var httpGetNotes = saveNotesService.getNotes();
 

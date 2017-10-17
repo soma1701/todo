@@ -24,3 +24,11 @@
 	display: inline-table;
 	width:30%;
 }
+.note-input{
+	width:30%;
+	background-color:white;
+}
+.note-output{
+	width:30%;
+	background-color:white;
+}
