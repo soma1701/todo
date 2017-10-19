@@ -14,21 +14,30 @@
     padding: 0;
   
   }
-.style{
-	position: fixed;
-    top: 0;
-    width: 100%;
+
+.card
+	{
+    font-size: 14px;
+    line-height: 19px;
+    min-height: 46px;
+    padding: 12px 15px 15px 15px;
 }
 
-.card{
+.note-input{
 	display: inline-table;
 	width:30%;
-}
-.note-input{
-	width:30%;
 	background-color:white;
+	border: 2px black;
 }
 .note-output{
+	display: inline-table;
 	width:30%;
 	background-color:white;
+	border: 2px black;
+}
+
+
+.note-container{
+	margin:32px auto 16px;
+	position:relative;
 }

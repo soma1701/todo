@@ -27,7 +27,7 @@ public class NotesDetails {
 	@Autowired
 	MyResponse myResponse;
 	
-	@RequestMapping(value="/saveNotes",method=RequestMethod.POST)
+	@RequestMapping(value="/saveNotes",method=RequestMethod.PUT)
 	public ResponseEntity<MyResponse> saveNote(@RequestBody Notes notes,HttpSession session){
 		User user =(User) session.getAttribute("userLogin");
 		notes.setUser(user);
@@ -38,7 +38,7 @@ public class NotesDetails {
 		return ResponseEntity.ok(myResponse);
 	}
 	
-	@RequestMapping(value="/deletNotes/{id}")
+	@RequestMapping(value="/deleteNotes/{id}", method=RequestMethod.POST)
 	public ResponseEntity<MyResponse> deleteNotes(@PathVariable int id){
 		boolean isDeleted = notesService.deleteById(id);
 		if(isDeleted) {
@@ -62,6 +62,7 @@ public class NotesDetails {
 	
 	@RequestMapping(value="/editNotes",method=RequestMethod.PUT)
 	public ResponseEntity<MyResponse> editNotes(@RequestBody Notes notes,HttpSession session){
+		Notes objNotes = notesService.getNoteById(notes.getNotesId());
 		User user = (User)session.getAttribute("userLogin");
 		boolean isEdited;
 		notes.setUser(user);

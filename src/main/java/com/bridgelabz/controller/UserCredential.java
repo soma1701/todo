@@ -46,7 +46,6 @@ public class UserCredential {
 			  int a = url.lastIndexOf("/");
 			  String url2 = url.substring(0, a);
 			  boolean regvValid = registerValidation.validator(user);
-			  System.out.println(regvValid);
 			  if(regvValid) {
 			  userService.register(user);
 			  userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "emailVerification",url2+"/"+"verifyUser"+"/"+user.getId());
@@ -66,13 +65,24 @@ public class UserCredential {
 	
 		 }
 		@RequestMapping("/verifyUser/{id}")
-		public void verify(@PathVariable("id") int id, HttpServletRequest request) {
+		public ResponseEntity<MyResponse> verify(@PathVariable("id") int id, HttpServletRequest request) {
 			try {
-				userService.isActivated(id);
+				boolean isVerify;
+				isVerify = userService.isActivated(id);
+				if(isVerify) {
+					MyResponse.setResponseMessage("user verified");
+					return ResponseEntity.ok(MyResponse);
+					
+				}
+				else {
+					MyResponse.setResponseMessage("user does not exist");
+					return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(MyResponse);
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		    
+			MyResponse.setResponseMessage("verification done");
+			return ResponseEntity.ok(MyResponse); 
 		}
 		@RequestMapping(value = "/login", method = RequestMethod.POST)
 		public ResponseEntity<MyResponse>  login(@RequestBody User user,HttpServletRequest request,HttpSession session) {
@@ -80,7 +90,7 @@ public class UserCredential {
 			User userLogin = userService.login( user);
 			session.setAttribute("userLogin", userLogin);
 			if(userLogin == null) {
-				MyResponse.setResponseMessage("invalid user unable to login");
+				MyResponse.setResponseMessage("wrong credential");
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(MyResponse);
 			}
 			String accessToken = UUID.randomUUID().toString().replaceAll("-", "");
@@ -89,7 +99,7 @@ public class UserCredential {
 			String url = request.getRequestURL().toString();
 			url = url.substring(0,url.lastIndexOf("/"))+"/"+"finalLogin"+"/"+accessToken;
 			try {
-				//userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "finalLogin", url);
+				userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "finalLogin", url);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -103,7 +113,7 @@ public class UserCredential {
 		
 		Token token = userService.getToken(generateToken);
 		if (token == null) {
-			return new ResponseEntity<String>("Unsuccessfull",HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("token is incorrect",HttpStatus.BAD_REQUEST);
 		}
 		if(token.getGenerateToken().equals(generateToken))
 			return new ResponseEntity<String>("successfull login",HttpStatus.OK);
@@ -130,6 +140,13 @@ public class UserCredential {
 			System.out.println("password reset");
 			return new ResponseEntity<String> ("password reset successfully",HttpStatus.OK);
 	
+		}
+		@RequestMapping(value="/logout", method=RequestMethod.GET)
+		public ResponseEntity<MyResponse> logout(HttpSession session ){
+			session.removeAttribute("userLogin");
+			session.invalidate();
+			MyResponse.setResponseMessage("logout successfully:-");
+			return  ResponseEntity.ok(MyResponse);
 		}
 		
 

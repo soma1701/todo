@@ -14,4 +14,6 @@ public interface NotesService {
 
 	boolean editNotes(Notes notes);
 
+	public Notes getNoteById(int notesId);
+
 }

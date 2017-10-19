@@ -11,16 +11,16 @@
 			</ul>
 		</div>
 	</nav>
-<div class="container"">
-	<input type="text" placeholder="Take a note..." class="form-control card">
-	<div class="note-input">
-		<div type="text" contenteditable="true" id="note-title"></div>
-		<div type="text" contenteditable="true" id="note-description"></div>
-		<button type="button" class="btn" ng-click="saveNotes()">saveNotes</button>
-	</div>
-	<div class="note-output" ng-repeat="note in notes">
-		<div class="card-title">{{note.title}}</div>
-		<div class="card-description">{{note.description}}</div>
+	<div class="note-container">
+		<input type="text" placeholder="Take a note..." class="form-control" ng-hide="actualInput" ng-click="actualInput = true">
+		<div class="card" ng-show="actualInput">
+			<div type="text" contenteditable="true" palceholder="Enter note title" id="note-title"></div>
+			<div type="text" contenteditable="true" palceholder="Enter note description" id="note-description"></div>
+			<button type="button" class="btn" ng-click="saveNotes()">saveNotes</button>
+		</div>
+		<div class="card" ng-repeat="note in notes" ng-hide="false">
+			<div class="card-title">{{note.title}}</div>
+			<div class="card-description">{{note.description}}</div>
+		</div>
 	</div>
 </div>
-	</div>

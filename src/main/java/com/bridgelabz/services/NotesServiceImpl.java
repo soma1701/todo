@@ -1,11 +1,9 @@
 package com.bridgelabz.services;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.bridgelabz.controller.NotesDetails;
 import com.bridgelabz.dao.NotesDAO;
 import com.bridgelabz.model.Notes;
 import com.bridgelabz.model.User;

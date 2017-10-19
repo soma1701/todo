@@ -1,6 +1,7 @@
 /*var todoApp = angular.module('toDoApp');*/
 toDoApp.controller('notesController', function($scope, saveNotesService) {
 	var addNote={};
+	$scope.actualInput = false;
 	$scope.saveNotes = function() {
 		addNote.title=document.getElementById("note-title").innerHTML;
 		addNote.description=document.getElementById("note-description").innerHTML;

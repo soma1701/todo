@@ -36,8 +36,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public boolean isActivated(int id) throws Exception {
-		userDao.isActive(id);
-		return true;
+		return userDao.isActive(id);
 	}
 
 	@Override

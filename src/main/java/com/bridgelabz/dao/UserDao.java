@@ -8,7 +8,7 @@ public interface UserDao {
 	
 	public void register(User user);
 
-	public void isActive(int id);
+	public boolean isActive(int id);
 
 	public User login(User user);
 

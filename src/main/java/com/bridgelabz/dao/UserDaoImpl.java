@@ -42,20 +42,27 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void isActive(int id) {
+	public boolean isActive(int id) {
 		session = sessionFactory.openSession();
 		tx = (Transaction) session.beginTransaction();
 		Criteria cr = session.createCriteria(User.class);
 		cr.add(Restrictions.eq("id", id));
 		User user = (User) cr.uniqueResult();
-		user.setValid(true);
-		tx.commit();
-		session.close();
+		boolean isValid;
+		if(user==null) {
+			isValid= false;
+			return isValid;
+		}else {
+			isValid = true;
+			user.setValid(true);
+			tx.commit();
+			session.close();
+		}
+		return isValid;
 	}
 
 	@Override
 	public User login(User user) {
-		System.out.println("Email: " + user.getEmail() + " Password: " + user.getPassword());
 		session = sessionFactory.openSession();
 		tx = session.beginTransaction();
 		Criteria cr = session.createCriteria(User.class);
