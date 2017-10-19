@@ -37,4 +37,11 @@ public class NotesServiceImpl implements NotesService{
 		return true;
 	}
 
+	@Override
+	public Notes getNoteById(int notesId) {
+		
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
