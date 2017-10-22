@@ -1,6 +1,6 @@
 var toDoApp = angular.module('toDoApp');
 
-toDoApp.controller('registrationControllers', function($scope, registrationServices) {
+toDoApp.controller('registrationControllers', function($scope, registrationServices, $location) {
 	$scope.user = {};
 
 	 $scope.registerUser = function() {
@@ -8,5 +8,8 @@ toDoApp.controller('registrationControllers', function($scope, registrationServi
 		registrationServices.registerUser2($scope.user);
 		
 	}
+	 $scope.redirectToSignIn = function() {
+			$location.path('/loginPage');
+		}
 
 });

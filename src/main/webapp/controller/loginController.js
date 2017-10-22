@@ -5,6 +5,6 @@ toDoApp.controller('loginController', function($scope, loginService,$location){
 		loginService.loginUser($scope.user);
 	}
 	$scope.sendRedirect = function(){
-		$location.path('/registrationpage')
+		$location.path('/homePage')
 	}
 })

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,7 @@ import com.bridgelabz.services.NotesService;
 
 @RestController
 public class NotesDetails {
+	 private final Logger LOG = LoggerFactory.getLogger(NotesDetails.class);
 	
 	@Autowired
 	NotesService notesService;
@@ -27,13 +30,15 @@ public class NotesDetails {
 	@Autowired
 	MyResponse myResponse;
 	
-	@RequestMapping(value="/saveNotes",method=RequestMethod.PUT)
+	@RequestMapping(value="/saveNotes",method=RequestMethod.POST)
 	public ResponseEntity<MyResponse> saveNote(@RequestBody Notes notes,HttpSession session){
+		
 		User user =(User) session.getAttribute("userLogin");
 		notes.setUser(user);
 		Date date = new Date();
 		notes.setCreatedTime(date);
 		notesService.saveNote(notes);
+		LOG.debug("notes save successfully");
 		myResponse.setResponseMessage("notes save successfully");
 		return ResponseEntity.ok(myResponse);
 	}

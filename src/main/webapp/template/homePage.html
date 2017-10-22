@@ -11,16 +11,25 @@
 			</ul>
 		</div>
 	</nav>
-	<div class="note-container">
-		<input type="text" placeholder="Take a note..." class="form-control" ng-hide="actualInput" ng-click="actualInput = true">
-		<div class="card" ng-show="actualInput">
-			<div type="text" contenteditable="true" palceholder="Enter note title" id="note-title"></div>
-			<div type="text" contenteditable="true" palceholder="Enter note description" id="note-description"></div>
-			<button type="button" class="btn" ng-click="saveNotes()">saveNotes</button>
-		</div>
-		<div class="card" ng-repeat="note in notes" ng-hide="false">
-			<div class="card-title">{{note.title}}</div>
-			<div class="card-description">{{note.description}}</div>
-		</div>
-	</div>
+	<div class="notranslate noteEdit noteEdit1" style="display:none">Title</div>
+	<div contenteditable="true" style="background-color:white" id="note-input" aria-multiline="true" ng-blur="actualInput" role="textbox" ng-hide="actualInput" ng-click="actualInput=true" class="notranslate noteEdit noteEdit1" tabindex="0" ></div>
+	<div contenteditable="true" style="background-color:#ffe6e6" id="note-title-input" aria-multiline="true" role="textbox" class="notranslate noteEdit noteEdit1" ng-show="actualInput"  tabindex="0" spellcheck="true"></div>
+	<div contenteditable="true" style="background-color:#ffe6e6" id="note-description-input" aria-multiline="true" role="textbox" class="notranslate noteEdit noteEdit2" ng-show="actualInput" tabindex="0" spellcheck="true" ></div>
+	<button type="button" class="btn noteEdit noteEdit1" ng-click="saveNotes()">saveNotes</button>
+	<!-- <div class="noteEdit noteEdit1" id="note-title-output" id="note-output" data-text="take anote...." ng-repeat="note in notes"  ng-hide="false"></div> -->
+	<div class="noteEdit noteEdit1" style="background-color:#e9fcfc" id="note-description-output"  data-text="title..." ng-bind-html="note.title"></div>
+	<div class="noteEdit noteEdit1" style="background-color:#e9fcfc" data-text="description" ng-bind-html="note.description"></div>
+	
+	<!-- <div class="container">
+		<input type="text" placeholder="Take a note..." class="form-control" ng-hide="actualInput" ng-click="actualInput=true">
+			<div class="card" ng-show="actualInput">
+				<div type="text" contenteditable="true" id="note-title"></div>
+				<div type="text" contenteditable="true"  id="note-description"></div>
+				<button type="button" class="btn" ng-click="saveNotes()">saveNotes</button>
+			</div>
+			<div class="card" ng-repeat="note in notes" ng-hide="false">
+				<div class="card-title">{{note.title}}</div>
+				<div class="card-description">{{note.description}}</div>
+			</div>
+	</div> -->
 </div>

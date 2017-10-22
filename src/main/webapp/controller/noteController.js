@@ -1,4 +1,4 @@
-/*var todoApp = angular.module('toDoApp');*/
+var toDoApp = angular.module('toDoApp');
 toDoApp.controller('notesController', function($scope, saveNotesService) {
 	var addNote={};
 	$scope.actualInput = false;
