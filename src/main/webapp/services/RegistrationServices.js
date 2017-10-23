@@ -1,7 +1,6 @@
-var toDoApp = angular.module('toDoApp');
+//var toDoApp = angular.module('toDoApp');
 
-toDoApp.factory('registrationServices', function($http) {
-	
+toDoApp.factory('registrationServices', function($http,$location) {
 	var register = {};
 	
 	register.registerUser2 = function(user) {
@@ -10,9 +9,10 @@ toDoApp.factory('registrationServices', function($http) {
 			url : 'register',
 			data : user,
 		}).then(function(response) {
-			console.log(response.data.errorMessage);
+			console.log(response.data.responseMessage);
+			$location.path('loginPage')
 		}, function(response) {
-			console.log(response.data.errorMessage);
+			console.log(response.data.responseMessage);
 		});
 	}
 	return register;

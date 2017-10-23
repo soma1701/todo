@@ -1,4 +1,4 @@
-var toDoApp = angular.module('toDoApp');
+//var toDoApp = angular.module('toDoApp');
 
 toDoApp.factory('loginService', function($http, $location){
 	

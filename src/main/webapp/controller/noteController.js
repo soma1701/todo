@@ -3,8 +3,8 @@ toDoApp.controller('notesController', function($scope, saveNotesService) {
 	var addNote={};
 	$scope.actualInput = false;
 	$scope.saveNotes = function() {
-		addNote.title=document.getElementById("note-title").innerHTML;
-		addNote.description=document.getElementById("note-description").innerHTML;
+		addNote.title=document.getElementById("note-title-input").innerHTML;
+		addNote.description=document.getElementById("note-description-input").innerHTML;
 		console.log(addNote);
 		saveNotesService.saveNotes(addNote);
 	}

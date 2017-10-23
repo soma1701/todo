@@ -50,7 +50,7 @@ public class UserCredential {
 			  LOG.info("user enter correct credential");
 			  userService.register(user);
 			  LOG.debug("user register success");
-			  userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "emailVerification",url2+"/"+"verifyUser"+"/"+user.getId());
+			 // userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "emailVerification",url2+"/"+"verifyUser"+"/"+user.getId());
 			  LOG.info("sending verification mail to user");
 			  }
 			  else {
@@ -113,7 +113,7 @@ public class UserCredential {
 			String url = request.getRequestURL().toString();
 			url = url.substring(0,url.lastIndexOf("/"))+"/"+"finalLogin"+"/"+accessToken;
 			try {
-				userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "finalLogin", url);
+				//userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "finalLogin", url);
 				LOG.debug("after loggged in, sending token via mail");
 			} catch (Exception e) {
 				e.printStackTrace();
