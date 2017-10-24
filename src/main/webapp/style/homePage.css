@@ -71,6 +71,11 @@
     padding: 12px 15px 15px 15px;
 } */
 
+#saveNote{
+	float: right;
+	color:yellow;
+	background-color:blue;
+}
 
 .noteEdit2 {
     font-size: 14px;
@@ -93,8 +98,6 @@
     line-height: 23px;
     min-height: 38px;
     padding: 15px 15px 0 15px;
-    -webkit-transition: background-color .218s ease-in;
-    transition: background-color .218s ease-in;
 }
 .noteEdit {
 	background-color:white
@@ -106,17 +109,17 @@
     word-wrap: break-word;
     min-width: -webkit-fill-available;
 }
-/* #note-input[data-line]:empty:not(:focus):before{ 
-	content: attr(data-line); 
-	font-size: 14px;
+ #note-input:empty:before{ 
+	content: attr(placeholder); 
+	/* font-size: 14px;
     line-height: 19px;
     min-height: 46px;
     padding: 12px 15px 15px 15px;
     font-family: 'Roboto Slab','Times New Roman',serif;
-    color:grey; 
+    color:grey;  */
 }
-#note-title-input[data-line]:empty:not(:focus):before{
-	content: attr(data-line); 
+#note-title-input[placeholder]:empty:not(:focus):before{
+	content: attr(placeholder); 
 	font-size: 14px;
     line-height: 19px;
     min-height: 46px;
@@ -124,7 +127,7 @@
     font-family: 'Roboto Slab','Times New Roman',serif; 
 	color:grey;
 }
-#note-description-input[data-line]:empty:not(:focus):before{
+/* #note-description-input[data-line]:empty:not(:focus):before{
 	content: attr(data-line); 
 	font-size: 14px;
     line-height: 19px;
@@ -132,16 +135,17 @@
     padding: 12px 15px 15px 15px;
     font-family: 'Roboto Slab','Times New Roman',serif; 
 	color:grey;
-} */
-
-/* [contenteditable]:empty:not(:focus):before {
+} 
+ */
+ /* [contenteditable][data-line]:empty:not(:focus):before {
 	content: attr(data-line);
 	color: grey;
 	display: inline-block;
-} */
-[contenteditable]:empty:not(:focus):before {
-	content: attr(data-text);
-	color: grey;
-	display: inline-block;
+}  */
+[contenteditable=true]:empty:before {
+	content: attr(data-placeholder)
 }
-
+#note-input[data-text]:empty:before{
+	background-color: white;
+        content:attr(data-text);
+    }

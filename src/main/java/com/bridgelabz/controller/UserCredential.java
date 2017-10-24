@@ -50,7 +50,7 @@ public class UserCredential {
 			  LOG.info("user enter correct credential");
 			  userService.register(user);
 			  LOG.debug("user register success");
-			 // userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "emailVerification",url2+"/"+"verifyUser"+"/"+user.getId());
+			 userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "emailVerification",url2+"/"+"verifyUser"+"/"+user.getId());
 			  LOG.info("sending verification mail to user");
 			  }
 			  else {
