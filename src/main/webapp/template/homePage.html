@@ -11,39 +11,24 @@
 			</ul>
 		</div>
 	</nav>
-	
-	<sidebar-directive></sidebar-directive>
-	<div class="col-sm-9">
-		<div style="background-color: blue">
-			<div contenteditable="true" data-placeholder="click to enter note..."  id="note-input" aria-multiline="true" 
-			style="background-color: white" ng-blur="actualInput" role="textbox" ng-hide="actualInput" ng-click="actualInput=true"
-			class="notranslate noteEdit noteEdit1" tabindex="0"></div>
-				<div contenteditable="true" data-placeholder="enter note title..." style="background-color: #ffe6e6" id="note-title-input"
-					role="textbox" class="notranslate noteEdit noteEdit1"ng-show="actualInput" tabindex="0" spellcheck="true">
-				</div>
-				<div contenteditable="true" data-placeholder="enter note description.." style="background-color: #ffe6e6" id="note-description-input"
-					role="textbox" class="notranslate noteEdit noteEdit1" ng-show="actualInput" tabindex="0" spellcheck="true">
-				</div>
-			<button type="button" id="saveNote" ng-click="saveNotes()">saveNotes</button>
-		</div>
-		<div class="col-sm-4" ng-repeat="note in notes">
-			<div class="noteEdit noteEdit1" style="background-color: #e9fcfc" id="note-title-output" ng-bind="note.title"></div>
-			<div class="noteEdit noteEdit1" style="background-color: #e9fcfc" id="note-description-output" ng-bind="note.description"></div>
+	<side-bar></side-bar>
+		<div class="col-sm-9">
+			<div style="background-color: blue">
+				<div contenteditable="true" data-placeholder="click to enter note..."  id="note-input" aria-multiline="true" 
+				style="background-color: white" ng-blur="actualInput" role="textbox" ng-hide="actualInput" ng-click="actualInput=true"
+				class="notranslate noteEdit noteEdit1" tabindex="0"></div>
+					<div contenteditable="true" data-placeholder="enter note title..." style="background-color: #ffe6e6" id="note-title-input"
+						role="textbox" class="notranslate noteEdit noteEdit1"ng-show="actualInput" tabindex="0" spellcheck="true">
+					</div>
+					<div contenteditable="true" data-placeholder="enter note description.." style="background-color: #ffe6e6" id="note-description-input"
+						role="textbox" class="notranslate noteEdit noteEdit1" ng-show="actualInput" tabindex="0" spellcheck="true">
+					</div>
+				<button type="button" id="saveNote" ng-click="saveNotes()">saveNotes</button>
+			</div>
+			<div class="col-sm-4" ng-repeat="note in notes">
+				<div class="noteEdit noteEdit1" style="background-color: #e9fcfc" id="note-title-output" ng-bind="note.title"></div>
+				<div class="noteEdit noteEdit1" style="background-color: #e9fcfc" id="note-description-output" ng-bind="note.description"></div>
+			</div>
 		</div>
 	</div>
-</div>
-
-
-<!-- <div class="container">
-		<input type="text" placeholder="Take a note..." class="form-control" ng-hide="actualInput" ng-click="actualInput=true">
-			<div class="card" ng-show="actualInput">
-				<div type="text" contenteditable="true" id="note-title"></div>
-				<div type="text" contenteditable="true"  id="note-description"></div>
-				<button type="button" class="btn" ng-click="saveNotes()">saveNotes</button>
-			</div>
-			<div class="card" ng-repeat="note in notes" ng-hide="false">
-				<div class="card-title">{{note.title}}</div>
-				<div class="card-description">{{note.description}}</div>
-			</div>
-	</div> -->
 </div>

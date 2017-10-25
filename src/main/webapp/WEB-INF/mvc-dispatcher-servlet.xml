@@ -16,6 +16,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<mvc:resources location="/services/" mapping="/services/**" />
 	<mvc:resources location="/style/" mapping="/style/**" />
 	<mvc:resources location="/bower_components/" mapping="/bower_components/**" />
+	<mvc:resources location="/directive/" mapping="/directive/**"/>
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -55,7 +56,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<bean id="registerValidation" class="com.bridgelabz.validator.RegistrationValidationImpl"></bean>
 	<bean id="notesService" class="com.bridgelabz.services.NotesServiceImpl"> </bean>
 	<bean id="notesDao" class="com.bridgelabz.dao.NotesDaoImpl"></bean>
-	
+	<bean id="noteValidation" class="com.bridgelabz.validator.NoteValidationImpl"></bean>
+	<bean id="encryption" class="com.bridgelabz.util.Encryption"></bean>
 	<bean id="mailMessage" class="org.springframework.mail.SimpleMailMessage"></bean>
 	
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
@@ -63,7 +65,6 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<property name="port" value="587" />
 	<property name="username" value="somasingh1701@gmail.com" />
 	<property name="password" value="soma@123" />
-
 	<property name="javaMailProperties">
 	   <props>
 	   <prop key="mail.transport.protocol">smtp</prop>
@@ -71,8 +72,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
        	      <prop key="mail.smtp.starttls.enable">true</prop>
        	   </props>
 	</property>
-	
-   </bean> 
+   </bean>
+    
    <bean id="jedisConnFactory"
 		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
 		p:use-pool="true" />

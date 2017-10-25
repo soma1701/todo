@@ -10,7 +10,7 @@ public interface UserDao {
 
 	public boolean isActive(int id);
 
-	public User login(User user);
+	public User login(User user,String encryptedPassword);
 
 	public void resetPassword(String email,String password);
 

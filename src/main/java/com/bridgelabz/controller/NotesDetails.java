@@ -2,9 +2,7 @@ package com.bridgelabz.controller;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +17,7 @@ import com.bridgelabz.model.MyResponse;
 import com.bridgelabz.model.Notes;
 import com.bridgelabz.model.User;
 import com.bridgelabz.services.NotesService;
+import com.bridgelabz.validator.NoteValidator;
 
 @RestController
 public class NotesDetails {
@@ -30,17 +29,33 @@ public class NotesDetails {
 	@Autowired
 	MyResponse myResponse;
 	
+	@Autowired
+	NoteValidator noteValidation;
+	
 	@RequestMapping(value="/saveNotes",method=RequestMethod.POST)
 	public ResponseEntity<MyResponse> saveNote(@RequestBody Notes notes,HttpSession session){
-		
-		User user =(User) session.getAttribute("userLogin");
-		notes.setUser(user);
-		Date date = new Date();
-		notes.setCreatedTime(date);
-		notesService.saveNote(notes);
-		LOG.debug("notes save successfully");
-		myResponse.setResponseMessage("notes save successfully");
-		return ResponseEntity.ok(myResponse);
+		try {
+			User user =(User) session.getAttribute("userLogin");
+			notes.setUser(user);
+			Date date = new Date();
+			notes.setCreatedTime(date);
+			boolean isNoteValid = noteValidation.noteValidator(notes);
+			if(isNoteValid) {
+				LOG.debug("note validation successfull:-");
+				notesService.saveNote(notes);
+				myResponse.setResponseMessage("notes save successfully:-");
+				return ResponseEntity.ok(myResponse);
+			}else {
+				LOG.error("your notes validation is not done please enter your notes");
+				myResponse.setResponseMessage("your notes can't be null or else not valid:-");
+				return new ResponseEntity<MyResponse>(myResponse, HttpStatus.BAD_REQUEST);
+			}
+		} catch (Exception e) {
+			LOG.debug(e.getMessage());
+			myResponse.setResponseMessage("your validation is not done:-");
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(myResponse);
+			
+		}
 	}
 	
 	@RequestMapping(value="/deleteNotes/{id}", method=RequestMethod.POST)

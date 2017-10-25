@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bridgelabz.model.User;
 import com.bridgelabz.services.UserService;
+import com.bridgelabz.util.Encryption;
 import com.bridgelabz.validator.RegistrationValidationImpl;
 import com.bridgelabz.model.MyResponse;
 import com.bridgelabz.model.Token;
@@ -39,12 +40,18 @@ public class UserCredential {
 	@Autowired
 	Token token;
 	
+	@Autowired
+	Encryption  encrypt;
+	
 		@RequestMapping(value = "/register", method = RequestMethod.POST)  
 		 public ResponseEntity<MyResponse>  register(@RequestBody User user, HttpServletRequest request) {  
 		  try { 
 			  String url= request.getRequestURL().toString();
 			  int a = url.lastIndexOf("/");
 			  String url2 = url.substring(0, a);
+			  String password = user.getPassword();
+			  String encryptedPassword = encrypt.encryptPassword(password);
+			  user.setPassword(encryptedPassword);
 			  boolean regvValid = registerValidation.validator(user);
 			  if(regvValid) {
 			  LOG.info("user enter correct credential");
@@ -97,8 +104,9 @@ public class UserCredential {
 		}
 		@RequestMapping(value = "/login", method = RequestMethod.POST)
 		public ResponseEntity<MyResponse>  login(@RequestBody User user,HttpServletRequest request,HttpSession session) {
-			
-			User userLogin = userService.login( user);
+			String normalPassword = user.getPassword();
+			String encryptedPassword = encrypt.encryptPassword(normalPassword);
+			User userLogin = userService.login( user,encryptedPassword);
 			session.setAttribute("userLogin", userLogin);
 			if(userLogin == null) {
 				LOG.debug("user enter wrong credential:-");

@@ -62,12 +62,12 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User login(User user) {
+	public User login(User user,String encryptedPassword) {
 		session = sessionFactory.openSession();
 		tx = session.beginTransaction();
 		Criteria cr = session.createCriteria(User.class);
 		cr.add(Restrictions.eq("email", user.getEmail()));
-		cr.add(Restrictions.eq("password", user.getPassword()));
+		cr.add(Restrictions.eq("password", encryptedPassword));
 		cr.add(Restrictions.eq("isValid", true));
 		User userLogin = (User) cr.uniqueResult();
 		if (userLogin == null) {

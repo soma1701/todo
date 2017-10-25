@@ -1,5 +1,8 @@
-toDoApp.directive("sidebarDirective",function(){
+var toDoApp = angular.module('toDoApp');
+toDoApp.directive("sideBar",function(){
+	
 	return{
-		templateUrl:
-	}
+		restrict:'E',
+		templateUrl:'template/sidebar.html'
+	};
 });

@@ -40,8 +40,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User login(User user) {
-		return userDao.login(user);
+	public User login(User user,String encryptedPassword) {
+		return userDao.login(user,encryptedPassword);
 		
 		
 	}
@@ -63,6 +63,5 @@ public class UserServiceImpl implements UserService{
 		return userDao.getToken(token);
 		
 	}
-
 
 }

@@ -14,6 +14,7 @@
 <script type="text/javascript" src="controller/loginController.js"></script>
 <script type="text/javascript" src="services/noteService.js"></script>
 <script type="text/javascript" src="controller/noteController.js"></script>
+<script type="text/javascript" src="directive/directive.js"></script>
 </head>
 <body ng-app="toDoApp">
 
