@@ -64,7 +64,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<property name="host" value="smtp.gmail.com" />
 	<property name="port" value="587" />
 	<property name="username" value="somasingh1701@gmail.com" />
-	<property name="password" value="soma@123" />
+	<property name="password" value="Soma@1701" />
 	<property name="javaMailProperties">
 	   <props>
 	   <prop key="mail.transport.protocol">smtp</prop>
@@ -80,5 +80,10 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 		
 		<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
 		p:connection-factory-ref="jedisConnFactory" />
-   
+   <mvc:interceptors>
+   	<mvc:interceptor>
+   		<mvc:mapping path="/notesCredential/**"></mvc:mapping>
+   		<bean id="intercepter" class="com.bridgelabz.filter.LogInIntercepter"></bean>
+   	</mvc:interceptor>
+   </mvc:interceptors>
 </beans>

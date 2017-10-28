@@ -10,9 +10,6 @@ import javax.persistence.Table;
 @Table(name="user_token")
 public class Token implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 3650165898539244046L;
 
 	@Column(name="generate_token")

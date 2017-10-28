@@ -11,6 +11,7 @@ toDoApp.factory('loginService', function($http, $location){
 			data : user,
 		}).then(function(response) {
 			console.log(response.data.responseMessage)
+			localStorage.setItem("accessToken",response.data.responseMessage)
 			$location.path('homePage')
 		}, function(response) {
 			console.log(response.data.responseMessage)

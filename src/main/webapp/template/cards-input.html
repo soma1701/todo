@@ -1,0 +1,16 @@
+<div style="background-color: blue">
+	<div contenteditable="true" data-placeholder="click to enter note..."
+		id="note-input" aria-multiline="true" style="background-color: white"
+		ng-blur="actualInput" role="textbox" ng-hide="actualInput"
+		ng-click="actualInput=true" class="notranslate noteEdit noteEdit1"
+		tabindex="0"></div>
+	<div contenteditable="true" data-placeholder="enter note title..."
+		style="background-color: #ffe6e6" id="note-title-input" role="textbox"
+		class="notranslate noteEdit noteEdit1" ng-show="actualInput"
+		tabindex="0" spellcheck="true"></div>
+	<div contenteditable="true" data-placeholder="enter note description.."
+		style="background-color: #ffe6e6" id="note-description-input"
+		role="textbox" class="notranslate noteEdit noteEdit1"
+		ng-show="actualInput" tabindex="0" spellcheck="true"></div>
+	<button type="button" id="saveNote" ng-click="saveNotes()">saveNotes</button>
+</div>

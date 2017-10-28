@@ -2,10 +2,13 @@ package com.bridgelabz.controller;
 
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +23,7 @@ import com.bridgelabz.services.NotesService;
 import com.bridgelabz.validator.NoteValidator;
 
 @RestController
+@RequestMapping(value="/notesCredential")
 public class NotesDetails {
 	 private final Logger LOG = LoggerFactory.getLogger(NotesDetails.class);
 	
@@ -33,12 +37,14 @@ public class NotesDetails {
 	NoteValidator noteValidation;
 	
 	@RequestMapping(value="/saveNotes",method=RequestMethod.POST)
-	public ResponseEntity<MyResponse> saveNote(@RequestBody Notes notes,HttpSession session){
+	public ResponseEntity<MyResponse> saveNote(@RequestBody Notes notes,HttpSession session,HttpServletRequest request){
 		try {
-			User user =(User) session.getAttribute("userLogin");
+			User user = (User) request.getAttribute("user");
+			//User user =(User) session.getAttribute("userLogin");
 			notes.setUser(user);
 			Date date = new Date();
 			notes.setCreatedTime(date);
+			LOG.info("user"+user);
 			boolean isNoteValid = noteValidation.noteValidator(notes);
 			if(isNoteValid) {
 				LOG.debug("note validation successfull:-");
@@ -73,8 +79,9 @@ public class NotesDetails {
 		
 	}
 	@RequestMapping(value="/getNotes", method=RequestMethod.GET)
-	public List<Notes> getNotes(HttpSession session){
-		User user = (User)session.getAttribute("userLogin");
+	public List<Notes> getNotes(HttpSession session,HttpServletRequest request){
+		User user = (User) request.getAttribute("user");
+		//User user = (User)session.getAttribute("userLogin");
 		List<Notes>  notes = notesService.getNotes(user);
 		return notes;
 		

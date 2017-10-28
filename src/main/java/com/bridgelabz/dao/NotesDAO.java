@@ -1,8 +1,6 @@
 package com.bridgelabz.dao;
 
-import java.util.Date;
 import java.util.List;
-
 import com.bridgelabz.model.Notes;
 import com.bridgelabz.model.User;
 

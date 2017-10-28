@@ -7,7 +7,7 @@ toDoApp.factory('saveNotesService',function($http){
 		console.log(notes);
 		$http({
 			method:"POST",
-			url:'saveNotes',
+			url:'notesCredential/saveNotes',
 			data: notes,
 			
 		}).then(function(response){
@@ -19,7 +19,10 @@ toDoApp.factory('saveNotesService',function($http){
 	note.getNotes = function() {
 		return $http({
 			method:"GET",
-			url: 'getNotes'
+			headers:{
+				'accessToken' : localStorage.getItem("accessToken")
+			},
+			url: 'notesCredential/getNotes'
 		})
 	}
 	return note;

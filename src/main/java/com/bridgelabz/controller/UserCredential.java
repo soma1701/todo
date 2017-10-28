@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bridgelabz.model.User;
 import com.bridgelabz.services.UserService;
+import com.bridgelabz.token.GenerateJWT;
 import com.bridgelabz.util.Encryption;
 import com.bridgelabz.validator.RegistrationValidationImpl;
 import com.bridgelabz.model.MyResponse;
@@ -113,7 +114,22 @@ public class UserCredential {
 				MyResponse.setResponseMessage("wrong credential");
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(MyResponse);
 			}
-			String accessToken = UUID.randomUUID().toString().replaceAll("-", "");
+			String accessToken = GenerateJWT.generateToken(userLogin.getId());
+			token.setGenerateToken(accessToken);
+			LOG.info("token generate:-"+accessToken);
+			String url = request.getRequestURL().toString();
+			url = url.substring(0,url.lastIndexOf("/"))+"/"+"finalLogin"+"/"+accessToken;
+			try {
+			userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "finalLogin", url);
+			LOG.debug("after loggged in, sending token via mail");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		LOG.info("user successfully logged in");
+		MyResponse.setResponseMessage(accessToken);
+		return ResponseEntity.ok(MyResponse);
+}
+			/*String accessToken = UUID.randomUUID().toString().replaceAll("-", "");
 			token.setGenerateToken(accessToken);
 			LOG.info("token created successfull:-"+accessToken);
 			userService.saveTokenInRedis(token);
@@ -130,7 +146,7 @@ public class UserCredential {
 			MyResponse.setResponseMessage("login successfully");
 			return ResponseEntity.ok(MyResponse);
 			
-		}
+		}*/
 		
 	@RequestMapping("/finalLogin/{token}")
 		public ResponseEntity<String> checkValidUser(@PathVariable("token") String generateToken){
