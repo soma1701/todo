@@ -18,6 +18,7 @@
 	<script type="text/javascript" src="directive/sidebar.js"></script>
 	<script type="text/javascript" src="directive/cardsinput.js"></script>
 	<script type="text/javascript" src="directive/cardsoutput.js"></script>
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body ng-app="toDoApp">
 

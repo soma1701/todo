@@ -20,7 +20,7 @@
 }
 .vertical-menu {
     width: 200px;
-    height: 150px;
+    height: 100%;
     overflow-y: auto;
 }
 
@@ -149,3 +149,6 @@
 	background-color: white;
         content:attr(data-text);
     }
+  #btndiv{
+  	back-ground-color:#ffe6e6;
+  }
