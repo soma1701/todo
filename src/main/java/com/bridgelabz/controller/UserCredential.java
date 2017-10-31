@@ -1,11 +1,8 @@
 package com.bridgelabz.controller;
 
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
-import org.apache.commons.logging.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -191,6 +188,7 @@ public class UserCredential {
 			MyResponse.setResponseMessage("logout successfully:-");
 			return  ResponseEntity.ok(MyResponse);
 		}
+		
 		
 
 }
