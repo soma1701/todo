@@ -21,6 +21,8 @@ public interface UserService {
 
 	public Token getToken(String token);
 
+	public User getUserByEmail(String email);
+
 
 
 }

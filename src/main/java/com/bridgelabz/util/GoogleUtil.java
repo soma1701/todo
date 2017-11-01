@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class GoogleUtil {
-	private static Logger LOG = (Logger) LogManager.getLogger(GoogleUtil.class);
+	private static final Logger LOG = (Logger) LogManager.getLogger(GoogleUtil.class);
 	private static final String clientId="342823053592-pra6g4rhe59ka7rbpvq7lif712qsssqr.apps.googleusercontent.com";
 	private static final String secreateKey="yCetJ8Tr2uuSFrm4GIcEwIfM";
 	private static final String redirectUrl="http://localhost:8080/todo/successGoogleLogin";
@@ -27,6 +27,7 @@ public class GoogleUtil {
 					URLEncoder.encode(redirectUrl, "UTF-8") + "&response_type=code" + "&scope=profile email"
 					+ "&approval_prompt=force" + "&access_type=offline";
 		} catch (Exception e) {
+			LOG.info("exception occured if google login url is not valid");
 		}
 		return googleLoginUrl;
 	}
@@ -59,8 +60,9 @@ public class GoogleUtil {
 			String googleAccessToken;
 			try {
 				googleAccessToken = objectMapper.readTree(googleResponse).get("access_token").asText();
-				System.out.println(googleAccessToken);
+				LOG.info("google aceess token by code:-"+googleAccessToken);
 			} catch (IOException e) {
+				LOG.info("exception occured if access token is null:-");
 				e.printStackTrace();
 				return null;
 			}

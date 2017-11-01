@@ -18,5 +18,7 @@ public interface UserDao {
 
 	public Token getToken(String token);
 
+	public User getUserByEmail(String email);
+
 
 }

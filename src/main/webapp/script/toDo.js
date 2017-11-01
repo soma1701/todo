@@ -15,6 +15,11 @@ toDoApp.config(function($stateProvider, $urlRouterProvider) {
 		url :'/homePage',
 		templateUrl :'template/homePage.html'
 	})
+	.state('dummyLogin',{
+		url :'/dummyLogin',
+		templateUrl:'template/dummyLogin.html',
+		controller:'googleController'
+	})
 	
 	$urlRouterProvider.otherwise('loginPage');
 });
