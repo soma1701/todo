@@ -17,16 +17,17 @@ public class LogInIntercepter implements HandlerInterceptor{
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)throws Exception {
-		System.out.println(request.getHeader("accessToken"));
+		LOG.info("access token is:-"+request.getHeader("accessToken"));
+		System.out.println("shit: " + request.getHeader("accessToken"));
 		int userId = VerifyJWT.verifyAccessToken(request.getHeader("accessToken").toString());
-		System.out.println(userId);
+		LOG.info("user id is:-"+userId);
 		if(userId == 0) {
 			MyResponse myResponse = new MyResponse();
 			myResponse.setResponseMessage("user logged In via accessToken");
 			PrintWriter out = response.getWriter();
 			Gson gson = new Gson();
 			String jsonResponse = gson.toJson(myResponse);
-			out.println(jsonResponse);
+			out.println("json response"+jsonResponse);
 			response.sendError(511);
 			return false;
 		}

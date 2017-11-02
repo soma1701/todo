@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bridgelabz.model.MyResponse;
@@ -32,16 +33,16 @@ public class FBLogin {
 	public void fbLogin(HttpServletRequest request,HttpServletResponse response) {
 		String fbUrl = FBUtil.generateFbUrl();
 		try {
-			System.out.println(fbUrl);
+			LOG.info("FB URL: " + fbUrl);
 			response.sendRedirect(fbUrl);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	@RequestMapping(value="/successFBLogin")
+	@RequestMapping(value="/successFbLogin", method = RequestMethod.GET)
 	public ResponseEntity<MyResponse> getFbAccessToken(HttpServletRequest request,HttpServletResponse response,HttpSession session){
-		System.out.println("After success");
+		LOG.info("After success");
 		String codeForFb = request.getParameter("code");
 		LOG.info("codeForFb:-"+codeForFb);
 		String accessTokenForFb = FBUtil.getFbAccessToken(codeForFb);
@@ -65,10 +66,9 @@ public class FBLogin {
 				String myAccessToken = GenerateJWT.generateToken(userByEmail.getId());
 				LOG.info("token geneted by jwt"+myAccessToken);
 				session.setAttribute("myAccessToken", myAccessToken);
-				response.sendRedirect("http://localhost:8080/todo/#!/dummyLogin");
+				response.sendRedirect("http://localhost:8080/todo/#!/dummyFbLogin");
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
 			LOG.info("exception occured during registering user from fb:");

@@ -8,8 +8,11 @@ toDoApp.factory('saveNotesService',function($http){
 		$http({
 			method:"POST",
 			url:'notesCredential/saveNotes',
-			data: notes,
-			
+			headers:{
+				'accessToken' : localStorage.getItem("accessToken")
+			},
+			data: notes,		
+						
 		}).then(function(response){
 			console.log(response.data.responseMessage);
 		},function(response){

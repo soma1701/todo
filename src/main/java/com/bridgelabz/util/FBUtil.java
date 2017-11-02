@@ -27,8 +27,7 @@ public  class FBUtil {
 		try {
 			 fbUrl = "https://www.facebook.com/v2.10/dialog/oauth?" + "client_id=" + fclientId + "&redirect_uri="
 					+ URLEncoder.encode(fredirectUrl) + "&state=todoappstate" + "&scope=public_profile,email";
-			
-			
+			 LOG.info("url for fb"+fbUrl);
 		} catch (Exception e) {
 			LOG.catching(e);
 		}
@@ -37,16 +36,17 @@ public  class FBUtil {
 	}
 	public static String getFbAccessToken(String code) {
 		String urlParametersForFb = "&redirect_uri=" + URLEncoder.encode(fredirectUrl)
+		+ "&client_id=" + fclientId 
 		+ "&client_secret=" + fsecreateKey 
 		+ "&code=" + code;
 		try {
-			URL url = new URL("https://graph.facebook.com/v2.10/oauth/access_token");
+			URL url = new URL("https://graph.facebook.com/v2.10/oauth/access_token?"+urlParametersForFb);
 
 			URLConnection connection = url.openConnection();
 			connection.setDoOutput(true);
-			OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-			writer.write(urlParametersForFb);
-			writer.flush();
+			//OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+			//writer.write(urlParametersForFb);
+			//writer.flush();
 			
 			String fbResponse = "";
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -59,7 +59,7 @@ public  class FBUtil {
 			ObjectMapper objectMapper = new ObjectMapper();
 			
 			String fbAccessToken = objectMapper.readTree(fbResponse).get("access_token").asText();
-			LOG.info(fbAccessToken);
+			LOG.info("fb access token:-"+fbAccessToken);
 			
 			return fbAccessToken;
 		} catch (IOException e) {

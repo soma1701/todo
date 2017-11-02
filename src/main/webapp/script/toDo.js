@@ -20,6 +20,11 @@ toDoApp.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl:'template/dummyLogin.html',
 		controller:'googleController'
 	})
+	.state('dummyFbLogin',{
+		url :'/dummyFbLogin',
+		templateUrl:'template/dummyFbLogin.html',
+		controller:'fbController'
+	})
 	
 	$urlRouterProvider.otherwise('loginPage');
 });
