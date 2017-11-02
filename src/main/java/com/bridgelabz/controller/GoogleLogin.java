@@ -63,6 +63,7 @@ public class GoogleLogin {
 				googleUser.setLastName(objectMapper.readTree(googleProfileInfo).get("family_name").asText());
 				googleUser.setValid(true);
 				userService.register(googleUser);
+				response.sendRedirect("http://localhost:8080/todo/#!/homePage");
 			}
 			else {
 				String myAccessToken = GenerateJWT.generateToken(userByEmail.getId());
@@ -84,7 +85,6 @@ public class GoogleLogin {
 			LOG.info(family_name);
 			LOG.info(gender);
 			
-			
 		} catch (IOException e) {
 			LOG.info("exception while user does not have google account or user is not register with google");
 			LOG.catching(e);;
@@ -94,11 +94,11 @@ public class GoogleLogin {
 			LOG.catching(e);;
 			e.printStackTrace();
 		}
-		/*try {
+		try {
 			response.sendRedirect("http://localhost:8080/todo/#!/loginPage");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}*/
+		}
 		myResponse.setResponseMessage(accessToken);
 		return ResponseEntity.ok(myResponse);
 	}

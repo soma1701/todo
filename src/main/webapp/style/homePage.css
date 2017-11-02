@@ -34,42 +34,6 @@
 .vertical-menu a:hover {
     background-color: #ccc;
 }
- /*#note-title,#note-description{
- 	width:30%;
- 	background-color:white;
- }
-
-.card
-	{
-	background-color:white;
-	width:30%;
-    font-size: 14px;
-    line-height: 19px;
-    min-height: 46px;
-    padding: 12px 15px 15px 15px;
-}
-
-.note-input{
-	display: inline-table;
-	width:30%;
-	background-color:white;
-	border: 2px black;
-}
-.note-output{
-	display: inline-table;
-	width:30%;
-	background-color:white;
-	border: 2px black;
-}
-
-
-.container{
-	background-color:lavender;
-	font-size: 14px;
-    line-height: 19px;
-    min-height: 46px;
-    padding: 12px 15px 15px 15px;
-} */
 
 #saveNote{
 	float: right;
@@ -111,12 +75,6 @@
 }
  #note-input:empty:before{ 
 	content: attr(placeholder); 
-	/* font-size: 14px;
-    line-height: 19px;
-    min-height: 46px;
-    padding: 12px 15px 15px 15px;
-    font-family: 'Roboto Slab','Times New Roman',serif;
-    color:grey;  */
 }
 #note-title-input[placeholder]:empty:not(:focus):before{
 	content: attr(placeholder); 
@@ -127,21 +85,6 @@
     font-family: 'Roboto Slab','Times New Roman',serif; 
 	color:grey;
 }
-/* #note-description-input[data-line]:empty:not(:focus):before{
-	content: attr(data-line); 
-	font-size: 14px;
-    line-height: 19px;
-    min-height: 46px;
-    padding: 12px 15px 15px 15px;
-    font-family: 'Roboto Slab','Times New Roman',serif; 
-	color:grey;
-} 
- */
- /* [contenteditable][data-line]:empty:not(:focus):before {
-	content: attr(data-line);
-	color: grey;
-	display: inline-block;
-}  */
 [contenteditable=true]:empty:before {
 	content: attr(data-placeholder)
 }

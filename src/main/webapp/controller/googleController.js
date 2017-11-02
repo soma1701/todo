@@ -3,6 +3,7 @@ toDoApp.controller('googleController', function($http, $location) {
 		method : "GET",
 		url : 'tokenAftergLogin'
 	}).then(function(response) {
+		console.log("google resp")
 		console.log(response.data.responseMessage);
 		localStorage.setItem('accessToken', response.data.responseMessage);
 		$location.path('homePage');

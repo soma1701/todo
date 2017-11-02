@@ -62,6 +62,7 @@ public class FBLogin {
 				userForFb.setLastName(mapper.readTree(profileInfoFromFB).get("last_name").asText());
 				userForFb.setValid(true);
 				userService.register(userForFb);
+				response.sendRedirect("http://localhost:8080/todo/#!/homePage");
 			}else {
 				String myAccessToken = GenerateJWT.generateToken(userByEmail.getId());
 				LOG.info("token geneted by jwt"+myAccessToken);
