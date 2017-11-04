@@ -2,13 +2,22 @@ var toDoApp = angular.module('toDoApp');
 toDoApp.controller('notesController', function($scope, saveNotesService,$location) {
 	var addNote={};
 	$scope.actualInput = false;
-	
 	$scope.saveNotes = function() {
 		addNote.title=document.getElementById("note-title-input").innerHTML;
 		addNote.description=document.getElementById("note-description-input").innerHTML;
 		console.log(addNote);
-		saveNotesService.saveNotes(addNote);
+		saveNotesService.saveNotes(addNote).then(function(response){
+			console.log(response.data);
+				console.log('notes details:-');
+				$scope.notes = response.data;
+			}, function(response) {
+				console.log(response.status);
+				if (response.status == '511') {
+					$location.path('/loginPage')
+				}
+		});
 	}
+	
 	var httpGetNotes = saveNotesService.getNotes();
 
 	httpGetNotes.then(function(response) {

@@ -1,0 +1,19 @@
+<div>
+	<button data-target="#card-modal" data-toggle="modal" class="btn btn-warning">Simple Popup</button>
+</div>
+<div id="card-modal" class="modal fade" role="dialog">
+	<div class="vertical-alignment-helper">
+		<div class="modal-dialog vertical-align-center">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div contenteditable="true" data-placeholder="click to enter note..." id="modal-note-title"
+						ng-bind="note.title"></div>
+					<div contenteditable="true" data-placeholder="click to enter descriptiob..."
+						ng-bind="note.description" id="modal-note-body"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

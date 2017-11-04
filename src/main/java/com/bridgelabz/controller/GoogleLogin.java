@@ -63,7 +63,10 @@ public class GoogleLogin {
 				googleUser.setLastName(objectMapper.readTree(googleProfileInfo).get("family_name").asText());
 				googleUser.setValid(true);
 				userService.register(googleUser);
-				response.sendRedirect("http://localhost:8080/todo/#!/homePage");
+				String myAccessToken = GenerateJWT.generateToken(userByEmail.getId());
+				LOG.info("token geneted by jwt"+myAccessToken);
+				session.setAttribute("myAccessToken", myAccessToken);
+				response.sendRedirect("http://localhost:8080/todo/#!/dummyLogin");
 			}
 			else {
 				String myAccessToken = GenerateJWT.generateToken(userByEmail.getId());
@@ -94,11 +97,11 @@ public class GoogleLogin {
 			LOG.catching(e);;
 			e.printStackTrace();
 		}
-		try {
+		/*try {
 			response.sendRedirect("http://localhost:8080/todo/#!/loginPage");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 		myResponse.setResponseMessage(accessToken);
 		return ResponseEntity.ok(myResponse);
 	}

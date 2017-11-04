@@ -27,13 +27,29 @@ public class Notes {
 	 private int notesId;
 	 
 	@Column(name="title")
-	String title;
+	private String title;
 	
 	@Column(name="description")
-	String description;
+	private String description;
 	
 	@Column(name="creadted_time")
-	Date createdTime;
+	private Date createdTime;
+	
+	/*@Column(name="is_pin")
+	private boolean isPinned;
+	
+	@Column(name="is_archive")
+	private boolean isArchieved;
+	
+	@Column(name="is_trashed")
+	private boolean isTrashed;
+	
+	@Column(name="color")
+	private String color; 
+	
+	@Column(name="reminder")
+	private Date reminder;*/
+	
 
 	@ManyToOne
 	@JoinColumn(name="user_id")

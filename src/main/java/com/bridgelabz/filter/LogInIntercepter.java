@@ -18,7 +18,6 @@ public class LogInIntercepter implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)throws Exception {
 		LOG.info("access token is:-"+request.getHeader("accessToken"));
-		System.out.println("shit: " + request.getHeader("accessToken"));
 		int userId = VerifyJWT.verifyAccessToken(request.getHeader("accessToken").toString());
 		LOG.info("user id is:-"+userId);
 		if(userId == 0) {

@@ -1,29 +1,26 @@
 <div class="homecontainer" ng-controller="notesController">
-	 <navigation-bar></navigation-bar>
+	<navigation-bar></navigation-bar>
 	<side-bar></side-bar>
-	
-		<div class="col-sm-9">
-			<cards-input></cards-input>
-			<!-- <div style="background-color: blue">
-				<div contenteditable="true" data-placeholder="click to enter note..."  id="note-input" aria-multiline="true" 
-				style="background-color: white" ng-blur="actualInput" role="textbox" ng-hide="actualInput" ng-click="actualInput=true"
-				class="notranslate noteEdit noteEdit1" tabindex="0"></div>
-					<div contenteditable="true" data-placeholder="enter note title..." style="background-color: #ffe6e6" id="note-title-input"
-						role="textbox" class="notranslate noteEdit noteEdit1"ng-show="actualInput" tabindex="0" spellcheck="true">
-					</div>
-					<div contenteditable="true" data-placeholder="enter note description.." style="background-color: #ffe6e6" id="note-description-input"
-						role="textbox" class="notranslate noteEdit noteEdit1" ng-show="actualInput" tabindex="0" spellcheck="true">
-					</div>
-				<button type="button" id="saveNote" ng-click="saveNotes()">saveNotes</button>
-			</div> -->
-			
-			<!-- <div class="col-sm-4" ng-repeat="note in notes">
-				<div class="noteEdit noteEdit1" style="background-color: #e9fcfc" id="note-title-output" ng-bind="note.title"></div>
-				<div class="noteEdit noteEdit1" style="background-color: #e9fcfc" id="note-description-output" ng-bind="note.description"></div>
-			</div> -->
-			<cards-output></cards-output>
-		</div> 
-		
 
-		
+	<div class="col-sm-9">
+		<cards-input></cards-input>
+		<cards-output></cards-output>
 	</div>
+	<!-- modal for editing cards -->
+	<!-- <modal></modal> -->
+
+
+<!-- <div id="card-modal" class="modal fade in" role="dialog" tabindex="-1">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-body" id="note-edit-modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+		<button data-target="#card-modal" data-toggle="modal"
+			class="btn btn-warning">Simple Popup</button>
+ -->
+</div>

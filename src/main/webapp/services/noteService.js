@@ -5,7 +5,7 @@ toDoApp.factory('saveNotesService',function($http){
 	
 	note.saveNotes = function(notes){
 		console.log(notes);
-		$http({
+		return $http({
 			method:"POST",
 			url:'notesCredential/saveNotes',
 			headers:{
@@ -13,11 +13,11 @@ toDoApp.factory('saveNotesService',function($http){
 			},
 			data: notes,		
 						
-		}).then(function(response){
-			console.log(response.data.responseMessage);
+		})/*.then(function(response){
+			console.log(response.data.myResponseMessage);
 		},function(response){
-			console.log(response.data.responseMessage);
-		});
+			console.log(response.data.myResponseMessage);
+		});*/
 	}
 	note.getNotes = function() {
 		return $http({

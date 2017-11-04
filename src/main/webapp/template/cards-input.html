@@ -1,4 +1,5 @@
 <div style="background-color: blue">
+	<!-- <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"></svg> -->
 	<div contenteditable="true" data-placeholder="click to enter note..."
 		id="note-input" aria-multiline="true" style="background-color: white"
 		ng-blur="actualInput" role="textbox" ng-hide="actualInput"
@@ -12,6 +13,6 @@
 		style="background-color: #ffe6e6" id="note-description-input"
 		role="textbox" class="notranslate noteEdit noteEdit1"
 		ng-show="actualInput" tabindex="0" spellcheck="true"></div>
-	<div><button type="button" id="saveNote" ng-click="saveNotes()">saveNotes</button></div>
+	<button type="button" id="saveNote" ng-click="saveNotes()">saveNotes</button>
 	
 </div>

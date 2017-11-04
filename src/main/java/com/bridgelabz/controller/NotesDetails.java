@@ -110,5 +110,7 @@ public class NotesDetails {
 		
 		
 	}
-
+/*	@RequestMapping(value="/deleteFromTrash",method=RequestMethod.PUT)
+	public ResponseEntity<MyResponse> deleteFromTrash()
+*/
 }
