@@ -1,3 +1,13 @@
+
+.loginContainer{
+	border: 1px balack;
+	border-style: groove;
+	border-radius:2px;
+	margin-top:40px;
+	width:450px;
+	margin:0 auto;
+	background-color:white;
+}
  .compositeButton{
  	height:45px;color:white;width:80%;
  }
@@ -6,9 +16,11 @@
  }
  #facebook{
  	background-color:blue;
+ 	height:45px;width:80%;
  }
  #google{
- background-color:black;
+ 	background-color:black;
+ 	height:45px;width:80%;
  }
  #submit{
 	 background-color:rgba(79, 222, 222, 0.72);

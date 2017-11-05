@@ -51,12 +51,20 @@ public class UserCredential {
 			user.setPassword(encryptedPassword);
 			boolean regvValid = registerValidation.validator(user);
 			if (regvValid) {
+				/*boolean dublicateUser=userService.duplicateEntry(user);
+				LOG.info("dublicate user checking "+dublicateUser);
+				if(dublicateUser) {
+					LOG.error("user already exist...");
+					MyResponse.setResponseMessage("user already exixst");
+					return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(MyResponse);
+				}else {*/
 				LOG.info("user enter correct credential");
 				userService.register(user);
 				LOG.debug("user register success");
 				userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "emailVerification",
 						url2 + "/" + "verifyUser" + "/" + user.getId());
 				LOG.info("sending verification mail to user");
+				/*}*/
 			} else {
 				LOG.error("user validation is unsuccessfull:-");
 				MyResponse.setResponseMessage("your credential is wrong");

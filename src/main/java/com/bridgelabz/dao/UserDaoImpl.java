@@ -118,4 +118,20 @@ public class UserDaoImpl implements UserDao {
 		return userByEmail;
 	}
 
+	@Override
+	public boolean dublicateEntry(User user) {
+		boolean isExistUser=false;;
+		tx = session.beginTransaction();
+		Criteria cr = session.createCriteria(User.class);
+		cr.add(Restrictions.eq("email", user.getEmail()));
+		User userByEmail=(User)cr.uniqueResult();
+		if(userByEmail==null) {
+			session.save(userByEmail);
+			return isExistUser;
+		}else {
+			isExistUser=true;
+			return isExistUser;
+		}
+	}
+
 }

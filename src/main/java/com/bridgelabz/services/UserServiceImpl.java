@@ -69,4 +69,9 @@ public class UserServiceImpl implements UserService{
 		return userDao.getUserByEmail(email);
 	}
 
+	@Override
+	public boolean duplicateEntry(User user) {
+		return userDao.dublicateEntry(user);
+	}
+
 }

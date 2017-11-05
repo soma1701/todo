@@ -1,9 +1,29 @@
-.container{
+.registrationContainer{
 	border: 1px balack;
 	border-style: groove;
 	border-radius:2px;
-	margin-top:15px;
-	margin-bottom:30px;
-	max-width:450px;
-	min-width:500px;
+	margin-top:40px;
+	width:450px;
+	margin:0 auto;
+	background-color:white;
+	
 }
+.registrationBack{
+	background-color: #6eeadd;
+}
+.registerbtn{
+	text-align:center;
+	
+}
+#registrationPassword{
+	width:100%;
+}
+#registrationEmail{
+	width:100%;
+}
+#registrationbtn{
+	bakground-color:aqua;
+}
+input.ng-invalid.ng-dirty{border:1px solid red;}
+input.ng-touched{border:1px solid pink;}
+input.ng-valid{border:1px  light green;}

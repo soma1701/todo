@@ -1,35 +1,55 @@
-<div class="container" ng-controller="registrationControllers">
-	<h2>Registration form</h2>
-	<div class="form-group" name="userForm">
-		<label for="firstName">FirstName:</label> <input type="text"
-			class="form-control" id="firstName"
-			placeholder="Enter your firstName" name="firstName"
-			ng-model="user.firstName" ng-minlength=4> <span
-			ng-show="userForm.$dirty && userForm.firstName.$error.required">This
-			is a required field</span>
-	</div>
-	<div class="form-group">
-		<label for="lastName">lastName:</label> <input type="text"
-			class="form-control" id="lastName" placeholder="Enter your lastName"
-			name="lastName" ng-model="user.lastName">
-	</div>
-	<div class="form-group">
-		<label for="mobNo">mobNo:</label> <input type="number"
-			class="form-control" id="mobNo" placeholder="Enter your mobNo"
-			name="mobNo" ng-model="user.mobNo">
-	</div>
-	<div class="form-group">
-		<label for="email">Email:</label> <input type="text"
-			class="form-control" id="email" placeholder="Enter email"
-			name="email" ng-model="user.email">
-	</div>
-	<div class="form-group">
-		<label for="pwd">Password:</label> <input type="password"
-			class="form-control" id="password" placeholder="Enter password"
-			name="password" ng-model="user.password">
-	</div>
-	<div class="from-group">
-		<button type="button" class="btn btn-default"
-			data-ng-click="registerUser()">Submit</button>
+<div class="registrationBack col-md-12">
+	<div class="registrationContainer" ng-controller="registrationControllers">
+		<form name="registrationForm">
+			<h2>Registration form</h2>
+			<div class="form-group col-md 12" name="userForm">
+			<h3 ng-bind="myResponseMessage" id="error1"> </h3>
+				<label for="firstName">FirstName:</label> 
+				<input type="text" class="form-control" id="firstName" placeholder="Enter your firstName" name="firstName"
+				ng-model="user.firstName" ng-minlength="3" ng-maxlength="12" required/> 
+				<!-- <span ng-messages="registrationForm.firstName.$dirty && registerForm.firstName.$error.required">Required</span>
+				<span ng-show="registerForm.firstName.$touched && registerForm.firstName.$invalid">Must be filled</span>
+				<span ng-show="registerForm.firstName.$dirty && registerForm.firstName.$error.minlength">Your first name should be minimum 3 characters</span>
+				<span ng-show="registerForm.firstName.$dirty && registerForm.firstName.$error.maxlength">Your first name can't be greater than 12 characters</span> -->
+			</div>
+			<div class="form-group">
+				<label for="lastName">lastName:</label> 
+				<input type="text" class="form-control" id="lastName" placeholder="Enter your lastName" name="lastName" ng-model="user.lastName" 
+				ng-minlength="3" ng-maxlength="12" required>
+				<span ng-show="registrationForm.lastName.$dirty && registerForm.lastName.$error.required">Required</span>
+				<span ng-show="registerForm.lastName.$touched && registerForm.lastName.$invalid">Must be filled</span>
+				<span ng-show="registerForm.lastName.$dirty && registerForm.lastName.$error.minlength">Your last name minimum 3 character</span>
+				<span ng-show="registerForm.lastName.$dirty && registerForm.lastName.$error.maxlength">Your last name can't be greater than 12 characters</span>
+			</div>
+			<div class="form-group">
+				<label for="mobNo">mobNo:</label> 
+				<input type="number" class="form-control" id="mobNo" placeholder="Enter your mobNo" name="mobNo" ng-model="user.mobNo"
+				 ng-minlength="10" ng-maxlength="10" required>
+				 <span ng-show="registrationForm.mobNo.$dirty && registerForm.mobNo.$error.required">Required</span>
+				 <span ng-show="registerForm.mobNo.$touched && registerForm.mobNo.$invalid">Must be filled</span>
+				 <span ng-show="registerForm.mobNo.$dirty && registerForm.mobNo.$error.minlength">Your mob no be exactly 10 digit</span>
+				 <span ng-show="registerForm.mobNo.$dirty && registerForm.mobNo.$error.maxlength">Your mob no be exactly 10 digit</span>
+			</div>
+			<div class="form-group">
+				<label for="email">Email:</label> 
+				<input type="text" class="form-control" id="registrationEmail" placeholder="Enter email" name="email" ng-model="user.email" 
+				required>
+				<span ng-show="registerForm.email.$dirty && registerForm.email.$error.required">Required</span>
+				<span ng-show="registerForm.email.$touched && registerForm.email.$invalid">Must be filled</span>
+				<span ng-show="registerForm.email.$dirty && registerForm.email.$error.email">please enter proper format of email</span>
+			</div>
+			<div class="form-group">
+				<label for="pwd">Password:</label> 
+				<input type="password" class="form-control password"  placeholder="Enter password" id="registrationPassword" name="password" 
+				ng-model="user.password" ng-minlength="4" required>
+				<span ng-show="registerForm.password.$dirty && registerForm.pwd.$error.required">Required</span>
+				<span ng-show="registerForm.password.$touched && registerForm.pwd.$invalid">Must be filled</span>
+				<span ng-show="registerForm.password.$untouched">Must contain words followed by number</span>
+			   <span ng-show="registerForm.password.$dirty && registerForm.password.$error.minlength">Password should be minimum 4 characetrs</span>
+			</div>
+			<div class="from-group registerbtn">
+				<button type="button"  class="btn btn-default" id="registrationbtn"ng-disabled="registrationForm.$invalid" data-ng-click="registerUser()">Submit</button>
+			</div>
+		</form>
 	</div>
 </div>

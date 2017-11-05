@@ -20,5 +20,7 @@ public interface UserDao {
 
 	public User getUserByEmail(String email);
 
+	public boolean dublicateEntry(User user);
+
 
 }

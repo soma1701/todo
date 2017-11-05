@@ -1,11 +1,9 @@
 package com.bridgelabz.controller;
 
 import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +56,7 @@ public class GoogleLogin {
 			User userByEmail = userService.getUserByEmail(email);
 			if(userByEmail==null) {
 				User googleUser = new User();
-				googleUser.setEmail(objectMapper.readTree(googleProfileInfo).get("verified_email").asText());
+				googleUser.setEmail(objectMapper.readTree(googleProfileInfo).get("email").asText());
 				googleUser.setFirstName(objectMapper.readTree(googleProfileInfo).get("given_name").asText());
 				googleUser.setLastName(objectMapper.readTree(googleProfileInfo).get("family_name").asText());
 				googleUser.setValid(true);
@@ -66,7 +64,7 @@ public class GoogleLogin {
 				String myAccessToken = GenerateJWT.generateToken(userByEmail.getId());
 				LOG.info("token geneted by jwt"+myAccessToken);
 				session.setAttribute("myAccessToken", myAccessToken);
-				response.sendRedirect("http://localhost:8080/todo/#!/dummyLogin");
+				response.sendRedirect("http://localhost:8080/todo/#!/homePage");
 			}
 			else {
 				String myAccessToken = GenerateJWT.generateToken(userByEmail.getId());

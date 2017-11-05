@@ -14,7 +14,6 @@ public interface UserService {
 
 	public User login(User user,String encryptedPassword);
 	
-
 	public void resetPassword(String email,String password);
 
 	public void saveTokenInRedis(Token token);
@@ -23,6 +22,7 @@ public interface UserService {
 
 	public User getUserByEmail(String email);
 
-
+	public boolean duplicateEntry(User user);
+	
 
 }
