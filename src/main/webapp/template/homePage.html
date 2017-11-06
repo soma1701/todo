@@ -1,26 +1,25 @@
 <div class="homecontainer" ng-controller="notesController">
-	<navigation-bar></navigation-bar>
+	<!-- <navigation-bar></navigation-bar>
 	<side-bar></side-bar>
 
 	<div class="col-sm-9">
 		<cards-input></cards-input>
 		<cards-output></cards-output>
+	</div> -->
+	<div ng-show="notesTab">
+	<div ng-repeat="r in req">
+		<nav-bar user="r"></nav-bar>
+		<div class="container" style="width:100%;height: 100%">
+			<div class="container" style="margin:0 auto;width: 700px;text-align: center">
+				<div style="background-color:white;width: 80%;height: 40px;display: inline-block;text-align:left " ng-click="tabClicked()" ng-show="notesData == '' && !showNewNote">
+					<input type="text"  style="border:none" ng-model="notesData" focus="true" placeholder="Take a note">
+				</div>
+				<div style="background-color:white;width: 80%;text-align:left;display: inline-block;" ng-show="notesData != '' || showNewNote">
+					<input type="text"  style="border:none" focus="false" placeholder="Title"/><br>
+					<input type="text-area"  style="border:none" ng-model="notesData" focus="true" placeholder="Take a note"/>
+				</div>
+			</div>
+		</div>
 	</div>
-	<!-- modal for editing cards -->
-	<!-- <modal></modal> -->
-
-
-<!-- <div id="card-modal" class="modal fade in" role="dialog" tabindex="-1">
-    <div class="vertical-alignment-helper">
-        <div class="modal-dialog vertical-align-center">
-            <div class="modal-content">
-                <div class="modal-body" id="note-edit-modal-body">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-		<button data-target="#card-modal" data-toggle="modal"
-			class="btn btn-warning">Simple Popup</button>
- -->
+	</div>
 </div>

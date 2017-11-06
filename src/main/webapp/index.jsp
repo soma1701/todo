@@ -9,6 +9,8 @@
 	<script type="text/javascript" src="bower_components/angular/angular-ui-router.min.js"></script>
 	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 	<script src="script/toDo.js"></script>
+	<script type="text/javascript" src="script/ui-bootstrap-tpls-2.5.0.min.js"></script>
+	<script type="text/javascript" src="directive/nav-bar.directive.js"></script>
 	<script src="services/RegistrationServices.js"></script>
 	<script src="controller/registrationController.js"></script>
 	<script type="text/javascript" src ="services/loginService.js"></script>
@@ -24,6 +26,11 @@
 	<script type="text/javascript" src="controller/fbController.js"></script>
 	<script type="text/javascript" src="controller/modalController.js"></script>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	
+	<style>
+    	#navBarSearchForm input[type=text]{width:550px !important;}
+	</style>
+	
 </head>
 <body ng-app="toDoApp">
 

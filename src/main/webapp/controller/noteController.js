@@ -3,6 +3,28 @@ toDoApp.controller('notesController', function($scope, saveNotesService,$locatio
 	var addNote={};
 	$scope.actualInput = false;
 	
+	$scope.open = function () {
+		console.log('opening pop up');
+		var modalInstance = $uibModal.open({
+		templateUrl: 'template/new-note.template.html'
+		});
+		};
+	$scope.notesData = '';
+	$scope.showNewNote = false;
+	$scope.tabClicked = function(){
+		console.log($scope.showNewNote);
+		$scope.showNewNote = true;
+		console.log($scope.showNewNote);
+	};
+	
+	$scope.notesTab = true;	
+	$scope.req = [
+		
+		{
+				background:"#fb0",
+				bordercolor:"#fb0",
+				color:"black"
+		}];
 	$scope.saveNotes = function() {
 		addNote.title=document.getElementById("note-title-input").innerHTML;
 		addNote.description=document.getElementById("note-description-input").innerHTML;
@@ -21,4 +43,23 @@ toDoApp.controller('notesController', function($scope, saveNotesService,$locatio
 	});
 	
 
-})
+});
+toDoApp.directive('focus',
+		function($timeout) {
+	console.log("test");
+	alert("test");
+	 return {
+	 scope : {
+	   trigger : '@focus'
+	 },
+	 link : function(scope, element) {
+	  scope.$watch('trigger', function(value) {
+	    if (value === "true") {
+	      $timeout(function() {
+	       element[0].focus();
+	      });
+	   }
+	 });
+	 }
+	};
+	}); 
