@@ -32,7 +32,7 @@ public class UserDaoImpl implements UserDao {
 	public void register(User user) {
 		session = sessionFactory.openSession();
 		tx = (Transaction) session.beginTransaction();
-		session.save(user);
+		session.saveOrUpdate(user);
 		try {
 			tx.commit();
 		} catch (SecurityException e) {

@@ -9,8 +9,8 @@
 	<script type="text/javascript" src="bower_components/angular/angular-ui-router.min.js"></script>
 	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 	<script src="script/toDo.js"></script>
-	<script type="text/javascript" src="script/ui-bootstrap-tpls-2.5.0.min.js"></script>
-	<script type="text/javascript" src="directive/nav-bar.directive.js"></script>
+<!-- 	<script type="text/javascript" src="script/ui-bootstrap-tpls-2.5.0.min.js"></script> -->
+	<script type="text/javascript" src="directive/nav-bar.js"></script>
 	<script src="services/RegistrationServices.js"></script>
 	<script src="controller/registrationController.js"></script>
 	<script type="text/javascript" src ="services/loginService.js"></script>
@@ -18,13 +18,13 @@
 	<script type="text/javascript" src="services/noteService.js"></script>
 	<script type="text/javascript" src="controller/noteController.js"></script>
 	<script type="text/javascript" src="directive/navigationbar.js"></script>
-	<script type="text/javascript" src="directive/sidebar.js"></script>
-	<script type="text/javascript" src="directive/cardsinput.js"></script>
-	<script type="text/javascript" src="directive/cardsoutput.js"></script>
-	<script type="text/javascript" src="directive/modal.js"></script>
+<!-- 	<script type="text/javascript" src="directive/sidebar.js"></script> -->
+<!-- 	<script type="text/javascript" src="directive/cardsinput.js"></script> -->
+<!-- 	<script type="text/javascript" src="directive/cardsoutput.js"></script> -->
+<!-- 	<script type="text/javascript" src="directive/modal.js"></script> -->
 	<script type="text/javascript" src="controller/googleController.js"></script>
 	<script type="text/javascript" src="controller/fbController.js"></script>
-	<script type="text/javascript" src="controller/modalController.js"></script>
+<!-- 	<script type="text/javascript" src="controller/modalController.js"></script> -->
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	
 	<style>

@@ -14,9 +14,12 @@
 				<div style="background-color:white;width: 80%;height: 40px;display: inline-block;text-align:left " ng-click="tabClicked()" ng-show="notesData == '' && !showNewNote">
 					<input type="text"  style="border:none" ng-model="notesData" focus="true" placeholder="Take a note">
 				</div>
-				<div style="background-color:white;width: 80%;text-align:left;display: inline-block;" ng-show="notesData != '' || showNewNote">
-					<input type="text"  style="border:none" focus="false" placeholder="Title"/><br>
-					<input type="text-area"  style="border:none" ng-model="notesData" focus="true" placeholder="Take a note"/>
+				<div style="background-color:pink;width: 80%;text-align:left;display: inline-block;" ng-show="notesData != '' || showNewNote">
+					<a href="#" class="btn btn-info btn-lg" style="float:right">
+          			<span class="glyphicon glyphicon-pushpin"></span></a> 
+					<input type="text"  style="border:none;width:100%" focus="false" placeholder="Title"/><br>
+					<input type="text-area"  style="border:none;width:100%" ng-model="notesData" focus="true" placeholder="Take a note"/>
+					<button type="button" style="float:right">Done</button>
 				</div>
 			</div>
 		</div>

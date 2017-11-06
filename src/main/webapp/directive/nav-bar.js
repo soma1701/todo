@@ -5,10 +5,8 @@ toDoApp.directive('navBar',function(){
 			user: '=user'
 		},
 		replace: true,
-		templateUrl:'template/nav-bar.template.html',
+		templateUrl:'template/nav-bar.html',
 		link: function(scope,e,a){
-//			console.log(a.user);
-		scope.dataa = a.data;
 		}
 	};
 });
