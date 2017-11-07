@@ -32,10 +32,12 @@ public class GoogleLogin {
 	public void googleLogin(HttpServletRequest request, HttpServletResponse response) {
 		
 		String googleUrl=GoogleUtil.generateGoogleUrl();
+		LOG.info("checking google url"+googleUrl);
 		try {
 			response.sendRedirect(googleUrl);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			LOG.info("exception while generating google url");
+			LOG.catching(e);
 			e.printStackTrace();
 		}
 		System.out.println("testing i'm right");
@@ -48,7 +50,7 @@ public class GoogleLogin {
 		String accessToken = GoogleUtil.getAccessToken(code);
 		LOG.info("accessToken"+accessToken);
 		String googleProfileInfo = GoogleUtil.getProfileData(accessToken);
-		LOG.info(googleProfileInfo);
+		LOG.info("google profile info"+googleProfileInfo);
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {
 			String email = objectMapper.readTree(googleProfileInfo).get("email").asText();

@@ -60,7 +60,6 @@ toDoApp.controller('notesController', function($scope, saveNotesService,$locatio
 toDoApp.directive('focus',
 		function($timeout) {
 	console.log("test");
-	alert("test");
 	 return {
 	 scope : {
 	   trigger : '@focus'

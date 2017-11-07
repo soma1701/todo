@@ -81,16 +81,23 @@ public class NotesDetails {
 	@RequestMapping(value="/getNotes", method=RequestMethod.GET)
 	public List<Notes> getNotes(HttpSession session,HttpServletRequest request){
 		User user = (User) request.getAttribute("user");
+		System.out.println("user " + user);
 		//User user = (User)session.getAttribute("userLogin");
 		List<Notes>  notes = notesService.getNotes(user);
+		System.out.println(notes);
 		return notes;
 		
 	}
 	
-	@RequestMapping(value="/editNotes",method=RequestMethod.PUT)
-	public ResponseEntity<MyResponse> editNotes(@RequestBody Notes notes,HttpSession session){
+	@RequestMapping(value="/editNotes",method=RequestMethod.POST)
+	public ResponseEntity<MyResponse> editNotes(@RequestBody Notes notes,HttpServletRequest request){
+		LOG.info("inside editing notes");
+		User user = (User)request.getAttribute("user");
+		LOG.info("checking user"+user.getId());
 		Notes objNotes = notesService.getNoteById(notes.getNotesId());
-		User user = (User)session.getAttribute("userLogin");
+		System.out.println();
+		LOG.info("object of notes by id"+objNotes);
+//		User user = (User)session.getAttribute("userLogin");
 		boolean isEdited;
 		notes.setUser(user);
 		notes.setTitle(notes.getTitle());
@@ -98,6 +105,7 @@ public class NotesDetails {
 		Date resetDate = new Date();
 		notes.setCreatedTime(resetDate);
 		isEdited = notesService.editNotes(notes);
+		LOG.info("checking edition is done or not"+isEdited);
 		if(isEdited){
 			myResponse.setResponseMessage("editing notes are successfull");
 			return ResponseEntity.ok(myResponse);

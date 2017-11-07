@@ -15,36 +15,37 @@ import org.hibernate.annotations.GenericGenerator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
 public class User {
-	
-	@Id  
-	 @GeneratedValue(strategy=GenerationType.AUTO, generator="mygen")
-	 @GenericGenerator(name="mygen",strategy="native")
-	 @Column(name = "id")  
-	 private int id; 
-	
-	@Column(name="first_name")
+
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "mygen")
+	@GenericGenerator(name = "mygen", strategy = "native")
+	@Column(name = "id")
+	private int id;
+
+	@Column(name = "first_name")
 	private String firstName;
-	
-	@Column(name="last_name")
+
+	@Column(name = "last_name")
 	private String lastName;
-	
-	@Column(name="email",unique=true)
+
+	@Column(name = "email")
 	private String email;
-	
-	@Column(name="password")
+
+	@Column(name = "password")
 	private String password;
-	
-	@Column(name="mobNo",unique=true)
+
+	@Column(name = "mobNo")
 	private String mobNo;
-	
-	@Column(name="isValid")
+
+	@Column(name = "isValid")
 	private boolean isValid;
-	
-	@OneToMany(mappedBy="user")
+
+	@OneToMany(mappedBy = "user")
 	@JsonIgnore
-	private List<Notes>  notes;
+	private List<Notes> notes;
 
 	public int getId() {
 		return id;
@@ -109,6 +110,5 @@ public class User {
 	public void setNotes(List<Notes> notes) {
 		this.notes = notes;
 	}
-	
 
 }

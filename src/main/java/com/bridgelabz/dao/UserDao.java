@@ -19,6 +19,8 @@ public interface UserDao {
 	public Token getToken(String token);
 
 	public User getUserByEmail(String email);
+	
+//	public User getUserByMobNo(String mobNo);
 
 	public boolean dublicateEntry(User user);
 

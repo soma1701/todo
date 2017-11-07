@@ -134,4 +134,14 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
+	/*@Override
+	public User getUserByMobNo(String mobNo) {
+		session = sessionFactory.openSession();
+		tx = session.beginTransaction();
+		Criteria cr = session.createCriteria(User.class);
+		cr.add(Restrictions.eq("mobNo", mobNo));
+		User userByEmail=(User)cr.uniqueResult();
+		return userByEmail;
+	}*/
+
 }

@@ -17,13 +17,14 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<mvc:resources location="/style/" mapping="/style/**" />
 	<mvc:resources location="/bower_components/" mapping="/bower_components/**" />
 	<mvc:resources location="/directive/" mapping="/directive/**"/>
+	<mvc:resources location="/images/" mapping="/images/**"/>
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/soma" />
 		<property name="username" value="root" />
-		<property name="password" value="somasingh"/>
+		<property name="password" value="root"/>
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">

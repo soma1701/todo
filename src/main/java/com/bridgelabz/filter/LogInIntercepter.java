@@ -32,7 +32,7 @@ public class LogInIntercepter implements HandlerInterceptor{
 		}
 		User user = new User();
 		user.setId(userId);
-		request.setAttribute( "user",user);
+		request.setAttribute("user", user);
 		return true;
 	}
 
