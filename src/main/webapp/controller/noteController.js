@@ -9,13 +9,26 @@ toDoApp.controller('notesController', function($scope, saveNotesService,$locatio
 		templateUrl: 'template/new-note.template.html'
 		});
 		};
-	$scope.notesData = '';
-	$scope.showNewNote = false;
-	$scope.tabClicked = function(){
-		console.log($scope.showNewNote);
-		$scope.showNewNote = true;
-		console.log($scope.showNewNote);
-	};
+		$scope.width = 0;
+		$scope.margin = 0;
+		$scope.openSideBar = false;
+		$scope.toggleSideBar = function(){
+			$scope.openSideBar = !$scope.openSideBar;
+			if($scope.openSideBar){
+				$scope.width = 250;
+				$scope.margin = 250;
+			}else{
+				$scope.width = 0;
+				$scope.margin = 0;
+			}
+		};
+		$scope.notesData = '';
+		$scope.showNewNote = false;
+		$scope.tabClicked = function(){
+			console.log($scope.showNewNote);
+			$scope.showNewNote = true;
+			console.log($scope.showNewNote);
+		};
 	
 	$scope.notesTab = true;	
 	$scope.req = [
