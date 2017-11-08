@@ -147,6 +147,13 @@
 	    <artifactId>resteasy-client</artifactId>
 	    <version>3.0.19.Final</version>
 	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-spring -->
+<dependency>
+    <groupId>org.apache.activemq</groupId>
+    <artifactId>activemq-spring</artifactId>
+    <version>5.6.0</version>
+</dependency>
+	
   </dependencies>
   <build>
     <finalName>todo</finalName>

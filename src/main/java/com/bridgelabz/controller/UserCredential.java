@@ -54,6 +54,7 @@ public class UserCredential {
 			if (regvValid.equals("false")){
 				LOG.info("user enter correct credential");
 				userService.register(user);
+				userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "verifyUser", url);
 				LOG.debug("user register success");
 				LOG.info("sending verification mail to user");
 			} else {

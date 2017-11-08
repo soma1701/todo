@@ -8,6 +8,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
+
 	<context:component-scan base-package="com.bridgelabz.controller" />
 	<mvc:annotation-driven />
 	<mvc:resources location="/script/" mapping="/script/**" />
@@ -87,4 +88,14 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
    		<bean id="intercepter" class="com.bridgelabz.filter.LogInIntercepter"></bean>
    	</mvc:interceptor>
    </mvc:interceptors>
+   <!-- configuration for activeMq in spring  -->
+   <!-- A connection to activeMq -->
+   <bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+    <property name="brokeUrl" value="tcp://localhost:61616"></property>
+   </bean>
+   <!-- Spring JMS Template -->
+  <bean id="myJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+    <property name="connectionFactory">
+    </property>
+  </bean>
 </beans>
