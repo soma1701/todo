@@ -1,6 +1,6 @@
 //var toDoApp = angular.module('toDoApp');
 
-toDoApp.factory('saveNotesService',function($http,$location){
+toDoApp.factory('notesService',function($http,$location){
 	var note ={};
 	
 	note.saveNotes = function(notes){
@@ -27,6 +27,17 @@ toDoApp.factory('saveNotesService',function($http,$location){
 			},
 			url: 'notesCredential/getNotes'
 		})
+	}
+	note.deleteNote = function(id){
+		console.log("inside delete function;-");
+		return http({
+			method:"POST",
+			url:'notesCrdential/deleteNotes/'+id,
+			headers:{
+				'accesstoken':localStorage.getItem("accessToken")
+			}
+		})
+		
 	}
 	return note;
 });

@@ -98,7 +98,6 @@ public class NotesDetails {
 		User user = (User)request.getAttribute("user");
 		LOG.info("checking user"+user.getId());
 		Notes objNotes = notesService.getNoteById(notes.getNotesId());
-		System.out.println();
 		LOG.info("object of notes by id"+objNotes);
 //		User user = (User)session.getAttribute("userLogin");
 		boolean isEdited;

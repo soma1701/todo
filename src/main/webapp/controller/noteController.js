@@ -1,14 +1,25 @@
 //var toDoApp = angular.module('toDoApp');
-toDoApp.controller('notesController', function($scope, saveNotesService,$location) {
+toDoApp.controller('notesController', function($scope, notesService,$location, $uibModal) {
 	var addNote={};
 	//$scope.actualInput = false;
 	
 	$scope.note = {};
+	$scope.note.description = '';
+	$scope.note.title = '';
 	
-	$scope.open = function () {
-		console.log('opening pop up');
+	$scope.open = function (note) {
+		console.log('opening pop up ;::'+note.title);
+		$scope.note = note;
+		console.log('opening pop up ;::'+$scope.note.title);
 		var modalInstance = $uibModal.open({
-		templateUrl: 'template/new-note.html'
+		templateUrl: 'template/new-note.html',
+		/*controller: 'ModalInstanceCtrl',
+	      resolve: {
+	        note: function () {
+	          return $scope.note;
+	        }
+	      }*/
+		scope : $scope
 		});
 		};
 		$scope.width = 0;
@@ -24,7 +35,7 @@ toDoApp.controller('notesController', function($scope, saveNotesService,$locatio
 				$scope.margin = 0;
 			}
 		};
-		$scope.notesData = '';
+//		$scope.notesData = '';
 		$scope.showNewNote = false;
 		$scope.tabClicked = function(){
 			console.log($scope.showNewNote);
@@ -45,9 +56,11 @@ toDoApp.controller('notesController', function($scope, saveNotesService,$locatio
 		console.log("title" +$scope.note.title);
 		addNote.description=$scope.note.description;
 		console.log("description" +$scope.note.description);
-		saveNotesService.saveNotes(addNote);
+		notesService.saveNotes(addNote);
+		$scope.showNewNote = false;
+		$scope.note.description='';
 	}
-	var httpGetNotes = saveNotesService.getNotes();
+	var httpGetNotes = notesService.getNotes();
 
 	httpGetNotes.then(function(response) {
 		console.log(response.data);
@@ -57,12 +70,21 @@ toDoApp.controller('notesController', function($scope, saveNotesService,$locatio
 			$location.path('/loginPage')
 		console.log(response);
 	});
+	$scope.deleteNote = function(id){
+		console.log("notes id"+id);
+		var deleteNote = notesService.deleteNote(id);
+		deleteNote.then(function(response){
+			httpGetNotes;
+			
+		});
+	}
+	
 	
 
 });
 toDoApp.directive('focus',
 		function($timeout) {
-	console.log("test");
+	alert("test");
 	 return {
 	 scope : {
 	   trigger : '@focus'
@@ -78,3 +100,16 @@ toDoApp.directive('focus',
 	 }
 	};
 	}); 
+
+
+/*toDoApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, user) {
+	  $scope.NOTE = user;
+	  $scope.ok = function () {
+	    $modalInstance.close();
+	  };
+
+	  $scope.cancel = function () {
+	    $modalInstance.dismiss('cancel');
+	  };
+	});
+*/
