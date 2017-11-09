@@ -90,12 +90,12 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
    </mvc:interceptors>
    <!-- configuration for activeMq in spring  -->
    <!-- A connection to activeMq -->
-   <bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+   <!-- <bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
     <property name="brokeUrl" value="tcp://localhost:61616"></property>
-   </bean>
+   </bean> -->
    <!-- Spring JMS Template -->
-  <bean id="myJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+  <!-- <bean id="myJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
     <property name="connectionFactory">
     </property>
-  </bean>
+  </bean> -->
 </beans>

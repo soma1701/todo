@@ -104,7 +104,8 @@ public class UserCredential {
 		String normalPassword = user.getPassword();
 		String encryptedPassword = encrypt.encryptPassword(normalPassword);
 		User userLogin = userService.login(user, encryptedPassword);
-		session.setAttribute("userLogin", userLogin);
+		request.setAttribute("user", userLogin);
+		//session.setAttribute("userLogin", userLogin);
 		if (userLogin == null) {
 			LOG.debug("user enter wrong credential:-");
 			MyResponse.setResponseMessage("wrong credential");

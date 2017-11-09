@@ -1,7 +1,6 @@
 package com.bridgelabz.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-/*import org.springframework.mail.MailSender;*/
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 
@@ -10,6 +9,7 @@ import com.bridgelabz.model.Token;
 import com.bridgelabz.model.User;
 
 public class UserServiceImpl implements UserService{
+	
 	@Autowired
 	UserDao userDao;
 	

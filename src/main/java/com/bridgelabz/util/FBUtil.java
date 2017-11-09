@@ -44,10 +44,6 @@ public  class FBUtil {
 
 			URLConnection connection = url.openConnection();
 			connection.setDoOutput(true);
-			//OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-			//writer.write(urlParametersForFb);
-			//writer.flush();
-			
 			String fbResponse = "";
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			String line;

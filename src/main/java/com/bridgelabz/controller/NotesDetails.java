@@ -2,13 +2,11 @@ package com.bridgelabz.controller;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +23,7 @@ import com.bridgelabz.validator.NoteValidator;
 @RestController
 @RequestMapping(value="/notesCredential")
 public class NotesDetails {
-	 private final Logger LOG = LoggerFactory.getLogger(NotesDetails.class);
+	private Logger LOG = (Logger) LogManager.getLogger(NotesDetails.class);
 	
 	@Autowired
 	NotesService notesService;
@@ -39,15 +37,20 @@ public class NotesDetails {
 	@RequestMapping(value="/saveNotes",method=RequestMethod.POST)
 	public ResponseEntity<MyResponse> saveNote(@RequestBody Notes notes,HttpSession session,HttpServletRequest request){
 		try {
+			
 			User user = (User) request.getAttribute("user");
+			
 			//User user =(User) session.getAttribute("userLogin");
 			notes.setUser(user);
 			Date date = new Date();
 			notes.setCreatedTime(date);
 			LOG.info("user"+user);
+			LOG.info("checking notes details"+notes);
 			boolean isNoteValid = noteValidation.noteValidator(notes);
+			LOG.info("checking note is valid or not"+isNoteValid);
 			if(isNoteValid) {
 				LOG.debug("note validation successfull:-");
+				LOG.debug("notes"+notes);
 				notesService.saveNote(notes);
 				myResponse.setResponseMessage("notes save successfully:-");
 				return ResponseEntity.ok(myResponse);

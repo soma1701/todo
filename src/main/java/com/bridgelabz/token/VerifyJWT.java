@@ -1,13 +1,13 @@
 package com.bridgelabz.token;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 
 public class VerifyJWT {
-	 private static final Logger LOG = LoggerFactory.getLogger(VerifyJWT.class);
+	private static Logger LOG = (Logger) LogManager.getLogger(VerifyJWT.class);
 	
 	public static final String  key="toDoToken";
 	public static int verifyAccessToken(String accessToken ) {
@@ -19,6 +19,7 @@ public class VerifyJWT {
 			return Integer.parseInt(claims.getIssuer());
 			
 		} catch (Exception e) {
+			LOG.catching(e);
 			e.printStackTrace();
 			return 0;
 		}

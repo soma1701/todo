@@ -4,9 +4,10 @@ import org.apache.logging.log4j.Logger;
 import com.bridgelabz.model.Notes;
 
 public class NoteValidationImpl implements NoteValidator {
-	private Logger LOG = (Logger) LogManager.getLogger(NoteValidator.class);
+	private Logger LOG = (Logger) LogManager.getLogger(NoteValidationImpl.class);
 	@Override
 	public boolean noteValidator(Notes note) {
+		System.out.println("notes details:-"+note.getTitle()+note.getDescription());
 		boolean isNoteValid=false;
 		if(note.getTitle()==""||note.getTitle()==null) {
 			LOG.debug("your note's title can't be empty:-");

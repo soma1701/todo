@@ -1,12 +1,14 @@
-var toDoApp = angular.module('toDoApp');
+//var toDoApp = angular.module('toDoApp');
 toDoApp.controller('notesController', function($scope, saveNotesService,$location) {
 	var addNote={};
-	$scope.actualInput = false;
+	//$scope.actualInput = false;
+	
+	$scope.note = {};
 	
 	$scope.open = function () {
 		console.log('opening pop up');
 		var modalInstance = $uibModal.open({
-		templateUrl: 'template/new-note.template.html'
+		templateUrl: 'template/new-note.html'
 		});
 		};
 		$scope.width = 0;
@@ -39,9 +41,10 @@ toDoApp.controller('notesController', function($scope, saveNotesService,$locatio
 				color:"black"
 		}];
 	$scope.saveNotes = function() {
-		addNote.title=document.getElementById("note-title-input").innerHTML;
-		addNote.description=document.getElementById("note-description-input").innerHTML;
-		console.log(addNote);
+		addNote.title=$scope.note.title;
+		console.log("title" +$scope.note.title);
+		addNote.description=$scope.note.description;
+		console.log("description" +$scope.note.description);
 		saveNotesService.saveNotes(addNote);
 	}
 	var httpGetNotes = saveNotesService.getNotes();
