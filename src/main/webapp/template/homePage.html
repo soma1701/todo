@@ -1,42 +1,44 @@
 <div class="homecontainer" ng-controller="notesController">
 	<div ng-show="notesTab">
-	<div ng-repeat="r in req">
-		<nav-bar user="r" callback="toggleSideBar()"></nav-bar>
-		<div id="main" style="margin-left:{{margin}}px">
-		<side-bar width="width"></side-bar>
-		<div class="mainContainer">
-			<div class="CardContainer">
-				<div id="takeNote" style="background-color:white;width: 80%;height: 40px;display: inline-block; text-align:left " ng-click="tabClicked()" ng-show="note.description == '' && !showNewNote">
-					<input type="text"  style="border:none" ng-model="note.description" focus="true" placeholder="Take a note">
-				</div>
-				<div style="background-color:white;width: 80%;text-align:left;display: inline-block;" ng-show="note.description != '' || showNewNote">
-					<img alt="pin" src="images/pin.svg" style="height:22px;margin:0 8px;width:22px;float:right">
-					<input type="text"  style="border:none;width:100%" focus="false" ng-model="note.title" id="title" placeholder="Title"/><br>
-					<textarea type="text-area"  style="border:none;width:100%" ng-model="note.description" focus="true" id="description" placeholder="Take a note"></textarea>
-					<img  alt="reminder" src="images/reminder.svg" style="height:20px;margin:0 8px;width:20px">
-					<img  alt="collaborator" src="images/colaborator.svg" style="height:20px;margin:0 8px;width:20px">
-					<img  alt="changeColor" src="images/change-color.svg" style="height:20px;margin:0 8px;width:20px">
-					<img  alt="addImage" src="images/add-image.svg" style="height:20px;margin:0 8px;width:20px">
-					<img  alt="archive" src="images/archive.svg" style="height:20px;margin:0 8px;width:20px">
-					<button type="button" style="float:right;height:32px" ng-click="saveNotes()">Done</button>
+		<div ng-repeat="r in req">
+			<nav-bar user="r" callback="toggleSideBar()" callback1="switchView()"></nav-bar>
+			<div id="main" style="margin-left:{{margin}}px">
+				<side-bar width="width"></side-bar>
+				<div class="mainContainer">
+					<div class="CardContainer">
+						<div id="takeNote" style="background-color:white;width: 80%;height: 40px;display: inline-block; text-align:left " ng-click="tabClicked()" ng-show="note.description == '' && !showNewNote">
+							<input type="text"  style="border:none" ng-model="note.description" focus="true" placeholder="Take a note">
+						</div>
+						<div style="background-color:white;width: 80%;text-align:left;display: inline-block;" ng-show="note.description != '' || showNewNote">
+							<img alt="pin" src="images/pin.svg" style="height:22px;margin:0 8px;width:22px;float:right">
+							<input type="text"  style="border:none;width:100%" focus="false" ng-model="note.title" id="title" placeholder="Title"/><br>
+							<textarea type="text-area"  style="border:none;width:100%" ng-model="note.description" focus="true" id="description" placeholder="Take a note"></textarea>
+							<img  alt="reminder" src="images/reminder.svg" style="height:20px;margin:0 8px;width:20px">
+							<img  alt="collaborator" src="images/colaborator.svg" style="height:20px;margin:0 8px;width:20px">
+							<img  alt="changeColor" src="images/change-color.svg" style="height:20px;margin:0 8px;width:20px">
+							<img  alt="addImage" src="images/add-image.svg" style="height:20px;margin:0 8px;width:20px">
+							<img  alt="archive" src="images/archive.svg" style="height:20px;margin:0 8px;width:20px">
+							<button type="button" style="float:right;height:32px" ng-click="saveNotes()">Done</button>
+						</div>
+					</div>
+					<div class="CardContainer">
+						<div  ng-repeat="note in notes"  ng-click="open(note)" ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
+							<div style="background-color:white;width: 80%;text-align:left;display: inline-block;">
+								<img alt="pin" src="images/pin.svg" style="height:22px;margin:0 8px;width:22px;float:right">
+								<span>{{note.title}}</span><br>
+								<span>{{note.description}}</span><br>
+								<img  alt="reminder" src="images/reminder.svg" style="height:20px;margin:0 8px;width:20px">
+								<img  alt="collaborator" src="images/colaborator.svg" style="height:20px;margin:0 8px;width:20px">
+								<img  alt="changeColor" src="images/change-color.svg" style="height:20px;margin:0 8px;width:20px">
+								<img  alt="addImage" src="images/add-image.svg" style="height:20px;margin:0 8px;width:20px">
+								<img  alt="archive" src="images/archive.svg" style="height:20px;margin:0 8px;width:20px">
+								<a href=#><span class="glyphicon glyphicon-option-vertical"></span></a>
+							</div>
+					 	</div>
+					</div>
 				</div>
 			</div>
-			<div class="col-sm-3" ng-repeat="note in notes"  ng-click="open(note)">
-			<div style="background-color:white;width: 80%;text-align:left;display: inline-block;">
-				<img alt="pin" src="images/pin.svg" style="height:22px;margin:0 8px;width:22px;float:right">
-				<span>{{note.title}}</span><br>
-				<span>{{note.description}}</span><br>
-				<img  alt="reminder" src="images/reminder.svg" style="height:20px;margin:0 8px;width:20px">
-				<img  alt="collaborator" src="images/colaborator.svg" style="height:20px;margin:0 8px;width:20px">
-				<img  alt="changeColor" src="images/change-color.svg" style="height:20px;margin:0 8px;width:20px">
-				<img  alt="addImage" src="images/add-image.svg" style="height:20px;margin:0 8px;width:20px">
-				<img  alt="archive" src="images/archive.svg" style="height:20px;margin:0 8px;width:20px">
-				<a href=#><span class="glyphicon glyphicon-option-vertical"></span></a>
-			</div>
-		 </div>
 		</div>
-		</div>
-	</div>
 	</div>
 	
 </div>

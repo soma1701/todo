@@ -3,7 +3,8 @@ toDoApp.directive('navBar',function(){
 		restrict:'E',
 		scope: {
 			user: '=user',
-			callback: '&'
+			callback: '&',
+			callback1: '&'
 		},
 		replace: true,
 		templateUrl:'template/nav-bar.html',

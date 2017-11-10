@@ -8,9 +8,7 @@ toDoApp.controller('notesController', function($scope, notesService,$location, $
 	$scope.note.title = '';
 	
 	$scope.open = function (note) {
-		console.log('opening pop up ;::'+note.title);
 		$scope.note = note;
-		console.log('opening pop up ;::'+$scope.note.title);
 		var modalInstance = $uibModal.open({
 		templateUrl: 'template/new-note.html',
 		/*controller: 'ModalInstanceCtrl',
@@ -24,6 +22,17 @@ toDoApp.controller('notesController', function($scope, notesService,$location, $
 		};
 		$scope.width = 0;
 		$scope.margin = 0;
+		$scope.view = 'grid';
+		$scope.isGridView = true;
+		$scope.switchView = function(){
+			if($scope.isGridView){
+				$scope.view = 'list';
+				$scope.isGridView = false;
+			}else{
+				$scope.view = 'grid';
+				$scope.isGridView = true;
+			}
+		}
 		$scope.openSideBar = false;
 		$scope.toggleSideBar = function(){
 			$scope.openSideBar = !$scope.openSideBar;
