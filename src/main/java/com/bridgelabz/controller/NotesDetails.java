@@ -89,12 +89,12 @@ public class NotesDetails {
 		List<Notes>  notes = notesService.getNotes(user);
 		System.out.println(notes);
 		return notes;
-		
 	}
 	
 	@RequestMapping(value="/editNotes",method=RequestMethod.POST)
 	public ResponseEntity<MyResponse> editNotes(@RequestBody Notes notes,HttpServletRequest request){
 		LOG.info("inside editing notes");
+		System.out.println("note: " + notes);
 		User user = (User)request.getAttribute("user");
 		LOG.info("checking user"+user.getId());
 		Notes objNotes = notesService.getNoteById(notes.getNotesId());
@@ -102,8 +102,9 @@ public class NotesDetails {
 //		User user = (User)session.getAttribute("userLogin");
 		boolean isEdited;
 		notes.setUser(user);
-		notes.setTitle(notes.getTitle());
-		notes.setDescription(notes.getDescription());
+		/*notes.setTitle(notes.getTitle());
+		notes.setDescription(notes.getDescription());*/
+		
 		Date resetDate = new Date();
 		notes.setCreatedTime(resetDate);
 		isEdited = notesService.editNotes(notes);

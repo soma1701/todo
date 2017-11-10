@@ -62,15 +62,19 @@ public class NotesDaoImpl implements NotesDAO {
 
 	@Override
 	public boolean editNotes(Notes notes) {
+		System.out.println("Noteindao: " + notes);
 		session = sessionFactory.openSession();
 		transaction = session.beginTransaction();
 		try {
 			session.update(notes);
 			transaction.commit();
+			session.close();
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 			if(transaction!= null) {
 				transaction.rollback();
+				session.close();
 				return false;
 			}
 			e.printStackTrace();

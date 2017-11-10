@@ -37,7 +37,25 @@ toDoApp.factory('notesService',function($http,$location){
 				'accesstoken':localStorage.getItem("accessToken")
 			}
 		})
-		
 	}
+	note.editNotes = function(notes){
+			console.log("inside edit notes service:-");
+			console.log(notes);
+			return $http({
+				method:"POST",
+				url:'notesCredential/editNotes',
+				headers:{
+					'accessToken':localStorage.getItem("accessToken")
+				},
+				data:notes,
+			}).then(function(response){
+				console.log("edited notes:-");
+				console.log(response.data);
+			},function(response){
+				console.log("error"+response.data.myResponseMessage);
+				
+			});
+		}
+		
 	return note;
 });

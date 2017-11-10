@@ -2,7 +2,7 @@
 toDoApp.controller('notesController', function($scope, notesService,$location, $uibModal) {
 	var addNote={};
 	//$scope.actualInput = false;
-	
+	var editNote={};
 	$scope.note = {};
 	$scope.note.description = '';
 	$scope.note.title = '';
@@ -87,13 +87,17 @@ toDoApp.controller('notesController', function($scope, notesService,$location, $
 			
 		});
 	}
-	
-	
-
+	$scope.editNotes = function(){
+		editNote.title=$scope.note.title;
+		console.log("editing title"+$scope.note.title);
+		editNote.description = $scope.note.description;
+		console.log("description of notes:"+$scope.note.description);
+		notesService.editNotes(editNote);
+	}
 });
 toDoApp.directive('focus',
 		function($timeout) {
-	alert("test");
+	//alert("test");
 	 return {
 	 scope : {
 	   trigger : '@focus'

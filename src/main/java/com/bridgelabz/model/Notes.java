@@ -95,6 +95,12 @@ public class Notes {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	@Override
+	public String toString() {
+		return "Notes [notesId=" + notesId + ", title=" + title + ", description=" + description + ", createdTime="
+				+ createdTime + ", user=" + user + "]";
+	}
 	
 	
 
