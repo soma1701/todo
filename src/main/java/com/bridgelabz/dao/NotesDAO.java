@@ -10,5 +10,6 @@ public interface NotesDAO {
 	boolean deleteNoteById(int id);
 	public List<Notes> getNotes(User user);
 	boolean editNotes(Notes notes);
+	Notes getNoteById(int noteId);
 
 }

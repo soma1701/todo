@@ -38,10 +38,8 @@ public class NotesServiceImpl implements NotesService{
 	}
 
 	@Override
-	public Notes getNoteById(int notesId) {
-		
-		// TODO Auto-generated method stub
-		return null;
+	public Notes getNoteById(int noteId) {
+		return notesDao.getNoteById(noteId);
 	}
 
 }

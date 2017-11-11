@@ -39,8 +39,6 @@ public class NotesDetails {
 		try {
 			
 			User user = (User) request.getAttribute("user");
-			
-			//User user =(User) session.getAttribute("userLogin");
 			notes.setUser(user);
 			Date date = new Date();
 			notes.setCreatedTime(date);
@@ -99,16 +97,13 @@ public class NotesDetails {
 		LOG.info("checking user"+user.getId());
 		Notes objNotes = notesService.getNoteById(notes.getNotesId());
 		LOG.info("object of notes by id"+objNotes);
-//		User user = (User)session.getAttribute("userLogin");
 		boolean isEdited;
-		notes.setUser(user);
-		/*notes.setTitle(notes.getTitle());
-		notes.setDescription(notes.getDescription());*/
-		
+		objNotes.setTitle(notes.getTitle());
+		objNotes.setDescription(notes.getDescription());
 		Date resetDate = new Date();
 		notes.setCreatedTime(resetDate);
 		isEdited = notesService.editNotes(notes);
-		LOG.info("checking edition is done or not"+isEdited);
+		LOG.debug("chec`ing edition is done or not"+isEdited);
 		if(isEdited){
 			myResponse.setResponseMessage("editing notes are successfull");
 			return ResponseEntity.ok(myResponse);

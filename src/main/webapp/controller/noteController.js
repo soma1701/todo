@@ -89,9 +89,8 @@ toDoApp.controller('notesController', function($scope, notesService,$location, $
 	}
 	$scope.editNotes = function(){
 		editNote.title=$scope.note.title;
-		console.log("editing title"+$scope.note.title);
 		editNote.description = $scope.note.description;
-		console.log("description of notes:"+$scope.note.description);
+		editNote.notesId = $scope.note.notesId;
 		notesService.editNotes(editNote);
 	}
 });
@@ -115,7 +114,7 @@ toDoApp.directive('focus',
 	}); 
 
 
-/*toDoApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, user) {
+toDoApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, user) {
 	  $scope.NOTE = user;
 	  $scope.ok = function () {
 	    $modalInstance.close();
@@ -125,4 +124,3 @@ toDoApp.directive('focus',
 	    $modalInstance.dismiss('cancel');
 	  };
 	});
-*/

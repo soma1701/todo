@@ -85,4 +85,26 @@ public class NotesDaoImpl implements NotesDAO {
 		
 	}
 
+	@Override
+	public Notes getNoteById(int noteId) {
+		Notes objNote = new Notes();
+		session = sessionFactory.openSession();
+		transaction = session.beginTransaction();
+		try {
+			objNote = (Notes) session.get(Notes.class,noteId);
+			transaction.commit();
+			session.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			if(transaction!= null) {
+				transaction.rollback();
+				session.close();
+				return null;
+			}
+			e.printStackTrace();
+		}
+		return objNote;
+	}
+
 }
