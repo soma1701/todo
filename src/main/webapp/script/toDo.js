@@ -1,4 +1,4 @@
-var toDoApp = angular.module('toDoApp', ['ui.router','ui.bootstrap']);
+var toDoApp = angular.module('toDoApp', ['ui.router','ui.bootstrap','ui.router']);
 
 toDoApp.config(function($stateProvider, $urlRouterProvider) {
 	
@@ -14,6 +14,10 @@ toDoApp.config(function($stateProvider, $urlRouterProvider) {
 	.state('homePage',{
 		url :'/homePage',
 		templateUrl :'template/homePage.html'
+	})
+	.state('homePage.notes',{
+		url :'/notes',
+		templateUrl :'template/notes.html'
 	})
 	.state('dummyLogin',{
 		url :'/dummyLogin',

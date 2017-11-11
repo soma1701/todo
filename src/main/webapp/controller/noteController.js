@@ -1,55 +1,29 @@
-//var toDoApp = angular.module('toDoApp');
-toDoApp.controller('notesController', function($scope, notesService,$location, $uibModal) {
+toDoApp.controller('notesController', function($scope, notesService,$location, $uibModal, dataStore, $rootScope) {
 	var addNote={};
-	//$scope.actualInput = false;
 	var editNote={};
 	$scope.note = {};
 	$scope.note.description = '';
 	$scope.note.title = '';
+	var modalInstance;
 	
 	$scope.open = function (note) {
 		$scope.note = note;
-		var modalInstance = $uibModal.open({
+		modalInstance = $uibModal.open({
 		templateUrl: 'template/new-note.html',
-		/*controller: 'ModalInstanceCtrl',
-	      resolve: {
-	        note: function () {
-	          return $scope.note;
-	        }
-	      }*/
 		scope : $scope
 		});
 		};
-		$scope.width = 0;
-		$scope.margin = 0;
+		$scope.$on('toggleSideBar-change', function(event, data){
+	           $scope.width = dataStore.getWidth();
+	           $scope.margin = dataStore.getMargin();
+	     });
+		$scope.$on('view-change', function(event, data){
+	           $scope.view = dataStore.getView();
+	     });
 		$scope.view = 'grid';
-		$scope.isGridView = true;
-		$scope.switchView = function(){
-			if($scope.isGridView){
-				$scope.view = 'list';
-				$scope.isGridView = false;
-			}else{
-				$scope.view = 'grid';
-				$scope.isGridView = true;
-			}
-		}
-		$scope.openSideBar = false;
-		$scope.toggleSideBar = function(){
-			$scope.openSideBar = !$scope.openSideBar;
-			if($scope.openSideBar){
-				$scope.width = 250;
-				$scope.margin = 250;
-			}else{
-				$scope.width = 0;
-				$scope.margin = 0;
-			}
-		};
-//		$scope.notesData = '';
 		$scope.showNewNote = false;
 		$scope.tabClicked = function(){
-			console.log($scope.showNewNote);
 			$scope.showNewNote = true;
-			console.log($scope.showNewNote);
 		};
 	
 	$scope.notesTab = true;	
@@ -79,9 +53,9 @@ toDoApp.controller('notesController', function($scope, notesService,$location, $
 			$location.path('/loginPage')
 		console.log(response);
 	});
-	$scope.deleteNotes = function(id){
+	$scope.deleteNote = function(id){
 		console.log("notes id"+id);
-		var deleteNote = notesService.deleteNotes(id);
+		var deleteNote = notesService.deleteNote(id);
 		deleteNote.then(function(response){
 			httpGetNotes;
 			
@@ -89,24 +63,14 @@ toDoApp.controller('notesController', function($scope, notesService,$location, $
 	}
 	$scope.editNotes = function(){
 		editNote.title=$scope.note.title;
+		console.log("editing title"+$scope.note.title);
 		editNote.description = $scope.note.description;
-		editNote.notesId = $scope.note.notesId;
-		notesService.editNotes($scope.note);
+		console.log("description of notes:"+$scope.note.description);
+		notesService.editNotes(editNote);
+		modalInstance.close('resetModel');
+		$scope.note = {};
 	}
-	
-	$scope.updateNote = function(note){
-		editNote.title=$scope.note.title;
-		editNote.description = $scope.note.description;
-		editNote.notesId = $scope.note.notesId;
-		notesService.editNotes(note);
-	}
-	$scope.makeCopy = function(note){
-		note.notesId=0;
-		notesService.saveNotes(note);
-	}
-	
 });
-
 toDoApp.directive('focus',
 		function($timeout) {
 	//alert("test");
@@ -127,13 +91,14 @@ toDoApp.directive('focus',
 	}); 
 
 
-toDoApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, user) {
+/*toDoApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, user) {
 	  $scope.NOTE = user;
 	  $scope.ok = function () {
 	    $modalInstance.close();
 	  };
 
-	  /*$scope.cancel = function () {
+	  $scope.cancel = function () {
 	    $modalInstance.dismiss('cancel');
-	  };*/
+	  };
 	});
+*/
