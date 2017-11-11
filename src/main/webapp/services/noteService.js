@@ -28,11 +28,11 @@ toDoApp.factory('notesService',function($http,$location){
 			url: 'notesCredential/getNotes'
 		})
 	}
-	note.deleteNote = function(id){
+	note.deleteNotes = function(id){
 		console.log("inside delete function;-");
-		return http({
-			method:"POST",
-			url:'notesCrdential/deleteNotes/'+id,
+		return $http({
+			method:"DELETE",
+			url:'notesCredential/deleteNotes/'+id,
 			headers:{
 				'accesstoken':localStorage.getItem("accessToken")
 			}

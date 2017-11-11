@@ -35,10 +35,10 @@ public class Notes {
 	@Column(name="creadted_time")
 	private Date createdTime;
 	
-	/*@Column(name="is_pin")
+	@Column(name="is_pin")
 	private boolean isPinned;
 	
-	@Column(name="is_archive")
+	/*@Column(name="is_archive")
 	private boolean isArchieved;
 	
 	@Column(name="is_trashed")
@@ -96,12 +96,15 @@ public class Notes {
 		this.user = user;
 	}
 
-	@Override
-	public String toString() {
-		return "Notes [notesId=" + notesId + ", title=" + title + ", description=" + description + ", createdTime="
-				+ createdTime + ", user=" + user + "]";
+	public boolean isPinned() {
+		return isPinned;
 	}
-	
+
+	public void setPinned(boolean isPinned) {
+		this.isPinned = isPinned;
+	}
+
+
 	
 
 }

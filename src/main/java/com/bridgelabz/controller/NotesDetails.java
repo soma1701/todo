@@ -65,7 +65,7 @@ public class NotesDetails {
 		}
 	}
 	
-	@RequestMapping(value="/deleteNotes/{id}", method=RequestMethod.POST)
+	@RequestMapping(value="/deleteNotes/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<MyResponse> deleteNotes(@PathVariable int id){
 		boolean isDeleted = notesService.deleteById(id);
 		if(isDeleted) {
@@ -92,10 +92,10 @@ public class NotesDetails {
 	@RequestMapping(value="/editNotes",method=RequestMethod.POST)
 	public ResponseEntity<MyResponse> editNotes(@RequestBody Notes notes,HttpServletRequest request){
 		LOG.info("inside editing notes");
-		System.out.println("note: " + notes);
 		User user = (User)request.getAttribute("user");
 		LOG.info("checking user"+user.getId());
 		Notes objNotes = notesService.getNoteById(notes.getNotesId());
+		notes.setUser(user);
 		LOG.info("object of notes by id"+objNotes);
 		boolean isEdited;
 		objNotes.setTitle(notes.getTitle());

@@ -79,9 +79,9 @@ toDoApp.controller('notesController', function($scope, notesService,$location, $
 			$location.path('/loginPage')
 		console.log(response);
 	});
-	$scope.deleteNote = function(id){
+	$scope.deleteNotes = function(id){
 		console.log("notes id"+id);
-		var deleteNote = notesService.deleteNote(id);
+		var deleteNote = notesService.deleteNotes(id);
 		deleteNote.then(function(response){
 			httpGetNotes;
 			
@@ -91,9 +91,22 @@ toDoApp.controller('notesController', function($scope, notesService,$location, $
 		editNote.title=$scope.note.title;
 		editNote.description = $scope.note.description;
 		editNote.notesId = $scope.note.notesId;
-		notesService.editNotes(editNote);
+		notesService.editNotes($scope.note);
 	}
+	
+	$scope.updateNote = function(note){
+		editNote.title=$scope.note.title;
+		editNote.description = $scope.note.description;
+		editNote.notesId = $scope.note.notesId;
+		notesService.editNotes(note);
+	}
+	$scope.makeCopy = function(note){
+		note.notesId=0;
+		notesService.saveNotes(note);
+	}
+	
 });
+
 toDoApp.directive('focus',
 		function($timeout) {
 	//alert("test");
@@ -120,7 +133,7 @@ toDoApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, user) 
 	    $modalInstance.close();
 	  };
 
-	  $scope.cancel = function () {
+	  /*$scope.cancel = function () {
 	    $modalInstance.dismiss('cancel');
-	  };
+	  };*/
 	});
