@@ -19,6 +19,14 @@ toDoApp.config(function($stateProvider, $urlRouterProvider) {
 		url :'/notes',
 		templateUrl :'template/notes.html'
 	})
+	.state('homePage.archive',{
+		url :'/archive',
+		templateUrl :'template/archive.html'
+	})
+	.state('homePage.trash',{
+		url :'/trash',
+		templateUrl :'template/trash.html'
+	})
 	.state('dummyLogin',{
 		url :'/dummyLogin',
 		templateUrl:'template/dummyLogin.html',

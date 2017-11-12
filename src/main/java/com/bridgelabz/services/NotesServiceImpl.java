@@ -41,5 +41,17 @@ public class NotesServiceImpl implements NotesService{
 	public Notes getNoteById(int noteId) {
 		return notesDao.getNoteById(noteId);
 	}
+	
+	@Override
+	public List<Notes> getArchivedNotes(User user) {
+		List<Notes> notes =notesDao.getArchivedNotes(user);
+		return notes;
+	}
+
+	@Override
+	public List<Notes> getTrashNotes(User user) {
+		List<Notes> notes =notesDao.getTrashNotes(user);
+		return notes;
+	}
 
 }

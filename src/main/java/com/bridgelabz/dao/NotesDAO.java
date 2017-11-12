@@ -11,5 +11,7 @@ public interface NotesDAO {
 	public List<Notes> getNotes(User user);
 	boolean editNotes(Notes notes);
 	Notes getNoteById(int noteId);
+	List<Notes> getArchivedNotes(User user);
+	List<Notes> getTrashNotes(User user);
 
 }

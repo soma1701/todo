@@ -38,8 +38,8 @@ public class Notes {
 	@Column(name="is_pin")
 	private boolean isPinned;
 	
-	/*@Column(name="is_archive")
-	private boolean isArchieved;
+	@Column(name="is_archive")
+	private boolean isArchived;
 	
 	@Column(name="is_trashed")
 	private boolean isTrashed;
@@ -48,7 +48,7 @@ public class Notes {
 	private String color; 
 	
 	@Column(name="reminder")
-	private Date reminder;*/
+	private Date reminder;
 	
 
 	@ManyToOne
@@ -104,7 +104,39 @@ public class Notes {
 		this.isPinned = isPinned;
 	}
 
+	public boolean getIsArchived() {
+		return isArchived;
+	}
 
+	public void setArchived(boolean isArchieved) {
+		this.isArchived = isArchieved;
+	}
+
+	public boolean isTrashed() {
+		return isTrashed;
+	}
+
+	public void setTrashed(boolean isTrashed) {
+		this.isTrashed = isTrashed;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public Date getReminder() {
+		return reminder;
+	}
+
+	public void setReminder(Date reminder) {
+		this.reminder = reminder;
+	}
+	
+	
 	
 
 }

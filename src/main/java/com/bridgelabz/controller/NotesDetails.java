@@ -90,19 +90,21 @@ public class NotesDetails {
 	}
 	
 	@RequestMapping(value="/editNotes",method=RequestMethod.POST)
-	public ResponseEntity<MyResponse> editNotes(@RequestBody Notes notes,HttpServletRequest request){
+	public ResponseEntity<MyResponse> editNotes(@RequestBody Notes note,HttpServletRequest request){
 		LOG.info("inside editing notes");
 		User user = (User)request.getAttribute("user");
 		LOG.info("checking user"+user.getId());
-		Notes objNotes = notesService.getNoteById(notes.getNotesId());
-		notes.setUser(user);
+		Notes objNotes = notesService.getNoteById(note.getNotesId());
+		note.setUser(user);
 		LOG.info("object of notes by id"+objNotes);
 		boolean isEdited;
-		objNotes.setTitle(notes.getTitle());
-		objNotes.setDescription(notes.getDescription());
+		objNotes.setTitle(note.getTitle());
+		objNotes.setDescription(note.getDescription());
+		objNotes.setArchived(note.getIsArchived());
+		objNotes.setTrashed(note.isTrashed());
 		Date resetDate = new Date();
-		notes.setCreatedTime(resetDate);
-		isEdited = notesService.editNotes(notes);
+		note.setCreatedTime(resetDate);
+		isEdited = notesService.editNotes(note);
 		LOG.debug("chec`ing edition is done or not"+isEdited);
 		if(isEdited){
 			myResponse.setResponseMessage("editing notes are successfull");
@@ -111,10 +113,25 @@ public class NotesDetails {
 		{
 			myResponse.setResponseMessage("edition is not possible");
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(myResponse);
-			
 		}
-		
-		
+	}
+	@RequestMapping(value="/getArchivedNotes", method=RequestMethod.GET)
+	public List<Notes> getArchivedNotes(HttpSession session,HttpServletRequest request){
+		User user = (User) request.getAttribute("user");
+		System.out.println("user " + user);
+		//User user = (User)session.getAttribute("userLogin");
+		List<Notes>  notes = notesService.getArchivedNotes(user);
+		System.out.println(notes);
+		return notes;
+	}
+	@RequestMapping(value="/getTrashNotes", method=RequestMethod.GET)
+	public List<Notes> getTrashNotes(HttpSession session,HttpServletRequest request){
+		User user = (User) request.getAttribute("user");
+		System.out.println("user " + user);
+		//User user = (User)session.getAttribute("userLogin");
+		List<Notes>  notes = notesService.getTrashNotes(user);
+		System.out.println(notes);
+		return notes;
 	}
 /*	@RequestMapping(value="/deleteFromTrash",method=RequestMethod.PUT)
 	public ResponseEntity<MyResponse> deleteFromTrash()

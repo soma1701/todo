@@ -19,13 +19,21 @@ toDoApp.factory('notesService',function($http,$location){
 			console.log("error" +response.data.myResponseMessage);
 		});
 	}
-	note.getNotes = function() {
+	note.getNotes = function(actionType) {
+		var actionUrl;
+		if(actionType === 'ALL'){
+			actionUrl = 'notesCredential/getNotes';
+		}else if(actionType === 'ARCHIVE'){
+			actionUrl = 'notesCredential/getArchivedNotes';
+		}else if(actionType === 'TRASH'){
+			actionUrl = 'notesCredential/getTrashNotes';
+		}
 		return $http({
 			method:"GET",
 			headers:{
 				'accessToken' : localStorage.getItem("accessToken")
 			},
-			url: 'notesCredential/getNotes'
+			url: actionUrl
 		})
 	}
 	note.deleteNotes = function(id){

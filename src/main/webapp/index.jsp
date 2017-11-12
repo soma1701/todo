@@ -19,8 +19,11 @@
 	<script type="text/javascript" src="controller/loginController.js"></script>
 	<script type="text/javascript" src="services/noteService.js"></script>
 	<script type="text/javascript" src="controller/noteController.js"></script>
+	<script type="text/javascript" src="controller/archive-controller.js"></script>
+	<script type="text/javascript" src="controller/trash-controller.js"></script>
 	<script type="text/javascript" src="controller/todo-app-controller.js"></script>
 	<script type="text/javascript" src="directive/navigationbar.js"></script>
+	<script type="text/javascript" src="directive/note.directive.js"></script>
 <!-- 	<script type="text/javascript" src="directive/sidebar.js"></script> -->
 <!-- 	<script type="text/javascript" src="directive/cardsinput.js"></script> -->
 <!-- 	<script type="text/javascript" src="directive/cardsoutput.js"></script> -->
@@ -84,13 +87,6 @@
 	
 </head>
 <body ng-app="toDoApp">
-
-	<!-- <div ng-controller="todoAppController">
-		<nav-bar user="req" callback="toggleSideBar()" callback1="switchView()"></nav-bar>
-		<div id="main" style="margin-left:{{margin}}px">
-			<side-bar width="width"></side-bar>
-		</div>
-	</div> -->
 	<div ui-view></div>
 	
 </body>

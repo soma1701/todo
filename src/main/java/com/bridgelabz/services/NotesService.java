@@ -16,4 +16,8 @@ public interface NotesService {
 
 	public Notes getNoteById(int notesId);
 
+	List<Notes> getArchivedNotes(User user);
+
+	List<Notes> getTrashNotes(User user);
+
 }
