@@ -20,4 +20,6 @@ public interface NotesService {
 
 	List<Notes> getTrashNotes(User user);
 
+	/*List<Notes> getReminderedNotes(User user);*/
+
 }

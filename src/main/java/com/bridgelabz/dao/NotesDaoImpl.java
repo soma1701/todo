@@ -129,4 +129,15 @@ public class NotesDaoImpl implements NotesDAO {
 		return notes;
 	}
 
+	/*@Override
+	public List<Notes> getReminderedNotes(User user) {
+		session = sessionFactory.openSession();
+		transaction = (Transaction) session.beginTransaction();
+		Criteria criteria = session.createCriteria(Notes.class);
+		criteria.add(Restrictions.eqOrIsNull("user", user));
+		criteria.add(Restrictions.eq("isTrashed", true));
+		List<Notes> notes= criteria.list();
+		return notes;
+	}*/
+
 }

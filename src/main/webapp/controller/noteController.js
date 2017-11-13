@@ -5,6 +5,7 @@ toDoApp.controller('notesController', function($scope, notesService,$location, $
 	$scope.note.description = '';
 	$scope.note.title = '';
 	var modalInstance;
+	$scope.color=['#ffffff','#00ff00','#00ff00'];
 	
 	$scope.open = function (note) {
 		$scope.note = note;
@@ -14,7 +15,6 @@ toDoApp.controller('notesController', function($scope, notesService,$location, $
 		});
 		};
 		$scope.$on('toggleSideBar-change', function(event, data){
-//	           $scope.width = dataStore.getWidth();
 	           $scope.margin = dataStore.getMargin();
 	     });
 		$scope.$on('view-change', function(event, data){
@@ -56,6 +56,7 @@ toDoApp.controller('notesController', function($scope, notesService,$location, $
 	$scope.deleteNotes = function(id){
 		console.log("notes id"+id);
 		var deleteNote = notesService.deleteNotes(id);
+		modalInstance.close('resetModel');
 		deleteNote.then(function(response){
 			httpGetNotes;
 			
@@ -68,6 +69,8 @@ toDoApp.controller('notesController', function($scope, notesService,$location, $
 	}
 	$scope.makeCopy = function(note){
 		notesService.saveNotes(note);
+		modalInstance.close('resetModel');
+		$scope.note = {};
 	}
 });
 toDoApp.directive('focus',

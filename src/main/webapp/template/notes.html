@@ -1,9 +1,7 @@
 <div class="homecontainer" ng-controller="notesController">
 	<div ng-show="notesTab">
 		<div ng-repeat="r in req">
-<!-- 			<nav-bar user="r" callback="toggleSideBar()" callback1="switchView()"></nav-bar> -->
 			<div id="main" style="margin-left:{{margin}}px">
-<!-- 				<side-bar width="width"></side-bar> -->
 				<div class="container">
 					<div class="CardContainer">
 						<div id="takeNote" ng-click="tabClicked()" ng-show="note.description == '' && !showNewNote">
@@ -12,47 +10,50 @@
 						<div class="cardInput" ng-show="note.description != '' || showNewNote">
 							<img id="pinInput" alt="pin" src="images/pin.svg">
 							<input type="text" focus="false" ng-model="note.title" id="cardInputitle" placeholder="Title"/><br>
-							<textarea type="text-area" ng-model="note.description" focus="true" id="cardInputDescription" placeholder="Take a note"></textarea>
-							<img id="reminderInput" alt="reminder" src="images/reminder.svg">
-							<img id="collaboratorInput" alt="collaborator" src="images/colaborator.svg">
-							<img id="changeColorInput" alt="changeColor" src="images/change-color.svg">
-							<img id="addImageInput" alt="addImage" src="images/add-image.svg">
-							<img id="archiveInput" alt="archive" src="images/archive.svg" >
+							<textarea type="text-area" ng-model="note.description" focus="true" id="cardInputDescription" 
+								placeholder="Take a note"></textarea>
+							<div id="image">
+								<img id="reminderInput" alt="reminder" src="images/reminder.svg">
+								<img id="collaboratorInput" alt="collaborator" src="images/colaborator.svg">
+								<!-- <div class="btn-group dropup" uib-dropdown>
+										<img id="changeColorInput" alt="changeColor" src="images/change-color.svg">
+										<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+											<li role="menuitem" ng-click="note.trashed=true;editNotes(note)"><a href="">Delete</a></li>
+											<li role="menuitem" ng-click="makeCopy(note)"><a href="">Make a copy</a></li>
+											<li role="menuitem"><a href="">Add level</a></li>
+										</ul>
+									</div> -->
+								<img id="changeColorInput" alt="changeColor" src="images/change-color.svg">
+								<img id="addImageInput" alt="addImage" src="images/add-image.svg">
+								<img id="archiveInput" alt="archive" src="images/archive.svg" height="22px" width="22px">
+								<div class="btn-group" uib-dropdown>
+									<span id ="dropdown" class="glyphicon glyphicon-option-vertical" uib-dropdown-toggle> </span>
+									<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+										<li role="menuitem"><a href="">Add Label</a></li>
+										<li role="menuitem"><a href="">Show checkboxes</a></li>
+									</ul>
+								</div>
+							</div>
 							<button id="savebtn" type="button"  ng-click="saveNotes()">Done</button>
 						</div>
 					</div>
-					<!-- <div class="CardContainer">
-						<div ng-repeat="note in notes"  ng-click="open(note)" ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
-							<div class="showCards">
-								<img id="pinOutput" alt="pin" src="images/pin.svg" >
-								<div>{{note.title}}</div><br>
-								<div>{{note.description}}</div><br>
-								<div class>
-									<img id="reminderOutput" alt="reminder" src="images/reminder.svg">
-									<img id="collaboratorOutput" alt="collaborator" src="images/colaborator.svg">
-									<img id="changeColorOutput" alt="changeColor" src="images/change-color.svg">
-									<img id="addImageOutput"  alt="addImage" src="images/add-image.svg">
-									<img id="archiveOutput" alt="archive" src="images/archive.svg">
-									<span class="glyphicon glyphicon-option-vertical"></span>
-								</div>
-							</div>
-					 	</div>
-					</div> -->
 					
 					Pinned:<br>
 					<div class="CardContainer">
-						<div ng-repeat="note in notes | filter : {pinned : true,isArchived : false, trashed: false}"  ng-click="open(note)" ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
+						<div ng-repeat="note in notes | filter : {pinned : true,isArchived : false, trashed: false}"  
+							ng-click="open(note)" ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
 							<div class="showCards">
-								<img ng-click="note.pinned=false;editNotes(note);$event.stopPropagation()" id="pinOutput" alt="pin" src="images/pin.svg" >
+								<img ng-click="note.pinned=false;editNotes(note);$event.stopPropagation()" id="pinOutput" alt="pin" 
+									src="images/pin.svg" >
 								<div>{{note.title}}</div><br>
 								<div>{{note.description}}</div><br>
-								<div ng-click="$event.stopPropagation()">
+								<div  id="imageDiv" ng-click="$event.stopPropagation()">
 									<img id="reminderOutput" alt="reminder" src="images/reminder.svg">
 									<img id="collaboratorOutput" alt="collaborator" src="images/colaborator.svg">
 									<img id="changeColorOutput" alt="changeColor" src="images/change-color.svg">
 									<img id="addImageOutput"  alt="addImage" src="images/add-image.svg">
-									<img id="archiveOutput" alt="archive" src="images/archive.svg" ng-click="note.pinned = false;note.isArchived=true;editNotes(note)">
-									<span class="glyphicon glyphicon-option-vertical"></span>
+									<img id="archiveOutput" alt="archive" src="images/archive.svg" 
+										ng-click="note.pinned = false;note.isArchived=true;editNotes(note)">
 									<div class="btn-group" uib-dropdown>
 										<span id ="dropdown" class="glyphicon glyphicon-option-vertical" uib-dropdown-toggle> </span>
 										<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
@@ -81,7 +82,6 @@
 									<img id="changeColorOutput" alt="changeColor" src="images/change-color.svg">
 									<img id="addImageOutput"  alt="addImage" src="images/add-image.svg">
 									<img id="archiveOutput" alt="archive" src="images/archive.svg" ng-click="note.isArchived=true;editNotes(note)">
-									<span class="glyphicon glyphicon-option-vertical"></span>
 									<div class="btn-group" uib-dropdown>
 										<span id ="dropdown" class="glyphicon glyphicon-option-vertical" uib-dropdown-toggle> </span>
 										<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">

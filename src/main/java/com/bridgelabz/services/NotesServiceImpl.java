@@ -54,4 +54,10 @@ public class NotesServiceImpl implements NotesService{
 		return notes;
 	}
 
+	/*@Override
+	public List<Notes> getReminderedNotes(User user) {
+		List<Notes> notes =notesDao.getReminderedNotes(user);
+		return notes;
+	}*/
+
 }

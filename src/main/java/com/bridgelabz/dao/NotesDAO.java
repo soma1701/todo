@@ -13,5 +13,6 @@ public interface NotesDAO {
 	Notes getNoteById(int noteId);
 	List<Notes> getArchivedNotes(User user);
 	List<Notes> getTrashNotes(User user);
+	/*List<Notes> getReminderedNotes(User user);*/
 
 }

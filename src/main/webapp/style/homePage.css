@@ -1,27 +1,22 @@
-/*  .navbar{
-  	background-color:#0040ff;
-  } */
-  
+  #navbar{
+  	margin:0;
+  }
  .homecontainer{    
  	background-color: #e8e8e8;
  	height: 100%;
  	width:100%;
- 	
-   /*  color: rgba(0,0,0,.87);
-    direction: ltr;
-    font-family: 'Roboto',arial,sans-serif;
-    font-size: 15px;
-    margin: 0;
-    min-width: 360px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding: 0; */
 }
 .mainContainer{
 	width:100%;height:100%;
 }
 .CardContainer{
 	margin:0 auto;width: 700px;text-align:center;padding:7px; 
+}
+.CardContainer:hover #imageDiv{
+	visibility: visible;
+}
+#imageDiv{
+	visibility: hidden;
 }
 #takeNote{
 	background-color:white;
@@ -95,6 +90,6 @@
 	width: 700px;
 	background-color:white;width: 100%;text-align:left;display: inline-block;
 }
-#dropdown{
-	
+#imageDiv:hover{
+	visiblity:false;
 }

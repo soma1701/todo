@@ -102,6 +102,7 @@ public class NotesDetails {
 		objNotes.setDescription(note.getDescription());
 		objNotes.setArchived(note.getIsArchived());
 		objNotes.setTrashed(note.isTrashed());
+		objNotes.setColor(note.getColor());
 		Date resetDate = new Date();
 		note.setCreatedTime(resetDate);
 		isEdited = notesService.editNotes(note);
@@ -115,8 +116,17 @@ public class NotesDetails {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(myResponse);
 		}
 	}
+	/*@RequestMapping(value="/getArchivedNotes", method=RequestMethod.GET)
+	public List<Notes> getReminderedNotes(HttpServletRequest request){
+		User user = (User) request.getAttribute("user");
+		System.out.println("user " + user);
+		//User user = (User)session.getAttribute("userLogin");
+		List<Notes>  notes = notesService.getReminderedNotes(user);
+		System.out.println(notes);
+		return notes;
+	}*/
 	@RequestMapping(value="/getArchivedNotes", method=RequestMethod.GET)
-	public List<Notes> getArchivedNotes(HttpSession session,HttpServletRequest request){
+	public List<Notes> getArchivedNotes(HttpServletRequest request){
 		User user = (User) request.getAttribute("user");
 		System.out.println("user " + user);
 		//User user = (User)session.getAttribute("userLogin");
@@ -125,7 +135,7 @@ public class NotesDetails {
 		return notes;
 	}
 	@RequestMapping(value="/getTrashNotes", method=RequestMethod.GET)
-	public List<Notes> getTrashNotes(HttpSession session,HttpServletRequest request){
+	public List<Notes> getTrashNotes(HttpServletRequest request){
 		User user = (User) request.getAttribute("user");
 		System.out.println("user " + user);
 		//User user = (User)session.getAttribute("userLogin");

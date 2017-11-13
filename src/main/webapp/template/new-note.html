@@ -7,5 +7,13 @@
 		<img  alt="changeColor" src="images/change-color.svg" style="height:20px;margin:0 8px;width:20px">
 		<img  alt="addImage" src="images/add-image.svg" style="height:20px;margin:0 8px;width:20px">
 		<img  alt="archive" src="images/archive.svg" style="height:20px;margin:0 8px;width:20px">
+		<div class="btn-group" uib-dropdown>
+		<span id ="dropdown" class="glyphicon glyphicon-option-vertical" uib-dropdown-toggle> </span>
+			<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+				<li role="menuitem" ng-click="note.trashed=true;editNotes(note)"><a href="">Delete</a></li>
+				<li role="menuitem" ng-click="makeCopy(note)"><a href="">Make a copy</a></li>
+				<li role="menuitem"><a href="">Add level</a></li>
+			</ul>
+		</div>
 		<button type="button" style="float:right;height:32px" ng-click="editNotes(note)">Done</button>
 	</div>

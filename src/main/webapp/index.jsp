@@ -12,6 +12,7 @@
 <!-- 	<script type="text/javascript" src="script/ui-bootstrap-tpls-2.5.0.min.js"></script> -->
 	<script type="text/javascript" src="directive/nav-bar.js"></script>
 	<script type="text/javascript" src="directive/side-bar.js"></script>
+	
 	<script src="services/RegistrationServices.js"></script>
 	<script src="controller/registrationController.js"></script>
 	<script type="text/javascript" src ="services/loginService.js"></script>
