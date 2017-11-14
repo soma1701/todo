@@ -5,7 +5,55 @@ toDoApp.controller('notesController', function($scope, notesService,$location, $
 	$scope.note.description = '';
 	$scope.note.title = '';
 	var modalInstance;
-	$scope.color=['#ffffff','#00ff00','#00ff00'];
+	$scope.colors=[{
+			"color":'#8e44ad',
+			"path":'images/purple.png'
+		},
+		{
+			"color":'#3498db',
+			"path":'images/blue.png'
+		},
+		{
+			"color":'#f1c40f',
+			"path":'images/yellow.png'
+		},
+		{
+			"color":'#1abc9c',
+			"path":'images/green.png'
+		},
+		{
+			"color":'#2ecc71',
+			"path":'images/seegreen.png'
+		},
+		{
+			"color":'#f1c40f',
+			"path":'images/yellow.png'
+		},
+		{
+			"color":'#f39c12',
+			"path":'images/darkyellow.png'
+		},
+		{
+			"color":'#c0392b',
+			"path":'images/darkred.png'
+		},
+		{
+			"color":'#ffffff',
+			"path":'images/white.png'
+		},
+		{
+			"color":'#000000',
+			"path":'images/black.png'
+		},
+		{
+			"color":'#34495e',
+			"path":'images/darkgrey.png'
+		},
+		{
+			"color":'#d35400',
+			"path":'images/orange.png'
+		},
+		];
 	
 	$scope.open = function (note) {
 		$scope.note = note;
@@ -36,9 +84,9 @@ toDoApp.controller('notesController', function($scope, notesService,$location, $
 		}];
 	$scope.saveNotes = function() {
 		addNote.title=$scope.note.title;
-		console.log("title" +$scope.note.title);
 		addNote.description=$scope.note.description;
-		console.log("description" +$scope.note.description);
+		addNote.color=$scope.note.color;
+		addNote.isArchived=$scope.note.isArchived;
 		notesService.saveNotes(addNote);
 		$scope.showNewNote = false;
 		$scope.note.description='';
@@ -63,8 +111,9 @@ toDoApp.controller('notesController', function($scope, notesService,$location, $
 		});
 	}
 	$scope.editNotes = function(note){
+		$scope.note=note;
 		notesService.editNotes(note);
-		modalInstance.close('resetModel');
+//		modalInstance.close('resetModel');
 		$scope.note = {};
 	}
 	$scope.makeCopy = function(note){

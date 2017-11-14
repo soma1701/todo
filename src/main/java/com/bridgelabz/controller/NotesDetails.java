@@ -94,6 +94,7 @@ public class NotesDetails {
 		LOG.info("inside editing notes");
 		User user = (User)request.getAttribute("user");
 		LOG.info("checking user"+user.getId());
+		LOG.info("checking notes id:"+note.getNotesId());
 		Notes objNotes = notesService.getNoteById(note.getNotesId());
 		note.setUser(user);
 		LOG.info("object of notes by id"+objNotes);
@@ -106,7 +107,7 @@ public class NotesDetails {
 		Date resetDate = new Date();
 		note.setCreatedTime(resetDate);
 		isEdited = notesService.editNotes(note);
-		LOG.debug("chec`ing edition is done or not"+isEdited);
+		LOG.debug("checking edition is done or not"+isEdited);
 		if(isEdited){
 			myResponse.setResponseMessage("editing notes are successfull");
 			return ResponseEntity.ok(myResponse);

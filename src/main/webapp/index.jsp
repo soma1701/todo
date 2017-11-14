@@ -23,8 +23,8 @@
 	<script type="text/javascript" src="controller/archive-controller.js"></script>
 	<script type="text/javascript" src="controller/trash-controller.js"></script>
 	<script type="text/javascript" src="controller/todo-app-controller.js"></script>
-	<script type="text/javascript" src="directive/navigationbar.js"></script>
-	<script type="text/javascript" src="directive/note.directive.js"></script>
+<!-- 	<script type="text/javascript" src="directive/navigationbar.js"></script> -->
+<!-- 	<script type="text/javascript" src="directive/note.directive.js"></script> -->
 <!-- 	<script type="text/javascript" src="directive/sidebar.js"></script> -->
 <!-- 	<script type="text/javascript" src="directive/cardsinput.js"></script> -->
 <!-- 	<script type="text/javascript" src="directive/cardsoutput.js"></script> -->

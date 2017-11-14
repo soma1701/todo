@@ -47,8 +47,8 @@ public class Notes {
 	@Column(name="color")
 	private String color; 
 	
-	@Column(name="reminder")
-	private Date reminder;
+	/*@Column(name="reminder")
+	private Date reminder;*/
 	
 
 	@ManyToOne
@@ -128,13 +128,13 @@ public class Notes {
 		this.color = color;
 	}
 
-	public Date getReminder() {
+	/*public Date getReminder() {
 		return reminder;
 	}
 
 	public void setReminder(Date reminder) {
 		this.reminder = reminder;
-	}
+	}*/
 	
 	
 	

@@ -93,3 +93,7 @@
 #imageDiv:hover{
 	visiblity:false;
 }
+#icons{
+	height:30px;
+	width:30px;
+}

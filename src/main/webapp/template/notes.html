@@ -5,7 +5,8 @@
 				<div class="container">
 					<div class="CardContainer">
 						<div id="takeNote" ng-click="tabClicked()" ng-show="note.description == '' && !showNewNote">
-							<input id="noteTaken" type="text"  style="border:none" ng-model="note.description" focus="true" placeholder="Take a note">
+							<input id="noteTaken" type="text"  style="border:none" ng-model="note.description" focus="true" 
+								placeholder="Take a note">
 						</div>
 						<div class="cardInput" ng-show="note.description != '' || showNewNote">
 							<img id="pinInput" alt="pin" src="images/pin.svg">
@@ -15,17 +16,16 @@
 							<div id="image">
 								<img id="reminderInput" alt="reminder" src="images/reminder.svg">
 								<img id="collaboratorInput" alt="collaborator" src="images/colaborator.svg">
-								<!-- <div class="btn-group dropup" uib-dropdown>
-										<img id="changeColorInput" alt="changeColor" src="images/change-color.svg">
-										<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-											<li role="menuitem" ng-click="note.trashed=true;editNotes(note)"><a href="">Delete</a></li>
-											<li role="menuitem" ng-click="makeCopy(note)"><a href="">Make a copy</a></li>
-											<li role="menuitem"><a href="">Add level</a></li>
+								<div class="btn-group dropup colorDiv" uib-dropdown>
+									<img id ="dropdown " class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" 
+										src="images/change-color.svg"  uib-dropdown-toggle>
+										<ul class="dropdown-menu colordiv" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+											<a  ng-repeat="color in colors"   role="menuitem">
+											<img id="icons" ng-src="{{color.path}}" ng-click="note.color =color.color; saveNotes()"></a>
 										</ul>
-									</div> -->
-								<img id="changeColorInput" alt="changeColor" src="images/change-color.svg">
+								</div>
 								<img id="addImageInput" alt="addImage" src="images/add-image.svg">
-								<img id="archiveInput" alt="archive" src="images/archive.svg" height="22px" width="22px">
+								<img id="archiveInput" alt="archive" src="images/archive.svg" ng-click="note.isArchived=true;saveNotes()">
 								<div class="btn-group" uib-dropdown>
 									<span id ="dropdown" class="glyphicon glyphicon-option-vertical" uib-dropdown-toggle> </span>
 									<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
@@ -42,7 +42,7 @@
 					<div class="CardContainer">
 						<div ng-repeat="note in notes | filter : {pinned : true,isArchived : false, trashed: false}"  
 							ng-click="open(note)" ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
-							<div class="showCards">
+							<div class="showCards" style="background-color:{{note.color}}">
 								<img ng-click="note.pinned=false;editNotes(note);$event.stopPropagation()" id="pinOutput" alt="pin" 
 									src="images/pin.svg" >
 								<div>{{note.title}}</div><br>
@@ -50,7 +50,15 @@
 								<div  id="imageDiv" ng-click="$event.stopPropagation()">
 									<img id="reminderOutput" alt="reminder" src="images/reminder.svg">
 									<img id="collaboratorOutput" alt="collaborator" src="images/colaborator.svg">
-									<img id="changeColorOutput" alt="changeColor" src="images/change-color.svg">
+									<div class="btn-group dropup colorDiv" uib-dropdown>
+									<img id ="dropdown" class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" 
+										src="images/change-color.svg"  uib-dropdown-toggle>
+										<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+											<a ng-style="{'background-color':'color.color'}" ng-repeat="color in colors"   role="menuitem">
+											<img id="icons" ng-src="{{color.path}}" ng-click="note.color =color.color;
+											editNotes(note)"></a>
+										</ul>
+									</div>
 									<img id="addImageOutput"  alt="addImage" src="images/add-image.svg">
 									<img id="archiveOutput" alt="archive" src="images/archive.svg" 
 										ng-click="note.pinned = false;note.isArchived=true;editNotes(note)">
@@ -71,17 +79,27 @@
 					<br>
 					Others:<br>
 					<div class="CardContainer">
-						<div ng-repeat="note in notes | filter : {pinned : false,isArchived : false, trashed: false}"  ng-click="open(note)" ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
-							<div class="showCards">
+						<div ng-repeat="note in notes | filter : {pinned : false,isArchived : false, trashed: false}"  
+							ng-click="open(note)" ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
+							<div class="showCards" style="background-color: {{note.color}}">
 								<img id="pinOutput" alt="pin" src="images/pin.svg" ng-click="note.pinned=true;editNotes(note)">
 								<div>{{note.title}}</div><br>
 								<div>{{note.description}}</div><br>
-								<div ng-click="$event.stopPropagation()">
+								<div id="imageDiv" ng-click="$event.stopPropagation()" style="background-color: {{color.color}}">
 									<img id="reminderOutput" alt="reminder" src="images/reminder.svg">
 									<img id="collaboratorOutput" alt="collaborator" src="images/colaborator.svg">
-									<img id="changeColorOutput" alt="changeColor" src="images/change-color.svg">
+									<div class="btn-group dropup colorDiv" uib-dropdown>
+									<img id ="dropdown" class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" 
+										src="images/change-color.svg"  uib-dropdown-toggle>
+										<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+											<a ng-repeat="color in colors"   role="menuitem">
+											<img ng-src="{{color.path}}" ng-click="note.color =color.color;
+											editNotes(note)"></a>
+										</ul>
+									</div>
 									<img id="addImageOutput"  alt="addImage" src="images/add-image.svg">
-									<img id="archiveOutput" alt="archive" src="images/archive.svg" ng-click="note.isArchived=true;editNotes(note)">
+									<img id="archiveOutput" alt="archive" src="images/archive.svg" 
+										ng-click="note.isArchived=true;editNotes(note)">
 									<div class="btn-group" uib-dropdown>
 										<span id ="dropdown" class="glyphicon glyphicon-option-vertical" uib-dropdown-toggle> </span>
 										<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
@@ -94,7 +112,6 @@
 							</div>
 					 	</div>
 				</div>
-					
 				</div>
 			</div>
 		</div>
