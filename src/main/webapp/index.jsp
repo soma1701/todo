@@ -8,21 +8,28 @@
 	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="bower_components/angular/angular-ui-router.min.js"></script>
 	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	<script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+	<script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload-all.js"></script>
 	<script src="script/toDo.js"></script>
 <!-- 	<script type="text/javascript" src="script/ui-bootstrap-tpls-2.5.0.min.js"></script> -->
 	<script type="text/javascript" src="directive/nav-bar.js"></script>
 	<script type="text/javascript" src="directive/side-bar.js"></script>
+	<script type="text/javascript" src="directive/fileupload-directive.js"></script>
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
 	
 	<script src="services/RegistrationServices.js"></script>
 	<script src="controller/registrationController.js"></script>
 	<script type="text/javascript" src ="services/loginService.js"></script>
 	<script type="text/javascript" src ="services/data-store-service.js"></script>
+	<script type="text/javascript" src ="services/fileupload-service.js"></script>
 	<script type="text/javascript" src="controller/loginController.js"></script>
 	<script type="text/javascript" src="services/noteService.js"></script>
 	<script type="text/javascript" src="controller/noteController.js"></script>
 	<script type="text/javascript" src="controller/archive-controller.js"></script>
 	<script type="text/javascript" src="controller/trash-controller.js"></script>
 	<script type="text/javascript" src="controller/todo-app-controller.js"></script>
+	<script type="text/javascript" src="controller/fileupload-controller.js"></script>
+	
 <!-- 	<script type="text/javascript" src="directive/navigationbar.js"></script> -->
 <!-- 	<script type="text/javascript" src="directive/note.directive.js"></script> -->
 <!-- 	<script type="text/javascript" src="directive/sidebar.js"></script> -->

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -47,6 +48,9 @@ public class Notes {
 	@Column(name="color")
 	private String color; 
 	
+	@Lob
+	@Column(columnDefinition = "LONGBLOB")
+	private String image;
 	/*@Column(name="reminder")
 	private Date reminder;*/
 	

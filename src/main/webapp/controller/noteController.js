@@ -1,9 +1,21 @@
-toDoApp.controller('notesController', function($scope, notesService,$location, $uibModal, dataStore, $rootScope) {
+toDoApp.controller('notesController', function($scope, fileReader,notesService,$location, $uibModal, dataStore, $rootScope) {
+	
+$scope.imageSrc = "";
+    
+    $scope.$on("fileProgress", function(e, progress) {
+      $scope.progress = progress.loaded / progress.total;
+    });
+    
+    $scope.uploadImage = function(){
+    	$('#imgUpload').trigger('click');
+    }
+	
 	var addNote={};
 	var editNote={};
 	$scope.note = {};
 	$scope.note.description = '';
 	$scope.note.title = '';
+	$scope.note.imageSrc = '';
 	var modalInstance;
 	$scope.colors=[{
 			"color":'#8e44ad',
@@ -87,9 +99,16 @@ toDoApp.controller('notesController', function($scope, notesService,$location, $
 		addNote.description=$scope.note.description;
 		addNote.color=$scope.note.color;
 		addNote.isArchived=$scope.note.isArchived;
-		notesService.saveNotes(addNote);
+		addNote.image=$scope.note.imageSrc;
+		notesService.saveNotes(addNote).then(function(response){
+			console.log("response message" +response.data);
+			$scope.note={};
+			$scope.$apply();
+		}).catch(function(response){
+			console.log("error" +response.data.myResponseMessage);
+		})
 		$scope.showNewNote = false;
-		$scope.note.description='';
+		
 	}
 	var httpGetNotes = notesService.getNotes('ALL');
 
@@ -121,6 +140,7 @@ toDoApp.controller('notesController', function($scope, notesService,$location, $
 		modalInstance.close('resetModel');
 		$scope.note = {};
 	}
+	
 });
 toDoApp.directive('focus',
 		function($timeout) {

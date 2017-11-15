@@ -1,22 +1,15 @@
-//var toDoApp = angular.module('toDoApp');
-
 toDoApp.factory('notesService',function($http,$location){
 	var note ={};
 	
 	note.saveNotes = function(notes){
-		console.log("inside notes service");
+		
 		return $http({
 			method:"POST",
 			url:'notesCredential/saveNotes',
 			headers:{
 				'accessToken' : localStorage.getItem("accessToken")
 			},
-			data: notes,		
-						
-		}).then(function(response){
-			console.log("response message" +response.data);
-		},function(response){
-			console.log("error" +response.data.myResponseMessage);
+			data: notes
 		});
 	}
 	note.getNotes = function(actionType) {
@@ -64,6 +57,5 @@ toDoApp.factory('notesService',function($http,$location){
 				
 			});
 		}
-		
 	return note;
 });

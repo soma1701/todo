@@ -24,7 +24,10 @@
 											<img id="icons" ng-src="{{color.path}}" ng-click="note.color =color.color; saveNotes()"></a>
 										</ul>
 								</div>
-								<img id="addImageInput" alt="addImage" src="images/add-image.svg">
+								<input style="display:none" type="file" ng-file-select="onFileSelect($files)" id="imgUpload" ng-model="note.imageSrc">
+								 <img ng-src="{{note.imageSrc}}"/>
+								
+								<img id="addImageInput" alt="addImage" ng-click="uploadImage()" src="images/add-image.svg">
 								<img id="archiveInput" alt="archive" src="images/archive.svg" ng-click="note.isArchived=true;saveNotes()">
 								<div class="btn-group" uib-dropdown>
 									<span id ="dropdown" class="glyphicon glyphicon-option-vertical" uib-dropdown-toggle> </span>
