@@ -21,6 +21,10 @@ import com.bridgelabz.validator.RegistrationValidationImpl;
 import com.bridgelabz.model.MyResponse;
 import com.bridgelabz.model.Token;
 
+/**
+ * @author Soma Singh
+ * @see class for user related task
+ */
 @RestController
 public class UserCredential {
 	private Logger LOG = (Logger) LogManager.getLogger(UserCredential.class);
@@ -40,6 +44,11 @@ public class UserCredential {
 	@Autowired
 	Encryption encrypt;
 
+	/**
+	 * @param user
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<MyResponse> register(@RequestBody User user, HttpServletRequest request) {
 		try {
@@ -104,7 +113,7 @@ public class UserCredential {
 		String normalPassword = user.getPassword();
 		String encryptedPassword = encrypt.encryptPassword(normalPassword);
 		User userLogin = userService.login(user, encryptedPassword);
-		request.setAttribute("user", userLogin);
+		//request.setAttribute("user", userLogin);
 		//session.setAttribute("userLogin", userLogin);
 		if (userLogin == null) {
 			LOG.debug("user enter wrong credential:-");

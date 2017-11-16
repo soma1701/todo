@@ -55,27 +55,10 @@ public class NotesServiceImpl implements NotesService{
 		return notes;
 	}
 
-	@Override
-	public List<Labels> getLabels(User user) {
-		List<Labels> labels =notesDao.getLabels(user);
-		return labels;
-	}
-
-	@Override
-	public void saveNote(Labels labels) {
-		 notesDao.saveLabel(labels);
-		
-	}
-
-	@Override
-	public boolean deleteLabelById(int id) {
-		return notesDao.deleteLabelById(id);
-	}
-
 	/*@Override
 	public List<Notes> getReminderedNotes(User user) {
 		List<Notes> notes =notesDao.getReminderedNotes(user);
 		return notes;
-	}*/
-
+	}
+*/
 }

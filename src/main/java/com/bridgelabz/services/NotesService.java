@@ -22,12 +22,6 @@ public interface NotesService {
 
 	List<Notes> getTrashNotes(User user);
 
-	List<Labels> getLabels(User user);
-
-	void saveNote(Labels labels);
-
-	boolean deleteLabelById(int id);
-
-	/*List<Notes> getReminderedNotes(User user);*/
+//	List<Notes> getReminderedNotes(User user);
 
 }

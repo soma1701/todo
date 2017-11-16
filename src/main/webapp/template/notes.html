@@ -13,10 +13,11 @@
 							<input type="text" focus="false" ng-model="note.title" id="cardInputitle" placeholder="Title"/><br>
 							<textarea type="text-area" ng-model="note.description" focus="true" id="cardInputDescription" 
 								placeholder="Take a note"></textarea>
+								
+								
 							<div id="image">
 								<img id="reminderInput" alt="reminder" src="images/reminder.svg">
 								<img id="collaboratorInput" alt="collaborator" src="images/colaborator.svg">
-<<<<<<< Updated upstream
 								<div class="btn-group dropup colorDiv" uib-dropdown>
 									<img id ="dropdown " class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" 
 										src="images/change-color.svg"  uib-dropdown-toggle>
@@ -25,7 +26,8 @@
 											<img id="icons" ng-src="{{color.path}}" ng-click="note.color =color.color; saveNotes()"></a>
 										</ul>
 								</div>
-								<input style="display:none" type="file" ng-file-select="onFileSelect($files)" id="imgUpload" ng-model="note.imageSrc">
+								<input style="display:none" type="file" ng-file-select="onFileSelect($files)" id="imgUpload" 
+									ng-model="note.imageSrc">
 								 <img ng-src="{{note.imageSrc}}"/>
 								
 								<img id="addImageInput" alt="addImage" ng-click="uploadImage()" src="images/add-image.svg">
@@ -38,6 +40,7 @@
 									</ul>
 								</div>
 							</div>
+							
 							<button id="savebtn" type="button"  ng-click="saveNotes()">Done</button>
 						</div>
 					</div>
@@ -97,7 +100,7 @@
 										src="images/change-color.svg"  uib-dropdown-toggle>
 										<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
 											<a ng-repeat="color in colors"   role="menuitem">
-											<img ng-src="{{color.path}}" ng-click="note.color =color.color;
+											<img id="icons" ng-src="{{color.path}}" ng-click="note.color =color.color;
 											editNotes(note)"></a>
 										</ul>
 									</div>

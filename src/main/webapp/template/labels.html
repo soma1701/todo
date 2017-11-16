@@ -4,7 +4,8 @@
 			<div class="CardContainer">
 				<div ng-repeat="note in notes"  ng-click="open(note)" ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
 					<div class="showCards">
-						<img ng-click="note.pinned=true;note.isArchived= false;editNote(note);$event.stopPropagation()" id="pinOutput" alt="pin" src="images/pin.svg" >
+						<img ng-click="note.pinned=true;note.isArchived= false;editNote(note);$event.stopPropagation()" id="pinOutput" 
+							alt="pin" src="images/pin.svg" >
 						<div>{{note.title}}</div><br>
 						<div>{{note.description}}</div><br>
 						<div ng-click="$event.stopPropagation()">
@@ -12,7 +13,8 @@
 							<img id="collaboratorOutput" alt="collaborator" src="images/colaborator.svg">
 							<img id="changeColorOutput" alt="changeColor" src="images/change-color.svg">
 							<img id="addImageOutput"  alt="addImage" src="images/add-image.svg">
-							<img id="archiveOutput" alt="archive" src="images/archive.svg" ng-click="note.isArchived= false;editNote(note);$event.stopPropagation()">
+							<img id="archiveOutput" alt="archive" src="images/archive.svg" ng-click="note.isArchived= false;editNote(note);
+								$event.stopPropagation()">
 							<div class="btn-group" uib-dropdown>
 								<span id ="dropdown" class="glyphicon glyphicon-option-vertical" uib-dropdown-toggle> </span>
 								<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">

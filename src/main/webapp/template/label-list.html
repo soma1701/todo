@@ -3,7 +3,9 @@
 	<div style="margin-bottom:20px">
 		<span class="glyphicon glyphicon-plus" ng-show="!editLabelFocus"></span>
 		<span class="glyphicon glyphicon-remove" ng-show="editLabelFocus"></span>
-		<input type="text" placeholder="Create new label" ng-model= "$parent.newLabel" ng-focus="editLabelFocus=true" ng-blur="editLabelFocus=false" style="border:none" aria-label="Create new label" maxlength="50">
+		<input type="text" placeholder="Create new label" ng-model= "$parent.newLabel" 
+			ng-focus="editLabelFocus=true" ng-blur="editLabelFocus=false" style="border:none" 
+			aria-label="Create new label" maxlength="50">
 		<span class="glyphicon glyphicon-ok" ng-click="saveLabel()"></span>
 	</div>
 	<div ng-repeat="label in labels">

@@ -146,16 +146,4 @@ public class NotesDetails {
 		System.out.println(notes);
 		return notes;
 	}
-	@RequestMapping(value="/getLabels", method=RequestMethod.GET)
-	public List<Labels> getLabelNotes(HttpServletRequest request){
-		User user = (User) request.getAttribute("user");
-		System.out.println("user " + user);
-		//User user = (User)session.getAttribute("userLogin");
-		List<Labels>  labels = notesService.getLabels(user);
-		System.out.println(labels);
-		return labels;
-	}
-/*	@RequestMapping(value="/deleteFromTrash",method=RequestMethod.PUT)
-	public ResponseEntity<MyResponse> deleteFromTrash()
-*/
 }
