@@ -1,14 +1,18 @@
 package com.bridgelabz.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -60,6 +64,20 @@ public class Notes {
 	@JsonIgnore
 	User user;
 	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@JoinTable(name = "note_label", joinColumns = { @JoinColumn(name = "note_id") },
+									inverseJoinColumns = {@JoinColumn(name = "label_id") })
+	@JsonIgnore
+	private List<Labels> alLabels;
+	
+	public List<Labels> getLabels() {
+		return alLabels;
+	}
+
+	public void setLabels(List<Labels> alLabels) {
+		this.alLabels = alLabels;
+	}
+
 	public int getNotesId() {
 		return notesId;
 	}

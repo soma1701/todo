@@ -1,27 +1,15 @@
-toDoApp.factory('notesService',function($http,$location){
-	var note ={};
+toDoApp.factory('labelService',function($http,$location){
+	var label ={};
 	
-	/*note.saveNotes = function(notes){
-		
-		return $http({
-			method:"POST",
-			url:'notesCredential/saveNotes',
-			headers:{
-				'accessToken' : localStorage.getItem("accessToken")
-			},
-			data: notes
-		});
-	}*/
-	
-	note.saveNotes = function(notes){
+	label.saveLabel = function(label){
 		console.log("inside notes service");
 		return $http({
 			method:"POST",
-			url:'notesCredential/saveNotes',
+			url:'LabelsCredential/saveLabel',
 			headers:{
 				'accessToken' : localStorage.getItem("accessToken")
 			},
-			data: notes,		
+			data: label,		
 						
 		}).then(function(response){
 			console.log("response message" +response.data);
@@ -29,7 +17,7 @@ toDoApp.factory('notesService',function($http,$location){
 			console.log("error" +response.data.myResponseMessage);
 		});
 	}
-	note.getNotes = function(actionType) {
+	label.getLabels = function(actionType) {
 		var actionUrl;
 		if(actionType === 'ALL'){
 			actionUrl = 'notesCredential/getNotes';
@@ -40,30 +28,44 @@ toDoApp.factory('notesService',function($http,$location){
 		}else if(actionType === 'LABELS'){
 			actionUrl = 'notesCredential/getLabels';
 		}
-		return $http({
+		return test;/*$http({
 			method:"GET",
 			headers:{
 				'accessToken' : localStorage.getItem("accessToken")
 			},
 			url: actionUrl
-		})
+		})*/
+		
 	}
-	note.deleteNotes = function(id){
+	var test = [{
+		text:'sourav'
+	},
+	{
+		text:'soma'
+	},
+	{
+		text:'shubhu'
+	},
+	{
+		text:'Vanshu'
+	}
+	];
+	label.deleteLabel = function(id){
 		console.log("inside delete function;-");
 		return $http({
 			method:"DELETE",
-			url:'notesCredential/deleteNotes/'+id,
+			url:'labelCredential/deleteLabels/'+id,
 			headers:{
 				'accesstoken':localStorage.getItem("accessToken")
 			}
 		})
 	}
-	note.editNotes = function(notes){
+	label.editNotes = function(label){
 			console.log("inside edit notes service:-");
-			console.log(notes);
+			console.log(label);
 			return $http({
 				method:"POST",
-				url:'notesCredential/editNotes',
+				url:'labelCredential/editLabels',
 				headers:{
 					'accessToken':localStorage.getItem("accessToken")
 				},
@@ -76,5 +78,6 @@ toDoApp.factory('notesService',function($http,$location){
 				
 			});
 		}
-	return note;
+		
+	return label;
 });

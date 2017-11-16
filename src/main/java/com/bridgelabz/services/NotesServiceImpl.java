@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bridgelabz.dao.NotesDAO;
+import com.bridgelabz.model.Labels;
 import com.bridgelabz.model.Notes;
 import com.bridgelabz.model.User;
 
@@ -52,6 +53,23 @@ public class NotesServiceImpl implements NotesService{
 	public List<Notes> getTrashNotes(User user) {
 		List<Notes> notes =notesDao.getTrashNotes(user);
 		return notes;
+	}
+
+	@Override
+	public List<Labels> getLabels(User user) {
+		List<Labels> labels =notesDao.getLabels(user);
+		return labels;
+	}
+
+	@Override
+	public void saveNote(Labels labels) {
+		 notesDao.saveLabel(labels);
+		
+	}
+
+	@Override
+	public boolean deleteLabelById(int id) {
+		return notesDao.deleteLabelById(id);
 	}
 
 	/*@Override

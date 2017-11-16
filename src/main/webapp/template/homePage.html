@@ -1,7 +1,7 @@
 <div ng-controller="todoAppController">
 	<nav-bar id ="navbar" user="req" callback="toggleSideBar()" callback1="switchView()"></nav-bar>
 	<div id="main" style="margin-left:{{margin}}px">
-		<side-bar width="width"></side-bar>
+		<side-bar width="width" callback="openLabelList()" labels="labels"></side-bar>
 	</div>
 </div>
 <div ui-view></div>

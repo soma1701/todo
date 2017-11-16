@@ -62,7 +62,6 @@ public class NotesDaoImpl implements NotesDAO {
 
 	@Override
 	public boolean editNotes(Notes notes) {
-		System.out.println("Noteindao: " + notes);
 		session = sessionFactory.openSession();
 		transaction = session.beginTransaction();
 		try {
@@ -128,6 +127,17 @@ public class NotesDaoImpl implements NotesDAO {
 		List<Notes> notes= criteria.list();
 		return notes;
 	}
+
+	/*@Override
+	public List<Labels> getLabels(User user) {
+		session = sessionFactory.openSession();
+		transaction = (Transaction) session.beginTransaction();
+		Criteria criteria = session.createCriteria(Labels.class);
+		criteria.add(Restrictions.eqOrIsNull("user", user));
+		List<Labels> labels= criteria.list();
+		return labels;
+	}*/
+
 
 	/*@Override
 	public List<Notes> getReminderedNotes(User user) {

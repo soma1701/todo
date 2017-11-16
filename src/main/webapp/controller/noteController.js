@@ -94,7 +94,7 @@ $scope.imageSrc = "";
 				bordercolor:"#fb0",
 				color:"black"
 		}];
-	$scope.saveNotes = function() {
+	/*$scope.saveNotes = function() {
 		addNote.title=$scope.note.title;
 		addNote.description=$scope.note.description;
 		addNote.color=$scope.note.color;
@@ -109,6 +109,15 @@ $scope.imageSrc = "";
 		})
 		$scope.showNewNote = false;
 		
+	}*/
+	$scope.saveNotes = function() {
+		addNote.title=$scope.note.title;
+		console.log("title" +$scope.note.title);
+		addNote.description=$scope.note.description;
+		console.log("description" +$scope.note.description);
+		notesService.saveNotes(addNote);
+		$scope.showNewNote = false;
+		$scope.note.description='';
 	}
 	var httpGetNotes = notesService.getNotes('ALL');
 

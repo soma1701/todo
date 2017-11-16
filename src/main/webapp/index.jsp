@@ -22,6 +22,7 @@
 	<script type="text/javascript" src ="services/loginService.js"></script>
 	<script type="text/javascript" src ="services/data-store-service.js"></script>
 	<script type="text/javascript" src ="services/fileupload-service.js"></script>
+	<script type="text/javascript" src ="services/label-service.js"></script>
 	<script type="text/javascript" src="controller/loginController.js"></script>
 	<script type="text/javascript" src="services/noteService.js"></script>
 	<script type="text/javascript" src="controller/noteController.js"></script>
@@ -67,6 +68,15 @@
 		    font-size: 25px;
 		    color: #818181;
 		    display: block;
+		    transition: 0.3s;
+		}
+		
+		.sidenav span {
+		    padding: 8px 8px 8px 32px;
+		    text-decoration: none;
+		    font-size: 25px;
+		    color: #818181;
+/* 		    display: block; */
 		    transition: 0.3s;
 		}
 		

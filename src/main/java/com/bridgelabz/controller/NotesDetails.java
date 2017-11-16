@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.bridgelabz.model.Labels;
 import com.bridgelabz.model.MyResponse;
 import com.bridgelabz.model.Notes;
 import com.bridgelabz.model.User;
@@ -143,6 +145,15 @@ public class NotesDetails {
 		List<Notes>  notes = notesService.getTrashNotes(user);
 		System.out.println(notes);
 		return notes;
+	}
+	@RequestMapping(value="/getLabels", method=RequestMethod.GET)
+	public List<Labels> getLabelNotes(HttpServletRequest request){
+		User user = (User) request.getAttribute("user");
+		System.out.println("user " + user);
+		//User user = (User)session.getAttribute("userLogin");
+		List<Labels>  labels = notesService.getLabels(user);
+		System.out.println(labels);
+		return labels;
 	}
 /*	@RequestMapping(value="/deleteFromTrash",method=RequestMethod.PUT)
 	public ResponseEntity<MyResponse> deleteFromTrash()

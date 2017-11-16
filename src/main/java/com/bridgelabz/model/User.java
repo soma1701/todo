@@ -46,6 +46,18 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	@JsonIgnore
 	private List<Notes> notes;
+	
+	@OneToMany(mappedBy = "user")
+	@JsonIgnore
+	private List<Labels> alLabels;
+
+	public List<Labels> getLabels() {
+		return alLabels;
+	}
+
+	public void setLabels(List<Labels> alLabels) {
+		this.alLabels = alLabels;
+	}
 
 	public int getId() {
 		return id;

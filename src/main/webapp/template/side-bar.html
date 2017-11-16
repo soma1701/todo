@@ -1,7 +1,11 @@
 <div id="mySidenav" class="sidenav" style="width:{{width}}px">
-<!--   <a href="javascript:void(0)" class="closebtn"">&times;</a> -->
   <a ui-sref=".notes">Notes</a>
   <a ui-sref=".reminder">Reminders</a>
+  <span>Labels</span><a>Edit</a>
+  <span ng-repeat="label in labels">
+  	<a ui-sref="">{{label.text}}</a>
+  </span>
+  <a ng-click="callback()">create new label</a> 
   <a ui-sref=".archive">Archive</a>
   <a ui-sref=".trash">Trash</a>
 </div>
