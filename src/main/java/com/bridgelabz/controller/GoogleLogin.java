@@ -17,6 +17,10 @@ import com.bridgelabz.token.GenerateJWT;
 import com.bridgelabz.util.GoogleUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * @author Soma Singh
+ * @see class related for google login
+ */
 @RestController
 public class GoogleLogin {
 	private Logger LOG = (Logger) LogManager.getLogger(GoogleLogin.class);
@@ -28,33 +32,36 @@ public class GoogleLogin {
 	@Autowired
 	MyResponse myResponse;
 	
+	/**
+	 * @param request
+	 * @param response
+	 * @see method for getting url from googlelogin
+	 */
 	@RequestMapping(value="/googleLogin")
 	public void googleLogin(HttpServletRequest request, HttpServletResponse response) {
 		
 		String googleUrl=GoogleUtil.generateGoogleUrl();
-		LOG.info("checking google url"+googleUrl);
 		try {
 			response.sendRedirect(googleUrl);
 		} catch (IOException e) {
-			LOG.info("exception while generating google url");
 			LOG.catching(e);
 			e.printStackTrace();
 		}
-		System.out.println("testing i'm right");
 	}
+	/**
+	 * @param request
+	 * @param response
+	 * @see method for getting code and accesstoken for google login
+	 */
 	@RequestMapping(value="/successGoogleLogin")
 	public ResponseEntity<MyResponse> successGoogleLogin(HttpServletRequest request, HttpServletResponse response,HttpSession session) {
 		
 		String code = (String)request.getParameter("code");
-		LOG.info("code"+code);
 		String accessToken = GoogleUtil.getAccessToken(code);
-		LOG.info("accessToken"+accessToken);
 		String googleProfileInfo = GoogleUtil.getProfileData(accessToken);
-		LOG.info("google profile info"+googleProfileInfo);
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {
 			String email = objectMapper.readTree(googleProfileInfo).get("email").asText();
-			LOG.info("email:-"+email);
 			User userByEmail = userService.getUserByEmail(email);
 			if(userByEmail==null) {
 				User googleUser = new User();
@@ -64,29 +71,20 @@ public class GoogleLogin {
 				googleUser.setValid(true);
 				userService.register(googleUser);
 				String myAccessToken = GenerateJWT.generateToken(userByEmail.getId());
-				LOG.info("token geneted by jwt"+myAccessToken);
 				session.setAttribute("myAccessToken", myAccessToken);
 				response.sendRedirect("http://localhost:8080/todo/#!/homePage");
 			}
 			else {
 				String myAccessToken = GenerateJWT.generateToken(userByEmail.getId());
-				LOG.info("token geneted by jwt"+myAccessToken);
 				session.setAttribute("myAccessToken", myAccessToken);
 				response.sendRedirect("http://localhost:8080/todo/#!/dummyLogin");
 			}
 			
-			//LOG.info(userByEmail.getFirstName());
 			String id = objectMapper.readTree(googleProfileInfo).get("id").asText();
 			String verified_email = objectMapper.readTree(googleProfileInfo).get("verified_email").asText(); 
 			String given_name = objectMapper.readTree(googleProfileInfo).get("given_name").asText();
 			String family_name=objectMapper.readTree(googleProfileInfo).get("family_name").asText();
 			String gender = objectMapper.readTree(googleProfileInfo).get("gender").asText();
-			
-			LOG.info(id);
-			LOG.info(verified_email);
-			LOG.info(given_name);
-			LOG.info(family_name);
-			LOG.info(gender);
 			
 		} catch (IOException e) {
 			LOG.info("exception while user does not have google account or user is not register with google");
@@ -97,14 +95,14 @@ public class GoogleLogin {
 			LOG.catching(e);;
 			e.printStackTrace();
 		}
-		/*try {
-			response.sendRedirect("http://localhost:8080/todo/#!/loginPage");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
 		myResponse.setResponseMessage(accessToken);
 		return ResponseEntity.ok(myResponse);
 	}
+	/**
+	 * @param request
+	 * @param response
+	 * @see method for getting token after google login
+	 */
 	@RequestMapping(value="/tokenAftergLogin")
 	public ResponseEntity<MyResponse> getAccessTokenByglogin(HttpSession session){
 		String acessToken = (String) session.getAttribute("myAccessToken");

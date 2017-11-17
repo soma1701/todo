@@ -11,7 +11,7 @@ public class RegistrationValidationImpl {
 	UserService userService;
 	
 	public String validator(User user) {
-		String isValid = "false";
+		String isValid = "true";
 		String regexForEmail = "[a-z0-9]+@[a-z]+.[a-z]{3}";
 		String regexForName="[A-Za-z]{2,10}";
 		String regexForMobNo="[0-9]{10}";

@@ -7,19 +7,20 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.bridgelabz.model.MyResponse;
+import com.bridgelabz.model.Token;
 import com.bridgelabz.model.User;
 import com.bridgelabz.services.UserService;
 import com.bridgelabz.token.GenerateJWT;
 import com.bridgelabz.util.Encryption;
 import com.bridgelabz.validator.RegistrationValidationImpl;
-import com.bridgelabz.model.MyResponse;
-import com.bridgelabz.model.Token;
 
 /**
  * @author Soma Singh
@@ -40,34 +41,36 @@ public class UserCredential {
 
 	@Autowired
 	Token token;
+	
+	@Autowired
+	 SimpleMailMessage mailMessage;
+	
+	@Autowired
+	MailSender mailSender;
 
 	@Autowired
 	Encryption encrypt;
 
 	/**
-	 * @param user
+	 * @param user	
 	 * @param request
-	 * @return
+	 * @return MyResponse
+	 * @see this method is for user registration and authenticate user
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<MyResponse> register(@RequestBody User user, HttpServletRequest request) {
 		try {
 			String url = request.getRequestURL().toString();
 			int a = url.lastIndexOf("/");
-			String url2 = url.substring(0, a);
+			String url2 = url.substring(0, a)+"/verifyUser/";
 			String password = user.getPassword();
 			String encryptedPassword = encrypt.encryptPassword(password);
 			user.setPassword(encryptedPassword);
 			String regvValid = registerValidation.validator(user);
-			LOG.info("validation checking"+regvValid);
-			if (regvValid.equals("false")){
-				LOG.info("user enter correct credential");
+			if (regvValid.equals("true")){
 				userService.register(user);
-				userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "verifyUser", url);
-				LOG.debug("user register success");
-				LOG.info("sending verification mail to user");
+				userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "verifyUser", url2+user.getId());
 			} else {
-				LOG.error(regvValid);
 				MyResponse.setResponseMessage(regvValid);
 				return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(MyResponse);
 			}
@@ -77,24 +80,27 @@ public class UserCredential {
 			MyResponse.setResponseMessage("your credential is wrong");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(MyResponse);
 		}
-		LOG.debug("registration is successfull");
 		MyResponse.setResponseMessage("registration Success");
 		return ResponseEntity.ok(MyResponse);
 
 	}
 
-	@RequestMapping("/verifyUser/{id}")
+	/**
+	 * @param id
+	 * @param request
+	 * @return MyResponse
+	 * @see this methos is for aunthenticating user
+	 */
+	@RequestMapping(value="/verifyUser/{id}",method = RequestMethod.PUT)
 	public ResponseEntity<MyResponse> verify(@PathVariable("id") int id, HttpServletRequest request) {
 		try {
 			boolean isVerify;
 			isVerify = userService.isActivated(id);
 			if (isVerify) {
-				LOG.debug("user verified success");
 				MyResponse.setResponseMessage("user verified");
 				return ResponseEntity.ok(MyResponse);
 
 			} else {
-				LOG.debug("user does not exist");
 				MyResponse.setResponseMessage("user does not exist");
 				return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(MyResponse);
 
@@ -103,55 +109,64 @@ public class UserCredential {
 			LOG.catching(e);
 			e.printStackTrace();
 		}
-		LOG.debug("user verification is sucessfully done");
 		MyResponse.setResponseMessage("verification done");
 		return ResponseEntity.ok(MyResponse);
 	}
 
+	/**
+	 * @param user
+	 * @param request
+	 * @param session
+	 * @return MyResponse
+	 * @see this method is for user login and validating
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<MyResponse> login(@RequestBody User user, HttpServletRequest request, HttpSession session) {
 		String normalPassword = user.getPassword();
 		String encryptedPassword = encrypt.encryptPassword(normalPassword);
 		User userLogin = userService.login(user, encryptedPassword);
-		//request.setAttribute("user", userLogin);
-		//session.setAttribute("userLogin", userLogin);
 		if (userLogin == null) {
-			LOG.debug("user enter wrong credential:-");
 			MyResponse.setResponseMessage("wrong credential");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(MyResponse);
 		}
 		String accessToken = GenerateJWT.generateToken(userLogin.getId());
 		token.setGenerateToken(accessToken);
-		LOG.info("token generate:-" + accessToken);
 		String url = request.getRequestURL().toString();
 		url = url.substring(0, url.lastIndexOf("/")) + "/" + "finalLogin" + "/" + accessToken;
 		try {
 			// userService.sendMail("somasingh1701@gmail.com", user.getEmail(),
 			// "finalLogin", url);
-			LOG.debug("after loggged in, sending token via mail");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		LOG.info("user successfully logged in");
 		MyResponse.setResponseMessage(accessToken);
 		return ResponseEntity.ok(MyResponse);
 	}
 
+	/**
+	 * @param generateToken
+	 * @return MyResponse
+	 * @see this method is for validating token in redis
+	 */
 	@RequestMapping("/finalLogin/{token}")
 	public ResponseEntity<String> checkValidUser(@PathVariable("token") String generateToken) {
 
 		Token token = userService.getToken(generateToken);
 		if (token == null) {
-			LOG.debug("your token does not exist please enter correct token");
 			return new ResponseEntity<String>("token is incorrect", HttpStatus.BAD_REQUEST);
 		}
 		if (token.getGenerateToken().equals(generateToken)) {
-			LOG.debug("your token is matched with redis's token");
 			return new ResponseEntity<String>("successfull login", HttpStatus.OK);
 		}
 		return new ResponseEntity<String>("Unsuccessfull login", HttpStatus.BAD_REQUEST);
 	}
 
+	/**
+	 * @param user
+	 * @param request
+	 *  @return MyResponse
+	 * @see this method is for forgot password, sending mail of forgot password to user
+	 */
 	@RequestMapping("/forgotpassword/")
 	public ResponseEntity<String> forgotPassword(@RequestBody User user, HttpServletRequest request) {
 		String url = request.getRequestURL().toString();
@@ -168,14 +183,23 @@ public class UserCredential {
 
 	}
 
+	/**
+	 * @param user
+	 * @return MyResponse
+	 * @see this nethod is for reseting password
+	 */
 	@RequestMapping("/resetPassword")
 	public ResponseEntity<String> resetPassword(@RequestBody User user) {
 		userService.resetPassword(user.getEmail(), user.getPassword());
-		System.out.println("password reset");
 		return new ResponseEntity<String>("password reset successfully", HttpStatus.OK);
 
 	}
 
+	/**
+	 * @param session
+	 * @return MyResponse
+	 * @see this meythod is for logout 
+	 */
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public ResponseEntity<MyResponse> logout(HttpSession session) {
 		session.removeAttribute("userLogin");

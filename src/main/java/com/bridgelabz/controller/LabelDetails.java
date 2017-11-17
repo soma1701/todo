@@ -25,10 +25,13 @@ import com.bridgelabz.services.LabelService;
 import com.bridgelabz.services.NotesService;
 import com.bridgelabz.validator.NoteValidator;
 
+/**
+ * @author Soma Singh
+ * @see class for user related task
+ */
 @RestController
 @RequestMapping(value="/LabelsCredential")
 public class LabelDetails {
-
 	private Logger LOG = (Logger) LogManager.getLogger(NotesDetails.class);
 	
 	@Autowired
@@ -37,28 +40,33 @@ public class LabelDetails {
 	@Autowired
 	MyResponse myResponse;
 	
-	
+	/**
+	 * @param label	
+	 * @param request
+	 * @return MyResponse
+	 * @see this method is for creating label
+	 */
 	@RequestMapping(value="/saveLabel",method=RequestMethod.POST)
 	public ResponseEntity<MyResponse> saveLabel(@RequestBody Labels labels,HttpSession session,HttpServletRequest request){
 		try {
-			
 			User user = (User) request.getAttribute("user");
 			labels.setUser(user);
 			Date date = new Date();
 			labels.setCreatedTime(date);
-			LOG.info("user"+user);
-			LOG.info("checking notes details"+labels);
 				labelService.saveLabel(labels);
-				myResponse.setResponseMessage("notes save successfully:-");
+				myResponse.setResponseMessage("label save successfully:-");
 				return ResponseEntity.ok(myResponse);
 				} catch (Exception e) {
-			LOG.debug(e.getMessage());
-			myResponse.setResponseMessage("your validation is not done:-");
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(myResponse);
-			
 		}
 	}
-	
+
+	/**
+	 * @param label
+	 * @param request
+	 * @return MyResponse
+	 * @see this method is for deleting labels
+	 */
 	@RequestMapping(value="/deleteLabels/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<MyResponse> deleteLabel(@PathVariable int id){
 		boolean isDeleted = labelService.deleteLabelById(id);
@@ -71,30 +79,33 @@ public class LabelDetails {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(myResponse);
 		}
 		
-		
 	}
+	/**
+	 * @param label	
+	 * @param request
+	 * @return MyResponse
+	 * @see this method is for geting labels
+	 */
 	@RequestMapping(value="/getLabels", method=RequestMethod.GET)
 	public List<Labels> getLabels(HttpSession session,HttpServletRequest request){
 		User user = (User) request.getAttribute("user");
-		System.out.println("user " + user);
-		//User user = (User)session.getAttribute("userLogin");
 		List<Labels>  labels = labelService.getLabels(user);
-		System.out.println(labels);
 		return labels;
 	}
-	
+	/**
+	 * @param label	
+	 * @param request
+	 * @return MyResponse
+	 * @see this method is for editng labels
+	 */
 	@RequestMapping(value="/editLabel",method=RequestMethod.POST)
 	public ResponseEntity<MyResponse> editNotes(@RequestBody Labels label,HttpServletRequest request){
-		LOG.info("inside editing notes");
 		User user = (User)request.getAttribute("user");
-		LOG.info("checking user"+user.getId());
 		Labels objLabel = labelService.getLabelById(label.getLabelId());
 		label.setUser(user);
-		LOG.info("object of notes by id"+objLabel);
 		boolean isEdited;
 		Date resetDate = new Date();
 		isEdited = labelService.editLabel(label);
-		LOG.debug("chec`ing edition is done or not"+isEdited);
 		if(isEdited){
 			myResponse.setResponseMessage("editing notes are successfull");
 			return ResponseEntity.ok(myResponse);

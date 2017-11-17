@@ -22,6 +22,10 @@ import com.bridgelabz.model.User;
 import com.bridgelabz.services.NotesService;
 import com.bridgelabz.validator.NoteValidator;
 
+/**
+ *  @author Soma Singh
+ * @see class for Note Related task
+ */
 @RestController
 @RequestMapping(value="/notesCredential")
 public class NotesDetails {
@@ -36,26 +40,27 @@ public class NotesDetails {
 	@Autowired
 	NoteValidator noteValidation;
 	
+
+	/**
+	 * @param note	
+	 * @param request
+	 * @return MyResponse
+	 * @see this method is for saving notes in mysql db
+	 */
 	@RequestMapping(value="/saveNotes",method=RequestMethod.POST)
-	public ResponseEntity<MyResponse> saveNote(@RequestBody Notes notes,HttpSession session,HttpServletRequest request){
+	public ResponseEntity<MyResponse> saveNote(@RequestBody Notes note,HttpSession session,HttpServletRequest request){
 		try {
 			
 			User user = (User) request.getAttribute("user");
-			notes.setUser(user);
+			note.setUser(user);
 			Date date = new Date();
-			notes.setCreatedTime(date);
-			LOG.info("user"+user);
-			LOG.info("checking notes details"+notes);
-			boolean isNoteValid = noteValidation.noteValidator(notes);
-			LOG.info("checking note is valid or not"+isNoteValid);
-			if(isNoteValid) {
-				LOG.debug("note validation successfull:-");
-				LOG.debug("notes"+notes);
-				notesService.saveNote(notes);
+			note.setCreatedTime(date);
+			String isNoteValid = noteValidation.noteValidator(note);
+			if(isNoteValid.equals("true")) {
+				notesService.saveNote(note);
 				myResponse.setResponseMessage("notes save successfully:-");
 				return ResponseEntity.ok(myResponse);
 			}else {
-				LOG.error("your notes validation is not done please enter your notes");
 				myResponse.setResponseMessage("your notes can't be null or else not valid:-");
 				return new ResponseEntity<MyResponse>(myResponse, HttpStatus.BAD_REQUEST);
 			}
@@ -66,7 +71,13 @@ public class NotesDetails {
 			
 		}
 	}
-	
+
+	/**
+	 * @param note	
+	 * @param request
+	 * @return MyResponse
+	 * @see this method is for deleting notes
+	 */
 	@RequestMapping(value="/deleteNotes/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<MyResponse> deleteNotes(@PathVariable int id){
 		boolean isDeleted = notesService.deleteById(id);
@@ -81,25 +92,29 @@ public class NotesDetails {
 		
 		
 	}
+	/**
+	 * @param note	
+	 * @param request
+	 * @return MyResponse
+	 * @see this method is for geting notes
+	 */
 	@RequestMapping(value="/getNotes", method=RequestMethod.GET)
 	public List<Notes> getNotes(HttpSession session,HttpServletRequest request){
 		User user = (User) request.getAttribute("user");
-		System.out.println("user " + user);
-		//User user = (User)session.getAttribute("userLogin");
 		List<Notes>  notes = notesService.getNotes(user);
-		System.out.println(notes);
 		return notes;
 	}
-	
+	/**
+	 * @param note	
+	 * @param request
+	 * @return MyResponse
+	 * @see this method is for editing notes
+	 */
 	@RequestMapping(value="/editNotes",method=RequestMethod.POST)
 	public ResponseEntity<MyResponse> editNotes(@RequestBody Notes note,HttpServletRequest request){
-		LOG.info("inside editing notes");
 		User user = (User)request.getAttribute("user");
-		LOG.info("checking user"+user.getId());
-		LOG.info("checking notes id:"+note.getNotesId());
 		Notes objNotes = notesService.getNoteById(note.getNotesId());
 		note.setUser(user);
-		LOG.info("object of notes by id"+objNotes);
 		boolean isEdited;
 		objNotes.setTitle(note.getTitle());
 		objNotes.setDescription(note.getDescription());
@@ -109,7 +124,6 @@ public class NotesDetails {
 		Date resetDate = new Date();
 		note.setCreatedTime(resetDate);
 		isEdited = notesService.editNotes(note);
-		LOG.debug("checking edition is done or not"+isEdited);
 		if(isEdited){
 			myResponse.setResponseMessage("editing notes are successfull");
 			return ResponseEntity.ok(myResponse);
@@ -119,31 +133,29 @@ public class NotesDetails {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(myResponse);
 		}
 	}
-	/*@RequestMapping(value="/getArchivedNotes", method=RequestMethod.GET)
-	public List<Notes> getReminderedNotes(HttpServletRequest request){
-		User user = (User) request.getAttribute("user");
-		System.out.println("user " + user);
-		//User user = (User)session.getAttribute("userLogin");
-		List<Notes>  notes = notesService.getReminderedNotes(user);
-		System.out.println(notes);
-		return notes;
-	}*/
+	/**
+	 * @param note	
+	 * @param request
+	 * @return MyResponse
+	 * @see this method is for geting archive notes
+	 */
 	@RequestMapping(value="/getArchivedNotes", method=RequestMethod.GET)
 	public List<Notes> getArchivedNotes(HttpServletRequest request){
 		User user = (User) request.getAttribute("user");
-		System.out.println("user " + user);
-		//User user = (User)session.getAttribute("userLogin");
 		List<Notes>  notes = notesService.getArchivedNotes(user);
-		System.out.println(notes);
 		return notes;
 	}
+	/**
+	 * @param note	
+	 * @param request
+	 * @return MyResponse
+	 * @see this method is for geting all trashed notes
+	 */
 	@RequestMapping(value="/getTrashNotes", method=RequestMethod.GET)
 	public List<Notes> getTrashNotes(HttpServletRequest request){
 		User user = (User) request.getAttribute("user");
 		System.out.println("user " + user);
-		//User user = (User)session.getAttribute("userLogin");
 		List<Notes>  notes = notesService.getTrashNotes(user);
-		System.out.println(notes);
 		return notes;
 	}
 }

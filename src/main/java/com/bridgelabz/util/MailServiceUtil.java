@@ -1,23 +1,36 @@
 /*package com.bridgelabz.util;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 
 public class MailServiceUtil {
 	
 	@Autowired
-	static SimpleMailMessage mailMessage;
+	 SimpleMailMessage mailMessage;
 	
-	@Autowired
-	static MailSender mailSender;
+	//@Autowired
+private	MailSender mailSender;
 	
-	public static void sendMail(String from,String to,String msg,String subject) {
+	public MailSender getMailSender() {
+		return mailSender;
+	}
+
+	public void setMailSender(MailSender mailSender) {
+		this.mailSender = mailSender;
+	}
+
+	public  void sendMail(String from,String to,String msg,String subject) {
+		SimpleMailMessage mailMessage = new SimpleMailMessage();
 		mailMessage.setFrom(from);
 		mailMessage.setTo(to);
 		mailMessage.setSubject(subject);
 		mailMessage.setText(msg);
-		mailSender.send(mailMessage);
+		try {
+			mailSender.send(mailMessage);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 }

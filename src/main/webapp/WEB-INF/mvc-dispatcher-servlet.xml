@@ -9,7 +9,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 
-	<context:component-scan base-package="com.bridgelabz.controller" />
+	<context:component-scan base-package="com.bridgelabz" />
 	<mvc:annotation-driven />
 	<mvc:resources location="/script/" mapping="/script/**" />
 	<mvc:resources location="/template/" mapping="/template/**" />

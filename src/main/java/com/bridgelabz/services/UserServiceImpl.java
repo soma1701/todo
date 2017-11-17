@@ -20,13 +20,10 @@ public class UserServiceImpl implements UserService{
 	MailSender mailSender;
 
 	public void register(User user) throws Exception {
-		
 		userDao.register(user);
-		
 	} 
 
 	public void sendMail(String from, String to, String subject, String msg) {
-
 		mailMessage.setFrom(from);
 		mailMessage.setTo(to);
 		mailMessage.setSubject(subject);
@@ -42,26 +39,21 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User login(User user,String encryptedPassword) {
 		return userDao.login(user,encryptedPassword);
-		
-		
 	}
 
 	@Override
 	public void resetPassword(String email,String password) {
 		userDao.resetPassword(email,password);
-		
 	}
 
 	@Override
 	public void saveTokenInRedis(Token token) {
 		userDao.saveTokenInRedis(token);
-		
 	}
 
 	@Override
 	public Token getToken(String token) {
 		return userDao.getToken(token);
-		
 	}
 
 	@Override

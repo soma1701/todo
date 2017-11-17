@@ -71,7 +71,6 @@ public class UserDaoImpl implements UserDao {
 		cr.add(Restrictions.eq("isValid", true));
 		User userLogin = (User) cr.uniqueResult();
 		if (userLogin == null) {
-			System.out.println("logged in user " + userLogin);
 			return userLogin;
 		} else {
 			return userLogin;

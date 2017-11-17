@@ -12,10 +12,10 @@
 .CardContainer{
 	margin:0 auto;width: 700px;text-align:center;padding:7px; 
 }
-.CardContainer:hover #imageDiv{
+.CardContainer:hover .imageDiv{
 	visibility: visible;
 }
-#imageDiv{
+.imageDiv{
 	visibility: hidden;
 }
 #takeNote{
@@ -90,7 +90,7 @@
 	width: 700px;
 	background-color:white;width: 100%;text-align:left;display: inline-block;
 }
-#imageDiv:hover{
+.imageDiv:hover{
 	visiblity:false;
 }
 #icons{

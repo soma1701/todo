@@ -112,9 +112,10 @@ $scope.imageSrc = "";
 	}*/
 	$scope.saveNotes = function() {
 		addNote.title=$scope.note.title;
-		console.log("title" +$scope.note.title);
 		addNote.description=$scope.note.description;
-		console.log("description" +$scope.note.description);
+		addNote.color=$scope.note.color;
+		addNote.isArchived=$scope.note.isArchived;
+		addNote.image=$scope.note.imageSrc;
 		notesService.saveNotes(addNote);
 		$scope.showNewNote = false;
 		$scope.note.description='';

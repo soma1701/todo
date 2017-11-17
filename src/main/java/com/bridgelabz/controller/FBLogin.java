@@ -18,6 +18,10 @@ import com.bridgelabz.token.GenerateJWT;
 import com.bridgelabz.util.FBUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * @author Soma Singh
+ * @see class related for google login
+ */
 @RestController
 public class FBLogin {
 	private Logger LOG = (Logger) LogManager.getLogger(FBLogin.class);
@@ -28,6 +32,11 @@ public class FBLogin {
 	@Autowired
 	MyResponse myResponse;
 	
+	/**
+	 * @param request
+	 * @param response
+	 * @see method for getting url from facebook
+	 */
 	@RequestMapping(value="/fbLogin")
 	public void fbLogin(HttpServletRequest request,HttpServletResponse response) {
 		String fbUrl = FBUtil.generateFbUrl();
@@ -38,7 +47,11 @@ public class FBLogin {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * @param request
+	 * @param response
+	 * @see method for getting code and profile info from fb from facebook
+	 */
 	@RequestMapping(value="/successFbLogin", method = RequestMethod.GET)
 	public ResponseEntity<MyResponse> getFbAccessToken(HttpServletRequest request,HttpServletResponse response,HttpSession session){
 		LOG.info("After success");
@@ -79,6 +92,11 @@ public class FBLogin {
 		return null;
 		
 	}
+	/**
+	 * @param request
+	 * @param response
+	 * @see method for getting token after google login
+	 */
 	@RequestMapping(value="/tokenAftergFbLogin")
 	public ResponseEntity<MyResponse> getAccessTokenByglogin(HttpSession session){
 		String acessToken = (String) session.getAttribute("myAccessToken");

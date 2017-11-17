@@ -90,9 +90,10 @@
 							ng-click="open(note)" ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
 							<div class="showCards" style="background-color: {{note.color}}">
 								<img id="pinOutput" alt="pin" src="images/pin.svg" ng-click="note.pinned=true;editNotes(note)">
+								<img ng-src="{{note.image}}">
 								<div>{{note.title}}</div><br>
 								<div>{{note.description}}</div><br>
-								<div id="imageDiv" ng-click="$event.stopPropagation()" style="background-color: {{color.color}}">
+								<div class="imageDiv" ng-click="$event.stopPropagation()" style="background-color: {{color.color}}">
 									<img id="reminderOutput" alt="reminder" src="images/reminder.svg">
 									<img id="collaboratorOutput" alt="collaborator" src="images/colaborator.svg">
 									<div class="btn-group dropup colorDiv" uib-dropdown>
