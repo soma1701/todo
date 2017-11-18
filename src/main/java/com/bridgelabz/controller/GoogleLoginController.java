@@ -22,8 +22,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @see class related for google login
  */
 @RestController
-public class GoogleLogin {
-	private Logger LOG = (Logger) LogManager.getLogger(GoogleLogin.class);
+public class GoogleLoginController {
+	private Logger LOG = (Logger) LogManager.getLogger(GoogleLoginController.class);
 	 
 	
 	@Autowired
@@ -42,6 +42,7 @@ public class GoogleLogin {
 		
 		String googleUrl=GoogleUtil.generateGoogleUrl();
 		try {
+			
 			response.sendRedirect(googleUrl);
 		} catch (IOException e) {
 			LOG.catching(e);

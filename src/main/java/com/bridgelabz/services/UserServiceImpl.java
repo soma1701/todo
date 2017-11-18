@@ -21,6 +21,7 @@ public class UserServiceImpl implements UserService{
 
 	public void register(User user) throws Exception {
 		userDao.register(user);
+		
 	} 
 
 	public void sendMail(String from, String to, String subject, String msg) {

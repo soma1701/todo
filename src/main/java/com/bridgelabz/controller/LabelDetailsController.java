@@ -31,8 +31,8 @@ import com.bridgelabz.validator.NoteValidator;
  */
 @RestController
 @RequestMapping(value="/LabelsCredential")
-public class LabelDetails {
-	private Logger LOG = (Logger) LogManager.getLogger(NotesDetails.class);
+public class LabelDetailsController {
+	private Logger LOG = (Logger) LogManager.getLogger(NotesController.class);
 	
 	@Autowired
 	LabelService labelService;

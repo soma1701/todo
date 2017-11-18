@@ -19,6 +19,7 @@ public class VerifyJWT {
 			return Integer.parseInt(claims.getIssuer());
 			
 		} catch (Exception e) {
+			
 			LOG.catching(e);
 			e.printStackTrace();
 			return 0;

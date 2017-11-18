@@ -22,12 +22,14 @@ public class LogInIntercepter implements HandlerInterceptor{
 		LOG.info("user id is:-"+userId);
 		if(userId == 0) {
 			MyResponse myResponse = new MyResponse();
-			myResponse.setResponseMessage("user logged In via accessToken");
+			myResponse.setResponseMessage("Your token is not authorised:-");
 			PrintWriter out = response.getWriter();
 			Gson gson = new Gson();
 			String jsonResponse = gson.toJson(myResponse);
-			out.println("json response"+jsonResponse);
-			response.sendError(511);
+			//out.println("json response"+jsonResponse);
+			//out.print(jsonResponse);
+			//response.sendError(511);
+			response.sendError(400, jsonResponse);
 			return false;
 		}
 		User user = new User();

@@ -28,8 +28,8 @@ import com.bridgelabz.validator.NoteValidator;
  */
 @RestController
 @RequestMapping(value="/notesCredential")
-public class NotesDetails {
-	private Logger LOG = (Logger) LogManager.getLogger(NotesDetails.class);
+public class NotesController {
+	private Logger LOG = (Logger) LogManager.getLogger(NotesController.class);
 	
 	@Autowired
 	NotesService notesService;
@@ -40,7 +40,6 @@ public class NotesDetails {
 	@Autowired
 	NoteValidator noteValidation;
 	
-
 	/**
 	 * @param note	
 	 * @param request
@@ -89,8 +88,6 @@ public class NotesDetails {
 			myResponse.setResponseMessage("unable to delete");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(myResponse);
 		}
-		
-		
 	}
 	/**
 	 * @param note	

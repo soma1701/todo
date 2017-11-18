@@ -1,5 +1,8 @@
 package com.bridgelabz.controller;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
@@ -20,6 +23,7 @@ import com.bridgelabz.model.User;
 import com.bridgelabz.services.UserService;
 import com.bridgelabz.token.GenerateJWT;
 import com.bridgelabz.util.Encryption;
+import com.bridgelabz.util.MailUtil;
 import com.bridgelabz.validator.RegistrationValidationImpl;
 
 /**
@@ -27,8 +31,8 @@ import com.bridgelabz.validator.RegistrationValidationImpl;
  * @see class for user related task
  */
 @RestController
-public class UserCredential {
-	private Logger LOG = (Logger) LogManager.getLogger(UserCredential.class);
+public class UserController {
+	private Logger LOG = (Logger) LogManager.getLogger(UserController.class);
 
 	@Autowired
 	RegistrationValidationImpl registerValidation;
@@ -43,13 +47,10 @@ public class UserCredential {
 	Token token;
 	
 	@Autowired
-	 SimpleMailMessage mailMessage;
+	Encryption encrypt;
 	
 	@Autowired
-	MailSender mailSender;
-
-	@Autowired
-	Encryption encrypt;
+	MailUtil mailUtil;
 
 	/**
 	 * @param user	
@@ -60,16 +61,14 @@ public class UserCredential {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ResponseEntity<MyResponse> register(@RequestBody User user, HttpServletRequest request) {
 		try {
-			String url = request.getRequestURL().toString();
-			int a = url.lastIndexOf("/");
-			String url2 = url.substring(0, a)+"/verifyUser/";
+			String url =  "http://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/verifyUser";
 			String password = user.getPassword();
 			String encryptedPassword = encrypt.encryptPassword(password);
 			user.setPassword(encryptedPassword);
 			String regvValid = registerValidation.validator(user);
 			if (regvValid.equals("true")){
 				userService.register(user);
-				userService.sendMail("somasingh1701@gmail.com", user.getEmail(), "verifyUser", url2+user.getId());
+				mailUtil.sendMail("somasingh1701@gmail.com", user.getEmail(), "verifyUser", url+user.getId());
 			} else {
 				MyResponse.setResponseMessage(regvValid);
 				return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(MyResponse);
@@ -167,9 +166,15 @@ public class UserCredential {
 	 *  @return MyResponse
 	 * @see this method is for forgot password, sending mail of forgot password to user
 	 */
-	@RequestMapping("/forgotpassword/")
+	@RequestMapping("/forgotpassword")
 	public ResponseEntity<String> forgotPassword(@RequestBody User user, HttpServletRequest request) {
 		String url = request.getRequestURL().toString();
+		try {
+			URL lUrl = new URL(url);
+			System.out.println(lUrl.getHost());
+		} catch (MalformedURLException e1) {
+			e1.printStackTrace();
+		}   
 		int lastIndex = url.lastIndexOf("/");
 		String urlofForgotPassword = url.substring(0, lastIndex);
 		try {

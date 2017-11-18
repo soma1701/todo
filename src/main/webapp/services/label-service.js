@@ -2,7 +2,6 @@ toDoApp.factory('labelService',function($http,$location){
 	var label ={};
 	
 	label.saveLabel = function(label){
-		console.log("inside notes service");
 		return $http({
 			method:"POST",
 			url:'LabelsCredential/saveLabel',
@@ -20,13 +19,13 @@ toDoApp.factory('labelService',function($http,$location){
 	label.getLabels = function(actionType) {
 		var actionUrl;
 		if(actionType === 'ALL'){
-			actionUrl = 'notesCredential/getNotes';
+			actionUrl = 'LabelsCredential/getNotes';
 		}else if(actionType === 'ARCHIVE'){
-			actionUrl = 'notesCredential/getArchivedNotes';
+			actionUrl = 'LabelsCredential/getArchivedNotes';
 		}else if(actionType === 'TRASH'){
-			actionUrl = 'notesCredential/getTrashNotes';
+			actionUrl = 'LabelsCredential/getTrashNotes';
 		}else if(actionType === 'LABELS'){
-			actionUrl = 'notesCredential/getLabels';
+			actionUrl = 'LabelsCredential/getLabels';
 		}
 		return test;/*$http({
 			method:"GET",

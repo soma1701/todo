@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @see class related for google login
  */
 @RestController
-public class FBLogin {
-	private Logger LOG = (Logger) LogManager.getLogger(FBLogin.class);
+public class FBLoginController {
+	private Logger LOG = (Logger) LogManager.getLogger(FBLoginController.class);
 	
 	@Autowired
 	UserService userService;

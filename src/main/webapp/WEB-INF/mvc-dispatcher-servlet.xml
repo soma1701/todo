@@ -59,9 +59,10 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 	<bean id="registerValidation" class="com.bridgelabz.validator.RegistrationValidationImpl"></bean>
 	<bean id="notesService" class="com.bridgelabz.services.NotesServiceImpl"> </bean>
 	<bean id="notesDao" class="com.bridgelabz.dao.NotesDaoImpl"></bean>
-	<bean id="noteValidation" class="com.bridgelabz.validator.NoteValidationImpl"></bean>
+	<bean id="noteValidator" class="com.bridgelabz.validator.NoteValidationImpl"></bean>
 	<bean id="encryption" class="com.bridgelabz.util.Encryption"></bean>
 	<bean id="mailMessage" class="org.springframework.mail.SimpleMailMessage"></bean>
+	<bean id="mailUtil" class="com.bridgelabz.util.MailUtil"></bean>
 	
 	<bean id="labelDao" class="com.bridgelabz.dao.LabelDAOImpl" />
 	<bean id="labelService" class="com.bridgelabz.services.LabelServiceImpl" />

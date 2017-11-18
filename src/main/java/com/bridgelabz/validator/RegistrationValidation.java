@@ -2,7 +2,7 @@ package com.bridgelabz.validator;
 
 import com.bridgelabz.model.User;
 
-public interface RegistartionValidation {
+public interface RegistrationValidation {
 	
 	public String regValidator(User user) throws Exception; 
 

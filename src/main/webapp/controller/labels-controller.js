@@ -1,10 +1,10 @@
-toDoApp.controller('trashController',function($scope, notesService,$uibModal, $location, dataStore, $rootScope){
+toDoApp.controller('trashController',function($scope, labelService,$uibModal, $location, dataStore, $rootScope){
 	var test = {};
 	$scope.margin = 0;
 	$scope.view = 'grid';
 	$scope.notes = {};
 	var modalInstance;
-	var httpGetNotes = notesService.getNotes("LABELS");
+	var httpGetNotes = labelService.getLabels("LABELS");
 	
 	$scope.open = function (note) {
 		$scope.note = note;

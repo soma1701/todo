@@ -14,7 +14,6 @@
 							<textarea type="text-area" ng-model="note.description" focus="true" id="cardInputDescription" 
 								placeholder="Take a note"></textarea>
 								
-								
 							<div id="image">
 								<img id="reminderInput" alt="reminder" src="images/reminder.svg">
 								<img id="collaboratorInput" alt="collaborator" src="images/colaborator.svg">
@@ -61,12 +60,15 @@
 									<img id ="dropdown" class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" 
 										src="images/change-color.svg"  uib-dropdown-toggle>
 										<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-											<a ng-style="{'background-color':'color.color'}" ng-repeat="color in colors"   role="menuitem">
+											<a ng-style="{'background-color':'color.color'}" ng-repeat="color in colors"  role="menuitem">
 											<img id="icons" ng-src="{{color.path}}" ng-click="note.color =color.color;
 											editNotes(note)"></a>
 										</ul>
 									</div>
-									<img id="addImageOutput"  alt="addImage" src="images/add-image.svg">
+									<input style="display:none" type="file" ng-file-select="onFileSelect($files)" id="imgUpload" 
+									ng-model="note.imageSrc">
+								 	<img ng-src="{{note.imageSrc}}"/>
+									<img id="addImageOutput"  alt="addImage"  ng-click="uploadImage()" src="images/add-image.svg">
 									<img id="archiveOutput" alt="archive" src="images/archive.svg" 
 										ng-click="note.pinned = false;note.isArchived=true;editNotes(note)">
 									<div class="btn-group" uib-dropdown>
@@ -105,7 +107,10 @@
 											editNotes(note)"></a>
 										</ul>
 									</div>
-									<img id="addImageOutput"  alt="addImage" src="images/add-image.svg">
+									<input style="display:none" type="file" ng-file-select="onFileSelect($files)" id="imgUpload" 
+									ng-model="note.imageSrc">
+								 	<img ng-src="{{note.imageSrc}}"/>
+									<img id="addImageOutput" ng-click="uploadImage()" alt="addImage" src="images/add-image.svg">
 									<img id="archiveOutput" alt="archive" src="images/archive.svg" 
 										ng-click="note.isArchived=true;editNotes(note)">
 									<div class="btn-group" uib-dropdown>
