@@ -26,9 +26,6 @@ public class LogInIntercepter implements HandlerInterceptor{
 			PrintWriter out = response.getWriter();
 			Gson gson = new Gson();
 			String jsonResponse = gson.toJson(myResponse);
-			//out.println("json response"+jsonResponse);
-			//out.print(jsonResponse);
-			//response.sendError(511);
 			response.sendError(400, jsonResponse);
 			return false;
 		}

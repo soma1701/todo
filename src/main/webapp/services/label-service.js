@@ -9,59 +9,36 @@ toDoApp.factory('labelService',function($http,$location){
 				'accessToken' : localStorage.getItem("accessToken")
 			},
 			data: label,		
-						
 		}).then(function(response){
-			console.log("response message" +response.data);
 		},function(response){
-			console.log("error" +response.data.myResponseMessage);
+			if(response.status=='400')
+				$location.path('/loginPage');
 		});
 	}
-	label.getLabels = function(actionType) {
-		var actionUrl;
-		if(actionType === 'ALL'){
-			actionUrl = 'LabelsCredential/getNotes';
-		}else if(actionType === 'ARCHIVE'){
-			actionUrl = 'LabelsCredential/getArchivedNotes';
-		}else if(actionType === 'TRASH'){
-			actionUrl = 'LabelsCredential/getTrashNotes';
-		}else if(actionType === 'LABELS'){
-			actionUrl = 'LabelsCredential/getLabels';
-		}
-		return test;/*$http({
+	label.getLabels = function() {
+		return $http({
 			method:"GET",
+			url: 'LabelsCredential/getLabels',
 			headers:{
 				'accessToken' : localStorage.getItem("accessToken")
 			},
-			url: actionUrl
-		})*/
-		
+			
+		}).then(function(response){
+		},function(response){
+			if(response.status=='400')
+				$location.path('/loginPage');
+		});
 	}
-	var test = [{
-		text:'sourav'
-	},
-	{
-		text:'soma'
-	},
-	{
-		text:'shubhu'
-	},
-	{
-		text:'Vanshu'
-	}
-	];
 	label.deleteLabel = function(id){
-		console.log("inside delete function;-");
 		return $http({
 			method:"DELETE",
-			url:'labelCredential/deleteLabels/'+id,
+			url:'LabelsCredential/deleteLabels/'+id,
 			headers:{
 				'accesstoken':localStorage.getItem("accessToken")
 			}
 		})
 	}
 	label.editNotes = function(label){
-			console.log("inside edit notes service:-");
-			console.log(label);
 			return $http({
 				method:"POST",
 				url:'labelCredential/editLabels',

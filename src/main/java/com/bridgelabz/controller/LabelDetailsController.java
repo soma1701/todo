@@ -49,13 +49,16 @@ public class LabelDetailsController {
 	@RequestMapping(value="/saveLabel",method=RequestMethod.POST)
 	public ResponseEntity<MyResponse> saveLabel(@RequestBody Labels labels,HttpSession session,HttpServletRequest request){
 		try {
-			User user = (User) request.getAttribute("user");
-			labels.setUser(user);
-			Date date = new Date();
-			labels.setCreatedTime(date);
+			if(!(labels.getLabelName()==""||labels.getLabelName()==null)) {
+				User user = (User) request.getAttribute("user");
+				labels.setUser(user);
 				labelService.saveLabel(labels);
 				myResponse.setResponseMessage("label save successfully:-");
 				return ResponseEntity.ok(myResponse);
+			}
+			myResponse.setResponseMessage("label can't be emplty:-");
+			return ResponseEntity.ok(myResponse);
+				
 				} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(myResponse);
 		}

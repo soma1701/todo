@@ -1,5 +1,3 @@
-//var toDoApp = angular.module('toDoApp');
-
 toDoApp.factory('loginService', function($http, $location){
 	
 	var login = {};
@@ -17,7 +15,6 @@ toDoApp.factory('loginService', function($http, $location){
 			console.log(response.data.responseMessage)
 		});
 	}
-	
 	return login;
 	
 });

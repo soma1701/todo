@@ -94,22 +94,6 @@ $scope.imageSrc = "";
 				bordercolor:"#fb0",
 				color:"black"
 		}];
-	/*$scope.saveNotes = function() {
-		addNote.title=$scope.note.title;
-		addNote.description=$scope.note.description;
-		addNote.color=$scope.note.color;
-		addNote.isArchived=$scope.note.isArchived;
-		addNote.image=$scope.note.imageSrc;
-		notesService.saveNotes(addNote).then(function(response){
-			console.log("response message" +response.data);
-			$scope.note={};
-			$scope.$apply();
-		}).catch(function(response){
-			console.log("error" +response.data.myResponseMessage);
-		})
-		$scope.showNewNote = false;
-		
-	}*/
 	$scope.saveNotes = function() {
 		addNote.title=$scope.note.title;
 		addNote.description=$scope.note.description;
@@ -126,7 +110,7 @@ $scope.imageSrc = "";
 		console.log(response.data);
 		$scope.notes = response.data;
 	}, function(response) {
-		if(response.status=='511')
+		if(response.status=='400')
 			$location.path('/loginPage')
 		console.log(response);
 	});
@@ -136,19 +120,36 @@ $scope.imageSrc = "";
 		modalInstance.close('resetModel');
 		deleteNote.then(function(response){
 			httpGetNotes;
-			
+		}),then(function(response){
+			if(response.status=='400')
+				$location.path('/loginPage')
+				console.log(response);
 		});
 	}
 	$scope.editNotes = function(note){
 		$scope.note=note;
-		notesService.editNotes(note);
-//		modalInstance.close('resetModel');
+		var editNote = notesService.editNotes(note);
+		//modalInstance.close('resetModel');
 		$scope.note = {};
+		editNote.then(function(response){
+			httpGetNotes;
+		}),then(function(response){
+			if(response.status=='400')
+				$location.path('/loginPage')
+				console.log(response);
+		});
 	}
 	$scope.makeCopy = function(note){
-		notesService.saveNotes(note);
+		var copyNote = notesService.saveNotes(note);
 		modalInstance.close('resetModel');
 		$scope.note = {};
+		copyNote.then(function(response){
+			httpGetNotes;
+		}),then(function(response){
+			if(response.status=='400')
+				$location.path('/loginPage')
+				console.log(response);
+		});
 	}
 	
 });
@@ -169,16 +170,3 @@ toDoApp.directive('focus',
 	 }
 	};
 	}); 
-
-
-/*toDoApp.controller('ModalInstanceCtrl', function ($scope, $modalInstance, user) {
-	  $scope.NOTE = user;
-	  $scope.ok = function () {
-	    $modalInstance.close();
-	  };
-
-	  $scope.cancel = function () {
-	    $modalInstance.dismiss('cancel');
-	  };
-	});
-*/

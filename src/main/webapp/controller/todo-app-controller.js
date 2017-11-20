@@ -1,4 +1,4 @@
-toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, labelService) {
+toDoApp.controller('todoAppController', function($scope,$state, dataStore, $uibModal, labelService) {
 	
 	$scope.isGridView = true;
 	$scope.view = "grid";
@@ -7,24 +7,30 @@ toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, l
 	$scope.openSideBar = false;
 	$scope.notes = {};
 	$scope.labels = {};
-	$scope.newLabel = 'test';
-	var httpGetLabels = labelService.getLabels('LABELS');
-
-	/*httpGetLabels.then(function(response) {
-		console.log(response.data);
+	$scope.newLabel = '';
+	
+	var httpGetLabels = labelService.getLabels();
+	httpGetLabels.then(function(response) {
 		$scope.labels = response.data;
 	}, function(response) {
-		if(response.status=='511')
+		if(response.status=='400')
 			$location.path('/loginPage')
-		console.log(response);
-	});*/
-	$scope.labels = httpGetLabels;
+	});
 	
-	$scope.saveLabel = function() {
-		var data = {
-				labelName : $scope.newModel
+	$scope.saveLabel = function(label) {
+		var data = {};
+		if(label === undefined){
+			data.labelName = $scope.newLabel;
+		}else{
+			data.labelName = label.labelName;
 		}
-		labelService.saveLabel(data);
+		var saveLabel = labelService.saveLabel(data);
+		saveLabel.then(function(response) {
+			$scope.labels = response.data;
+		}, function(response) {
+			if(response.status=='400')
+				$location.path('/loginPage')
+		});
 	}
 	
 	$scope.deleteLabel = function(label){
@@ -45,6 +51,12 @@ toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, l
 			dataStore.toggleSideBar(data);
 			$scope.width = 0;
 		}
+		data.then(function(response) {
+			$scope.labels = response.data;
+		}, function(response) {
+			if(response.status=='400')
+				$location.path('/loginPage')
+		});
 	};
 	$scope.switchView = function(){
 		if($scope.view === "grid"){
@@ -64,6 +76,7 @@ toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, l
 	$scope.openLabelList = function(){
 		modalInstance = $uibModal.open({
 			templateUrl: 'template/label-list.html',
+			windowClass: 'app-modal-window',
 			scope : $scope
 		});
 	}

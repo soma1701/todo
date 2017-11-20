@@ -1,16 +1,19 @@
-<div style="margin:20px 20px;text-align:center">
-	<div>Edit Labels</div>
-	<div style="margin-bottom:20px">
-		<span class="glyphicon glyphicon-plus" ng-show="!editLabelFocus"></span>
-		<span class="glyphicon glyphicon-remove" ng-show="editLabelFocus"></span>
-		<input type="text" placeholder="Create new label" ng-model= "$parent.newLabel" 
-			ng-focus="editLabelFocus=true" ng-blur="editLabelFocus=false" style="border:none" 
+<div class="body">
+	<div id="labelHeader"><h1>Edit Labels</h1></div>
+	<div class="newLabel">
+	<img alt="plus" src="images/plus.svg"  ng-show="!editLabelFocus">
+	<img alt="remove" src="images/remove.svg" ng-show="editLabelFocus">
+		<input class="newLabel" type="text" placeholder="Create new label" ng-model= "$parent.newLabel" 
+			ng-focus="editLabelFocus=true" ng-blur="editLabelFocus=false" 
 			aria-label="Create new label" maxlength="50">
-		<span class="glyphicon glyphicon-ok" ng-click="saveLabel()"></span>
+			<img alt="save" src="images/edit.svg" ng-click="saveLabel(label)">
+	<hr id="break">
+	</div >
+	<div class="labelList" ng-repeat="label in labels">
+		<img alt="delete" src="images/delete.svg" ng-click="deleteLabel(label.labelId)">
+		<input class="labelList" type="text" ng-model="label.labelName" maxlength="50" style="border:none;outline:none">
+		<img alt="save" src="images/edit.svg" ng-click="saveLabel(label)">
 	</div>
-	<div ng-repeat="label in labels">
-		<span class="glyphicon glyphicon-ok" ng-click="deleteLabel(label)"></span>
-		<input type="text" ng-model="label.text" maxlength="50" style="border:none;outline:none">
-		<span class="glyphicon glyphicon-ok" ng-click="saveLabel(label)"></span>
-	</div>
+	<hr id="break">
+	<button type="btn" ng-click="saveLabel()">Done</button>	
 </div>

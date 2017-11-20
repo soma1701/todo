@@ -101,3 +101,49 @@
 	height:200px;
 	width:200px;
 }
+.app-modal-window .modal-dialog {
+  width: 300px;
+}
+.newLabel{
+	border:none;
+	outline:none;
+	text-align:center;
+/* 	margin-bottom:20px; */
+}
+#labelbtn{
+	float: right;
+}
+h1, .h1 {
+    font-size: 21px;
+    text-align: start;
+}
+.myLabel{
+	border:none;
+	outline:none;
+	text-align:center;
+}
+.body{
+	margin:20px 20px;
+	text-align:center";
+}
+.labelList{
+	border:none;
+	outline:none;
+	text-align:center;
+}
+#break{
+	margin:0 0 0 0;
+}
+#span{
+	display: inline-flex;
+	font-size:20px;
+}
+#labelList{
+	    font-size: 15px;
+}
+#font{
+	 font-size: 15px;
+}
+.labelBtn{
+	align:left;
+}
