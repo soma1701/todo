@@ -36,7 +36,7 @@ public class Labels {
 	private User user;
 	
 //	@ManyToOne
-	@ManyToMany(mappedBy="alLabels", cascade = CascadeType.REMOVE)
+	@ManyToMany(mappedBy="alLabels", cascade = CascadeType.ALL)
 //	@JoinColumn(name="notes_id")
 	@JsonIgnore
 	private List<Notes> alNote;

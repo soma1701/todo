@@ -1,4 +1,4 @@
-toDoApp.controller('notesController', function($scope, fileReader,notesService,$location, $uibModal, dataStore, $rootScope) {
+toDoApp.controller('notesController', function($scope, fileReader,notesService,$location, $uibModal, dataStore, $rootScope, labelService) {
 	
 $scope.imageSrc = "";
     
@@ -114,6 +114,16 @@ $scope.imageSrc = "";
 			$location.path('/loginPage')
 		console.log(response);
 	});
+	
+	var httpGetLabels = labelService.getLabels();
+	
+	httpGetLabels.then(function(response) {
+		$scope.labels = response.data;
+	}, function(response) {
+		if(response.status=='400')
+			$location.path('/loginPage')
+			console.log(response);
+	});
 	$scope.deleteNotes = function(id){
 		console.log("notes id"+id);
 		var deleteNote = notesService.deleteNotes(id);
@@ -149,6 +159,16 @@ $scope.imageSrc = "";
 			if(response.status=='400')
 				$location.path('/loginPage')
 				console.log(response);
+		});
+	}
+	$scope.openAddLabel = function(note){
+		$scope.note = note;
+		$scope.addLabelModal = $uibModal.open({
+			templateUrl: 'template/addLabelToNote.html',
+			scope : $scope
+			});
+		$scope.addLabelModal.result.catch(function(){
+			notesService.editNotes($scope.note);
 		});
 	}
 	

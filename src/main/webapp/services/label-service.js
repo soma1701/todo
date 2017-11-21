@@ -23,11 +23,11 @@ toDoApp.factory('labelService',function($http,$location){
 				'accessToken' : localStorage.getItem("accessToken")
 			},
 			
-		}).then(function(response){
+		})/*.then(function(response){
 		},function(response){
 			if(response.status=='400')
 				$location.path('/loginPage');
-		});
+		});*/
 	}
 	label.deleteLabel = function(id){
 		return $http({

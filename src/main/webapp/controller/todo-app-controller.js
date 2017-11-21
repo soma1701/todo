@@ -1,4 +1,4 @@
-toDoApp.controller('todoAppController', function($scope,$state, dataStore, $uibModal, labelService) {
+toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, labelService, $rootScope) {
 	
 	$scope.isGridView = true;
 	$scope.view = "grid";
@@ -8,9 +8,11 @@ toDoApp.controller('todoAppController', function($scope,$state, dataStore, $uibM
 	$scope.notes = {};
 	$scope.labels = {};
 	$scope.newLabel = '';
-	
+	$scope.background = "#fb0";
 	var httpGetLabels = labelService.getLabels();
+
 	httpGetLabels.then(function(response) {
+		console.log(response.data);
 		$scope.labels = response.data;
 	}, function(response) {
 		if(response.status=='400')
@@ -80,4 +82,25 @@ toDoApp.controller('todoAppController', function($scope,$state, dataStore, $uibM
 			scope : $scope
 		});
 	}
+	$rootScope.$on("$locationChangeStart",function(event, next, current){
+		var toLocation = next.substr(next.lastIndexOf("/")+1);
+		switch (toLocation) {
+	    case "notes":
+	        $scope.background = "#fb0";
+	        $scope.color = "black";
+	        break;
+	    case "archive":
+	    	$scope.background = "#607D8B";
+	        $scope.color = "white";
+	    	break;
+	    case "trash":
+	    	$scope.background = "#607D8B";
+	        $scope.color = "white";
+	    	break;
+	    case "labels":
+	    	$scope.background = "#607D8B";
+	        $scope.color = "white";
+	    	break;
+	}
+	});
 });

@@ -4,7 +4,7 @@
   <hr id="break">
   <span id ="span">Labels<a id="font" ng-click="callback()">Edit</a></span>
   <div  ng-repeat="label in labels">
-  	<a id="labelList" ui-sref="">{{label.labelName}}</a>
+  	<a id="labelList" ui-sref=".labels({id: label.labelName})">{{label.labelName}}</a>
   </div>
   <a id="font" ng-click="callback()">create new label</a> 
   <hr id="break">

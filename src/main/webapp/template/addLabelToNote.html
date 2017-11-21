@@ -1,0 +1,15 @@
+<div style="margin:20px 20px;text-align:center">
+	<div>Add Labels</div>
+	<div style="margin-bottom:20px">
+		<input type="text" placeholder="Create new label" 
+			 style="border:none" 
+			aria-label="Create new label" maxlength="50">
+	</div>
+	<div ng-repeat="label in labels">
+<!-- 		<label ng-repeat="label in labels">  -->
+		<input type="checkbox"
+			data-checklist-model="note.labels" data-checklist-value="label">
+			{{label.labelName}}
+<!-- 		</label>  -->
+	</div>
+</div>

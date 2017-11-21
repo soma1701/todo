@@ -26,6 +26,7 @@
 	<script type="text/javascript" src="services/noteService.js"></script>
 	<script type="text/javascript" src="controller/noteController.js"></script>
 	<script type="text/javascript" src="controller/archive-controller.js"></script>
+	<script type="text/javascript" src="controller/labels-controller.js"></script>
 	<script type="text/javascript" src="controller/trash-controller.js"></script>
 	<script type="text/javascript" src="controller/todo-app-controller.js"></script>
 	<script type="text/javascript" src="controller/fileupload-controller.js"></script>
