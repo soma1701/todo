@@ -1,9 +1,10 @@
 package com.bridgelabz.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,11 +36,9 @@ public class Labels {
 	@JsonIgnore
 	private User user;
 	
-//	@ManyToOne
-	@ManyToMany(mappedBy="alLabels", cascade = CascadeType.ALL)
-//	@JoinColumn(name="notes_id")
+	@ManyToMany(mappedBy="alLabels")
 	@JsonIgnore
-	private List<Notes> alNote;
+	private Set<Notes> alNote = new HashSet<>();
 
 	public int getLabelId() {
 		return labelId;
@@ -65,11 +64,11 @@ public class Labels {
 		this.user = user;
 	}
 
-	public List<Notes> getAlNote() {
+	public Set<Notes> getAlNote() {
 		return alNote;
 	}
 
-	public void setAlNote(List<Notes> alNote) {
+	public void setAlNote(Set<Notes> alNote) {
 		this.alNote = alNote;
 	}
 
