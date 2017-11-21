@@ -6,10 +6,8 @@
 			aria-label="Create new label" maxlength="50">
 	</div>
 	<div ng-repeat="label in labels">
-<!-- 		<label ng-repeat="label in labels">  -->
 		<input type="checkbox"
 			data-checklist-model="note.labels" data-checklist-value="label">
 			{{label.labelName}}
-<!-- 		</label>  -->
 	</div>
 </div>

@@ -1,5 +1,6 @@
   #navbar{
   	margin:0;
+  	
   }
  .homecontainer{    
  	background-color: #e8e8e8;
@@ -33,10 +34,14 @@
 	height:22px;margin:0;width:22px;float:right;
 }
 #cardInputitle{
-	border:none;width:100%;
+	border:none;
+	width:100%;
+	outline: none;
 }
 #cardInputDescription{
-	border:none;width:100%;
+	border:none;
+	width:100%;
+	outline: none;
 }
 #reminderInput{
 	height:20px;margin:0 3px;width:20px;
@@ -63,6 +68,8 @@
 #noteTaken{
 	width:100%;
 	height: 40px;
+	border: none;
+	outline: none;
 }
 .showCards{
 	margin:10px 10px 10px 10px;
@@ -147,3 +154,10 @@ h1, .h1 {
 .labelBtn{
 	align:left;
 }
+.test[placeholder]:empty:before {
+    content: attr(placeholder);
+   /*  color: #555; */
+}
+/* #image{ */
+/* 	width:100%; */
+/* } */

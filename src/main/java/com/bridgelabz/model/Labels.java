@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="labels", schema="soma")
 public class Labels {
+	
 	@Id  
 	 @GeneratedValue(strategy=GenerationType.AUTO, generator="mygen")
 	 @GenericGenerator(name="mygen",strategy="native")
@@ -36,10 +38,14 @@ public class Labels {
 	@JsonIgnore
 	private User user;
 	
-	@ManyToMany(mappedBy="alLabels")
+	/*@ManyToMany(mappedBy="alLabels")
 	@JsonIgnore
-	private Set<Notes> alNote = new HashSet<>();
-
+	private Set<Notes> alNote = new HashSet<>();*/
+	
+	@ManyToMany(mappedBy="alLabels", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<Notes> alNote;
+	
 	public int getLabelId() {
 		return labelId;
 	}
@@ -64,11 +70,19 @@ public class Labels {
 		this.user = user;
 	}
 
-	public Set<Notes> getAlNote() {
+	/*public Set<Notes> getAlNote() {
 		return alNote;
 	}
 
 	public void setAlNote(Set<Notes> alNote) {
+		this.alNote = alNote;
+	}*/
+	
+	public List<Notes> getAlNote() {
+		return alNote;
+	}
+
+	public void setAlNote(List<Notes> alNote) {
 		this.alNote = alNote;
 	}
 

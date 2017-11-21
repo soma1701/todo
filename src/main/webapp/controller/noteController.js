@@ -5,11 +5,9 @@ $scope.imageSrc = "";
     $scope.$on("fileProgress", function(e, progress) {
       $scope.progress = progress.loaded / progress.total;
     });
-    
     $scope.uploadImage = function(){
     	$('#imgUpload').trigger('click');
     }
-	
 	var addNote={};
 	var editNote={};
 	$scope.note = {};
@@ -171,6 +169,26 @@ $scope.imageSrc = "";
 			notesService.editNotes($scope.note);
 		});
 	}
+	
+	/* $scope.uploadImage = function (field){
+	    	console.log(field);
+	    	$scope.field = field;
+	    	console.log($scope.field);
+	    	$('#imgUpload').trigger('click');
+	    }*/
+	$scope.uploadImage = function(env,note){
+		var obj = $(env.target).parent().find("#updateImage");
+		obj.trigger("click");
+	}
+	$scope.updatePinup = function(note){
+		var updateImage = notesService.editNotes(note);
+		console.log(note);
+	}
+	    
+	   /* $scope.$watch('imgUpload', function updateCardImage(oldImg,
+				newImage) {
+	    	console.log($scope.field);
+	    });*/
 	
 });
 toDoApp.directive('focus',

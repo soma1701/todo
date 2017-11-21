@@ -34,13 +34,7 @@ toDoApp.factory('notesService',function($http,$location){
 				'accessToken' : localStorage.getItem("accessToken")
 			},
 			url: actionUrl
-		})/*.then(function(response){
-			console.log("response message" +response.data);
-		},function(response){
-			if(response.status=='400')
-				$location.path('/loginPage')
-			console.log("error" +response.data.myResponseMessage);
-		});*/
+		})
 	}
 	note.deleteNotes = function(id){
 		console.log("inside delete function;-");
