@@ -1,11 +1,14 @@
   #navbar{
   	margin:0;
-  	
   }
+ body{
+ background-color: #e8e8e8;
+ }
  .homecontainer{    
  	background-color: #e8e8e8;
  	height: 100%;
  	width:100%;
+ 	margin:100px;
 }
 .mainContainer{
 	width:100%;height:100%;
@@ -26,6 +29,7 @@
 	display: inline-block; 
 	text-align:left;
 	margin:10px 10px 10px 10px;
+	color:grey;
 }
 .cardInput{
 	background-color:white;width: 80%;text-align:left;display: inline-block; margin:10px 10px 10px 10px;padding: 7px;

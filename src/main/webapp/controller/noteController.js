@@ -64,7 +64,7 @@ $scope.imageSrc = "";
 			"path":'images/orange.png'
 		},
 		];
-	
+	getNotes();
 	$scope.open = function (note) {
 		$scope.note = note;
 		modalInstance = $uibModal.open({
@@ -101,33 +101,34 @@ $scope.imageSrc = "";
 		notesService.saveNotes(addNote);
 		$scope.showNewNote = false;
 		$scope.note.description='';
+		getNotes();
 	}
-	var httpGetNotes = notesService.getNotes('ALL');
-
-	httpGetNotes.then(function(response) {
-		console.log(response.data);
-		$scope.notes = response.data;
-	}, function(response) {
-		if(response.status=='400')
-			$location.path('/loginPage')
-		console.log(response);
-	});
-	
-	var httpGetLabels = labelService.getLabels();
-	
-	httpGetLabels.then(function(response) {
-		$scope.labels = response.data;
-	}, function(response) {
-		if(response.status=='400')
-			$location.path('/loginPage')
+	function getNotes(){
+		var httpGetNotes = notesService.getNotes('ALL');
+		httpGetNotes.then(function(response) {
+			console.log(response.data);
+			$scope.notes = response.data;
+		}, function(response) {
+			if(response.status=='400')
+				$location.path('/loginPage')
 			console.log(response);
-	});
+		});
+	}
+		var httpGetLabels = labelService.getLabels();
+		
+		httpGetLabels.then(function(response) {
+			$scope.labels = response.data;
+		}, function(response) {
+			if(response.status=='400')
+				$location.path('/loginPage')
+				console.log(response);
+		});
 	$scope.deleteNotes = function(id){
 		console.log("notes id"+id);
 		var deleteNote = notesService.deleteNotes(id);
 		modalInstance.close('resetModel');
 		deleteNote.then(function(response){
-			httpGetNotes;
+			getNotes();
 		}),then(function(response){
 			if(response.status=='400')
 				$location.path('/loginPage')
@@ -135,12 +136,12 @@ $scope.imageSrc = "";
 		});
 	}
 	$scope.editNotes = function(note){
-		$scope.note=note;
+		note.image=note.imageSrc;
 		var editNote = notesService.editNotes(note);
 		//modalInstance.close('resetModel');
 		$scope.note = {};
 		editNote.then(function(response){
-			httpGetNotes;
+			$scope.note=response.data;
 		}),then(function(response){
 			if(response.status=='400')
 				$location.path('/loginPage')
@@ -169,26 +170,15 @@ $scope.imageSrc = "";
 			notesService.editNotes($scope.note);
 		});
 	}
-	
-	/* $scope.uploadImage = function (field){
-	    	console.log(field);
-	    	$scope.field = field;
-	    	console.log($scope.field);
-	    	$('#imgUpload').trigger('click');
-	    }*/
 	$scope.uploadImage = function(env,note){
-		var obj = $(env.target).parent().find("#updateImage");
+		var obj = $(env.target).parent().find(".updateImage");
 		obj.trigger("click");
 	}
 	$scope.updatePinup = function(note){
+		note.image=note.imageSrc;
 		var updateImage = notesService.editNotes(note);
 		console.log(note);
 	}
-	    
-	   /* $scope.$watch('imgUpload', function updateCardImage(oldImg,
-				newImage) {
-	    	console.log($scope.field);
-	    });*/
 	
 });
 toDoApp.directive('focus',

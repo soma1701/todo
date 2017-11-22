@@ -119,6 +119,7 @@ public class NotesController {
 		objNotes.setTrashed(note.isTrashed());
 		objNotes.setColor(note.getColor());
 		objNotes.setLabels(note.getLabels());
+		objNotes.setImage(note.getImage());
 		Date resetDate = new Date();
 		note.setCreatedTime(resetDate);
 		isEdited = notesService.editNotes(note);

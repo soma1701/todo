@@ -24,10 +24,10 @@
 											<img id="icons" ng-src="{{color.path}}" ng-click="note.color =color.color; saveNotes()"></a>
 										</ul>
 								</div>
-								<input style="display:none" type="file" ng-file-select="onFileSelect($files)" id="imgUpload" 
+								<input style="display:none" type="file" ng-file-select="onFileSelect($files)" class="updateImage"  
 									ng-model="note.imageSrc">
-								<img ng-src="{{note.imageSrc}}"/>
-								<img id="addImageInput" alt="addImage" ng-click="uploadImage()" src="images/add-image.svg">
+								<img ng-click="updatePinup(note)" ng-src="{{note.imageSrc}}"/>
+								<img id="addImageInput" alt="addImage" ng-click="uploadImage($event,note)" src="images/add-image.svg">
 								<img id="archiveInput" alt="archive" src="images/archive.svg" ng-click="note.isArchived=true;saveNotes()">
 								<div class="btn-group" uib-dropdown>
 									<span id ="dropdown" class="glyphicon glyphicon-option-vertical" uib-dropdown-toggle> </span>
@@ -64,10 +64,10 @@
 											editNotes(note)"></a>
 										</ul>
 									</div>
-									<!-- <input style="display:none" type="file" ng-file-select="onFileSelect($files)" id="imgUpload" 
-									ng-model="note.imageSrc"> -->
-								 	<img ng-click="uploadImage()" ng-src="{{note.imageSrc}}"/>
-									<img id="addImageOutput"  alt="addImage"  ng-click="uploadImage(note)" src="images/add-image.svg">
+									<input style="display:none" type="file" ng-file-select="onFileSelect($files)" class="updateImage"  
+									ng-model="note.imageSrc">
+								 	<img ng-click="updatePinup(note)" ng-src="{{note.imageSrc}}"/>
+									<img id="addImageOutput"  alt="addImage"  ng-click="uploadImage($event,note)" src="images/add-image.svg">
 									<img id="archiveOutput" alt="archive" src="images/archive.svg" 
 										ng-click="note.pinned = false;note.isArchived=true;editNotes(note)">
 									<div class="btn-group" uib-dropdown>
@@ -109,8 +109,8 @@
 											editNotes(note)"></a>
 										</ul>
 									</div>
-									<input style="display:none" type="file" ng-file-select="onFileSelect($files)" id="updateImage"  
-									ng-model="note.imageSrc" ng-click="updatePinup(note)">
+									<input style="display:none" type="file" ng-file-select="onFileSelect($files)" class="updateImage"  
+									ng-model="note.imageSrc">
 								 	<img ng-click="updatePinup(note)" ng-src="{{note.imageSrc}}"/>
 									<img id="addImageOutput" ng-click="uploadImage($event,note)" alt="addImage" src="images/add-image.svg">
 									<img id="archiveOutput" alt="archive" src="images/archive.svg" 
