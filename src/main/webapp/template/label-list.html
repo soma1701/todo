@@ -7,13 +7,13 @@
 			ng-focus="editLabelFocus=true" ng-blur="editLabelFocus=false" 
 			aria-label="Create new label" maxlength="50">
 			<img alt="save" src="images/edit.svg" ng-click="saveLabel(label)">
-	<hr id="break">
+	<hr class="break">
 	</div >
 	<div class="labelList" ng-repeat="label in labels">
 		<img alt="delete" src="images/delete.svg" ng-click="deleteLabel(label.labelId)">
 		<input class="labelList" type="text" ng-model="label.labelName" maxlength="50" style="border:none;outline:none">
 		<img alt="save" src="images/edit.svg" ng-click="saveLabel(label)">
 	</div>
-	<hr id="break">
+	<hr class="break">
 	<button type="btn" ng-click="saveLabel()">Done</button>	
 </div>

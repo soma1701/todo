@@ -2,8 +2,11 @@ package com.bridgelabz.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bridgelabz.model.Labels;
 import com.bridgelabz.model.MyResponse;
 import com.bridgelabz.model.Notes;
 import com.bridgelabz.model.User;
@@ -156,5 +158,18 @@ public class NotesController {
 		System.out.println("user " + user);
 		List<Notes>  notes = notesService.getTrashNotes(user);
 		return notes;
+	}
+	
+	/**
+	 * @param label	
+	 * @param request
+	 * @return MyResponse
+	 * @see this method is for geting labels
+	 */
+	@RequestMapping(value="getLabelNotes/{label}", method=RequestMethod.GET)
+	public Set<Notes> getLabels(@PathVariable String label,HttpServletRequest request){
+		User user = (User) request.getAttribute("user");
+		Set<Notes> alNotes = notesService.getLabelNotes(label, user);
+		return alNotes;
 	}
 }

@@ -1,11 +1,11 @@
 package com.bridgelabz.services;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bridgelabz.dao.NotesDAO;
-import com.bridgelabz.model.Labels;
 import com.bridgelabz.model.Notes;
 import com.bridgelabz.model.User;
 
@@ -53,6 +53,11 @@ public class NotesServiceImpl implements NotesService{
 	public List<Notes> getTrashNotes(User user) {
 		List<Notes> notes =notesDao.getTrashNotes(user);
 		return notes;
+	}
+
+	@Override
+	public Set<Notes> getLabelNotes(String label, User user) {
+		return notesDao.getLabelNotes(label, user);
 	}
 
 	/*@Override

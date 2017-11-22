@@ -1,10 +1,10 @@
 toDoApp.controller('labelsController',function($scope, $location,labelService){
 	var path = $location.path();
 	var labelName = path.substr(path.lastIndexOf("/")+1);
-	var httpGetLabels = labelService.getLabels();
+	var httpGetNotes = labelService.getLabelNotes(labelName);
 	
-	httpGetLabels.then(function(response) {
-		$scope.labels = response.data;
+	httpGetNotes.then(function(response) {
+		$scope.notes = response.data;
 	}, function(response) {
 		if(response.status=='400')
 			$location.path('/loginPage')

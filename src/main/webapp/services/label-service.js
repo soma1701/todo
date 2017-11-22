@@ -54,6 +54,14 @@ toDoApp.factory('labelService',function($http,$location){
 				
 			});
 		}
-		
+	label.getLabelNotes = function(labelName){
+		return $http({
+			method:"GET",
+			url:"notesCredential/getLabelNotes/"+labelName,
+			headers:{
+				'accessToken':localStorage.getItem("accessToken")
+			}
+		})
+	}
 	return label;
 });

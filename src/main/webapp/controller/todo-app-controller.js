@@ -94,11 +94,11 @@ toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, l
 	        $scope.color = "white";
 	    	break;
 	    case "trash":
-	    	$scope.background = "#607D8B";
+	    	$scope.background = "#dc42f4";
 	        $scope.color = "white";
 	    	break;
 	    case "labels":
-	    	$scope.background = "#607D8B";
+	    	$scope.background = "#8c41f4";
 	        $scope.color = "white";
 	    	break;
 	}

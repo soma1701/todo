@@ -72,6 +72,12 @@ $scope.imageSrc = "";
 		scope : $scope
 		});
 		};
+	$scope.openCollaborator = function(){
+		modalInstance = $uibModal.open({
+			templateUrl: 'template/collaborator.html',
+			scope : $scope
+		});
+	};
 		$scope.$on('toggleSideBar-change', function(event, data){
 	           $scope.margin = dataStore.getMargin();
 	     });

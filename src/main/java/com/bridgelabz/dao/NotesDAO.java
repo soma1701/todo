@@ -1,6 +1,7 @@
 package com.bridgelabz.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import com.bridgelabz.model.Labels;
 import com.bridgelabz.model.Notes;
@@ -16,5 +17,6 @@ public interface NotesDAO {
 	List<Notes> getArchivedNotes(User user);
 	List<Notes> getTrashNotes(User user);
 //	List<Notes> getReminderedNotes(User user);
+	Set<Notes> getLabelNotes(String label, User user);
 
 }

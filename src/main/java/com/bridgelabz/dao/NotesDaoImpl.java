@@ -1,12 +1,16 @@
 package com.bridgelabz.dao;
 
 import java.util.List;
+import java.util.Set;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.bridgelabz.model.Labels;
 import com.bridgelabz.model.Notes;
 import com.bridgelabz.model.User;
 
@@ -125,6 +129,18 @@ public class NotesDaoImpl implements NotesDAO {
 		criteria.add(Restrictions.eqOrIsNull("user", user));
 		criteria.add(Restrictions.eq("isTrashed", true));
 		List<Notes> notes= criteria.list();
+		return notes;
+	}
+
+	@Override
+	public Set<Notes> getLabelNotes(String label, User user) {
+		session = sessionFactory.openSession();
+		transaction = (Transaction) session.beginTransaction();
+		Criteria criteria = session.createCriteria(Labels.class);
+		criteria.add(Restrictions.eqOrIsNull("user", user));
+		criteria.add(Restrictions.eq("labelName", label));
+		Labels objLabel = (Labels) criteria.uniqueResult();
+		Set<Notes> notes= objLabel.getAlNote();
 		return notes;
 	}
 
