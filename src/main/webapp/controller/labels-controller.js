@@ -10,6 +10,5 @@ toDoApp.controller('labelsController',function($scope, $location,labelService){
 			$location.path('/loginPage')
 			console.log(response);
 	});
-	alert(labelName);
 });
 
