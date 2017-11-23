@@ -46,14 +46,15 @@
 						<div ng-repeat="note in notes | filter : {pinned : true,isArchived : false, trashed: false}"  
 							 ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
 							<div class="showCards" style="background-color:{{note.color}}">
-								<img ng-click="note.pinned=false;editNotes(note);$event.stopPropagation()" id="pinOutput" alt="pin" 
+								<img ng-click="note.pinned=false;editNotes(note);" id="pinOutput" alt="pin" 
 									src="images/pin.svg" >
 									<img ng-click="updatePinup(note)" ng-src="{{note.image}}">
 									<div ng-click="open(note)">
-										<div ng-bind-html="note.title"></div><br>
-										<div ng-bind-html="note.description"></div><br>
+										<div>{{note.title}}</div><br>
+										<div>{{note.description}}</div><br>
 									</div>
-								<div  id="imageDiv" ng-click="$event.stopPropagation()">
+									<span ng-repeat="label in note.labels" style="background-color: #e8e8e8;margin: 2px 2px">{{label.labelName}}<span class="glyphicon glyphicon-remove"></span></span>
+								<div  id="imageDiv">
 									<img id="reminderOutput" alt="reminder" src="images/reminder.svg">
 									<img id="collaboratorOutput" alt="collaborator" ng-click="openCollaborator()"  src="images/colaborator.svg">
 									<div class="btn-group dropup colorDiv" uib-dropdown>
