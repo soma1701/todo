@@ -17,6 +17,8 @@ public interface LabelService {
 	List<Labels> getLabels(User user);
 
 	Labels getLabelById(int labelId);
+	
+	Labels getLabelByName(String labelName);
 
 	boolean editLabel(Labels label);
 

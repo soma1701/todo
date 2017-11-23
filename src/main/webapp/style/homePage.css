@@ -160,7 +160,8 @@ h1, .h1 {
 }
 .test[placeholder]:empty:before {
     content: attr(placeholder);
-   /*  color: #555; */
+    color: #a6a6a6;
+    white-space:pre-wrap;
 }
 /* #image{ */
 /* 	width:100%; */

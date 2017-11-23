@@ -11,11 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.bridgelabz.model.Labels;
 import com.bridgelabz.model.User;
 
-public class LabelDAOImpl implements LabelDAO{
-	
+public class LabelDAOImpl implements LabelDAO {
+
 	@Autowired
 	SessionFactory sessionFactory;
-	Session session=null;
+	Session session = null;
 	Transaction transaction = null;
 
 	@Override
@@ -25,7 +25,7 @@ public class LabelDAOImpl implements LabelDAO{
 		try {
 			session.save(label);
 			transaction.commit();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -34,11 +34,11 @@ public class LabelDAOImpl implements LabelDAO{
 	@Override
 	public void deleteById(int id) {
 		session = sessionFactory.openSession();
-		transaction = (Transaction)session.beginTransaction();
+		transaction = (Transaction) session.beginTransaction();
 		Criteria criteria = session.createCriteria(Labels.class);
 		criteria.add(Restrictions.eq("id", id));
 		Labels labels = (Labels) criteria.uniqueResult();
-		
+
 		try {
 			session.delete(labels);
 			transaction.commit();
@@ -54,7 +54,7 @@ public class LabelDAOImpl implements LabelDAO{
 		transaction = (Transaction) session.beginTransaction();
 		Criteria criteria = session.createCriteria(Labels.class);
 		criteria.add(Restrictions.eqOrIsNull("user", user));
-		List<Labels> labels= criteria.list();
+		List<Labels> labels = criteria.list();
 		return labels;
 	}
 
@@ -64,13 +64,13 @@ public class LabelDAOImpl implements LabelDAO{
 		session = sessionFactory.openSession();
 		transaction = session.beginTransaction();
 		try {
-			objLabel = (Labels) session.get(Labels.class,labelId);
+			objLabel = (Labels) session.get(Labels.class, labelId);
 			transaction.commit();
 			session.close();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			if(transaction!= null) {
+			if (transaction != null) {
 				transaction.rollback();
 				session.close();
 				return null;
@@ -88,10 +88,10 @@ public class LabelDAOImpl implements LabelDAO{
 			session.update(label);
 			transaction.commit();
 			session.close();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			if(transaction!= null) {
+			if (transaction != null) {
 				transaction.rollback();
 				session.close();
 				return false;
@@ -99,8 +99,18 @@ public class LabelDAOImpl implements LabelDAO{
 			e.printStackTrace();
 		}
 		return true;
-		
-		
+
+	}
+
+	@Override
+	public Labels getLabelByName(String labelName) {
+		Labels objLabel = null;
+		session = sessionFactory.openSession();
+		Criteria criteria = session.createCriteria(Labels.class);
+		criteria.add(Restrictions.eq("labelName", labelName));
+		objLabel = (Labels) criteria.uniqueResult();
+		session.close();
+		return objLabel;
 	}
 
 }

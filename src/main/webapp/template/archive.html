@@ -1,18 +1,20 @@
-<div class="homecontainer" ng-controller="notesController">
-	<div id="main" style="margin-left:{{margin}}px">
+<div class="homecontainer" ng-controller="archiveController">
+	<div id="main"> <!-- style="margin-left:{{margin}}px"> -->
 		<div class="container">
 			<div class="CardContainer">
-				<div ng-repeat="note in notes | filter : {isArchived : true, trashed: false}"  ng-click="open(note)" 
+				<div ng-repeat="note in notes | filter : {isArchived : true, trashed: false}"   
 					ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
 					<div class="showCards" style="background-color:{{note.color}}">
-						<img ng-click="note.pinned=true;note.isArchived= false;editNotes(note);$event.stopPropagation()" 
-							id="pinOutput" alt="pin" src="images/pin.svg" >
-						<div>{{note.title}}</div><br>
-						<div>{{note.description}}</div><br>
+						<img ng-click="note.pinned=true;note.isArchived= false;editNotes(note);" id="pinOutput" alt="pin" src="images/pin.svg" >
+						<img ng-src="{{note.image}}">
+						<div ng-click="open(note)">
+							<div>{{note.title}}</div><br>
+							<div>{{note.description}}</div><br>
+						</div>
+						<span ng-repeat="label in note.labels" style="background-color: #e8e8e8;margin: 2px 2px">{{label.labelName}}<span class="glyphicon glyphicon-remove"></span></span>
 						<div ng-click="$event.stopPropagation()">
 							<img id="reminderOutput" alt="reminder" src="images/reminder.svg">
 							<img id="collaboratorOutput" alt="collaborator" src="images/colaborator.svg">
-							<!-- <img id="changeColorOutput" alt="changeColor" src="images/change-color.svg"> -->
 							<div class="btn-group dropup colorDiv" uib-dropdown>
 									<img id ="dropdown " class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" 
 										src="images/change-color.svg"  uib-dropdown-toggle>
@@ -21,9 +23,8 @@
 											<img id="icons" ng-src="{{color.path}}" ng-click="note.color =color.color; editNotes(note)"></a>
 										</ul>
 							</div>
-<!-- 							<img id="addImageOutput"  alt="addImage" src="images/add-image.svg"> -->
-								<input style="display:none" type="file" ng-file-select="onFileSelect($files)" class="updateImage"  
-									ng-model="note.imageSrc">
+								<!-- <input style="display:none" type="file" ng-file-select="onFileSelect($files)" class="updateImage"  
+									ng-model="note.imageSrc"> -->
 								<img ng-click="updatePinup(note)" ng-src="{{note.imageSrc}}"/>
 								<img id="addImageInput" alt="addImage" ng-click="uploadImage($event,note)" src="images/add-image.svg">
 								<img id="archiveOutput" alt="archive" src="images/archive.svg" ng-click="note.isArchived= false;editNotes(note);

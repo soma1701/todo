@@ -17,4 +17,6 @@ public interface LabelDAO {
 
 	boolean editLabel(Labels label);
 
+	Labels getLabelByName(String labelName);
+
 }

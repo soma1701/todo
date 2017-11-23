@@ -53,12 +53,12 @@ toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, l
 			dataStore.toggleSideBar(data);
 			$scope.width = 0;
 		}
-		data.then(function(response) {
+		/*data.then(function(response) {
 			$scope.labels = response.data;
 		}, function(response) {
 			if(response.status=='400')
 				$location.path('/loginPage')
-		});
+		});*/
 	};
 	$scope.switchView = function(){
 		if($scope.view === "grid"){

@@ -3,6 +3,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.bridgelabz.model.Labels;
 import com.bridgelabz.model.MyResponse;
 import com.bridgelabz.model.Notes;
 
@@ -27,5 +28,6 @@ public class NoteValidationImpl implements NoteValidator {
 		isNoteValid="true";
 		return isNoteValid;
 	}
+
 
 }

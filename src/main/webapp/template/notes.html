@@ -12,7 +12,7 @@
 							<img id="pinInput" alt="pin" src="images/pin.svg">
 							<input type="text" focus="false" ng-model="note.title" id="cardInputitle" placeholder="Title"/><br>
 								<contenteditable class="test" contenteditable="true" ng-model="note.description" focus="true" id="cardInputDescription" 
-								placeholder="Take a note" style="white-space:pre-wrap;"></contenteditable>
+								placeholder="Take a note"></contenteditable>
 							<div id="image">
 								<img id="reminderInput" alt="reminder" src="images/reminder.svg">
 								<img id="collaboratorInput" alt="collaborator" ng-click="openCollaborator()" src="images/colaborator.svg">
@@ -20,7 +20,7 @@
 									<img id ="dropdown " class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" 
 										src="images/change-color.svg"  uib-dropdown-toggle>
 										<ul class="dropdown-menu colordiv" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-											<a  ng-repeat="color in colors"   role="menuitem">
+											<a ng-repeat="color in colors"  role="menuitem">
 											<img id="icons" ng-src="{{color.path}}" ng-click="note.color =color.color; saveNotes()"></a>
 										</ul>
 								</div>
@@ -48,6 +48,7 @@
 							<div class="showCards" style="background-color:{{note.color}}">
 								<img ng-click="note.pinned=false;editNotes(note);$event.stopPropagation()" id="pinOutput" alt="pin" 
 									src="images/pin.svg" >
+									<img ng-click="updatePinup(note)" ng-src="{{note.image}}">
 									<div ng-click="open(note)">
 										<div ng-bind-html="note.title"></div><br>
 										<div ng-bind-html="note.description"></div><br>
@@ -65,9 +66,8 @@
 										</ul>
 									</div>
 									<input style="display:none" type="file" ng-file-select="onFileSelect($files)" class="updateImage"  
-									ng-model="note.imageSrc">
-								 	<img ng-click="updatePinup(note)" ng-src="{{note.imageSrc}}"/>
-									<img id="addImageOutput"  alt="addImage"  ng-click="uploadImage($event,note)" src="images/add-image.svg">
+									ng-model="note.image">
+									<img id="addImageOutput" ng-click="uploadImage($event,note)" alt="addImage" src="images/add-image.svg">
 									<img id="archiveOutput" alt="archive" src="images/archive.svg" 
 										ng-click="note.pinned = false;note.isArchived=true;editNotes(note)">
 									<div class="btn-group" uib-dropdown>
@@ -91,7 +91,7 @@
 							 ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
 							<div class="showCards" style="background-color: {{note.color}}">
 								<img id="pinOutput" alt="pin" src="images/pin.svg" ng-click="note.pinned=true;editNotes(note)">
-								<img ng-src="{{note.image}}">
+								<img ng-click="updatePinup(note)" ng-src="{{note.image}}">
 								<div ng-click="open(note)">
 									<div>{{note.title}}</div><br>
 									<div>{{note.description}}</div><br>
@@ -110,8 +110,7 @@
 										</ul>
 									</div>
 									<input style="display:none" type="file" ng-file-select="onFileSelect($files)" class="updateImage"  
-									ng-model="note.imageSrc">
-								 	<img ng-click="updatePinup(note)" ng-src="{{note.imageSrc}}"/>
+									ng-model="note.image">
 									<img id="addImageOutput" ng-click="uploadImage($event,note)" alt="addImage" src="images/add-image.svg">
 									<img id="archiveOutput" alt="archive" src="images/archive.svg" 
 										ng-click="note.isArchived=true;editNotes(note)">

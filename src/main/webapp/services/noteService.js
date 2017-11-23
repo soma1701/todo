@@ -9,13 +9,7 @@ toDoApp.factory('notesService',function($http,$location){
 				'accessToken' : localStorage.getItem("accessToken")
 			},
 			data: notes,		
-		}).then(function(response){
-			console.log("response message" +response.data);
-		},function(response){
-			if(response.status=='400')
-				$location.path('/loginPage')
-			console.log("error" +response.data.myResponseMessage);
-		});
+		})
 	}
 	note.getNotes = function(actionType) {
 		var actionUrl;
@@ -44,13 +38,7 @@ toDoApp.factory('notesService',function($http,$location){
 			headers:{
 				'accesstoken':localStorage.getItem("accessToken")
 			}
-		}).then(function(response){
-			console.log("response message" +response.data);
-		},function(response){
-			if(response.status=='400')
-				$location.path('/loginPage')
-			console.log("error" +response.data.myResponseMessage);
-		});
+		})
 	}
 	note.editNotes = function(notes){
 			console.log("inside edit notes service:-");
@@ -62,13 +50,13 @@ toDoApp.factory('notesService',function($http,$location){
 					'accessToken':localStorage.getItem("accessToken")
 				},
 				data:notes,
-			}).then(function(response){
+			})/*.then(function(response){
 				console.log("response message" +response.data);
 			},function(response){
 				if(response.status=='400')
 					$location.path('/loginPage')
 				console.log("error" +response.data.responseMessage);
-			});
+			});*/
 		}
 	return note;
 });

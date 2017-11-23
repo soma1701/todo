@@ -1,6 +1,6 @@
 toDoApp.controller('notesController', function($scope, fileReader,notesService,$location, $uibModal, dataStore, $rootScope, labelService) {
 	
-$scope.imageSrc = "";
+	$scope.imageSrc = "";
     
     $scope.$on("fileProgress", function(e, progress) {
       $scope.progress = progress.loaded / progress.total;
@@ -65,6 +65,7 @@ $scope.imageSrc = "";
 		},
 		];
 	getNotes();
+	getLabels();
 	$scope.open = function (note) {
 		$scope.note = note;
 		modalInstance = $uibModal.open({
@@ -98,21 +99,10 @@ $scope.imageSrc = "";
 				bordercolor:"#fb0",
 				color:"black"
 		}];
-	$scope.saveNotes = function() {
-		addNote.title=$scope.note.title;
-		addNote.description=$scope.note.description;
-		addNote.color=$scope.note.color;
-		addNote.isArchived=$scope.note.isArchived;
-		addNote.image=$scope.note.imageSrc;
-		notesService.saveNotes(addNote);
-		$scope.showNewNote = false;
-		$scope.note.description='';
-		getNotes();
-	}
+	
 	function getNotes(){
 		var httpGetNotes = notesService.getNotes('ALL');
 		httpGetNotes.then(function(response) {
-			console.log(response.data);
 			$scope.notes = response.data;
 		}, function(response) {
 			if(response.status=='400')
@@ -120,6 +110,25 @@ $scope.imageSrc = "";
 			console.log(response);
 		});
 	}
+	$scope.saveNotes = function() {
+		addNote.title=$scope.note.title;
+		addNote.description=$scope.note.description;
+		addNote.color=$scope.note.color;
+		addNote.isArchived=$scope.note.isArchived;
+		addNote.image=$scope.note.imageSrc;
+		var saveNotes = notesService.saveNotes(addNote);
+		$scope.showNewNote = false;
+		$scope.note.description='';
+		saveNotes.then(function(response){
+			getNotes();
+		},function(response){
+			if(response.status=='400')
+				$location.path('/loginPage')
+			console.log("error" +response.data.myResponseMessage);
+		});
+		
+	}
+	function getLabels(){
 		var httpGetLabels = labelService.getLabels();
 		
 		httpGetLabels.then(function(response) {
@@ -129,8 +138,8 @@ $scope.imageSrc = "";
 				$location.path('/loginPage')
 				console.log(response);
 		});
+	}
 	$scope.deleteNotes = function(id){
-		console.log("notes id"+id);
 		var deleteNote = notesService.deleteNotes(id);
 		modalInstance.close('resetModel');
 		deleteNote.then(function(response){
@@ -142,9 +151,9 @@ $scope.imageSrc = "";
 		});
 	}
 	$scope.editNotes = function(note){
-		note.image=note.imageSrc;
+		// note.image=note.imageSrc;
 		var editNote = notesService.editNotes(note);
-		//modalInstance.close('resetModel');
+		modalInstance.close('resetModel');
 		$scope.note = {};
 		editNote.then(function(response){
 			$scope.note=response.data;
@@ -181,26 +190,25 @@ $scope.imageSrc = "";
 		obj.trigger("click");
 	}
 	$scope.updatePinup = function(note){
-		note.image=note.imageSrc;
+		// note.image=note.imageSrc;
 		var updateImage = notesService.editNotes(note);
-		console.log(note);
 	}
 	
 });
 toDoApp.directive('focus',
 		function($timeout) {
-	 return {
-	 scope : {
-	   trigger : '@focus'
-	 },
-	 link : function(scope, element) {
-	  scope.$watch('trigger', function(value) {
-	    if (value === "true") {
-	      $timeout(function() {
-	       element[0].focus();
-	      });
-	   }
-	 });
-	 }
-	};
+			 return {
+			 scope : {
+			   trigger : '@focus'
+			 },
+			 link : function(scope, element) {
+			  scope.$watch('trigger', function(value) {
+			    if (value === "true") {
+			      $timeout(function() {
+			       element[0].focus();
+			      });
+			   }
+			 });
+			 }
+			};
 	}); 

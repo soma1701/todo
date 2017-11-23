@@ -50,12 +50,36 @@ public class LabelDetailsController {
 	public ResponseEntity<MyResponse> saveLabel(@RequestBody Labels labels,HttpSession session,HttpServletRequest request){
 		try {
 			if(!(labels.getLabelName()==""||labels.getLabelName()==null)) {
+				Labels objLabel=labelService.getLabelByName(labels.getLabelName());
+				if(objLabel==null) {
+					User user = (User) request.getAttribute("user");
+					labels.setUser(user);
+					labelService.saveLabel(labels);
+					myResponse.setResponseMessage("label save successfully:-");
+					return ResponseEntity.ok(myResponse);
+				}
+				else{
+					myResponse.setResponseMessage("your label is already exixst:-");
+					return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(myResponse);
+				}
+			}
+			
+			
+			
+			/*if((!objLabel.getLabelName().equals(labels.getLabelName())) || (!(labels.getLabelName()==""||labels.getLabelName()==null))){
 				User user = (User) request.getAttribute("user");
 				labels.setUser(user);
 				labelService.saveLabel(labels);
 				myResponse.setResponseMessage("label save successfully:-");
 				return ResponseEntity.ok(myResponse);
-			}
+			}*/
+			/*if(!(labels.getLabelName()==""||labels.getLabelName()==null)) {
+				User user = (User) request.getAttribute("user");
+				labels.setUser(user);
+				labelService.saveLabel(labels);
+				myResponse.setResponseMessage("label save successfully:-");
+				return ResponseEntity.ok(myResponse);
+			}*/
 			myResponse.setResponseMessage("label can't be emplty:-");
 			return ResponseEntity.ok(myResponse);
 				

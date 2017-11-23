@@ -41,4 +41,9 @@ public class LabelServiceImpl implements LabelService{
 		return true;
 	}
 
+	@Override
+	public Labels getLabelByName(String labelName) {
+		return labelDao.getLabelByName(labelName);
+	}
+
 }
