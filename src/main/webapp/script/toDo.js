@@ -1,4 +1,4 @@
-var toDoApp = angular.module('toDoApp', ['ui.router','ui.bootstrap','ui.router']);
+var toDoApp = angular.module('toDoApp', ['ui.router','ui.bootstrap','ui.router','ui.bootstrap.datepicker']);
 
 toDoApp.config(function($stateProvider, $urlRouterProvider) {
 	

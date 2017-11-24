@@ -51,7 +51,7 @@ public class LabelDAOImpl implements LabelDAO {
 	@Override
 	public List<Labels> getLabels(User user) {
 		session = sessionFactory.openSession();
-		transaction = (Transaction) session.beginTransaction();
+//		transaction = (Transaction) session.beginTransaction();
 		Criteria criteria = session.createCriteria(Labels.class);
 		criteria.add(Restrictions.eqOrIsNull("user", user));
 		List<Labels> labels = criteria.list();

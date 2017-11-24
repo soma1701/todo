@@ -1,5 +1,5 @@
 toDoApp.controller('notesController', function($scope, fileReader,notesService,$location, $uibModal, dataStore, $rootScope, labelService) {
-	
+	$('#datetimepicker6').datetimepicker();
 	$scope.imageSrc = "";
     
     $scope.$on("fileProgress", function(e, progress) {
@@ -8,6 +8,19 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
     $scope.uploadImage = function(){
     	$('#imgUpload').trigger('click');
     }
+    var path = $location.path();
+	var labelName = path.substr(path.lastIndexOf("/")+1);
+	
+	function getLabels(){
+		var getLabels = labelService.getLabelNotes(labelName);
+		httpGetNotes.then(function(response) {
+			$scope.notes = response.data;
+		}, function(response) {
+			if(response.status=='400')
+				$location.path('/loginPage')
+				console.log(response);
+		});
+	}
 	var addNote={};
 	var editNote={};
 	$scope.note = {};
@@ -15,6 +28,8 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 	$scope.note.title = '';
 	$scope.note.imageSrc = '';
 	var modalInstance;
+	var path = $location.path();
+	var labelName = path.substr(path.lastIndexOf("/")+1);
 	$scope.colors=[{
 			"color":'#8e44ad',
 			"path":'images/purple.png'
@@ -129,7 +144,7 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 		
 	}
 	function getLabels(){
-		var httpGetLabels = labelService.getLabels();
+		var httpGetLabels = labelService.getLabels(labelName);
 		
 		httpGetLabels.then(function(response) {
 			$scope.labels = response.data;
@@ -157,6 +172,7 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 		$scope.note = {};
 		editNote.then(function(response){
 			$scope.note=response.data;
+			getNotes();
 		}),then(function(response){
 			if(response.status=='400')
 				$location.path('/loginPage')
@@ -168,7 +184,7 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 		modalInstance.close('resetModel');
 		$scope.note = {};
 		copyNote.then(function(response){
-			httpGetNotes;
+			getNotes();
 		}),then(function(response){
 			if(response.status=='400')
 				$location.path('/loginPage')
@@ -193,6 +209,8 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 		// note.image=note.imageSrc;
 		var updateImage = notesService.editNotes(note);
 	}
+	
+	
 	
 });
 toDoApp.directive('focus',

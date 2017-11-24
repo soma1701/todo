@@ -6,18 +6,26 @@
       <a class="navbar-brand" href="" style="font-weight:bold;font-family: Roboto,RobotoDraft,Arial,sans-serif;color:{{user.color}};">TODO <span style="font-weight: normal">APP</span></a>
     </div>
     <div class="col-md-6 navbar-form" id="navBarSearchForm">
-        <div>
-            <input type="text" class="form-control" placeholder="Search">
-        </div>
+<!--         <div ng-controller="notesController"> -->
+            <input type="text" ng-model="search.title" class="form-control" placeholder="Search">
+           <!--  <ul>
+                <li ng-repeat="note in notes | filter:search">{{note.title}}</li>
+            </ul> -->
+<!--         </div> -->
     </div>
      <div class="col-md-4 navbar-form" style="float: right">
          <a href="">
           <span class="glyphicon glyphicon-repeat" style="margin: 9px 9px 9px 9px;font-size: 25px;color: white"></span>
         </a>
-          <span class="glyphicon glyphicon-th" style="margin: 9px 9px 9px 9px;font-size: 25px;"ng-click="callback1()" ng-show="user.view === 'grid'"></span>
-          <span class="glyphicon glyphicon-th-list" style="margin: 9px 9px 9px 9px;font-size: 25px;" ng-click="callback1()" ng-show="user.view === 'list'"></span>
+          <span class="glyphicon glyphicon-th" id="grid" ng-click="callback1()" ng-show="user.view === 'grid'"></span>
+          <span class="glyphicon glyphicon-th-list" id="list"  ng-click="callback1()" ng-show="user.view === 'list'"></span>
         <a href="">
-          <span class="glyphicon glyphicon-user" style="margin: 9px 9px 9px 18px;font-size: 25px;"></span>
+        <div class="btn-group"  uib-dropdown keyboard-nav>
+          <span class="glyphicon glyphicon-user" id ="user" uib-dropdown-toggle></span>
+			<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+				
+			</ul>
+		</div>
         </a>
      </div>
   </div>

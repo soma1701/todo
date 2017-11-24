@@ -1,4 +1,4 @@
-toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, labelService, $rootScope) {
+toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, labelService, $rootScope,$location) {
 	
 	$scope.isGridView = true;
 	$scope.view = "grid";
@@ -9,15 +9,20 @@ toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, l
 	$scope.labels = {};
 	$scope.newLabel = '';
 	$scope.background = "#fb0";
-	var httpGetLabels = labelService.getLabels();
-
-	httpGetLabels.then(function(response) {
-		console.log(response.data);
-		$scope.labels = response.data;
-	}, function(response) {
-		if(response.status=='400')
-			$location.path('/loginPage')
-	});
+	var path = $location.path();
+	var labelName = path.substr(path.lastIndexOf("/")+1);
+	
+	getlabels();
+	function getlabels(){
+		var httpGetLabels = labelService.getLabels(labelName);
+		httpGetLabels.then(function(response) {
+			console.log(response.data);
+			$scope.labels = response.data;
+		}, function(response) {
+			if(response.status=='400')
+				$location.path('/loginPage')
+		});
+	}
 	
 	$scope.saveLabel = function(label) {
 		var data = {};
@@ -28,6 +33,7 @@ toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, l
 		}
 		var saveLabel = labelService.saveLabel(data);
 		saveLabel.then(function(response) {
+			getLabels();
 			$scope.labels = response.data;
 		}, function(response) {
 			if(response.status=='400')
@@ -37,6 +43,7 @@ toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, l
 	
 	$scope.deleteLabel = function(label){
 		labelService.deleteLabel(label);
+		getlabels();
 	}
 	
 	$scope.toggleSideBar = function(){

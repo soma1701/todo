@@ -142,6 +142,11 @@ public class UserController {
 		return ResponseEntity.ok(MyResponse);
 	}
 
+	/*@RequestMapping(value = "/User", method = RequestMethod.POST)
+	public ResponseEntity<MyResponse> getUser(@RequestBody User user, HttpServletRequest request, HttpSession session) {
+		
+		return ResponseEntity.ok(MyResponse);
+	}*/
 	/**
 	 * @param generateToken
 	 * @return MyResponse

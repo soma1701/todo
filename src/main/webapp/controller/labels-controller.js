@@ -12,5 +12,8 @@ toDoApp.controller('labelsController',function($scope, $location,labelService){
 				console.log(response);
 		});
 	}
+	
+	
+	
 });
 

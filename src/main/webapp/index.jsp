@@ -15,7 +15,8 @@
 	<script type="text/javascript" src="directive/side-bar.js"></script>
 	<script type="text/javascript" src="directive/fileupload-directive.js"></script>
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
-	
+	<script type="text/javascript" src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+	<script type="text/javascript" src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
 	<script src="services/RegistrationServices.js"></script>
 	<script src="controller/registrationController.js"></script>
 	<script type="text/javascript" src ="services/loginService.js"></script>
@@ -31,9 +32,31 @@
 	<script type="text/javascript" src="controller/todo-app-controller.js"></script>
 	<script type="text/javascript" src="controller/fileupload-controller.js"></script>
 	
+<!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+
+<!-- <!-- Optional theme --> 
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" /> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+	
+	
 	<script type="text/javascript" src="controller/googleController.js"></script>
 	<script type="text/javascript" src="controller/fbController.js"></script>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	
+	<script type="text/javascript">
+/*  $(document).ready(function() {
+        $(function () {
+            $('#datetimepicker6').datetimepicker();
+        });
+    }); */ 
+</script>
+	
 	
 	<style>
     	#navBarSearchForm input[type=text]{width:550px !important;}
@@ -98,7 +121,18 @@
 	
 </head>
 <body ng-app="toDoApp">
-	<div ui-view></div>
-	
+	 <div ui-view></div>
+	<!-- <div class="container">
+    <div class='col-md-5'>
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker6'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    </div> -->
 </body>
 </html>
