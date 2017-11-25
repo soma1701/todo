@@ -100,7 +100,7 @@
 								<span ng-repeat="label in note.labels" style="background-color: #e8e8e8;margin: 2px 2px">{{label.labelName}}<span class="glyphicon glyphicon-remove"></span></span>
 								<div class="imageDiv" ng-click="$event.stopPropagation()" style="background-color: {{color.color}}">
 									<img id="reminderOutput" alt="reminder" src="images/reminder.svg">
-									<img id="collaboratorOutput" alt="collaborator" ng-click="openCollaborator()" src="images/colaborator.svg">
+									<img id="collaboratorOutput" alt="collaborator" ng-click="openCollaborator(note)" src="images/colaborator.svg">
 									<div class="btn-group dropup colorDiv" uib-dropdown>
 									<img id ="dropdown" class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" 
 										src="images/change-color.svg"  uib-dropdown-toggle>

@@ -58,5 +58,19 @@ toDoApp.factory('notesService',function($http,$location){
 				console.log("error" +response.data.responseMessage);
 			});*/
 		}
+	note.shareNote = function(note, collaboratorEmail){
+		var data = {
+				note : note,
+				email : collaboratorEmail
+		}
+		return $http({
+			method:"POST",
+			url:'notesCredential/shareNote',
+			headers:{
+				'accessToken':localStorage.getItem("accessToken")
+			},
+			params:data,
+		})
+	}
 	return note;
 });

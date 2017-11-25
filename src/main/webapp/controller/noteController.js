@@ -1,5 +1,5 @@
 toDoApp.controller('notesController', function($scope, fileReader,notesService,$location, $uibModal, dataStore, $rootScope, labelService) {
-	$('#datetimepicker6').datetimepicker();
+//	$('#datetimepicker6').datetimepicker();
 	$scope.imageSrc = "";
     
     $scope.$on("fileProgress", function(e, progress) {
@@ -27,6 +27,7 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 	$scope.note.description = '';
 	$scope.note.title = '';
 	$scope.note.imageSrc = '';
+	$scope.collaboratorEmail = '';
 	var modalInstance;
 	var path = $location.path();
 	var labelName = path.substr(path.lastIndexOf("/")+1);
@@ -88,7 +89,8 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 		scope : $scope
 		});
 		};
-	$scope.openCollaborator = function(){
+	$scope.openCollaborator = function(note){
+		$scope.note = note;
 		modalInstance = $uibModal.open({
 			templateUrl: 'template/collaborator.html',
 			scope : $scope
@@ -210,7 +212,9 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 		// note.image=note.imageSrc;
 		var updateImage = notesService.editNotes(note);
 	}
-	
+	$scope.shareNote = function(note){
+		var shareNote = notesService.shareNote(note, $scope.collaboratorEmail);
+	}
 	
 	
 });

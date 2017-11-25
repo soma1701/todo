@@ -112,7 +112,6 @@ public class Notes {
 	public void setCreatedTime(Date createdTime) {
 		this.createdTime = createdTime;
 	}
-	@JsonIgnore
 	public List<User> getUser() {
 		return alUser;
 	}
@@ -160,7 +159,6 @@ public class Notes {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	@JsonIgnore
 	public List<User> getAlUser() {
 		return alUser;
 	}
