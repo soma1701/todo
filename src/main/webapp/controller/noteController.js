@@ -125,6 +125,7 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 			console.log(response);
 		});
 	}
+	
 	$scope.saveNotes = function() {
 		addNote.title=$scope.note.title;
 		addNote.description=$scope.note.description;

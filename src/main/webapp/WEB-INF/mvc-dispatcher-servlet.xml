@@ -25,7 +25,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/soma" />
 		<property name="username" value="root" />
-		<property name="password" value="root"/>
+		<property name="password" value="somasingh"/>
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -41,7 +41,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
 	</bean>

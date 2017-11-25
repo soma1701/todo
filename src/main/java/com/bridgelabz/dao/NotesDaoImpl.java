@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -58,9 +59,15 @@ public class NotesDaoImpl implements NotesDAO {
 	public List<Notes> getNotes(User user) {
 		session = sessionFactory.openSession();
 		transaction = (Transaction) session.beginTransaction();
-		Criteria criteria = session.createCriteria(Notes.class);
-		criteria.add(Restrictions.eqOrIsNull("user", user));
-		List<Notes> notes= criteria.list();
+//		Criteria criteria = session.createCriteria(Notes.class);
+//		criteria.add(Restrictions.eqOrIsNull("user", user));
+//		List<Notes> notes= criteria.list();
+		Query query = session.createSQLQuery("select {note.*}\n" + 
+				"from user as user\n" + 
+				"join note_user as jt on (user.id = jt.id)\n" + 
+				"join soma.notes as note on (jt.note_id = note.notes_id)\n" + 
+				"where user.email = :email").addEntity("note",Notes.class);
+		List<Notes> notes= query.setString("email", "somasingh1701@gmail.com").list();
 		return notes;
 	}
 

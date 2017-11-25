@@ -22,6 +22,7 @@ import com.bridgelabz.model.Token;
 import com.bridgelabz.model.User;
 import com.bridgelabz.services.UserService;
 import com.bridgelabz.token.GenerateJWT;
+import com.bridgelabz.token.VerifyJWT;
 import com.bridgelabz.util.Encryption;
 import com.bridgelabz.util.MailUtil;
 import com.bridgelabz.validator.RegistrationValidationImpl;
@@ -129,6 +130,8 @@ public class UserController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(MyResponse);
 		}
 		String accessToken = GenerateJWT.generateToken(userLogin.getId());
+		int userId = VerifyJWT.verifyAccessToken(request.getHeader("accessToken").toString());
+		User user1 = userService.getUserById(userId);
 		token.setGenerateToken(accessToken);
 		String url = request.getRequestURL().toString();
 		url = url.substring(0, url.lastIndexOf("/")) + "/" + "finalLogin" + "/" + accessToken;
@@ -142,11 +145,13 @@ public class UserController {
 		return ResponseEntity.ok(MyResponse);
 	}
 
-	/*@RequestMapping(value = "/User", method = RequestMethod.POST)
-	public ResponseEntity<MyResponse> getUser(@RequestBody User user, HttpServletRequest request, HttpSession session) {
+	@RequestMapping(value = "/getUser", method = RequestMethod.POST)
+	public ResponseEntity<User> getUser(HttpServletRequest request) {
+		int userId = VerifyJWT.verifyAccessToken(request.getHeader("accessToken").toString());
+		User user = userService.getUserById(userId);
 		
-		return ResponseEntity.ok(MyResponse);
-	}*/
+		return ResponseEntity.ok(user);
+	}
 	/**
 	 * @param generateToken
 	 * @return MyResponse

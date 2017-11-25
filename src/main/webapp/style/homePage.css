@@ -231,7 +231,22 @@ h1, .h1 {
 			margin: 9px 9px 9px 9px;font-size: 25px;
 		}
 		#user{
-			margin: 9px 9px 9px 18px;font-size: 25px;
+			margin: 9px 9px 9px 18px;font-size: 25px;float:right;
+		}
+		.userDropdown{
+		   margin: 18px 0 0 -200px;
+    		height: 186px;
+    		width: 282px;
+		}
+		.image{
+/* 			height:100px; */
+/* 			width:140px; */
+			background-repeat: no-repeat;
+		    background-position: 50%;
+		    border-radius: 50%;
+		    width: 100px;
+		    height: 100px;
+}
 		}
 /* #image{ */
 /* 	width:100%; */

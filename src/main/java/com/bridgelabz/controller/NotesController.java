@@ -53,7 +53,7 @@ public class NotesController {
 		try {
 			
 			User user = (User) request.getAttribute("user");
-			note.setUser(user);
+			note.getUser().add(user);
 			Date date = new Date();
 			note.setCreatedTime(date);
 			String isNoteValid = noteValidation.noteValidator(note);
@@ -113,7 +113,7 @@ public class NotesController {
 	public ResponseEntity<MyResponse> editNotes(@RequestBody Notes note,HttpServletRequest request){
 		User user = (User)request.getAttribute("user");
 		Notes objNotes = notesService.getNoteById(note.getNotesId());
-		note.setUser(user);
+		note.getUser().add(user);
 		boolean isEdited;
 		objNotes.setTitle(note.getTitle());
 		objNotes.setDescription(note.getDescription());

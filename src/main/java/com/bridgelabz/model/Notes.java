@@ -1,5 +1,6 @@
 package com.bridgelabz.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -15,7 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -60,10 +60,12 @@ public class Notes {
 	private Date reminder;*/
 	
 
-	@ManyToOne
-	@JoinColumn(name="user_id")
+	@ManyToMany
+	
+	@JoinTable(name = "note_user", joinColumns = { @JoinColumn(name = "note_id") },
+									inverseJoinColumns = {@JoinColumn(name = "id") })
 	@JsonIgnore
-	User user;
+	List<User> alUser = new ArrayList<>();
 	
 	@ManyToMany(cascade = CascadeType.REFRESH)
 	@JoinTable(name = "note_label", joinColumns = { @JoinColumn(name = "note_id") },
@@ -111,12 +113,12 @@ public class Notes {
 		this.createdTime = createdTime;
 	}
 
-	public User getUser() {
-		return user;
+	public List<User> getUser() {
+		return alUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(List<User> user) {
+		this.alUser = user;
 	}
 
 	public boolean isPinned() {
@@ -157,6 +159,22 @@ public class Notes {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public List<User> getAlUser() {
+		return alUser;
+	}
+
+	public void setAlUser(List<User> alUser) {
+		this.alUser = alUser;
+	}
+
+	public Set<Labels> getAlLabels() {
+		return alLabels;
+	}
+
+	public void setAlLabels(Set<Labels> alLabels) {
+		this.alLabels = alLabels;
 	}
 
 	/*public Date getReminder() {

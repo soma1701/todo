@@ -21,6 +21,7 @@
 	<script src="controller/registrationController.js"></script>
 	<script type="text/javascript" src ="services/loginService.js"></script>
 	<script type="text/javascript" src ="services/data-store-service.js"></script>
+	<script type="text/javascript" src ="services/home-page-service.js"></script>
 	<script type="text/javascript" src ="services/fileupload-service.js"></script>
 	<script type="text/javascript" src ="services/label-service.js"></script>
 	<script type="text/javascript" src="controller/loginController.js"></script>

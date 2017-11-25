@@ -1,4 +1,4 @@
-toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, labelService, $rootScope,$location) {
+toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, labelService,homeService, $rootScope,$location) {
 	
 	$scope.isGridView = true;
 	$scope.view = "grid";
@@ -23,7 +23,17 @@ toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, l
 				$location.path('/loginPage')
 		});
 	}
-	
+//	getUser();
+//	function getUser(){
+		var httpGetUser = homeService.getUser();
+		httpGetUser.then(function(response) {
+			console.log(response.data);
+			$scope.user = response.data;
+		}, function(response) {
+			if(response.status=='400')
+				$location.path('/loginPage')
+		});
+//	}
 	$scope.saveLabel = function(label) {
 		var data = {};
 		if(label === undefined){

@@ -69,6 +69,7 @@ public class GoogleLoginController {
 				googleUser.setEmail(objectMapper.readTree(googleProfileInfo).get("email").asText());
 				googleUser.setFirstName(objectMapper.readTree(googleProfileInfo).get("given_name").asText());
 				googleUser.setLastName(objectMapper.readTree(googleProfileInfo).get("family_name").asText());
+				googleUser.setImage(objectMapper.readTree(googleProfileInfo).get("picture").asText());
 				googleUser.setValid(true);
 				userService.register(googleUser);
 				String myAccessToken = GenerateJWT.generateToken(userByEmail.getId());

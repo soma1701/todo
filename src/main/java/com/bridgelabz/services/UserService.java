@@ -25,6 +25,8 @@ public interface UserService {
 //	public User getUserByMobNo(String mobNo);
 
 	public boolean duplicateEntry(User user);
+
+	public User getUserById(int userId);
 	
 
 }

@@ -1,5 +1,6 @@
 package com.bridgelabz.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -7,9 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -42,10 +45,14 @@ public class User {
 
 	@Column(name = "isValid")
 	private boolean isValid;
+	
+	@Lob
+	@Column(columnDefinition = "LONGBLOB")
+	private String profileImage; 
 
-	@OneToMany(mappedBy = "user")
+	@ManyToMany(mappedBy = "alUser")
 	@JsonIgnore
-	private List<Notes> notes;
+	private List<Notes> alNotes = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "user")
 	@JsonIgnore
@@ -116,11 +123,36 @@ public class User {
 	}
 
 	public List<Notes> getNotes() {
-		return notes;
+		return alNotes;
 	}
 
 	public void setNotes(List<Notes> notes) {
-		this.notes = notes;
+		this.alNotes = notes;
 	}
+
+	public String getImage() {
+		return profileImage;
+	}
+
+	public void setImage(String image) {
+		this.profileImage = image;
+	}
+
+	public List<Notes> getAlNotes() {
+		return alNotes;
+	}
+
+	public void setAlNotes(List<Notes> alNotes) {
+		this.alNotes = alNotes;
+	}
+
+	public List<Labels> getAlLabels() {
+		return alLabels;
+	}
+
+	public void setAlLabels(List<Labels> alLabels) {
+		this.alLabels = alLabels;
+	}
+	
 
 }

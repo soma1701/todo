@@ -67,6 +67,11 @@ public class UserServiceImpl implements UserService{
 		return userDao.dublicateEntry(user);
 	}
 
+	@Override
+	public User getUserById(int userId) {
+		return userDao.getUserById(userId);
+	}
+
 	/*@Override
 	public User getUserByMobNo(String mobNo) {
 		return userDao.getUserByMobNo(mobNo);

@@ -20,6 +20,8 @@ public interface UserDao {
 
 	public User getUserByEmail(String email);
 	
+	public User getUserById(int userId);
+	
 //	public User getUserByMobNo(String mobNo);
 
 	public boolean dublicateEntry(User user);

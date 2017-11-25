@@ -133,6 +133,14 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
+	@Override
+	public User getUserById(int userId) {
+		session = sessionFactory.openSession();
+		User user = (User) session.get(User.class,userId);
+		// TODO Auto-generated method stub
+		return user;
+	}
+
 	/*@Override
 	public User getUserByMobNo(String mobNo) {
 		session = sessionFactory.openSession();
