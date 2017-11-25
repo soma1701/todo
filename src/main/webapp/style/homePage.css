@@ -1,6 +1,12 @@
   #navbar{
   	margin:0;
   }
+  #logout{
+  	  position:absolute;
+    transition: .5s ease;
+    top: 50%;
+    left: 50%;
+  }
  body{
  background-color: #e8e8e8;
  }
@@ -165,7 +171,6 @@ h1, .h1 {
     color: #a6a6a6;
     white-space:pre-wrap;
 }
-
 	#navBarSearchForm input[type=text]{width:550px !important;}
 		body {
 		    font-family: "Lato", sans-serif;
@@ -234,9 +239,9 @@ h1, .h1 {
 			margin: 9px 9px 9px 18px;font-size: 25px;float:right;
 		}
 		.userDropdown{
-		   margin: 18px 0 0 -200px;
-    		height: 186px;
-    		width: 282px;
+		   margin: 18px 0 0 -245px;
+		    height: 186px;
+		    width: 327px;
 		}
 		.image{
 /* 			height:100px; */
@@ -246,7 +251,9 @@ h1, .h1 {
 		    border-radius: 50%;
 		    width: 100px;
 		    height: 100px;
-}
+		}
+		#userEmail{
+			display:inline-flex;
 		}
 /* #image{ */
 /* 	width:100%; */

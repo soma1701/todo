@@ -54,8 +54,21 @@
 										<div>{{note.description}}</div><br>
 									</div>
 									<span ng-repeat="label in note.labels" style="background-color: #e8e8e8;margin: 2px 2px">{{label.labelName}}<span class="glyphicon glyphicon-remove"></span></span>
-								<div  id="imageDiv">
-									<img id="reminderOutput" alt="reminder" src="images/reminder.svg">
+<!-- 									<div class="container"> -->
+<!-- 									    <div class='col-md-5'> -->
+<!-- 									        <div class="form-group"> -->
+<!-- 									            <div class='input-group date' id='datetimepicker6'> -->
+<!-- 									                <input type='text' class="form-control" /> -->
+<!-- 									                <span class="input-group-addon"> -->
+<!-- 									                    <span class="glyphicon glyphicon-calendar" ng-click="datetimepicker()"></span> -->
+<!-- 									                </span> -->
+<!-- 									            </div> -->
+<!-- 									        </div> -->
+<!-- 									    </div> -->
+<!--     								</div> -->
+								<div id="imageDiv">
+									<input type="text" id ="datetimepicker6" ng-click="datetimepicker()" ng-blur="tet(note)" ng-model="note.reminder">
+									<img alt="reminder" src="images/reminder.svg" ng-click="datetimepicker();note.reminder=reminder; saveNote()">
 									<img id="collaboratorOutput" alt="collaborator" ng-click="openCollaborator()"  src="images/colaborator.svg">
 									<div class="btn-group dropup colorDiv" uib-dropdown>
 									<img id ="dropdown" class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" 

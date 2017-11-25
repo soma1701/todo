@@ -56,8 +56,9 @@ public class Notes {
 	@Lob
 	@Column(columnDefinition = "LONGBLOB")
 	private String image;
-	/*@Column(name="reminder")
-	private Date reminder;*/
+	
+	@Column(name="reminder")
+	private Date reminder;
 	
 
 	@ManyToMany
@@ -178,13 +179,13 @@ public class Notes {
 	}
 	
 
-	/*public Date getReminder() {
+	public Date getReminder() {
 		return reminder;
 	}
 
 	public void setReminder(Date reminder) {
 		this.reminder = reminder;
-	}*/
+	}
 	
 	
 	

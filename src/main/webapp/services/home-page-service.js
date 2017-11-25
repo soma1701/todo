@@ -9,7 +9,12 @@ toDoApp.factory('homeService',function($http,$location){
 			},
 			data: user,		
 		})
-	 
+	}
+	user.logout=function(){
+		return $http({
+			method:"GET",
+			url:'logout',
+		})
 	}
 	return user;
 	});

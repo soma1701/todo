@@ -1,9 +1,11 @@
 package com.bridgelabz.controller;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -125,7 +127,7 @@ public class UserController {
 		String normalPassword = user.getPassword();
 		String encryptedPassword = encrypt.encryptPassword(normalPassword);
 		User userLogin = userService.login(user, encryptedPassword);
-		session.setAttribute("userLogin", userLogin);
+		//session.setAttribute("userLogin", userLogin);
 		if (userLogin == null) {
 			MyResponse.setResponseMessage("wrong credential");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(MyResponse);
@@ -217,9 +219,19 @@ public class UserController {
 	 * @see this meythod is for logout 
 	 */
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public ResponseEntity<MyResponse> logout(HttpSession session) {
+	public ResponseEntity<MyResponse> logout(HttpSession session,HttpServletResponse response) {
 		session.removeAttribute("userLogin");
 		session.invalidate();
+		try {
+			response.sendRedirect("login");
+			response.setHeader("Cache-Control", "no-cache,no-store,must-validate");
+			response.setHeader("Pragma", "no-cache");
+			response.setHeader("Expires","0");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		MyResponse.setResponseMessage("logout successfully:-");
 		return ResponseEntity.ok(MyResponse);
 	}

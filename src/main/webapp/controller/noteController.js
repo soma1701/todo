@@ -1,5 +1,5 @@
 toDoApp.controller('notesController', function($scope, fileReader,notesService,$location, $uibModal, dataStore, $rootScope, labelService) {
-	$('#datetimepicker6').datetimepicker();
+	
 	$scope.imageSrc = "";
     
     $scope.$on("fileProgress", function(e, progress) {
@@ -21,6 +21,16 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 				console.log(response);
 		});
 	}*/
+    $scope.datetimepicker=function(){
+    	$('#datetimepicker6').datetimepicker();
+    	var reminder = $('#datetimepicker6').val();
+    	console.log(reminder);
+    }
+    $scope.tet = function(note){
+    	var reminder = $('#datetimepicker6').val();
+    	note.reminder = reminder;
+    	notesService.editNotes(note);
+    }
 	var addNote={};
 	var editNote={};
 	$scope.note = {};
@@ -29,6 +39,8 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 	$scope.note.imageSrc = '';
 	var modalInstance;
 	var path = $location.path();
+	var reminder =$('#datetimepicker6').val();
+	console.log($('#datetimepicker6').val());
 	var labelName = path.substr(path.lastIndexOf("/")+1);
 	$scope.colors=[{
 			"color":'#8e44ad',
@@ -131,7 +143,8 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 		addNote.description=$scope.note.description;
 		addNote.color=$scope.note.color;
 		addNote.isArchived=$scope.note.isArchived;
-		addNote.image=$scope.note.imageSrc;
+		addNote.image=$scope.note.image;
+		addNote.reminder = reminder;
 		var saveNotes = notesService.saveNotes(addNote);
 		$scope.showNewNote = false;
 		$scope.note.description='';

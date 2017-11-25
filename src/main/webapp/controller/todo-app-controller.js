@@ -120,4 +120,7 @@ toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, l
 	    	break;
 	}
 	});
+	$scope.logout=function(){
+		homeService.logout();
+	}
 });

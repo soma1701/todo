@@ -24,11 +24,12 @@
           
           <div class="btn-group" uib-dropdown>
 			<span class="glyphicon glyphicon-user" id ="user" uib-dropdown-toggle></span>
-			<ul class="dropdown-menu userDropdown container" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+			<ul class="dropdown-menu userDropdown" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
 				<div class="col-sm-6"><img class="image col-sm-6" ng-src="{{$parent.user.image}}"> 
-					<div class="col-sm-6">{{$parent.user.email}}</div>
+					<div class="col-sm-6" id="userEmail">{{$parent.user.email}}</div>
 				</div>
-				<div style="foat:right"><button type="button">logout</button></div>
+				<hr>
+				<div id="logout"><button ng-click="logout()">logout</button></div>
 			</ul>
 		</div>
         </a>
