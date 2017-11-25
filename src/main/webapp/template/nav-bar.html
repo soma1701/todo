@@ -20,10 +20,15 @@
           <span class="glyphicon glyphicon-th" id="grid" ng-click="callback1()" ng-show="user.view === 'grid'"></span>
           <span class="glyphicon glyphicon-th-list" id="list"  ng-click="callback1()" ng-show="user.view === 'list'"></span>
         <a href="">
-        <div class="btn-group"  uib-dropdown keyboard-nav>
-          <span class="glyphicon glyphicon-user" id ="user" uib-dropdown-toggle></span>
-			<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-				
+<!--           <span class="glyphicon glyphicon-user" id ="user" uib-dropdown-toggle></span> -->
+          
+          <div class="btn-group" uib-dropdown>
+			<span class="glyphicon glyphicon-user" id ="user" uib-dropdown-toggle></span>
+			<ul class="dropdown-menu userDropdown container" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+				<div class="col-sm-6"><img class="image col-sm-6" ng-src="{{$parent.user.image}}"> 
+					<div class="col-sm-6">{{$parent.user.email}}</div>
+				</div>
+				<div style="foat:right"><button type="button">logout</button></div>
 			</ul>
 		</div>
         </a>

@@ -121,7 +121,7 @@ public class User {
 	public void setValid(boolean isValid) {
 		this.isValid = isValid;
 	}
-
+	@JsonIgnore
 	public List<Notes> getNotes() {
 		return alNotes;
 	}
@@ -137,7 +137,8 @@ public class User {
 	public void setImage(String image) {
 		this.profileImage = image;
 	}
-
+	
+	@JsonIgnore
 	public List<Notes> getAlNotes() {
 		return alNotes;
 	}
@@ -145,9 +146,16 @@ public class User {
 	public void setAlNotes(List<Notes> alNotes) {
 		this.alNotes = alNotes;
 	}
-
 	public List<Labels> getAlLabels() {
 		return alLabels;
+	}
+
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
 	}
 
 	public void setAlLabels(List<Labels> alLabels) {

@@ -67,7 +67,7 @@ public class Notes {
 	@JsonIgnore
 	List<User> alUser = new ArrayList<>();
 	
-	@ManyToMany(cascade = CascadeType.REFRESH)
+	@ManyToMany/*(cascade = CascadeType.REFRESH)*/
 	@JoinTable(name = "note_label", joinColumns = { @JoinColumn(name = "note_id") },
 									inverseJoinColumns = {@JoinColumn(name = "label_id") })
 	@JsonIgnore
@@ -112,7 +112,7 @@ public class Notes {
 	public void setCreatedTime(Date createdTime) {
 		this.createdTime = createdTime;
 	}
-
+	@JsonIgnore
 	public List<User> getUser() {
 		return alUser;
 	}
@@ -160,7 +160,7 @@ public class Notes {
 	public void setImage(String image) {
 		this.image = image;
 	}
-
+	@JsonIgnore
 	public List<User> getAlUser() {
 		return alUser;
 	}
@@ -168,7 +168,7 @@ public class Notes {
 	public void setAlUser(List<User> alUser) {
 		this.alUser = alUser;
 	}
-
+	
 	public Set<Labels> getAlLabels() {
 		return alLabels;
 	}
@@ -176,6 +176,7 @@ public class Notes {
 	public void setAlLabels(Set<Labels> alLabels) {
 		this.alLabels = alLabels;
 	}
+	
 
 	/*public Date getReminder() {
 		return reminder;

@@ -8,7 +8,7 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
     $scope.uploadImage = function(){
     	$('#imgUpload').trigger('click');
     }
-    var path = $location.path();
+    /*var path = $location.path();
 	var labelName = path.substr(path.lastIndexOf("/")+1);
 	
 	function getLabels(){
@@ -20,7 +20,7 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 				$location.path('/loginPage')
 				console.log(response);
 		});
-	}
+	}*/
 	var addNote={};
 	var editNote={};
 	$scope.note = {};
@@ -80,7 +80,7 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 		},
 		];
 	getNotes();
-	getLabels();
+//	getLabels();
 	$scope.open = function (note) {
 		$scope.note = note;
 		modalInstance = $uibModal.open({
@@ -144,7 +144,7 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 		});
 		
 	}
-	function getLabels(){
+//	function getLabels(){
 		var httpGetLabels = labelService.getLabels(labelName);
 		
 		httpGetLabels.then(function(response) {
@@ -154,7 +154,7 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 				$location.path('/loginPage')
 				console.log(response);
 		});
-	}
+//	}
 	$scope.deleteNotes = function(id){
 		var deleteNote = notesService.deleteNotes(id);
 		modalInstance.close('resetModel');

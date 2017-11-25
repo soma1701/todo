@@ -125,13 +125,14 @@ public class UserController {
 		String normalPassword = user.getPassword();
 		String encryptedPassword = encrypt.encryptPassword(normalPassword);
 		User userLogin = userService.login(user, encryptedPassword);
+		session.setAttribute("userLogin", userLogin);
 		if (userLogin == null) {
 			MyResponse.setResponseMessage("wrong credential");
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(MyResponse);
 		}
 		String accessToken = GenerateJWT.generateToken(userLogin.getId());
-		int userId = VerifyJWT.verifyAccessToken(request.getHeader("accessToken").toString());
-		User user1 = userService.getUserById(userId);
+//		int userId = VerifyJWT.verifyAccessToken(request.getHeader("accessToken").toString());
+//		User user1 = userService.getUserById(userId);
 		token.setGenerateToken(accessToken);
 		String url = request.getRequestURL().toString();
 		url = url.substring(0, url.lastIndexOf("/")) + "/" + "finalLogin" + "/" + accessToken;

@@ -57,7 +57,7 @@ public class Labels {
 	public void setLabelName(String labelName) {
 		this.labelName = labelName;
 	}
-
+	@JsonIgnore
 	public User getUser() {
 		return user;
 	}
@@ -65,7 +65,7 @@ public class Labels {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
+	@JsonIgnore
 	public Set<Notes> getAlNote() {
 		return alNote;
 	}
