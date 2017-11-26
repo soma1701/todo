@@ -52,7 +52,7 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 		addNote.color=$scope.note.color;
 		addNote.isArchived=$scope.note.isArchived;
 		addNote.image=$scope.note.image;
-		addNote.reminder = reminder;
+//		addNote.reminder = reminder;
 		var saveNotes = notesService.saveNotes(addNote);
 		$scope.showNewNote = false;
 		$scope.note.description='';

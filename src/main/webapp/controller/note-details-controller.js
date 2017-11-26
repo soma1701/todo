@@ -156,7 +156,30 @@ toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibMo
     $scope.$on("fileProgress", function(e, progress) {
         $scope.progress = progress.loaded / progress.total;
 	});
-	/*$scope.uploadImage = function(){
-	  	$('#imgUpload').trigger('click');
-	}*/
+    $scope.removeLabel = function (note, item) {
+    	$scope.note = note;
+    	var comparator = angular.equals;
+        if (angular.isArray($scope.note.labels)) {
+          for (var i = $scope.note.labels.length; i--;) {
+            if (comparator($scope.note.labels[i], item)) {
+            	$scope.note.labels.splice(i, 1);
+              break;
+            }
+          }
+        }
+      notesService.editNotes(note);
+    }
+    $scope.removeUser = function (note, item) {
+    	$scope.note = note;
+    	var comparator = angular.equals;
+        if (angular.isArray($scope.note.user)) {
+          for (var i = $scope.note.user.length; i--;) {
+            if (comparator($scope.note.user[i].email, item)) {
+            	$scope.note.user.splice(i, 1);
+              break;
+            }
+          }
+        }
+        notesService.editNotes(note);
+      }
 });

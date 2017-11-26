@@ -13,10 +13,10 @@
 		</contenteditable>
 	</div>
 	<span ng-repeat="label in note.labels" style="background-color: #e8e8e8; margin: 2px 2px">
-		{{label.labelName}}
-		<span class="glyphicon glyphicon-remove"></span>
+		<a ui-sref=".labels({id: label.labelName})">{{label.labelName}}</a>
+		<span ng-click="removeLabel(note, label)" class="glyphicon glyphicon-remove"></span>
 	</span>
-	<span ng-repeat="usr in note.user"><img ng-src="{{usr.profileImage}}" height="20px" width="20px"></span>
+	<span ng-repeat="usr in note.user"><img ng-click="removeUser(note, usr.email)" ng-src="{{usr.profileImage}}" height="20px" width="20px"></span>
 	<div id="imageDiv">
 		<input type="text" id ="datetimepicker6" ng-click="datetimepicker()" ng-blur="tet(note)" ng-model="note.reminder">
 		<img alt="reminder" src="images/reminder.svg" ng-click="datetimepicker();note.reminder=reminder; saveNote()">
