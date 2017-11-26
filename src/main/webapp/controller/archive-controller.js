@@ -177,7 +177,6 @@ toDoApp.controller('archiveController',function($scope, fileReader,notesService,
 				});
 			}
 			$scope.editNotes = function(note){
-				//note.image=note.imageSrc;
 				var editNote = notesService.editNotes(note);
 				modalInstance.close('resetModel');
 				$scope.note = {};
