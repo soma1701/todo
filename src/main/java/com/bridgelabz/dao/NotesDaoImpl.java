@@ -118,10 +118,15 @@ public class NotesDaoImpl implements NotesDAO {
 	public List<Notes> getArchivedNotes(User user) {
 		session = sessionFactory.openSession();
 		transaction = (Transaction) session.beginTransaction();
-		Criteria criteria = session.createCriteria(Notes.class);
+		/*Criteria criteria = session.createCriteria(Notes.class);
 		criteria.add(Restrictions.eqOrIsNull("user", user));
-		criteria.add(Restrictions.eq("isArchived", true));
-		List<Notes> notes= criteria.list();
+		criteria.add(Restrictions.eq("isArchived", true));*/
+		Query query = session.createSQLQuery("select {note.*}\n" + 
+				"from user as user\n" + 
+				"join note_user as jt on (user.id = jt.id)\n" + 
+				"join notes as note on (jt.note_id = note.notes_id)\n" + 
+				"where user.id = :id and note.is_archive=b'1'").addEntity("note",Notes.class);
+		List<Notes> notes= query.setInteger("id", user.getId()).list();
 		return notes;
 	}
 
@@ -129,22 +134,27 @@ public class NotesDaoImpl implements NotesDAO {
 	public List<Notes> getTrashNotes(User user) {
 		session = sessionFactory.openSession();
 		transaction = (Transaction) session.beginTransaction();
-		Criteria criteria = session.createCriteria(Notes.class);
-		criteria.add(Restrictions.eqOrIsNull("user", user));
-		criteria.add(Restrictions.eq("isTrashed", true));
-		List<Notes> notes= criteria.list();
+		Query query = session.createSQLQuery("select {note.*}\n" + 
+				"from user as user\n" + 
+				"join note_user as jt on (user.id = jt.id)\n" + 
+				"join notes as note on (jt.note_id = note.notes_id)\n" + 
+				"where user.id = :id and note.is_trashed=b'1'").addEntity("note",Notes.class);
+		List<Notes> notes= query.setInteger("id", user.getId()).list();
 		return notes;
 	}
 
 	@Override
-	public Set<Notes> getLabelNotes(String label, User user) {
+	public List<Notes> getLabelNotes(String label, User user) {
 		session = sessionFactory.openSession();
 		transaction = (Transaction) session.beginTransaction();
-		Criteria criteria = session.createCriteria(Labels.class);
-		criteria.add(Restrictions.eqOrIsNull("user", user));
-		criteria.add(Restrictions.eq("labelName", label));
-		Labels objLabel = (Labels) criteria.uniqueResult();
-		Set<Notes> notes= objLabel.getAlNote();
+		Query query = session.createSQLQuery("select {note.*}\n" + 
+				"from user as user\n" + 
+				"join note_user as nu on (user.id = nu.id)\n" + 
+				"join notes as note on (nu.note_id = note.notes_id)\n" + 
+				"join note_label as nl on (nl.note_id = note.notes_id)\n" + 
+				"join labels as label on (label.label_id = nl.label_id)\n" + 
+				"where user.id = :userId and label.label_name= :labelName").addEntity("note",Notes.class);
+		List<Notes> notes= query.setInteger("userId", user.getId()).setString("labelName", label).list();
 		return notes;
 	}
 

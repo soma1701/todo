@@ -1,4 +1,12 @@
 toDoApp.controller('trashController',function($scope, notesService,$uibModal, $location, dataStore, $rootScope){
+	
+	$scope.stateTrashed ={
+			isArchived:false,
+			isTrashed:true,
+			isEditable:false
+	}
+	
+	
 	var test = {};
 	$scope.margin = 0;
 	$scope.view = 'grid';

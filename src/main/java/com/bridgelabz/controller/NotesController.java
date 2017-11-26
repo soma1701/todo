@@ -3,7 +3,6 @@ package com.bridgelabz.controller;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -176,9 +175,9 @@ public class NotesController {
 	 * @see this method is for geting labels
 	 */
 	@RequestMapping(value="getLabelNotes/{label}", method=RequestMethod.GET)
-	public Set<Notes> getLabels(@PathVariable String label,HttpServletRequest request){
+	public List<Notes> getLabels(@PathVariable String label,HttpServletRequest request){
 		User user = (User) request.getAttribute("user");
-		Set<Notes> alNotes = notesService.getLabelNotes(label, user);
+		List<Notes> alNotes = notesService.getLabelNotes(label, user);
 		return alNotes;
 	}
 	

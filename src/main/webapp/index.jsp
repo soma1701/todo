@@ -52,27 +52,8 @@
 	<script type="text/javascript" src="controller/fbController.js"></script>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	
-	<script type="text/javascript">
-  $(document).ready(function() {
-        $(function () {
-            $('#datetimepicker6').datetimepicker();
-        });
-    }); 
-</script>
 </head>
 <body ng-app="toDoApp">
 	 <div ui-view></div>
-	<div class="container">
-    <div class='col-md-5'>
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker6'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-    </div>
-    </div>
 </body>
 </html>

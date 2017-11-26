@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="CardContainer">
 				<div ng-repeat="note in notes" ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
-					<div class="showCards">
+					<!-- <div class="showCards">
 						<img ng-click="note.pinned=true;note.isArchived= false;editNote(note);$event.stopPropagation()" id="pinOutput" 
 							alt="pin" src="images/pin.svg" >
 							<div ng-click="open(note)">
@@ -25,7 +25,8 @@
 								</ul>
 							</div>
 						</div>
-					</div>
+					</div> -->
+					<note-details state="stateLabel" note="note"></note-details>
 			 	</div>
 			</div>
 		</div>

@@ -1,5 +1,11 @@
-toDoApp.controller('archiveController',function($scope, fileReader,notesService,$location, $uibModal, dataStore, $rootScope, labelService){/*
-	var test = {};
+toDoApp.controller('archiveController',function($scope, fileReader,notesService,$location, $uibModal, dataStore, $rootScope, labelService){
+
+	$scope.stateNote ={
+			isArchived:true,
+			isTrashed:false,
+			isEditable:false
+	}
+	/*var test = {};
 	$scope.margin = 0;
 	$scope.view = 'grid';
 	$scope.notes = {};

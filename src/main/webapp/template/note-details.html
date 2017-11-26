@@ -1,7 +1,8 @@
 <div class="showCards" style="background-color:{{note.color}}" ng-controller="noteDetailsController as nDC">
-	<img ng-click="note.pinned=!state.isPinned;editNotes(note);"src="images/pin.svg">
-	<img ng-click="updatePinup(note)" ng-src="{{note.image}}">
-	<div ng-if="!state.isEditable" ng-click="open(note)">
+	<img ng-if="!state.isTrashed && !state.isArchived" ng-click="note.pinned=!note.pinned;editNotes(note);"src="images/pin.svg">
+	<img ng-if="state.isArchived" ng-click="note.pinned=true;note.isArchived= false;editNotes(note);"src="images/pin.svg"/>
+	<img ng-click="updatePinup(note)" ng-src="{{note.image}}" height="50px" weidth="50px">
+	<div ng-if="!state.isEditable" ng-click="open(note, state)">
 		<div>{{note.title}}</div><br>
 		<div>{{note.description}}</div><br>
 	</div>
@@ -29,19 +30,19 @@
 			</ul>
 		</div>
 		<input style="display: none" type="file" ng-file-select="onFileSelect($files)" class="updateImage" ng-model="note.image"> 
-		<img id="addImageOutput" ng-click="uploadImage($event,note)" alt="addImage" src="images/add-image.svg"> 
+		<img ng-click="uploadImage($event,note)"src="images/add-image.svg"> 
 		<img ng-if="!state.isArchived" src="images/archive.svg" ng-click="note.pinned = false;note.isArchived=true;editNotes(note)">
 		<img ng-if="state.isArchived" src="images/archive.svg" ng-click="note.isArchived=false;editNotes(note)">
 		<div class="btn-group" uib-dropdown>
 			<span id="dropdown" class="glyphicon glyphicon-option-vertical" uib-dropdown-toggle> </span>
 			<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-				<li role="menuitem" ng-if="!state.isTrashed" ng-click="note.trashed=!state.isTrashed;editNotes(note)">
+				<li role="menuitem" ng-if="!state.isTrashed" ng-click="note.trashed=true;editNotes(note)">
 					<a href="">Delete</a>
 				</li>
 				<li role="menuitem" ng-if="state.isTrashed" ng-click="deleteNote(note.notesId)">
 					<a href="">Delete forever</a>
 				</li>
-				<li role="menuitem" ng-if="state.isTrashed" ng-click="note.trashed=false;editNote(note)">
+				<li role="menuitem" ng-if="state.isTrashed" ng-click="note.trashed=false;editNotes(note)">
 					<a href="">Restore</a>
 				</li>
 				<li role="menuitem" ng-if="!state.isTrashed" ng-click="makeCopy(note)">

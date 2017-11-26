@@ -1,4 +1,10 @@
 toDoApp.controller('labelsController',function($scope, $location,labelService){
+	
+	$scope.stateLabel ={
+			isArchived:false,
+			isTrashed:false,
+			isEditable:false
+	}
 	var path = $location.path();
 	var labelName = path.substr(path.lastIndexOf("/")+1);
 	

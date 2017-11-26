@@ -4,7 +4,7 @@
 			<div class="CardContainer">
 				<div ng-repeat="note in notes | filter : {isArchived : true, trashed: false}"   
 					ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
-					<div class="showCards" style="background-color:{{note.color}}">
+					<!-- <div class="showCards" style="background-color:{{note.color}}">
 						<img ng-click="note.pinned=true;note.isArchived= false;editNotes(note);" id="pinOutput" alt="pin" src="images/pin.svg" >
 						<img ng-src="{{note.image}}">
 						<div ng-click="open(note)">
@@ -23,8 +23,8 @@
 											<img id="icons" ng-src="{{color.path}}" ng-click="note.color =color.color; editNotes(note)"></a>
 										</ul>
 							</div>
-								<!-- <input style="display:none" type="file" ng-file-select="onFileSelect($files)" class="updateImage"  
-									ng-model="note.imageSrc"> -->
+								<input style="display:none" type="file" ng-file-select="onFileSelect($files)" class="updateImage"  
+									ng-model="note.imageSrc">
 								<img ng-click="updatePinup(note)" ng-src="{{note.imageSrc}}"/>
 								<img id="addImageInput" alt="addImage" ng-click="uploadImage($event,note)" src="images/add-image.svg">
 								<img id="archiveOutput" alt="archive" src="images/archive.svg" ng-click="note.isArchived= false;editNotes(note);
@@ -38,7 +38,8 @@
 								</ul>
 							</div>
 						</div>
-					</div>
+					</div> -->
+					<note-details state="stateArchive" note="note"></note-details>
 			 	</div>
 			</div>
 		</div>

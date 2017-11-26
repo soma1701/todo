@@ -1,7 +1,18 @@
-toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibModal){
+toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibModal, $location, labelService){
 	
 	var modalInstance;
 	var collaboratorPopup;
+	var path = $location.path();
+	var labelName = path.substr(path.lastIndexOf("/")+1);
+	var httpGetLabels = labelService.getLabels(labelName);
+	
+	httpGetLabels.then(function(response) {
+		$scope.labels = response.data;
+	}, function(response) {
+		if(response.status=='400')
+			$location.path('/loginPage')
+			console.log(response);
+	});
 	$scope.colors=[{
 		"color":'#8e44ad',
 		"path":'images/purple.png'
@@ -57,21 +68,27 @@ toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibMo
 		console.log("note :::"+note);
 		var editNote = notesService.editNotes(note);
 		modalInstance.close('resetModel');
-		$scope.note = {};
+//		$scope.note = {};
 		editNote.then(function(response){
-			$scope.note=response.data;
-			getNotes();
+//			$scope.note=response.data;
+//			getNotes();
 		}),then(function(response){
 			if(response.status=='400')
 				$location.path('/loginPage')
 				console.log(response);
 		});
 	}
-	$scope.open = function (note) {
+	$scope.open = function (note, state) {
+		$scope.testState = state;
 		$scope.note = note;
+		$scope.testState.isEditable = true;
 		modalInstance = $uibModal.open({
 			templateUrl: 'template/new-note.html',
 			scope : $scope
+		});
+		modalInstance.result.catch(function(){
+			notesService.editNotes($scope.note);
+			$scope.testState.isEditable = false;
 		});
 	}
 	$scope.openCollaborator = function(note){
@@ -136,4 +153,10 @@ toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibMo
     	note.reminder = reminder;
     	notesService.editNotes(note);
     }
+    $scope.$on("fileProgress", function(e, progress) {
+        $scope.progress = progress.loaded / progress.total;
+	});
+	/*$scope.uploadImage = function(){
+	  	$('#imgUpload').trigger('click');
+	}*/
 });

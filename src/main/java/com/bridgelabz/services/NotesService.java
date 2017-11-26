@@ -23,7 +23,7 @@ public interface NotesService {
 
 	List<Notes> getTrashNotes(User user);
 
-	Set<Notes> getLabelNotes(String label, User user);
+	List<Notes> getLabelNotes(String label, User user);
 
 //	List<Notes> getReminderedNotes(User user);
 

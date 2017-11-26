@@ -1,6 +1,6 @@
 <div class="homecontainer" ng-controller="notesController">
-	<div ng-show="notesTab">
-		<div ng-repeat="r in req">
+	<div>
+		<div>
 			<div id="main" style="margin-left:{{margin}}px">
 				<div class="container">
 					<div class="CardContainer">
@@ -45,14 +45,14 @@
 					<div class="CardContainer">
 						<div ng-repeat="note in notes | filter : {pinned : true,isArchived : false, trashed: false}"  
 							 ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
-							<note-details state="statePinned" note="note"></note-details>
+							<note-details state="stateNote" note="note"></note-details>
 					 	</div>
 					</div>
 					<div><br><br>Others:<br>
 					<div class="CardContainer">
 						<div ng-repeat="note in notes | filter : {pinned : false,isArchived : false, trashed: false}"  
 							 ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
-							<note-details state="stateOthers" note="note"></note-details>
+							<note-details state="stateNote" note="note"></note-details>
 					 	</div>
 					</div>
 				</div>
