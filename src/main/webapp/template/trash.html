@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="CardContainer">
 				<div ng-repeat="note in notes | filter : {trashed: true}" ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
-					<div class="showCards" style="background-color:{{note.color}}">
+					<!-- <div class="showCards" style="background-color:{{note.color}}">
 						<img ng-src={{note.image}}>
 						<div>{{note.title}}</div><br>
 						<div>{{note.description}}</div><br>
@@ -14,7 +14,8 @@
 								<li role="menuitem" ng-click="note.trashed=false;editNote(note)"><a href="">Restore</a></li>
 							</ul>
 				  		</div>
-					</div>
+					</div> -->
+					<note-details state="stateTrashed" note="note"></note-details>
 			 	</div>
 			</div>
 		</div>

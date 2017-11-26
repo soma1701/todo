@@ -31,6 +31,16 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
     	note.reminder = reminder;
     	notesService.editNotes(note);
     }
+    $scope.statePinned ={
+    	isPinned:true,
+    	isArchived:false,
+    	isTrashed:false
+    }
+    $scope.stateOthers ={
+        	isPinned:false,
+        	isArchived:false,
+        	isTrashed:false
+        }
 	var addNote={};
 	var editNote={};
 	$scope.note = {};
@@ -39,6 +49,7 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 	$scope.note.imageSrc = '';
 	$scope.collaboratorEmail = '';
 	var modalInstance;
+	var collaboratorPopup;
 	var path = $location.path();
 	var reminder =$('#datetimepicker6').val();
 	console.log($('#datetimepicker6').val());
@@ -103,7 +114,7 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 		};
 	$scope.openCollaborator = function(note){
 		$scope.note = note;
-		modalInstance = $uibModal.open({
+		collaboratorPopup = $uibModal.open({
 			templateUrl: 'template/collaborator.html',
 			scope : $scope
 		});
@@ -183,6 +194,7 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 	}
 	$scope.editNotes = function(note){
 		// note.image=note.imageSrc;
+		console.log("note :::"+note);
 		var editNote = notesService.editNotes(note);
 		modalInstance.close('resetModel');
 		$scope.note = {};
@@ -227,8 +239,11 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 	}
 	$scope.shareNote = function(note){
 		var shareNote = notesService.shareNote(note, $scope.collaboratorEmail);
+//		$scope.closeCollaborator;
 	}
-	
+	$scope.closeCollaborator = function(){
+		collaboratorPopup.close('resetModel');
+	}
 	
 });
 toDoApp.directive('focus',

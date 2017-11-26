@@ -62,7 +62,7 @@ public class NotesDaoImpl implements NotesDAO {
 		Query query = session.createSQLQuery("select {note.*}\n" + 
 				"from user as user\n" + 
 				"join note_user as jt on (user.id = jt.id)\n" + 
-				"join soma.notes as note on (jt.note_id = note.notes_id)\n" + 
+				"join notes as note on (jt.note_id = note.notes_id)\n" + 
 				"where user.email = :email").addEntity("note",Notes.class);
 		List<Notes> notes= query.setString("email", user.getEmail()).list();
 		return notes;
