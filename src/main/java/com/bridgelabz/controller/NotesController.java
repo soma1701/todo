@@ -1,5 +1,6 @@
 package com.bridgelabz.controller;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +23,11 @@ import com.bridgelabz.model.MyResponse;
 import com.bridgelabz.model.Notes;
 import com.bridgelabz.model.User;
 import com.bridgelabz.services.NotesService;
+import com.bridgelabz.services.UserService;
 import com.bridgelabz.validator.NoteValidator;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  *  @author Soma Singh
@@ -35,6 +40,9 @@ public class NotesController {
 	
 	@Autowired
 	NotesService notesService;
+	
+	@Autowired
+	UserService userService;
 	
 	@Autowired
 	MyResponse myResponse;
@@ -100,7 +108,8 @@ public class NotesController {
 	@RequestMapping(value="/getNotes", method=RequestMethod.GET)
 	public List<Notes> getNotes(HttpSession session,HttpServletRequest request){
 		User user = (User) request.getAttribute("user");
-		List<Notes>  notes = notesService.getNotes(user);
+		User objUser = userService.getUserById(user.getId());
+		List<Notes>  notes = notesService.getNotes(objUser);
 		return notes;
 	}
 	/**
@@ -111,9 +120,9 @@ public class NotesController {
 	 */
 	@RequestMapping(value="/editNotes",method=RequestMethod.POST)
 	public ResponseEntity<MyResponse> editNotes(@RequestBody Notes note,HttpServletRequest request){
-		User user = (User)request.getAttribute("user");
+//		User user = (User)request.getAttribute("user");
 		Notes objNotes = notesService.getNoteById(note.getNotesId());
-		note.getUser().add(user);
+//		note.getUser().add(user);
 		boolean isEdited;
 		objNotes.setTitle(note.getTitle());
 		objNotes.setDescription(note.getDescription());
@@ -171,5 +180,25 @@ public class NotesController {
 		User user = (User) request.getAttribute("user");
 		Set<Notes> alNotes = notesService.getLabelNotes(label, user);
 		return alNotes;
+	}
+	
+	@RequestMapping(value="/shareNote", method=RequestMethod.POST)
+	public ResponseEntity<MyResponse> shareNote(HttpServletRequest request) throws JsonParseException, JsonMappingException, IOException{
+//		User currentUser = (User) request.getAttribute("user");
+		String noteString = request.getParameter("note");
+		String email = request.getParameter("email");
+		User user = userService.getUserByEmail(email);
+		ObjectMapper mapper = new ObjectMapper();
+		Notes objNote = mapper.readValue(noteString, Notes.class);
+//		objNote.getUser().add(currentUser);
+		objNote.getUser().add(user);
+		if(notesService.editNotes(objNote)){
+			myResponse.setResponseMessage("editing notes are successfull");
+			return ResponseEntity.ok(myResponse);
+		}else
+		{
+			myResponse.setResponseMessage("edition is not possible");
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(myResponse);
+		}
 	}
 }

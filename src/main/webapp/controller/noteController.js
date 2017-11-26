@@ -37,6 +37,7 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 	$scope.note.description = '';
 	$scope.note.title = '';
 	$scope.note.imageSrc = '';
+	$scope.collaboratorEmail = '';
 	var modalInstance;
 	var path = $location.path();
 	var reminder =$('#datetimepicker6').val();
@@ -100,7 +101,8 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 		scope : $scope
 		});
 		};
-	$scope.openCollaborator = function(){
+	$scope.openCollaborator = function(note){
+		$scope.note = note;
 		modalInstance = $uibModal.open({
 			templateUrl: 'template/collaborator.html',
 			scope : $scope
@@ -223,7 +225,9 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 		// note.image=note.imageSrc;
 		var updateImage = notesService.editNotes(note);
 	}
-	
+	$scope.shareNote = function(note){
+		var shareNote = notesService.shareNote(note, $scope.collaboratorEmail);
+	}
 	
 	
 });
