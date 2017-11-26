@@ -47,7 +47,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 	
-	
 	<script type="text/javascript" src="controller/googleController.js"></script>
 	<script type="text/javascript" src="controller/fbController.js"></script>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
