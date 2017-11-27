@@ -21,6 +21,8 @@ toDoApp.factory('notesService',function($http,$location){
 			actionUrl = 'notesCredential/getTrashNotes';
 		}else if(actionType === 'LABELS'){
 			actionUrl = 'notesCredential/getLabels';
+		}else if(actionType === 'REMINDER'){
+			actionUrl = 'notesCredential/getReminderNotes';
 		}
 		return $http({
 			method:"GET",

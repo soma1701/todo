@@ -200,4 +200,23 @@ public class NotesController {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(myResponse);
 		}
 	}
+	@RequestMapping(value="/getReminderNotes", method=RequestMethod.GET)
+	public List<Notes> getReminderNotes(HttpServletRequest request){
+		User user = (User) request.getAttribute("user");
+		System.out.println("user " + user);
+		List<Notes>  notes = notesService.getReminderedNotes(user);
+		return notes;
+	}
+	/*@RequestMapping(value="/deleteNotes/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<MyResponse> deleteReminder(@PathVariable int reminderNoteId){
+		boolean isDeleted = notesService.deleteReminderById(reminderNoteId);
+		if(isDeleted) {
+			myResponse.setResponseMessage("deleted successfully");
+			return ResponseEntity.ok(myResponse);
+		}
+		else {
+			myResponse.setResponseMessage("unable to delete");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(myResponse);
+		}
+	}*/
 }

@@ -32,8 +32,12 @@
 	<script type="text/javascript" src="controller/archive-controller.js"></script>
 	<script type="text/javascript" src="controller/labels-controller.js"></script>
 	<script type="text/javascript" src="controller/trash-controller.js"></script>
+	<script type="text/javascript" src="controller/reminder-controller.js"></script>
 	<script type="text/javascript" src="controller/todo-app-controller.js"></script>
 	<script type="text/javascript" src="controller/fileupload-controller.js"></script>
+	<script src="https://connect.facebook.net/enUS/all.js"></script>
+	<script src="https://npmcdn.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+	<link rel="stylesheet" href="https://npmcdn.com/angular-toastr/dist/angular-toastr.css" />
 	
 <!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
 

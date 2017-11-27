@@ -158,15 +158,34 @@ public class NotesDaoImpl implements NotesDAO {
 		return notes;
 	}
 
-	/*@Override
+	@Override
 	public List<Notes> getReminderedNotes(User user) {
 		session = sessionFactory.openSession();
 		transaction = (Transaction) session.beginTransaction();
-		Criteria criteria = session.createCriteria(Notes.class);
-		criteria.add(Restrictions.eqOrIsNull("user", user));
-		criteria.add(Restrictions.eq("isTrashed", true));
-		List<Notes> notes= criteria.list();
+		Query query = session.createSQLQuery("select {note.*}\n" + 
+				"from user as user\n" + 
+				"join note_user as jt on (user.id = jt.id)\n" + 
+				"join notes as note on (jt.note_id = note.notes_id)\n" + 
+				"where user.id = :id and note.reminder is not null").addEntity("note",Notes.class);
+		List<Notes> notes= query.setInteger("id", user.getId()).list();
 		return notes;
+	}
+
+	/*@Override
+	public boolean deleteReminderById(int reminderNoteId) {
+		session = sessionFactory.openSession();
+		transaction = (Transaction)session.beginTransaction();
+		Criteria criteria = session.createCriteria(Notes.class);
+		criteria.add(Restrictions.eq("reminderNoteId", reminderNoteId));
+		Notes notes = (Notes) criteria.uniqueResult();
+		try {
+			session.delete(notes);
+			transaction.commit();
+			session.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return true;
 	}*/
 
 }

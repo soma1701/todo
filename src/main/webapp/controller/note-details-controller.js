@@ -6,7 +6,6 @@ toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibMo
 	var labelName = path.substr(path.lastIndexOf("/")+1);
 	var httpGetLabels = labelService.getLabels(labelName);
 	$scope.view = 'grid';
-	
 	httpGetLabels.then(function(response) {
 		$scope.labels = response.data;
 	}, function(response) {
@@ -79,6 +78,32 @@ toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibMo
 				console.log(response);
 		});
 	}
+	$scope.fbShare = function(note) {
+		FB.init({
+			appId : '129892814380911',
+			status : true,
+			cookie : true,
+			xfbml : true,
+			version : 'v2.4'
+		});
+
+		FB.ui({
+			method : 'share_open_graph',
+			action_type : 'og.likes',
+			action_properties : JSON.stringify({
+				object : {
+					'og:title' : note.title,
+					'og:description' :note.description
+				}
+			})
+		}, function(response) {
+			if (response && !response.error_message) {
+				alert('Posting completed.');
+			} else {
+				alert('Error while posting.');
+			}
+		});
+	};
 	$scope.open = function (note, state) {
 		$scope.testState = state;
 		$scope.note = note;
@@ -133,7 +158,6 @@ toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibMo
 		obj.trigger("click");
 	}
 	$scope.updatePinup = function(note){
-		// note.image=note.imageSrc;
 		var updateImage = notesService.editNotes(note);
 	}
 	$scope.deleteNote = function(id){

@@ -1,4 +1,5 @@
-toDoApp.controller('notesController', function($scope, fileReader,notesService,$location, $uibModal, dataStore, $rootScope, labelService) {
+toDoApp.controller('notesController', function($scope, fileReader,toastr,notesService,$location, $uibModal,$interval, dataStore, $rootScope,
+		$filter,labelService,$interval) {
 	
 	getNotes();
 	$scope.view = 'grid';
@@ -29,19 +30,26 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 		var httpGetNotes = notesService.getNotes('ALL');
 		httpGetNotes.then(function(response) {
 			$scope.notes = response.data;
+			$interval(function(){
+				var i=0;
+				for(i;i<$scope.notes.length;i++){
+				if($scope.notes[i].reminderStatus!='false'){
+				console.log($scope.notes[i].reminderStatus);
+				var currentDate=$filter('date')(new Date(),'MM/dd/yyyy h:mm a');
+				console.log(currentDate);
+				if($scope.notes[i].reminderStatus === currentDate){
+
+				toastr.success('You have a reminder for a note', 'check it out');
+				}
+				}
+				}
+				},9000);
 		}, function(response) {
 			if(response.status=='400')
 				$location.path('/loginPage')
 				console.log(response);
 		});
 	}
-	
-	
-	
-	
-	
-	
-	
 	$scope.imageSrc = "";
     
 	var addNote={};
@@ -66,6 +74,7 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 		addNote.image=$scope.note.image;
 //		addNote.reminder = reminder;
 		var saveNotes = notesService.saveNotes(addNote);
+		toastr.success('success', 'successfully added');
 		$scope.showNewNote = false;
 		$scope.note.description='';
 		saveNotes.then(function(response){

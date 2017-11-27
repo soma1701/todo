@@ -25,6 +25,8 @@ public interface NotesService {
 
 	List<Notes> getLabelNotes(String label, User user);
 
-//	List<Notes> getReminderedNotes(User user);
+	List<Notes> getReminderedNotes(User user);
+	
+//	boolean deleteReminderById(int reminderNoteId);
 
 }
