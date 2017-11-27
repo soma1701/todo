@@ -173,8 +173,8 @@ toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibMo
     	var reminder = $('#datetimepicker6').val();
     	console.log(reminder);
     }
-    $scope.tet = function(note){
-    	var reminder = $('#datetimepicker6').val();
+    $scope.saveReminder = function(note){
+    	var reminder = new Date($('#datetimepicker6').val());
     	note.reminder = reminder;
     	notesService.editNotes(note);
     }

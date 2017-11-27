@@ -56,7 +56,7 @@ public class Notes {
 	private String image;
 	
 	@Column(name="reminder")
-	private String reminder;
+	private Date reminder;
 	
 
 	@ManyToMany
@@ -175,11 +175,11 @@ public class Notes {
 	}
 	
 
-	public String getReminder() {
+	public Date getReminder() {
 		return reminder;
 	}
 
-	public void setReminder(String reminder) {
+	public void setReminder(Date reminder) {
 		this.reminder = reminder;
 	}
 	

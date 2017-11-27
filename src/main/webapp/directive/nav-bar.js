@@ -5,7 +5,7 @@ toDoApp.directive('navBar',function(){
 			user: '=user',
 			callback: '&',
 			callback1: '&',
-			search: '&'
+			logout:'&'
 		},
 		replace: true,
 		templateUrl:'template/nav-bar.html',

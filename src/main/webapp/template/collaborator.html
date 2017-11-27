@@ -2,7 +2,13 @@
 	<div class="modal-header"><h1>Collborators</h1></div>
 	<div class="modal-body" >
 		<div ng-repeat="usr in note.user">
-			<span>{{usr.email}}</span><span ng-click="removeUser(note, usr.email)" class="glyphicon glyphicon-remove"></span>
+			<div class="col-md-6">
+				<img ng-src="{{usr.profileImage}}" height="50px" width="50px"></img></div>
+			<div class="col-md-6">
+				<span>{{usr.firstName}} {{usr.lastName}}</span>
+				<span>{{usr.email}}</span>
+				<span ng-click="removeUser(note, usr.email)" class="glyphicon glyphicon-remove"></span>
+			</div>
 		</div>
 		<input type="text" ng-model="$parent.collaboratorEmail">
 	</div>

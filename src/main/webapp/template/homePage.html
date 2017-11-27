@@ -1,5 +1,5 @@
 <div ng-controller="todoAppController">
-	<nav-bar id ="navbar" user="req" callback="toggleSideBar()" callback1="switchView()" search="doSearch()"></nav-bar>
+	<nav-bar id ="navbar" user="req" callback="toggleSideBar()" callback1="switchView()" search="doSearch()" logout=logout()></nav-bar>
 	<div id="main" style="margin-left:{{margin}}px">
 		<side-bar width="width" callback="openLabelList()" labels="labels"></side-bar>
 	</div>

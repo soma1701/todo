@@ -23,7 +23,7 @@
 				<div id="reminderDiv">
 					<input type="text" id ="datetimepicker6"  ng-blur="tet(note)" 
 					ng-model="note.reminder"> 
-<!-- 					<img id="reminder" src="images/remove.svg"> -->
+					<img id="reminder" src="images/remove.svg">
 				</div>
 				<img alt="reminder" src="images/reminder.svg" ng-click="datetimepicker();note.reminder=reminder; editNotes(note)">
 				<img id="collaboratorOutput" alt="collaborator" ng-click="openCollaborator(note)" src="images/colaborator.svg">
@@ -87,7 +87,7 @@
 			</span>
 			<span ng-repeat="usr in note.user"><img ng-click="removeUser(note, usr.email)" ng-src="{{usr.profileImage}}" height="20px" width="20px"></span>
 			<div id="imageDiv">
-				<input type="text" id ="datetimepicker6" ng-click="datetimepicker()" ng-blur="tet(note)" ng-model="note.reminder">
+				<input type="text" id ="datetimepicker6" ng-blur="saveReminder(note)" ng-model="note.reminder">
 				<img alt="reminder" src="images/reminder.svg" ng-click="datetimepicker();note.reminder=reminder; editNotes(note)">
 				<img id="collaboratorOutput" alt="collaborator" ng-click="openCollaborator(note)" src="images/colaborator.svg">
 				<div class="btn-group dropup colorDiv" uib-dropdown>

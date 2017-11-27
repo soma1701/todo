@@ -1,17 +1,11 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:{{$parent.background}};border-color:{{$parent.background}};">
   <div class="col-md-12 container-fluid">
     <div class="col-md-2 navbar-header">
-<!--         <span>&#9776;</span> -->
         <span class="navbar-brand" ng-click="callback()" style="font-family: Roboto,RobotoDraft,Arial,sans-serif;color:{{user.color}};font-weight:bold">&#9776;</span>
       <a class="navbar-brand" href="" style="font-weight:bold;font-family: Roboto,RobotoDraft,Arial,sans-serif;color:{{user.color}};">TODO <span style="font-weight: normal">APP</span></a>
     </div>
     <div class="col-md-6 navbar-form" id="navBarSearchForm">
-<!--         <div ng-controller="notesController"> -->
             <input type="text" ng-model="$parent.searchText" class="form-control" placeholder="Search">
-           <!--  <ul>
-                <li ng-repeat="note in notes | filter:search">{{note.title}}</li>
-            </ul> -->
-<!--         </div> -->
     </div>
      <div class="col-md-4 navbar-form" style="float: right">
          <a href="">
@@ -20,8 +14,6 @@
           <span class="glyphicon glyphicon-th" id="grid" ng-click="callback1()" ng-show="user.view === 'grid'"></span>
           <span class="glyphicon glyphicon-th-list" id="list"  ng-click="callback1()" ng-show="user.view === 'list'"></span>
         <a href="">
-<!--           <span class="glyphicon glyphicon-user" id ="user" uib-dropdown-toggle></span> -->
-          
           <div class="btn-group" uib-dropdown>
 			<span class="glyphicon glyphicon-user" id ="user" uib-dropdown-toggle></span>
 			<ul class="dropdown-menu userDropdown" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
