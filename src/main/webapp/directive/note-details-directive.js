@@ -3,7 +3,7 @@ toDoApp.directive('noteDetails',function(){
 		restrict:'E',
 		scope: {
 			state:'=',
-			note:'='
+			notes:'='
 		},
 		templateUrl:'template/note-details.html',
 		controller:'noteDetailsController',

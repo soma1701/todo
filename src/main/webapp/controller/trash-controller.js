@@ -3,7 +3,8 @@ toDoApp.controller('trashController',function($scope, notesService,$uibModal, $l
 	$scope.stateTrashed ={
 			isArchived:false,
 			isTrashed:true,
-			isEditable:false
+			isEditable:false,
+			isLabel:false
 	}
 	
 	
@@ -11,11 +12,6 @@ toDoApp.controller('trashController',function($scope, notesService,$uibModal, $l
 	$scope.margin = 0;
 	$scope.view = 'grid';
 	$scope.notes = {};
-	$scope.stateTrashed ={
-	    	isPinned:false,
-	    	isArchived:false,
-	    	isTrashed:true
-	    }
 	var modalInstance;
 	var httpGetNotes = notesService.getNotes("TRASH");
 	httpGetNotes.then(function(response) {

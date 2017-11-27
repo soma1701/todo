@@ -1,9 +1,9 @@
 <div class="homecontainer" ng-controller="archiveController">
 	<div id="main"> <!-- style="margin-left:{{margin}}px"> -->
 		<div class="container">
-			<div class="CardContainer">
+			<!-- <div class="CardContainer">
 				<div ng-repeat="note in notes | filter : {isArchived : true, trashed: false}"   
-					ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
+					ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}"> -->
 					<!-- <div class="showCards" style="background-color:{{note.color}}">
 						<img ng-click="note.pinned=true;note.isArchived= false;editNotes(note);" id="pinOutput" alt="pin" src="images/pin.svg" >
 						<img ng-src="{{note.image}}">
@@ -39,9 +39,9 @@
 							</div>
 						</div>
 					</div> -->
-					<note-details state="stateArchive" note="note"></note-details>
-			 	</div>
-			</div>
+					<note-details state="stateArchive" notes="notes"></note-details>
+			 	<!-- </div>
+			</div> -->
 		</div>
 	</div>
 </div>

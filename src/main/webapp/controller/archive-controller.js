@@ -1,6 +1,6 @@
 toDoApp.controller('archiveController',function($scope, fileReader,notesService,$location, $uibModal, dataStore, $rootScope, labelService){
 
-	$scope.stateNote ={
+	$scope.stateArchive ={
 			isArchived:true,
 			isTrashed:false,
 			isEditable:false

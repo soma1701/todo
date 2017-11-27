@@ -4,7 +4,8 @@ toDoApp.directive('navBar',function(){
 		scope: {
 			user: '=user',
 			callback: '&',
-			callback1: '&'
+			callback1: '&',
+			search: '&'
 		},
 		replace: true,
 		templateUrl:'template/nav-bar.html',

@@ -2,16 +2,28 @@ toDoApp.controller('notesController', function($scope, fileReader,notesService,$
 	
 	getNotes();
 	$scope.view = 'grid';
-	$scope.stateNote ={
+	$scope.statePinnedNote ={
+			isPinned:true,
 			isArchived:false,
 			isTrashed:false,
-			isEditable:false
+			isEditable:false,
+			isLabel:false
+	}
+	$scope.stateUnPinnedNote ={
+			isPinned:false,
+			isArchived:false,
+			isTrashed:false,
+			isEditable:false,
+			isLabel:false
 	}
 	$scope.$on('toggleSideBar-change', function(event, data){
         $scope.margin = dataStore.getMargin();
 	});
 	$scope.$on('view-change', function(event, data){
         $scope.view = dataStore.getView();
+	});
+	$scope.$on('searchText-change', function(event, data){
+        $scope.searchText = dataStore.getSearchText();
 	});
 	function getNotes(){
 		var httpGetNotes = notesService.getNotes('ALL');

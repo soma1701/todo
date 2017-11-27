@@ -1,10 +1,11 @@
-toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibModal, $location, labelService){
+toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibModal, $location, labelService, dataStore){
 	
 	var modalInstance;
 	var collaboratorPopup;
 	var path = $location.path();
 	var labelName = path.substr(path.lastIndexOf("/")+1);
 	var httpGetLabels = labelService.getLabels(labelName);
+	$scope.view = 'grid';
 	
 	httpGetLabels.then(function(response) {
 		$scope.labels = response.data;
@@ -182,4 +183,13 @@ toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibMo
         }
         notesService.editNotes(note);
       }
+    $scope.$on('searchText-change', function(event, data){
+        $scope.searchText = dataStore.getSearchText();
+	});
+    $scope.$on('toggleSideBar-change', function(event, data){
+        $scope.margin = dataStore.getMargin();
+	});
+	$scope.$on('view-change', function(event, data){
+        $scope.view = dataStore.getView();
+	});
 });

@@ -1,8 +1,8 @@
 <div class="homecontainer" ng-controller="trashController">
-	<div id="main" style="margin-left:{{margin}}px">
+	<div id="main" >
 		<div class="container">
-			<div class="CardContainer">
-				<div ng-repeat="note in notes | filter : {trashed: true}" ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
+			<!-- <div class="CardContainer">style="margin-left:{{margin}}px"
+				<div ng-repeat="note in notes | filter : {trashed: true}" ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}"> -->
 					<!-- <div class="showCards" style="background-color:{{note.color}}">
 						<img ng-src={{note.image}}>
 						<div>{{note.title}}</div><br>
@@ -15,9 +15,9 @@
 							</ul>
 				  		</div>
 					</div> -->
-					<note-details state="stateTrashed" note="note"></note-details>
-			 	</div>
-			</div>
+					<note-details state="stateTrashed" notes="notes"></note-details>
+			 	<!-- </div>
+			</div> -->
 		</div>
 	</div>
 </div>

@@ -1,57 +1,122 @@
-<div class="showCards" style="background-color:{{note.color}}" ng-controller="noteDetailsController as nDC">
-	<img ng-if="!state.isTrashed && !state.isArchived" ng-click="note.pinned=!note.pinned;editNotes(note);"src="images/pin.svg">
-	<img ng-if="state.isArchived" ng-click="note.pinned=true;note.isArchived= false;editNotes(note);"src="images/pin.svg"/>
-	<img ng-click="updatePinup(note)" ng-src="{{note.image}}" height="50px" weidth="50px">
-	<div ng-if="!state.isEditable" ng-click="open(note, state)">
-		<div>{{note.title}}</div><br>
-		<div>{{note.description}}</div><br>
-	</div>
-	<div ng-if="state.isEditable">
-		<input type="text" focus="false" ng-model="note.title" id="cardInputitle" placeholder="Title"/><br>
-		<contenteditable class="test" contenteditable="true" ng-model="note.description" focus="true"
-								placeholder="Take a note">
-		</contenteditable>
-	</div>
-	<span ng-repeat="label in note.labels" style="background-color: #e8e8e8; margin: 2px 2px">
-		<a ui-sref=".labels({id: label.labelName})">{{label.labelName}}</a>
-		<span ng-click="removeLabel(note, label)" class="glyphicon glyphicon-remove"></span>
-	</span>
-	<span ng-repeat="usr in note.user"><img ng-click="removeUser(note, usr.email)" ng-src="{{usr.profileImage}}" height="20px" width="20px"></span>
-	<div id="imageDiv">
-		<input type="text" id ="datetimepicker6" ng-click="datetimepicker()" ng-blur="tet(note)" ng-model="note.reminder">
-		<img alt="reminder" src="images/reminder.svg" ng-click="datetimepicker();note.reminder=reminder; saveNote()">
-		<img id="collaboratorOutput" alt="collaborator" ng-click="openCollaborator(note)" src="images/colaborator.svg">
-		<div class="btn-group dropup colorDiv" uib-dropdown>
-			<img id="dropdown" class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" src="images/change-color.svg" uib-dropdown-toggle>
-			<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-				<a ng-style="{'background-color':'color.color'}" ng-repeat="color in colors" role="menuitem"> 
-					<img id="icons" ng-src="{{color.path}}" ng-click="note.color =color.color; editNotes(note)">
-				</a>
-			</ul>
+<div class="CardContainer" ng-controller="noteDetailsController as nDC">
+	<div ng-if="!state.isLabel"ng-repeat="note in notes | filter:searchText | filter : {pinned : state.isPinned,isArchived : state.isArchived, trashed: state.isTrashed}"  
+							 ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
+		<div class="showCards" style="background-color:{{note.color}}" >
+			<img ng-if="!state.isTrashed && !state.isArchived" ng-click="note.pinned=!note.pinned;editNotes(note);"src="images/pin.svg">
+			<img ng-if="state.isArchived" ng-click="note.pinned=true;note.isArchived= false;editNotes(note);"src="images/pin.svg"/>
+			<img ng-click="updatePinup(note)" ng-src="{{note.image}}" height="50px" weidth="50px">
+			<div ng-if="!state.isEditable" ng-click="open(note, state)">
+				<div>{{note.title}}</div><br>
+				<div>{{note.description}}</div><br>
+			</div>
+			<div ng-if="state.isEditable">
+				<input type="text" focus="false" ng-model="note.title" id="cardInputitle" placeholder="Title"/><br>
+				<contenteditable class="test" contenteditable="true" ng-model="note.description" focus="true"
+										placeholder="Take a note">
+				</contenteditable>
+			</div>
+			<span ng-repeat="label in note.labels" style="background-color: #e8e8e8; margin: 2px 2px">
+				<a ui-sref=".labels({id: label.labelName})">{{label.labelName}}</a>
+				<span ng-click="removeLabel(note, label)" class="glyphicon glyphicon-remove"></span>
+			</span>
+			<span ng-repeat="usr in note.user"><img ng-click="removeUser(note, usr.email)" ng-src="{{usr.profileImage}}" height="20px" width="20px"></span>
+			<div id="imageDiv">
+				<input type="text" id ="datetimepicker6" ng-click="datetimepicker()" ng-blur="tet(note)" ng-model="note.reminder">
+				<img alt="reminder" src="images/reminder.svg" ng-click="datetimepicker();note.reminder=reminder; saveNote()">
+				<img id="collaboratorOutput" alt="collaborator" ng-click="openCollaborator(note)" src="images/colaborator.svg">
+				<div class="btn-group dropup colorDiv" uib-dropdown>
+					<img id="dropdown" class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" src="images/change-color.svg" uib-dropdown-toggle>
+					<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+						<a ng-style="{'background-color':'color.color'}" ng-repeat="color in colors" role="menuitem"> 
+							<img id="icons" ng-src="{{color.path}}" ng-click="note.color =color.color; editNotes(note)">
+						</a>
+					</ul>
+				</div>
+				<input style="display: none" type="file" ng-file-select="onFileSelect($files)" class="updateImage" ng-model="note.image"> 
+				<img ng-click="uploadImage($event,note)"src="images/add-image.svg"> 
+				<img ng-if="!state.isArchived" src="images/archive.svg" ng-click="note.pinned = false;note.isArchived=true;editNotes(note)">
+				<img ng-if="state.isArchived" src="images/archive.svg" ng-click="note.isArchived=false;editNotes(note)">
+				<div class="btn-group" uib-dropdown>
+					<span id="dropdown" class="glyphicon glyphicon-option-vertical" uib-dropdown-toggle> </span>
+					<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+						<li role="menuitem" ng-if="!state.isTrashed" ng-click="note.trashed=true;editNotes(note)">
+							<a href="">Delete</a>
+						</li>
+						<li role="menuitem" ng-if="state.isTrashed" ng-click="deleteNote(note.notesId)">
+							<a href="">Delete forever</a>
+						</li>
+						<li role="menuitem" ng-if="state.isTrashed" ng-click="note.trashed=false;editNotes(note)">
+							<a href="">Restore</a>
+						</li>
+						<li role="menuitem" ng-if="!state.isTrashed" ng-click="makeCopy(note)">
+							<a href="">Make a copy</a>
+						</li>
+						<li role="menuitem" ng-if="!state.isTrashed" ng-click="openAddLabel(note)">
+							<a href="">Add level</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
-		<input style="display: none" type="file" ng-file-select="onFileSelect($files)" class="updateImage" ng-model="note.image"> 
-		<img ng-click="uploadImage($event,note)"src="images/add-image.svg"> 
-		<img ng-if="!state.isArchived" src="images/archive.svg" ng-click="note.pinned = false;note.isArchived=true;editNotes(note)">
-		<img ng-if="state.isArchived" src="images/archive.svg" ng-click="note.isArchived=false;editNotes(note)">
-		<div class="btn-group" uib-dropdown>
-			<span id="dropdown" class="glyphicon glyphicon-option-vertical" uib-dropdown-toggle> </span>
-			<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-				<li role="menuitem" ng-if="!state.isTrashed" ng-click="note.trashed=true;editNotes(note)">
-					<a href="">Delete</a>
-				</li>
-				<li role="menuitem" ng-if="state.isTrashed" ng-click="deleteNote(note.notesId)">
-					<a href="">Delete forever</a>
-				</li>
-				<li role="menuitem" ng-if="state.isTrashed" ng-click="note.trashed=false;editNotes(note)">
-					<a href="">Restore</a>
-				</li>
-				<li role="menuitem" ng-if="!state.isTrashed" ng-click="makeCopy(note)">
-					<a href="">Make a copy</a>
-				</li>
-				<li role="menuitem" ng-if="!state.isTrashed" ng-click="openAddLabel(note)">
-					<a href="">Add level</a>
-				</li>
-			</ul>
+	</div>
+	<div ng-if="state.isLabel"ng-repeat="note in notes | filter:searchText"  
+							 ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
+		<div class="showCards" style="background-color:{{note.color}}" >
+			<img ng-if="!state.isTrashed && !state.isArchived" ng-click="note.pinned=!note.pinned;editNotes(note);"src="images/pin.svg">
+			<img ng-if="state.isArchived" ng-click="note.pinned=true;note.isArchived= false;editNotes(note);"src="images/pin.svg"/>
+			<img ng-click="updatePinup(note)" ng-src="{{note.image}}" height="50px" weidth="50px">
+			<div ng-if="!state.isEditable" ng-click="open(note, state)">
+				<div>{{note.title}}</div><br>
+				<div>{{note.description}}</div><br>
+			</div>
+			<div ng-if="state.isEditable">
+				<input type="text" focus="false" ng-model="note.title" id="cardInputitle" placeholder="Title"/><br>
+				<contenteditable class="test" contenteditable="true" ng-model="note.description" focus="true"
+										placeholder="Take a note">
+				</contenteditable>
+			</div>
+			<span ng-repeat="label in note.labels" style="background-color: #e8e8e8; margin: 2px 2px">
+				<a ui-sref=".labels({id: label.labelName})">{{label.labelName}}</a>
+				<span ng-click="removeLabel(note, label)" class="glyphicon glyphicon-remove"></span>
+			</span>
+			<span ng-repeat="usr in note.user"><img ng-click="removeUser(note, usr.email)" ng-src="{{usr.profileImage}}" height="20px" width="20px"></span>
+			<div id="imageDiv">
+				<input type="text" id ="datetimepicker6" ng-click="datetimepicker()" ng-blur="tet(note)" ng-model="note.reminder">
+				<img alt="reminder" src="images/reminder.svg" ng-click="datetimepicker();note.reminder=reminder; saveNote()">
+				<img id="collaboratorOutput" alt="collaborator" ng-click="openCollaborator(note)" src="images/colaborator.svg">
+				<div class="btn-group dropup colorDiv" uib-dropdown>
+					<img id="dropdown" class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" src="images/change-color.svg" uib-dropdown-toggle>
+					<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+						<a ng-style="{'background-color':'color.color'}" ng-repeat="color in colors" role="menuitem"> 
+							<img id="icons" ng-src="{{color.path}}" ng-click="note.color =color.color; editNotes(note)">
+						</a>
+					</ul>
+				</div>
+				<input style="display: none" type="file" ng-file-select="onFileSelect($files)" class="updateImage" ng-model="note.image"> 
+				<img ng-click="uploadImage($event,note)"src="images/add-image.svg"> 
+				<img ng-if="!state.isArchived" src="images/archive.svg" ng-click="note.pinned = false;note.isArchived=true;editNotes(note)">
+				<img ng-if="state.isArchived" src="images/archive.svg" ng-click="note.isArchived=false;editNotes(note)">
+				<div class="btn-group" uib-dropdown>
+					<span id="dropdown" class="glyphicon glyphicon-option-vertical" uib-dropdown-toggle> </span>
+					<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+						<li role="menuitem" ng-if="!state.isTrashed" ng-click="note.trashed=true;editNotes(note)">
+							<a href="">Delete</a>
+						</li>
+						<li role="menuitem" ng-if="state.isTrashed" ng-click="deleteNote(note.notesId)">
+							<a href="">Delete forever</a>
+						</li>
+						<li role="menuitem" ng-if="state.isTrashed" ng-click="note.trashed=false;editNotes(note)">
+							<a href="">Restore</a>
+						</li>
+						<li role="menuitem" ng-if="!state.isTrashed" ng-click="makeCopy(note)">
+							<a href="">Make a copy</a>
+						</li>
+						<li role="menuitem" ng-if="!state.isTrashed" ng-click="openAddLabel(note)">
+							<a href="">Add level</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

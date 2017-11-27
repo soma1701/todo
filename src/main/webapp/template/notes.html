@@ -40,20 +40,13 @@
 							<button id="savebtn" type="button"  ng-click="saveNotes()">Done</button>
 						</div>
 					</div>
-					
-					<br>Pinned:<br>
-					<div class="CardContainer">
-						<div ng-repeat="note in notes | filter : {pinned : true,isArchived : false, trashed: false}"  
-							 ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
-							<note-details state="stateNote" note="note"></note-details>
-					 	</div>
+					<div>
+						<br>Pinned:<br>
+						<note-details state="statePinnedNote" notes="notes"></note-details>
 					</div>
-					<div><br><br>Others:<br>
-					<div class="CardContainer">
-						<div ng-repeat="note in notes | filter : {pinned : false,isArchived : false, trashed: false}"  
-							 ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
-							<note-details state="stateNote" note="note"></note-details>
-					 	</div>
+					<div>
+						<br>Others:<br>
+						<note-details state="stateUnPinnedNote" notes="notes"></note-details>
 					</div>
 				</div>
 			</div>
