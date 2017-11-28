@@ -8,7 +8,7 @@
 	</div>
 	<div id="reminderDiv">
 		<input type="text" id ="datetimepicker6"  ng-blur="tet(note)" ng-model="note.reminder"> 
-		<img id="reminder" src="images/remove.svg">
+		<img id="reminder" src="images/remove.svg" ng-click="note.reminder='';editNotes(note)">
 	</div>
 <!-- 	<input type="text" id ="datetimepicker6"  ng-blur="saveReminder(note)" ng-model="note.reminder"> -->
 	<div>

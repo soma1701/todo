@@ -66,10 +66,10 @@ toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, l
 		var data= {};
 		$scope.openSideBar = !$scope.openSideBar;
 		if($scope.openSideBar){
-			data.width = 250;
-			data.margin = 250;
+			data.width = 150;
+			data.margin = 0;
 			dataStore.toggleSideBar(data);
-			$scope.width = 250;
+			$scope.width = 150;
 		}else{
 			data.width = 0;
 			data.margin = 0;

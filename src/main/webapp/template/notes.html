@@ -1,7 +1,7 @@
 <div class="homecontainer" ng-controller="notesController">
 	<div>
 		<div>
-			<div id="main" style="margin-left:{{margin}}px">
+			<div id="main" style="margin-left:{{margin}}px; border:1px solid black">
 				<div class="container">
 					<div class="CardContainer">
 						<div id="takeNote" ng-click="tabClicked()" ng-show="note.description == '' && !showNewNote">
@@ -19,7 +19,7 @@
 							<button id="savebtn" type="button"  ng-click="saveNotes()">Done</button>
 						</div>
 					</div>
-					<div class="col-md-12">
+					<div class="col-md-4 col-sm-3 col-lg-12">
 						<br>Pinned:<br>
 					</div>
 						<note-details state="statePinnedNote" notes="notes"></note-details>
