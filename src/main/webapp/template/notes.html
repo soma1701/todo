@@ -13,41 +13,20 @@
 							<input type="text" focus="false" ng-model="note.title" id="cardInputitle" placeholder="Title"/><br>
 								<contenteditable class="test" contenteditable="true" ng-model="note.description" focus="true" id="cardInputDescription" 
 								placeholder="Take a note"></contenteditable>
-							<div id="image">
-								<img id="reminderInput" alt="reminder" src="images/reminder.svg">
-								<img id="collaboratorInput" alt="collaborator" ng-click="openCollaborator()" src="images/colaborator.svg">
-								<div class="btn-group dropup colorDiv" uib-dropdown>
-									<img id ="dropdown " class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" 
-										src="images/change-color.svg"  uib-dropdown-toggle>
-										<ul class="dropdown-menu colordiv" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-											<a ng-repeat="color in colors"  role="menuitem">
-											<img id="icons" ng-src="{{color.path}}" ng-click="note.color =color.color; saveNotes()"></a>
-										</ul>
-								</div>
-								<input style="display:none" type="file" ng-file-select="onFileSelect($files)" class="updateImage"  
-									ng-model="note.imageSrc">
-								<img ng-click="updatePinup(note)" ng-src="{{note.imageSrc}}"/>
-								<img id="addImageInput" alt="addImage" ng-click="uploadImage($event,note)" src="images/add-image.svg">
-								<img id="archiveInput" alt="archive" src="images/archive.svg" ng-click="note.isArchived=true;saveNotes()">
-								<div class="btn-group" uib-dropdown>
-									<span id ="dropdown" class="glyphicon glyphicon-option-vertical" uib-dropdown-toggle> </span>
-									<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-										<li role="menuitem"><a href="">Add Label</a></li>
-										<li role="menuitem"><a href="">Show checkboxes</a></li>
-									</ul>
-								</div>
-							</div>
+							<div>
+								<action-bar state="state" note="note"></action-bar>
+							</div>	
 							<button id="savebtn" type="button"  ng-click="saveNotes()">Done</button>
 						</div>
 					</div>
-					<div>
+					<div class="col-md-12">
 						<br>Pinned:<br>
+					</div>
 						<note-details state="statePinnedNote" notes="notes"></note-details>
-					</div>
-					<div>
+					<div  class="col-md-12">
 						<br>Others:<br>
-						<note-details state="stateUnPinnedNote" notes="notes"></note-details>
 					</div>
+						<note-details state="stateUnPinnedNote" notes="notes"></note-details>
 				</div>
 			</div>
 		</div>

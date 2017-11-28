@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="directive/side-bar.js"></script>
 	<script type="text/javascript" src="directive/fileupload-directive.js"></script>
 	<script type="text/javascript" src="directive/note-details-directive.js"></script>
+	<script type="text/javascript" src="directive/action-bar-directive.js"></script>
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
 	<script type="text/javascript" src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
@@ -29,6 +30,7 @@
 	<script type="text/javascript" src="services/noteService.js"></script>
 	<script type="text/javascript" src="controller/noteController.js"></script>
 	<script type="text/javascript" src="controller/note-details-controller.js"></script>
+	<script type="text/javascript" src="controller/action-bar-controller.js"></script>
 	<script type="text/javascript" src="controller/archive-controller.js"></script>
 	<script type="text/javascript" src="controller/labels-controller.js"></script>
 	<script type="text/javascript" src="controller/trash-controller.js"></script>
