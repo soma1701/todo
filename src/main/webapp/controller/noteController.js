@@ -2,7 +2,7 @@ toDoApp.controller('notesController', function($scope, fileReader,toastr,notesSe
 		$filter,labelService,$interval) {
 	
 	getNotes();
-	$scope.view = 'grid';
+	$scope.view = '';
 	$scope.statePinnedNote ={
 			isPinned:true,
 			isArchived:false,
@@ -22,6 +22,7 @@ toDoApp.controller('notesController', function($scope, fileReader,toastr,notesSe
 	});
 	$scope.$on('view-change', function(event, data){
         $scope.view = dataStore.getView();
+        localStorage.setItem("view",$scope.view);
 	});
 	$scope.$on('searchText-change', function(event, data){
         $scope.searchText = dataStore.getSearchText();
@@ -30,7 +31,7 @@ toDoApp.controller('notesController', function($scope, fileReader,toastr,notesSe
 		var httpGetNotes = notesService.getNotes('ALL');
 		httpGetNotes.then(function(response) {
 			$scope.notes = response.data;
-			$interval(function(){
+			/*$interval(function(){
 				var i=0;
 				for(i;i<$scope.notes.length;i++){
 				if($scope.notes[i].reminderStatus!='false'){
@@ -43,7 +44,7 @@ toDoApp.controller('notesController', function($scope, fileReader,toastr,notesSe
 				}
 				}
 				}
-				},9000);
+				},9000);*/
 		}, function(response) {
 			if(response.status=='400')
 				$location.path('/loginPage')

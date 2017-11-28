@@ -2,15 +2,18 @@
 	<div class="modal-header"><h1>Collborators</h1></div>
 	<div class="modal-body" >
 		<div ng-repeat="usr in note.user">
-			<div class="col-md-6">
-				<img ng-src="{{usr.profileImage}}" height="50px" width="50px"></img></div>
-			<div class="col-md-6">
-				<span>{{usr.firstName}} {{usr.lastName}}</span>
-				<span>{{usr.email}}</span>
-				<span ng-click="removeUser(note, usr.email)" class="glyphicon glyphicon-remove"></span>
+			<div class="col-sm-12">
+				<div class="col-sm-6">
+					<img class="img-circle" alt="{{usr.firstName.charAt(0)}}" ng-src="{{usr.profileImage}}" height="50px" width="50px"></img>
+				</div>
+				<div class="col-sm-6">
+					<span>{{usr.firstName}} {{usr.lastName}}</span>
+					<span>{{usr.email}}</span>
+					<span ng-click="removeUser(note, usr.email)" class="glyphicon glyphicon-remove"></span>
+				</div>
 			</div>
 		</div>
-		<input type="text" ng-model="$parent.collaboratorEmail">
+		<input class="input" type="text" ng-model="$parent.collaboratorEmail">
 	</div>
 	<div class="modal-footer">
 		<button type="btn" ng-click="closeCollaborator()">Cancel</button>

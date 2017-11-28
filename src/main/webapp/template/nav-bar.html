@@ -17,10 +17,10 @@
           <div class="btn-group" uib-dropdown>
 			<span class="glyphicon glyphicon-user" id ="user" uib-dropdown-toggle></span>
 			<ul class="dropdown-menu userDropdown" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-				<div class="col-sm-6"><img class="image col-sm-6" ng-src="{{$parent.user.image}}"> 
+				<div class="col-sm-6"><img class="image" ng-src="{{$parent.user.image}}"></div>
+					<div class="col-sm-6 user">{{$parent.user.firstName}} {{$parent.user.lastName}}</div>
 					<div class="col-sm-6" id="userEmail">{{$parent.user.email}}</div>
-				</div>
-				<hr>
+<!-- 				</div> -->
 				<div id="logout"><button ng-click="logout()">logout</button></div>
 			</ul>
 		</div>

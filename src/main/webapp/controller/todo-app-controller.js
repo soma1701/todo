@@ -82,9 +82,11 @@ toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, l
 		if($scope.view === "grid"){
 			$scope.view = "list";
 			dataStore.setView("list");
+//			localStorage.setItem("list",$scope.view);
 		}else{
 			$scope.view = "grid";
 			dataStore.setView("grid");
+//			localStorage.setItem("grid",$scope.view);
 		}
 	};
 	$scope.req = {

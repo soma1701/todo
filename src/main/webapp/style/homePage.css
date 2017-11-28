@@ -2,10 +2,14 @@
   	margin:0;
   }
   #logout{
-  	  position:absolute;
+  	 position:absolute;
     transition: .5s ease;
     top: 50%;
     left: 50%;
+  }
+  .input{
+  	border:none;
+  	outline:none;
   }
  body{
  background-color: #e8e8e8;
@@ -253,16 +257,40 @@ h1, .h1 {
 		    width: 327px;
 		}
 		.image{
-/* 			height:100px; */
-/* 			width:140px; */
+			height:100px;
+			width:140px;
 			background-repeat: no-repeat;
 		    background-position: 50%;
 		    border-radius: 50%;
-		    width: 100px;
-		    height: 100px;
+		    width: 60px;
+		    height: 60px;
+		    color:grey;
+			background-size: 96px 96px;
+		    /* border: none;
+		    vertical-align: top;
+		    height: 96px;
+		    width: 96px */
+		}
+		.user{
+		    display: inline-block;
+   			vertical-align: top;
+   			font-size: 18px;
+ 			margin-left: -81px;
+ 			font-style: bold;
+   			
+		}
+		.name{
+		    font-weight: bold;
+   			margin: -4px 0 1px 0;
+		}
+		.email{
+/* 		    overflow: hidden; */
+		    color: #666;
+/* 		    margin-left:10px; */
 		}
 		#userEmail{
 			display:inline-flex;
+	     	margin-left: -81px;
 		}
 		
 /* #image{ */

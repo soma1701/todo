@@ -182,8 +182,5 @@ public class Notes {
 	public void setReminder(Date reminder) {
 		this.reminder = reminder;
 	}
-	
-	
-	
 
 }

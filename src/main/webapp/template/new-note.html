@@ -4,9 +4,10 @@
 	</div>
 	<div class="modal-body">
 		<img ng-src="{{note.image}}" height="50px" width="50px">
-		<input class="test" type="text"  style="border:none;width:100%" focus="false" ng-model="note.title" id="title"/><br>
+		<input class="input" type="text"  style="border:none;width:100%;background-color:{{note.color}}" focus="false" 
+			ng-model="note.title" id="title"/>
 		<contenteditable class="test" contenteditable="true" ng-model="note.description" focus="true" id="cardInputDescription" 
-		placeholder="Take a note"></contenteditable>
+			placeholder="Take a note"></contenteditable>
 		<div class="modal-footer">
 			<div style="text-align: left">
 				<action-bar state="state" note="note"></action-bar>

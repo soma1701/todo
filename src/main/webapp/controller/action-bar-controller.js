@@ -1,6 +1,6 @@
 toDoApp.controller('actionBarController',function(notesService, $scope, $uibModal, $location, labelService, dataStore){
 	
-//	var modalInstance;
+	var modalInstance;
 	var collaboratorPopup;
 	var path = $location.path();
 	var labelName = path.substr(path.lastIndexOf("/")+1);
@@ -74,19 +74,14 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
 				console.log(response);
 		});
 	}
-	/*$scope.open = function (note, state) {
-		$scope.testState = state;
-		$scope.note = note;
-		$scope.testState.isEditable = true;
-		modalInstance = $uibModal.open({
-			templateUrl: 'template/new-note.html',
-			scope : $scope
-		});
-		modalInstance.result.catch(function(){
-			notesService.editNotes($scope.note);
-			$scope.testState.isEditable = false;
-		});
-	}*/
+	/*
+	 * $scope.open = function (note, state) { $scope.testState = state;
+	 * $scope.note = note; $scope.testState.isEditable = true; modalInstance =
+	 * $uibModal.open({ templateUrl: 'template/new-note.html', scope : $scope
+	 * }); modalInstance.result.catch(function(){
+	 * notesService.editNotes($scope.note); $scope.testState.isEditable = false;
+	 * }); }
+	 */
 	$scope.openCollaborator = function(note){
 		$scope.note = note;
 		collaboratorPopup = $uibModal.open({
@@ -96,7 +91,7 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
 	};
 	$scope.shareNote = function(note){
 		var shareNote = notesService.shareNote(note, $scope.collaboratorEmail);
-//		$scope.closeCollaborator;
+// $scope.closeCollaborator;
 	}
 	$scope.closeCollaborator = function(){
 		collaboratorPopup.close('resetModel');
@@ -123,6 +118,32 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
 			notesService.editNotes($scope.note);
 		});
 	}
+	$scope.fbShare = function(note) {
+		FB.init({
+			appId : '129892814380911',
+			status : true,
+			cookie : true,
+			xfbml : true,
+			version : 'v2.4'
+		});
+
+		FB.ui({
+			method : 'share_open_graph',
+			action_type : 'og.likes',
+			action_properties : JSON.stringify({
+				object : {
+					'og:title' : note.title,
+					'og:description' :note.description
+				}
+			})
+		}, function(response) {
+			if (response && !response.error_message) {
+				alert('Posting completed.');
+			} else {
+				alert('Error while posting.');
+			}
+		});
+	};
 	$scope.uploadImage = function(env,note){
 		var obj = $(env.target).parent().find(".updateImage");
 		obj.trigger("click");
@@ -145,10 +166,11 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
     	console.log(reminder);
     }
     $scope.tet = function(note){
-    	var reminder = $('#datetimepicker6').val();
+    	var reminder = new Date($('#datetimepicker6').val());
     	note.reminder = reminder;
     	notesService.editNotes(note);
     }
+    
     $scope.$on("fileProgress", function(e, progress) {
         $scope.progress = progress.loaded / progress.total;
 	});

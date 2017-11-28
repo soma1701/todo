@@ -10,7 +10,7 @@
 				<div>{{note.description}}</div><br>
 			</div>
 			<div ng-if="state.isEditable">
-				<input type="text" focus="false" ng-model="note.title" id="cardInputitle" placeholder="Title"/><br>
+				<input class="input" type="text" focus="false" ng-model="note.title" id="cardInputitle" placeholder="Title"/><br>
 				<contenteditable class="test" contenteditable="true" ng-model="note.description" focus="true"
 										placeholder="Take a note">
 				</contenteditable>
