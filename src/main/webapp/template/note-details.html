@@ -1,6 +1,6 @@
-<div class="CardContainer" ng-controller="noteDetailsController as nDC">
+<div class="CardContainer col-md-12" ng-controller="noteDetailsController as nDC">
 	<div  ng-repeat="note in notes | filter:searchText | filter : {pinned : state.isPinned,isArchived : state.isArchived, trashed: state.isTrashed}"  
-							 ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
+							 ng-class="{'col-sm-4': view === 'grid', 'col-sm-12': view === 'list'}">
 		<div class="showCards" style="background-color:{{note.color}}" >
 			<img ng-if="!state.isTrashed && !state.isArchived" ng-click="note.pinned=!note.pinned;editNotes(note);"src="images/pin.svg">
 			<img ng-if="state.isArchived" ng-click="note.pinned=true;note.isArchived= false;editNotes(note);"src="images/pin.svg"/>

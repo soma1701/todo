@@ -1,6 +1,10 @@
 toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibModal, $location, labelService, dataStore){
+	if(localStorage.getItem("view")==null){
+		$scope.view='grid';
+	}else{
+		$scope.view = localStorage.getItem("view");
+	}
 	
-	$scope.view = 'grid';
 	/*var modalInstance;
 	var collaboratorPopup;
 	var path = $location.path();

@@ -400,15 +400,15 @@ body {
 }
 
 .image {
-	height: 100px;
-	width: 140px;
+/* 	height: 100px; */
+/* 	width: 140px; */
 	background-repeat: no-repeat;
-	background-position: 50%;
-	border-radius: 50%;
-	width: 60px;
-	height: 60px;
+/* 	background-position: 50%; */
+/* 	border-radius: 50%; */
+	width: 32px;
+	height:32px;
 	color: grey;
-	background-size: 96px 96px;
+/* 	background-size: 96px 96px; */
 }
 
 .user {

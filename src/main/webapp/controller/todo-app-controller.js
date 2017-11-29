@@ -1,13 +1,16 @@
 toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, labelService,homeService, $rootScope,$location) {
-	
-	
 	$scope.searchText;
 	$scope.doSearch = function(){
 		dataStore.searchData($scope.searchText);
 	}
 	$scope.$watch('searchText', $scope.doSearch);
 	$scope.isGridView = true;
-	$scope.view = "grid";
+	if(localStorage.getItem("view")==null){
+		$scope.view='grid';
+	}else{
+		$scope.view = localStorage.getItem("view");
+	}
+	
 //	if(localStorage.getItem("view")=="list"){
 //		$scope.view = "list";
 //	}else{
