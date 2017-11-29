@@ -162,12 +162,12 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
 		});
 	}
 	$scope.datetimepicker=function(){
-    	$('#datetimepicker6').datetimepicker();
-    	var reminder = $('#datetimepicker6').val();
+    	$('#remider').datetimepicker();
+    	var reminder = $('#remider').val();
     	console.log(reminder);
     }
     $scope.tet = function(note){
-    	var reminder = new Date($('#datetimepicker6').val());
+    	var reminder = $('#remider').val();
     	note.reminder = reminder;
     	notesService.editNotes(note);
     }

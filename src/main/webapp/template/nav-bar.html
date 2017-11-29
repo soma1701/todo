@@ -1,30 +1,29 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:{{$parent.background}};border-color:{{$parent.background}};">
-  <div class="col-md-12 container-fluid">
-    <div class="col-md-2 navbar-header">
-        <span class="navbar-brand" ng-click="callback()" style="font-family: Roboto,RobotoDraft,Arial,sans-serif;color:{{user.color}};font-weight:bold">&#9776;</span>
-      <a class="navbar-brand" href="" style="font-weight:bold;font-family: Roboto,RobotoDraft,Arial,sans-serif;color:{{user.color}};">TODO <span style="font-weight: normal">APP</span></a>
-    </div>
-    <div class="col-md-6 navbar-form" id="navBarSearchForm">
-            <input type="text" ng-model="$parent.searchText" class="form-control" placeholder="Search">
-    </div>
-     <div class="col-md-4 navbar-form" style="float: right">
-         <a href="">
-          <span class="glyphicon glyphicon-repeat" style="margin: 9px 9px 9px 9px;font-size: 25px;color: white"></span>
-        </a>
-          <span class="glyphicon glyphicon-th" id="grid" ng-click="callback1()" ng-show="user.view === 'grid'"></span>
-          <span class="glyphicon glyphicon-th-list" id="list"  ng-click="callback1()" ng-show="user.view === 'list'"></span>
-        <a href="">
-          <div class="btn-group" uib-dropdown>
-			<span class="glyphicon glyphicon-user" id ="user" uib-dropdown-toggle></span>
-			<ul class="dropdown-menu userDropdown" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-				<div class="col-sm-6"><img class="image" ng-src="{{$parent.user.image}}"></div>
-					<div class="col-sm-6 user">{{$parent.user.firstName}} {{$parent.user.lastName}}</div>
-					<div class="col-sm-6" id="userEmail">{{$parent.user.email}}</div>
-<!-- 				</div> -->
-				<div id="logout"><button ng-click="logout()">logout</button></div>
-			</ul>
+	 <div class="col-md-12 container-fluid">
+	    <div class="col-md-2 navbar-header">
+	        <span class="navbar-brand" ng-click="callback()" style="font-family: Roboto,RobotoDraft,Arial,sans-serif;color:{{user.color}};font-weight:bold">&#9776;</span>
+	      <a class="navbar-brand" href="" style="font-weight:bold;font-family: Roboto,RobotoDraft,Arial,sans-serif;color:{{user.color}};">TODO <span style="font-weight: normal">APP</span></a>
+	    </div>
+	    <div class="col-md-6 navbar-form" id="navBarSearchForm">
+	            <input type="text" ng-model="$parent.searchText" class="form-control" placeholder="Search">
+	    </div>
+	     <div class="col-md-4 navbar-form" style="float: right">
+	         <a href="">
+	          <span class="glyphicon glyphicon-repeat" style="margin: 9px 9px 9px 9px;font-size: 25px;color: white"></span>
+	        </a>
+	          <span class="glyphicon glyphicon-th" id="grid" ng-click="callback1()" ng-show="user.view === 'grid'"></span>
+	          <span class="glyphicon glyphicon-th-list" id="list"  ng-click="callback1()" ng-show="user.view === 'list'"></span>
+	        <a href="">
+	          <div class="btn-group" uib-dropdown>
+				<img class="image" ng-src="{{$parent.user.image}}" uib-dropdown-toggle>
+					<ul class="dropdown-menu userDropdown" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+						<div class="col-sm-6"><img class="image" alt="$parent.user.firstName.charAt(0)" ng-src="{{$parent.user.image}}"></div>
+							<div class="col-sm-6 user">{{$parent.user.firstName}} {{$parent.user.lastName}}</div>
+							<div class="col-sm-6" id="userEmail">{{$parent.user.email}}</div>
+						<div id="logout"><button ng-click="logout()">logout</button></div>
+					</ul>
+			</div>
+		 </a>
 		</div>
-        </a>
-     </div>
-  </div>
+	 </div>
 </nav>

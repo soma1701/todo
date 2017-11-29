@@ -1,38 +1,3 @@
-<<<<<<< Updated upstream
-  #navbar{
-  	margin:0;
-  }
-  #logout{
-  	 position:absolute;
-    transition: .5s ease;
-    top: 50%;
-    left: 50%;
-  }
-  .input{
-  	border:none;
-  	outline:none;
-  }
- body{
- background-color: #e8e8e8;
- background-position: center;
-  background-repeat: no-repeat;
-    background-attachment: fixed;
- }
- .homecontainer{    
- 	background-color: #e8e8e8;
- 	height: 100%;
- 	width:100%;
- 	margin-top:75px;
-}
-.mainContainer{
-	width:100%;height:100%;
-}
-.CardContainer{
-	margin:0 auto;width: 700px;text-align:center;padding:7px; 
-}
-.CardContainer:hover .imageDiv{
-	visibility: visible;
-=======
 #navbar {
 	margin: 0;
 }
@@ -47,18 +12,22 @@
 .input {
 	border: none;
 	outline: none;
->>>>>>> Stashed changes
 }
 
 body {
 	background-color: #e8e8e8;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 
 .homecontainer {
 	background-color: #e8e8e8;
 	height: 100%;
 	width: 100%;
-	margin: 100px;
+	margin-top: 75px;
+	width: 75%;
+	margin: 0 auto;
 }
 
 .mainContainer {
@@ -77,6 +46,36 @@ body {
 	visibility: visible;
 }
 
+body {
+	background-color: #e8e8e8;
+}
+
+.main {
+	background-color: #e8e8e8;
+	height: 100%;
+	width: 100%;
+	margin-top: 75px;
+	width: 75%;
+	margin: 0 auto;
+}
+
+.mainContainer {
+	width: 100%;
+	height: 100%;
+}
+
+.CardContainer {
+	margin: 0 auto;
+	width: 700px;
+	text-align: center;
+	padding: 7px;
+	margin-top:75px;
+}
+
+.CardContainer:hover .imageDiv {
+	visibility: visible;
+}
+
 .imageDiv {
 	visibility: hidden;
 }
@@ -89,6 +88,7 @@ body {
 	text-align: left;
 	margin: 10px 10px 10px 10px;
 	color: grey;
+	margin-top: 75px;
 }
 
 .cardInput {
@@ -96,7 +96,7 @@ body {
 	width: 80%;
 	text-align: left;
 	display: inline-block;
-	margin: 10px 10px 10px 10px;
+	margin-top: 75px
 	padding: 7px;
 }
 
@@ -311,96 +311,104 @@ h1, .h1 {
 }
 
 .test[placeholder]:empty:before {
-    content: attr(placeholder);
-    color: #a6a6a6;
-    white-space:pre-wrap;
+	content: attr(placeholder);
+	color: #a6a6a6;
+	white-space: pre-wrap;
 }
-	#navBarSearchForm input[type=text]{width:550px !important;}
-		body {
-		    font-family: "Lato", sans-serif;
-		}
-		
-		.sidenav {
-		    height: 100%;
-		    width: 0;
- 		    position: fixed; 
-		    z-index: 1;
-		    top: 0;
-		    left: 0;
-		    background-color: #111;
-		    overflow-x: hidden;
-		    transition: 0.5s;
-		    padding-top: 60px;
-		    margin-top:60px;
-		}
-		
-		.sidenav a {
-		    padding: 8px 8px 8px 32px;
-		    text-decoration: none;
-		    font-size: 25px;
-		    color: #818181;
-		    display: block;
-		    transition: 0.3s;
-		}
-		
-		.sidenav span {
-		    padding: 8px 8px 8px 32px;
-		    text-decoration: none;
-		    font-size: 25px;
-		    color: #818181;
-/* 		    display: block; */
-		    transition: 0.3s;
-		}
-		
-		.sidenav a:hover {
-		    color: #f1f1f1;
-		}
-		
-		.sidenav .closebtn {
-		    position: absolute;
-		    top: 0;
-		    right: 25px;
-		    font-size: 36px;
-		    margin-left: 50px;
-		}
-		
-		#main {
-/* 		    transition: margin-left .5s; */
-/* 		    padding: 0px; */
-		}
-		
-		@media screen and (max-height: 450px) {
-		  .sidenav {padding-top: 15px;}
-		  .sidenav a {font-size: 18px;}
-		}
-		#grid{
-			margin: 9px 9px 9px 9px;font-size: 25px;
-		}
-		#list{
-			margin: 9px 9px 9px 9px;font-size: 25px;
-		}
-		#user{
-			margin: 9px 9px 9px 18px;font-size: 25px;float:right;
-		}
-		.userDropdown{
-		   margin: 18px 0 0 -245px;
-		    height: 186px;
-		    width: 327px;
-		}
-		.image{
-			height:100px;
-			width:140px;
-			background-repeat: no-repeat;
-		    background-position: 50%;
-		    border-radius: 50%;
-		    width: 60px;
-		    height: 60px;
-		    color:grey;
-			background-size: 96px 96px;
-		    /* border: none;
-		    vertical-align: top;
-		    height: 96px;
-		    width: 96px */
+
+#navBarSearchForm input[type=text] {
+	width: 550px !important;
+}
+
+body {
+	font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #111;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 60px;
+	margin-top: 60px;
+}
+
+.sidenav a {
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #818181;
+	display: block;
+	transition: 0.3s;
+}
+
+.sidenav span {
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #818181;
+	/* 		    display: block; */
+	transition: 0.3s;
+}
+
+.sidenav a:hover {
+	color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+	.sidenav {
+		padding-top: 15px;
+	}
+	.sidenav a {
+		font-size: 18px;
+	}
+}
+
+#grid {
+	margin: 9px 9px 9px 9px;
+	font-size: 25px;
+}
+
+#list {
+	margin: 9px 9px 9px 9px;
+	font-size: 25px;
+}
+
+#user {
+	margin: 9px 9px 9px 18px;
+	font-size: 25px;
+	float: right;
+}
+
+.userDropdown {
+	margin: 18px 0 0 -245px;
+	height: 186px;
+	width: 327px;
+}
+
+.image {
+	height: 100px;
+	width: 140px;
+	background-repeat: no-repeat;
+	background-position: 50%;
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	color: grey;
+	background-size: 96px 96px;
 }
 
 .user {
@@ -417,24 +425,26 @@ h1, .h1 {
 }
 
 .email {
-	/* 		    overflow: hidden; */
 	color: #666;
-	/* 		    margin-left:10px; */
 }
 
 #userEmail {
 	display: inline-flex;
 	margin-left: -81px;
 }
-.action-bar-hide{
+
+.action-bar-hide {
 	opacity: 0;
 }
-.action-bar-show{
+
+.action-bar-show {
 	opacity: 0.5;
 }
-.action-button-hover{
+
+.action-button-hover {
 	opacity: 1;
 }
-.action-btn-leave{
+
+.action-btn-leave {
 	opacity: 0;
 }

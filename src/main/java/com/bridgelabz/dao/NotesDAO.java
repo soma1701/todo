@@ -25,6 +25,8 @@ public interface NotesDAO {
 	
 	List<Notes> getLabelNotes(String label, User user);
 	
+	void deleteTrashedNotes();
+	
 //	boolean deleteReminderById(int reminderNoteId);
 
 }

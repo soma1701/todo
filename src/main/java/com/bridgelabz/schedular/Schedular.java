@@ -1,19 +1,16 @@
 package com.bridgelabz.schedular;
 
-import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.bridgelabz.services.NotesService;
 
 public class Schedular {
-	
+
+	@Autowired
 	NotesService noteService;
-	
-	int noteId;
-	@Scheduled(fixedDelay = 1000)
-	public void removeNoteFromTrash() {
-		
-		noteService.deleteById(noteId);
-		System.out.println("note deleted:-");
-		
+
+	public void deleteTrashedNotes() {
+		noteService.deleteTrashedNotes();
 	}
 
 }

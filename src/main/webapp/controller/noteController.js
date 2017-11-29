@@ -2,7 +2,7 @@ toDoApp.controller('notesController', function($scope, fileReader,toastr,notesSe
 		$filter,labelService,$interval) {
 	
 	getNotes();
-	$scope.view = '';
+//	$scope.view = '';
 	$scope.statePinnedNote ={
 			isPinned:true,
 			isArchived:false,

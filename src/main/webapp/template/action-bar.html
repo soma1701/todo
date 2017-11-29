@@ -7,12 +7,12 @@
 		<span ng-repeat="usr in note.user"><img ng-click="removeUser(note, usr.email)" ng-src="{{usr.profileImage}}" height="20px" width="20px"></span>
 	</div>
 	<div id="reminderDiv">
-		<input type="text" id ="datetimepicker6"  ng-blur="tet(note)" ng-model="note.reminder"> 
-		<img id="reminder" src="images/remove.svg" ng-click="note.reminder='';editNotes(note)">
+<!-- 		<input type="text" id ="datetimepicker6"  ng-blur="tet(note)" ng-model="note.reminder">  -->
+<!-- 		<img id="reminder" src="images/remove.svg" ng-click="note.reminder='';editNotes(note)"> -->
 	</div>
-<!-- 	<input type="text" id ="datetimepicker6"  ng-blur="saveReminder(note)" ng-model="note.reminder"> -->
-	<div >
-		<img src="images/reminder.svg" ng-click="datetimepicker(); note.reminder=reminder; editNotes(note)" ng-mouseenter="hovering=true" ng-mouseleave="hovering=false" ng-class="{'action-bar-show': hovering === true, 'action-bar-hide': hovering === false}">
+	<input class="reminder" id="remider" type="text" ng-blur="tet(note)" ng-model="note.reminder">
+	<div>
+		<img class="reminder" src="images/reminder.svg" ng-click="datetimepicker()" ng-mouseenter="hovering=true" ng-mouseleave="hovering=false" ng-class="{'action-bar-show': hovering === true, 'action-bar-hide': hovering === false}">
 		<img id="collaboratorOutput" alt="collaborator" ng-click="openCollaborator(note)" src="images/colaborator.svg" ng-mouseenter="hovering=true" ng-mouseleave="hovering=false" ng-class="{'action-bar-show': hovering === true, 'action-bar-hide': hovering === false}">
 		<div class="btn-group dropup colorDiv" uib-dropdown>
 			<img id="dropdown" class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" src="images/change-color.svg" uib-dropdown-toggle ng-mouseenter="hovering=true" ng-mouseleave="hovering=false" ng-class="{'action-bar-show': hovering === true, 'action-bar-hide': hovering === false}">

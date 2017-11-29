@@ -65,6 +65,12 @@ public class NotesServiceImpl implements NotesService{
 		return notes;
 	}
 
+	@Override
+	public void deleteTrashedNotes() {
+//		System.out.println("checking schedular is working or not inside service method:-");
+		notesDao.deleteTrashedNotes();
+	}
+
 	/*@Override
 	public boolean deleteReminderById(int reminderNoteId) {
 		return notesDao.deleteReminderById(reminderNoteId);

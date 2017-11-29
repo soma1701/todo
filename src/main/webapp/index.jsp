@@ -50,20 +50,25 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 	
 	<script type="text/javascript" src="controller/googleController.js"></script>
 	<script type="text/javascript" src="controller/fbController.js"></script>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+     </script>
 	
 </head>
 <body ng-app="toDoApp">
 	 <div ui-view></div>
+                <!-- <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div> -->
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 </html>

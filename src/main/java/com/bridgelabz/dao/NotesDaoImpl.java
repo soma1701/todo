@@ -1,5 +1,6 @@
 package com.bridgelabz.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -118,9 +119,6 @@ public class NotesDaoImpl implements NotesDAO {
 	public List<Notes> getArchivedNotes(User user) {
 		session = sessionFactory.openSession();
 		transaction = (Transaction) session.beginTransaction();
-		/*Criteria criteria = session.createCriteria(Notes.class);
-		criteria.add(Restrictions.eqOrIsNull("user", user));
-		criteria.add(Restrictions.eq("isArchived", true));*/
 		Query query = session.createSQLQuery("select {note.*}\n" + 
 				"from user as user\n" + 
 				"join note_user as jt on (user.id = jt.id)\n" + 
@@ -171,21 +169,22 @@ public class NotesDaoImpl implements NotesDAO {
 		return notes;
 	}
 
-	/*@Override
-	public boolean deleteReminderById(int reminderNoteId) {
+	
+	public void deleteTrashedNotes() {
 		session = sessionFactory.openSession();
-		transaction = (Transaction)session.beginTransaction();
-		Criteria criteria = session.createCriteria(Notes.class);
-		criteria.add(Restrictions.eq("reminderNoteId", reminderNoteId));
-		Notes notes = (Notes) criteria.uniqueResult();
 		try {
-			session.delete(notes);
+			transaction = session.beginTransaction();
+			String hql = "delete from Notes where isTrashed = :isTrashed AND createdTime < :createdTime";
+			Query query = session.createQuery(hql);
+			Date date = new Date();
+			date = new Date(date.getTime() - 60000);
+			query.setParameter("isTrashed", true);
+			query.setParameter("createdTime", date);
+			query.executeUpdate();
 			transaction.commit();
-			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return true;
-	}*/
+	}
 
 }

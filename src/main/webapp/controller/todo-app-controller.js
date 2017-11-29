@@ -8,6 +8,11 @@ toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, l
 	$scope.$watch('searchText', $scope.doSearch);
 	$scope.isGridView = true;
 	$scope.view = "grid";
+//	if(localStorage.getItem("view")=="list"){
+//		$scope.view = "list";
+//	}else{
+//		$scope.view = "grid";
+//	}
 	$scope.width = 0;
 	$scope.editLabelFocus = false;
 	$scope.openSideBar = false;
@@ -66,10 +71,10 @@ toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, l
 		var data= {};
 		$scope.openSideBar = !$scope.openSideBar;
 		if($scope.openSideBar){
-			data.width = 150;
+			data.width = 167;
 			data.margin = 0;
 			dataStore.toggleSideBar(data);
-			$scope.width = 150;
+			$scope.width = 167;
 		}else{
 			data.width = 0;
 			data.margin = 0;
@@ -82,13 +87,21 @@ toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, l
 		if($scope.view === "grid"){
 			$scope.view = "list";
 			dataStore.setView("list");
-//			localStorage.setItem("list",$scope.view);
 		}else{
 			$scope.view = "grid";
 			dataStore.setView("grid");
-//			localStorage.setItem("grid",$scope.view);
 		}
 	};
+	
+	/*$scope.switchView = function(){
+		if(localStorage.getItem("view") === "grid"){
+			$scope.view = "list";
+			dataStore.setView("list");
+		}else{
+			$scope.view = "grid";
+			dataStore.setView("grid");
+		}
+	};*/
 	$scope.req = {
 				background:"#fb0",
 				bordercolor:"#fb0",

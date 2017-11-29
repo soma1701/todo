@@ -62,7 +62,16 @@ toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibMo
 		"path":'images/orange.png'
 	},
 	];*/
-	
+	$scope.datetimepicker=function(){
+    	$('.reminder').datetimepicker();
+    	var reminder = $('.reminder').val();
+    	console.log(reminder);
+    }
+    $scope.tet = function(note){
+    	var reminder = $('.reminder').val();
+    	note.reminder = reminder;
+    	notesService.editNotes(note);
+    }
 	$scope.editNotes = function(note){
 		// note.image=note.imageSrc;
 		console.log("note :::"+note);
