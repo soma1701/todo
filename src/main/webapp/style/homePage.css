@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
   #navbar{
   	margin:0;
   }
@@ -31,157 +32,284 @@
 }
 .CardContainer:hover .imageDiv{
 	visibility: visible;
+=======
+#navbar {
+	margin: 0;
 }
-.imageDiv{
+
+#logout {
+	position: absolute;
+	transition: .5s ease;
+	top: 50%;
+	left: 50%;
+}
+
+.input {
+	border: none;
+	outline: none;
+>>>>>>> Stashed changes
+}
+
+body {
+	background-color: #e8e8e8;
+}
+
+.homecontainer {
+	background-color: #e8e8e8;
+	height: 100%;
+	width: 100%;
+	margin: 100px;
+}
+
+.mainContainer {
+	width: 100%;
+	height: 100%;
+}
+
+.CardContainer {
+	margin: 0 auto;
+	width: 700px;
+	text-align: center;
+	padding: 7px;
+}
+
+.CardContainer:hover .imageDiv {
+	visibility: visible;
+}
+
+.imageDiv {
 	visibility: hidden;
 }
-#takeNote{
-	background-color:white;
+
+#takeNote {
+	background-color: white;
 	width: 100%;
 	height: 40px;
-	display: inline-block; 
-	text-align:left;
-	margin:10px 10px 10px 10px;
-	color:grey;
+	display: inline-block;
+	text-align: left;
+	margin: 10px 10px 10px 10px;
+	color: grey;
 }
-.cardInput{
-	background-color:white;width: 80%;text-align:left;display: inline-block; margin:10px 10px 10px 10px;padding: 7px;
+
+.cardInput {
+	background-color: white;
+	width: 80%;
+	text-align: left;
+	display: inline-block;
+	margin: 10px 10px 10px 10px;
+	padding: 7px;
 }
-#pinInput{
-	height:22px;margin:0;width:22px;float:right;
+
+#pinInput {
+	height: 22px;
+	margin: 0;
+	width: 22px;
+	float: right;
 }
-#cardInputitle{
-	border:none;
-	width:100%;
+
+#cardInputitle {
+	border: none;
+	width: 100%;
 	outline: none;
-	white-space:pre-wrap;
+	white-space: pre-wrap;
 }
-#cardInputDescription{
-	border:none;
-	width:100%;
+
+#cardInputDescription {
+	border: none;
+	width: 100%;
 	outline: none;
 }
-#reminderInput{
-	height:20px;margin:0 3px;width:20px;
+
+#reminderInput {
+	height: 20px;
+	margin: 0 3px;
+	width: 20px;
 }
-#collaboratorInput{
-	height:20px;margin:0 3px;width:20px;
+
+#collaboratorInput {
+	height: 20px;
+	margin: 0 3px;
+	width: 20px;
 }
-#changeColorInput{
-	height:20px;margin:0 3px;width:20px;
+
+#changeColorInput {
+	height: 20px;
+	margin: 0 3px;
+	width: 20px;
 }
-#addImageInput{
-	height:20px;margin:0 3px;width:20px;
+
+#addImageInput {
+	height: 20px;
+	margin: 0 3px;
+	width: 20px;
 }
-#archiveInput{
-	height:20px;margin:0 3px;width:20px;
+
+#archiveInput {
+	height: 20px;
+	margin: 0 3px;
+	width: 20px;
 }
-#savebtn{
-	float:right;height:32px;	
+
+#savebtn {
+	float: right;
+	height: 32px;
 }
-#mySidenav{
-	background-color:#e8e8e8;
-	color:black;
+
+#mySidenav {
+	background-color: #e8e8e8;
+	color: black;
 }
-#noteTaken{
-	width:100%;
+
+#noteTaken {
+	width: 100%;
 	height: 40px;
 	border: none;
 	outline: none;
 }
-.showCards{
-	margin:10px 10px 10px 10px;
-	background-color:white;width: 100%;text-align:left;display: inline-block; padding:5px;
+
+.showCards {
+	margin: 10px 10px 10px 10px;
+	background-color: white;
+	width: 100%;
+	text-align: left;
+	display: inline-block;
+	padding: 5px;
 }
-#pinOutput{
-	height:22px;margin:0 8px;width:22px;float:right;
-}
-#reminderOutput{
-	height:20px;margin:0 3px;width:20px;display: inline-block;
-}
-#collaboratorOutput{
-	height:20px;margin:0 5px;width:20px;display: inline-block;
-}
-#changeColorOutput{
-	height:20px;margin:0 5px;width:20px;display: inline-block;
-}
-#addImageOutput{
-	height:20px;margin:0 5px;width:20px;display: inline-block;
-}
-#archiveOutput{
-	height:20px;margin:0 5px;width:20px;display: inline-block;
-}
-.ModalContainer{
-	width: 700px;
-	background-color:white;width: 100%;text-align:left;display: inline-block;
-}
-.imageDiv:hover{
-	visiblity:false;
-}
-#icons{
-	height:30px;
-	width:30px;
-}
-#file{
-	height:200px;
-	width:200px;
-}
-.app-modal-window .modal-dialog {
-  width: 300px;
-}
-.newLabel{
-	border:none;
-	outline:none;
-	text-align:center;
-}
-#reminder{
-    float: right;
-    margin-right: 26px;
-    margin-top: -20px;
-    position: relative;
-}
-#datetimepicker6{
-	border:none;
-	outline:none;
-	background-color:#a9a9a938;
-}
-#labelbtn{
+
+#pinOutput {
+	height: 22px;
+	margin: 0 8px;
+	width: 22px;
 	float: right;
 }
+
+#reminderOutput {
+	height: 20px;
+	margin: 0 3px;
+	width: 20px;
+	display: inline-block;
+}
+
+#collaboratorOutput {
+	height: 20px;
+	margin: 0 5px;
+	width: 20px;
+	display: inline-block;
+}
+
+#changeColorOutput {
+	height: 20px;
+	margin: 0 5px;
+	width: 20px;
+	display: inline-block;
+}
+
+#addImageOutput {
+	height: 20px;
+	margin: 0 5px;
+	width: 20px;
+	display: inline-block;
+}
+
+#archiveOutput {
+	height: 20px;
+	margin: 0 5px;
+	width: 20px;
+	display: inline-block;
+}
+
+.ModalContainer {
+	width: 700px;
+	background-color: white;
+	width: 100%;
+	text-align: left;
+	display: inline-block;
+}
+
+.imageDiv:hover {
+	visiblity: false;
+}
+
+#icons {
+	height: 30px;
+	width: 30px;
+}
+
+#file {
+	height: 200px;
+	width: 200px;
+}
+
+.app-modal-window .modal-dialog {
+	width: 300px;
+}
+
+.newLabel {
+	border: none;
+	outline: none;
+	text-align: center;
+}
+
+#reminder {
+	float: right;
+	margin-right: 26px;
+	margin-top: -20px;
+	position: relative;
+}
+
+#datetimepicker6 {
+	border: none;
+	outline: none;
+	background-color: #a9a9a938;
+}
+
+#labelbtn {
+	float: right;
+}
+
 h1, .h1 {
-    font-size: 21px;
-    text-align: start;
+	font-size: 21px;
+	text-align: start;
 }
-.myLabel{
-	border:none;
-	outline:none;
-	text-align:center;
+
+.myLabel {
+	border: none;
+	outline: none;
+	text-align: center;
 }
-.body{
-	margin:20px 20px;
-	text-align:center";
+
+.body {
+	margin: 20px 20px;
+	text-align: center";
 }
-.labelList{
-	border:none;
-	outline:none;
-	text-align:center;
+
+.labelList {
+	border: none;
+	outline: none;
+	text-align: center;
 }
-.break{
-	margin:0 0 0 0;
+
+.break {
+	margin: 0 0 0 0;
 }
-#span{
+
+#span {
 	display: inline-flex;
-	font-size:20px;
+	font-size: 20px;
 }
-#labelList{
-	    font-size: 15px;
+
+#labelList {
+	font-size: 15px;
 }
-#font{
-	 font-size: 15px;
+
+#font {
+	font-size: 15px;
 }
-.labelBtn{
-	align:left;
+
+.labelBtn {
+	align: left;
 }
+
 .test[placeholder]:empty:before {
     content: attr(placeholder);
     color: #a6a6a6;
@@ -273,29 +401,40 @@ h1, .h1 {
 		    vertical-align: top;
 		    height: 96px;
 		    width: 96px */
-		}
-		.user{
-		    display: inline-block;
-   			vertical-align: top;
-   			font-size: 18px;
- 			margin-left: -81px;
- 			font-style: bold;
-   			
-		}
-		.name{
-		    font-weight: bold;
-   			margin: -4px 0 1px 0;
-		}
-		.email{
-/* 		    overflow: hidden; */
-		    color: #666;
-/* 		    margin-left:10px; */
-		}
-		#userEmail{
-			display:inline-flex;
-	     	margin-left: -81px;
-		}
-		
-/* #image{ */
-/* 	width:100%; */
-/* } */
+}
+
+.user {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 18px;
+	margin-left: -81px;
+	font-style: bold;
+}
+
+.name {
+	font-weight: bold;
+	margin: -4px 0 1px 0;
+}
+
+.email {
+	/* 		    overflow: hidden; */
+	color: #666;
+	/* 		    margin-left:10px; */
+}
+
+#userEmail {
+	display: inline-flex;
+	margin-left: -81px;
+}
+.action-bar-hide{
+	opacity: 0;
+}
+.action-bar-show{
+	opacity: 0.5;
+}
+.action-button-hover{
+	opacity: 1;
+}
+.action-btn-leave{
+	opacity: 0;
+}

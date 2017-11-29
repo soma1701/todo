@@ -5,7 +5,8 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
 	var path = $location.path();
 	var labelName = path.substr(path.lastIndexOf("/")+1);
 	var httpGetLabels = labelService.getLabels(labelName);
-	$scope.view = 'grid';
+	$scope.hovering = false;
+	$scope.btnOvr = false;
 	
 	httpGetLabels.then(function(response) {
 		$scope.labels = response.data;

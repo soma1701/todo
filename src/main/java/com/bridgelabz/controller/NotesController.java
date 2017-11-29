@@ -59,8 +59,10 @@ public class NotesController {
 	public ResponseEntity<MyResponse> saveNote(@RequestBody Notes note,HttpSession session,HttpServletRequest request){
 		try {
 			
-			User user = (User) request.getAttribute("user");
-			note.getUser().add(user);
+			if(note.getUser().size() == 0) {
+				User user = (User) request.getAttribute("user");
+				note.getUser().add(user);
+			}
 			Date date = new Date();
 			note.setCreatedTime(date);
 			String isNoteValid = noteValidation.noteValidator(note);

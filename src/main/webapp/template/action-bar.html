@@ -11,23 +11,23 @@
 		<img id="reminder" src="images/remove.svg" ng-click="note.reminder='';editNotes(note)">
 	</div>
 <!-- 	<input type="text" id ="datetimepicker6"  ng-blur="saveReminder(note)" ng-model="note.reminder"> -->
-	<div>
-		<img alt="reminder" src="images/reminder.svg" ng-click="datetimepicker(); note.reminder=reminder; editNotes(note)">
-		<img id="collaboratorOutput" alt="collaborator" ng-click="openCollaborator(note)" src="images/colaborator.svg">
+	<div >
+		<img src="images/reminder.svg" ng-click="datetimepicker(); note.reminder=reminder; editNotes(note)" ng-mouseenter="hovering=true" ng-mouseleave="hovering=false" ng-class="{'action-bar-show': hovering === true, 'action-bar-hide': hovering === false}">
+		<img id="collaboratorOutput" alt="collaborator" ng-click="openCollaborator(note)" src="images/colaborator.svg" ng-mouseenter="hovering=true" ng-mouseleave="hovering=false" ng-class="{'action-bar-show': hovering === true, 'action-bar-hide': hovering === false}">
 		<div class="btn-group dropup colorDiv" uib-dropdown>
-			<img id="dropdown" class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" src="images/change-color.svg" uib-dropdown-toggle>
-			<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
+			<img id="dropdown" class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" src="images/change-color.svg" uib-dropdown-toggle ng-mouseenter="hovering=true" ng-mouseleave="hovering=false" ng-class="{'action-bar-show': hovering === true, 'action-bar-hide': hovering === false}">
+			<ul class="dropdown-menu"  style="opacity: 1;"uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
 				<a ng-style="{'background-color':'color.color'}" ng-repeat="color in colors" role="menuitem"> 
 					<img id="icons" ng-src="{{color.path}}" ng-click="note.color =color.color; editNotes(note)">
 				</a>
 			</ul>
 		</div>
 		<input style="display: none" type="file" ng-file-select="onFileSelect($files)" class="updateImage" ng-model="note.image"> 
-		<img ng-click="uploadImage($event,note)"src="images/add-image.svg"> 
-		<img ng-if="!state.isArchived" src="images/archive.svg" ng-click="note.pinned = false;note.isArchived=true;editNotes(note)">
-		<img ng-if="state.isArchived" src="images/archive.svg" ng-click="note.isArchived=false;editNotes(note)">
+		<img ng-click="uploadImage($event,note)"src="images/add-image.svg" ng-mouseenter="hovering=true" ng-mouseleave="hovering=false" ng-class="{'action-bar-show': hovering === true, 'action-bar-hide': hovering === false}"> 
+		<img ng-if="!state.isArchived" src="images/archive.svg" ng-click="note.pinned = false;note.isArchived=true;editNotes(note)"  ng-mouseenter="hovering=true" ng-mouseleave="hovering=false" ng-class="{'action-bar-show': hovering === true, 'action-bar-hide': hovering === false}">
+		<img ng-if="state.isArchived" src="images/archive.svg" ng-click="note.isArchived=false;editNotes(note)" >
 		<div class="btn-group" uib-dropdown>
-			<span id="dropdown" class="glyphicon glyphicon-option-vertical" uib-dropdown-toggle> </span>
+			<span id="dropdown" class="glyphicon glyphicon-option-vertical" uib-dropdown-toggle ng-mouseenter="hovering=true" ng-mouseleave="hovering=false" ng-class="{'action-bar-show': hovering === true, 'action-bar-hide': hovering === false}"> </span>
 			<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
 				<li role="menuitem" ng-if="!state.isTrashed" ng-click="note.trashed=true;editNotes(note)">
 					<a href="">Delete</a>
@@ -44,7 +44,7 @@
 				<li role="menuitem" ng-if="!state.isTrashed" ng-click="openAddLabel(note)">
 					<a href="">Add level</a>
 				</li>
-				<li role="menuitem"  ng-click="fbShare(note)">
+				<li role="menuitem" ng-if="!state.isTrashed" ng-click="fbShare(note)">
 					<a href="">Share</a>
 				</li>
 			</ul>
