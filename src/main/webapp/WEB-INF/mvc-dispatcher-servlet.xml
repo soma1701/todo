@@ -32,7 +32,7 @@ http://www.springframework.org/schema/beans
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/soma" />
 		<property name="username" value="root" />
-		<property name="password" value="somasingh"/>
+		<property name="password" value="root"/>
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
