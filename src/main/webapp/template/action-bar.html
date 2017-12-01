@@ -4,7 +4,7 @@
 			<a ui-sref=".labels({id: label.labelName})">{{label.labelName}}</a>
 			<span ng-click="removeLabel(note, label)" class="glyphicon glyphicon-remove"></span>
 		</span>
-		<span ng-repeat="usr in note.user"><img ng-click="removeUser(note, usr.email)" ng-src="{{usr.profileImage}}" height="20px" width="20px"></span>
+		<span ng-repeat="noteUser in note.noteUser"><img ng-if="!noteUser.owner" ng-click="removeUser(note, noteUser.user.email)" ng-src="{{noteUser.user.profileImage}}" height="20px" width="20px"></span>
 	</div>
 	<div id="reminderDiv">
 <!-- 		<input type="text" id ="datetimepicker6"  ng-blur="tet(note)" ng-model="note.reminder">  -->

@@ -32,7 +32,7 @@ http://www.springframework.org/schema/beans
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/soma" />
 		<property name="username" value="root" />
-		<property name="password" value="root"/>
+		<property name="password" value="giftalife"/>
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -42,6 +42,7 @@ http://www.springframework.org/schema/beans
 				<value>com.bridgelabz.model.User</value>
 				<value>com.bridgelabz.model.Notes</value>
 				<value>com.bridgelabz.model.Labels</value>
+				<value>com.bridgelabz.model.NoteUser</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

@@ -191,10 +191,10 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
     $scope.removeUser = function (note, item) {
     	$scope.note = note;
     	var comparator = angular.equals;
-        if (angular.isArray($scope.note.user)) {
-          for (var i = $scope.note.user.length; i--;) {
-            if (comparator($scope.note.user[i].email, item)) {
-            	$scope.note.user.splice(i, 1);
+        if (angular.isArray($scope.note.noteUser)) {
+          for (var i = $scope.note.noteUser.length; i--;) {
+            if (comparator($scope.note.noteUser[i].user.email, item)) {
+            	$scope.note.noteUser.splice(i, 1);
               break;
             }
           }

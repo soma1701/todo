@@ -11,8 +11,8 @@
 	         <a href="">
 	          <span class="glyphicon glyphicon-repeat" style="margin: 9px 9px 9px 9px;font-size: 25px;color: white"></span>
 	        </a>
-	          <span class="glyphicon glyphicon-th" id="grid" ng-click="callback1()" ng-show="user.view === 'grid'"></span>
-	          <span class="glyphicon glyphicon-th-list" id="list"  ng-click="callback1()" ng-show="user.view === 'list'"></span>
+	          <span class="glyphicon glyphicon-th" id="grid" ng-click="callback1()" ng-show="$parent.view === 'grid'"></span>
+	          <span class="glyphicon glyphicon-th-list" id="list"  ng-click="callback1()" ng-show="$parent.view === 'list'"></span>
 	        <a href="">
 	          <div class="btn-group" uib-dropdown>
 				<img class="image" ng-src="{{$parent.user.image}}" uib-dropdown-toggle>

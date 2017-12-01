@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bridgelabz.model.MyResponse;
+import com.bridgelabz.model.NoteUser;
 import com.bridgelabz.model.Notes;
 import com.bridgelabz.model.User;
 import com.bridgelabz.services.NotesService;
@@ -60,10 +61,12 @@ public class NotesController {
 	public ResponseEntity<MyResponse> saveNote(@RequestBody Notes note,HttpSession session,HttpServletRequest request){
 		try {
 			
-			if(note.getUser().size() == 0) {
-				User user = (User) request.getAttribute("user");
-				note.getUser().add(user);
-			}
+			User user = (User) request.getAttribute("user");
+			NoteUser objNoteUser = new NoteUser();
+			objNoteUser.setNote(note);
+			objNoteUser.setUser(user);
+			objNoteUser.setOwner(true);
+			note.getNoteUser().add(objNoteUser);
 			Date date = new Date();
 			note.setCreatedTime(date);
 			String isNoteValid = noteValidation.noteValidator(note);
@@ -121,11 +124,15 @@ public class NotesController {
 	 * @see this method is for editing notes
 	 */
 	@RequestMapping(value="/editNotes",method=RequestMethod.POST)
-	public ResponseEntity<MyResponse> editNotes(@RequestBody Notes note,HttpServletRequest request){
+	public ResponseEntity<MyResponse> editNotes(@RequestBody Notes objNotes,HttpServletRequest request){
 //		User user = (User)request.getAttribute("user");
-		Notes objNotes = notesService.getNoteById(note.getNotesId());
+//		Notes objNotes = notesService.getNoteById(note.getNotesId());
 //		note.getUser().add(user);
 		boolean isEdited;
+		for(NoteUser objNoteUser : objNotes.getNoteUser()) {
+			objNoteUser.setNote(objNotes );
+		}
+/*		objNotes.setNoteUser(note.getNoteUser());
 		objNotes.setTitle(note.getTitle());
 		objNotes.setDescription(note.getDescription());
 		objNotes.setArchived(note.getIsArchived());
@@ -134,8 +141,8 @@ public class NotesController {
 		objNotes.setLabels(note.getLabels());
 		objNotes.setImage(note.getImage());
 		Date resetDate = new Date();
-		note.setCreatedTime(resetDate);
-		isEdited = notesService.editNotes(note);
+		note.setCreatedTime(resetDate);*/
+		isEdited = notesService.editNotes(objNotes);
 		if(isEdited){
 			myResponse.setResponseMessage("editing notes are successfull");
 			return ResponseEntity.ok(myResponse);
@@ -190,10 +197,14 @@ public class NotesController {
 		String noteString = request.getParameter("note");
 		String email = request.getParameter("email");
 		User user = userService.getUserByEmail(email);
-		ObjectMapper mapper = new ObjectMapper();
-		Notes objNote = mapper.readValue(noteString, Notes.class);
-//		objNote.getUser().add(currentUser);
-		objNote.getUser().add(user);
+		Notes objNote = new ObjectMapper().readValue(noteString, Notes.class);
+		for(NoteUser objNoteUser : objNote.getNoteUser()) {
+			objNoteUser.setNote(objNote);
+		}
+		NoteUser objNoteUser = new NoteUser();
+		objNoteUser.setNote(objNote);
+		objNoteUser.setUser(user);
+		objNote.getNoteUser().add(objNoteUser);
 		if(notesService.editNotes(objNote)){
 			myResponse.setResponseMessage("editing notes are successfull");
 			return ResponseEntity.ok(myResponse);

@@ -6,7 +6,7 @@ toDoApp.controller('googleController', function($http, $location) {
 		console.log("google resp")
 		console.log(response.data.responseMessage);
 		localStorage.setItem('accessToken', response.data.responseMessage);
-		$location.path('homePage');
+		$location.path('homePage/notes');
 	}, function(response) {
 		console.log(response.data.responseMessage);
 	});

@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -59,12 +62,12 @@ public class Notes {
 	private String reminder;
 	
 
-	@ManyToMany
+	@OneToMany(mappedBy = "note", cascade = CascadeType.ALL)
 	
-	@JoinTable(name = "note_user", joinColumns = { @JoinColumn(name = "note_id") },
-									inverseJoinColumns = {@JoinColumn(name = "id") })
+//	@JoinTable(name = "note_user", joinColumns = { @JoinColumn(name = "note_id") },
+//									inverseJoinColumns = {@JoinColumn(name = "id") })
 	@JsonIgnore
-	List<User> alUser = new ArrayList<>();
+	List<NoteUser> alNoteUser = new ArrayList<>();
 	
 	@ManyToMany
 	@JoinTable(name = "note_label", joinColumns = { @JoinColumn(name = "note_id") },
@@ -111,13 +114,6 @@ public class Notes {
 	public void setCreatedTime(Date createdTime) {
 		this.createdTime = createdTime;
 	}
-	public List<User> getUser() {
-		return alUser;
-	}
-
-	public void setUser(List<User> user) {
-		this.alUser = user;
-	}
 
 	public boolean isPinned() {
 		return isPinned;
@@ -158,13 +154,6 @@ public class Notes {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public List<User> getAlUser() {
-		return alUser;
-	}
-
-	public void setAlUser(List<User> alUser) {
-		this.alUser = alUser;
-	}
 	
 	public Set<Labels> getAlLabels() {
 		return alLabels;
@@ -181,6 +170,14 @@ public class Notes {
 
 	public void setReminder(String reminder) {
 		this.reminder = reminder;
+	}
+
+	public List<NoteUser> getNoteUser() {
+		return alNoteUser;
+	}
+
+	public void setNoteUser(List<NoteUser> alNoteUser) {
+		this.alNoteUser = alNoteUser;
 	}
 
 }

@@ -74,7 +74,7 @@ public class NotesDaoImpl implements NotesDAO {
 		session = sessionFactory.openSession();
 		transaction = session.beginTransaction();
 		try {
-			session.update(notes);
+			session.saveOrUpdate(notes);
 			transaction.commit();
 			session.close();
 			

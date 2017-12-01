@@ -1,6 +1,6 @@
 toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibModal, $location, labelService, dataStore){
 	
-	$scope.view = 'grid';
+	$scope.view = localStorage.getItem("view");
 	/*var modalInstance;
 	var collaboratorPopup;
 	var path = $location.path();
@@ -73,14 +73,10 @@ toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibMo
     	notesService.editNotes(note);
     }
 	$scope.editNotes = function(note){
-		// note.image=note.imageSrc;
-		console.log("note :::"+note);
 		var editNote = notesService.editNotes(note);
+		$scope.testState.isEditable = false;
 		modalInstance.close('resetModel');
-//		$scope.note = {};
 		editNote.then(function(response){
-//			$scope.note=response.data;
-//			getNotes();
 		}),then(function(response){
 			if(response.status=='400')
 				$location.path('/loginPage')

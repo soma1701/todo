@@ -50,9 +50,8 @@ public class User {
 	@Column(columnDefinition = "LONGBLOB")
 	private String profileImage; 
 
-	@ManyToMany(mappedBy = "alUser")
-	@JsonIgnore
-	private List<Notes> alNotes = new ArrayList<>();
+	@OneToMany(mappedBy = "user")
+	private List<NoteUser> alNoteUser = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "user")
 	@JsonIgnore
@@ -121,14 +120,6 @@ public class User {
 	public void setValid(boolean isValid) {
 		this.isValid = isValid;
 	}
-	@JsonIgnore
-	public List<Notes> getNotes() {
-		return alNotes;
-	}
-
-	public void setNotes(List<Notes> notes) {
-		this.alNotes = notes;
-	}
 
 	public String getImage() {
 		return profileImage;
@@ -138,14 +129,6 @@ public class User {
 		this.profileImage = image;
 	}
 	
-	@JsonIgnore
-	public List<Notes> getAlNotes() {
-		return alNotes;
-	}
-
-	public void setAlNotes(List<Notes> alNotes) {
-		this.alNotes = alNotes;
-	}
 	public List<Labels> getAlLabels() {
 		return alLabels;
 	}
@@ -160,6 +143,15 @@ public class User {
 
 	public void setAlLabels(List<Labels> alLabels) {
 		this.alLabels = alLabels;
+	}
+
+	@JsonIgnore
+	public List<NoteUser> getNoteUser() {
+		return alNoteUser;
+	}
+
+	public void setNoteUser(List<NoteUser> alNoteUser) {
+		this.alNoteUser = alNoteUser;
 	}
 	
 
