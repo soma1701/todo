@@ -160,7 +160,6 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
 		obj.trigger("click");
 	}
 	$scope.updatePinup = function(note){
-		// note.image=note.imageSrc;
 		var updateImage = notesService.editNotes(note);
 	}
 	$scope.deleteNote = function(id){

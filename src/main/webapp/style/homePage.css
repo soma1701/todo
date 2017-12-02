@@ -404,17 +404,18 @@ body {
 }
 
 .image {
-	height: 100px;
-	width: 140px;
-	background-repeat: no-repeat;
-	background-position: 50%;
-	border-radius: 50%;
-	width: 60px;
-	height: 60px;
-	color: grey;
-	background-size: 96px 96px;
+	width: 45px;
+    height: 44px;
+    margin-top: -18px;
 }
-
+.profileImage{
+	width: 69px;
+    margin: 0px 0px 5px 0px;
+}
+.img{
+	width:100%;
+	height:auto;
+}
 .user {
 	display: inline-block;
 	vertical-align: top;

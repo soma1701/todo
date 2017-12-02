@@ -103,9 +103,9 @@ toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibMo
 			})
 		}, function(response) {
 			if (response && !response.error_message) {
-				alert('Posting completed.');
+//				alert('Posting completed.');
 			} else {
-				alert('Error while posting.');
+//				alert('Error while posting.');
 			}
 		});
 	};
@@ -121,6 +121,14 @@ toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibMo
 			notesService.editNotes($scope.note);
 			$scope.testState.isEditable = false;
 		});
+	}
+	$scope.uploadImage = function(env,note){
+		var obj = $(env.target).parent().find(".updateImage");
+		obj.trigger("click");
+	}
+	$scope.updatePinup = function(note){
+		alert("note details")
+		var updateImage = notesService.editNotes(note);
 	}
 	/*$scope.openCollaborator = function(note){
 		$scope.note = note;
@@ -157,13 +165,6 @@ toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibMo
 		$scope.addLabelModal.result.catch(function(){
 			notesService.editNotes($scope.note);
 		});
-	}
-	$scope.uploadImage = function(env,note){
-		var obj = $(env.target).parent().find(".updateImage");
-		obj.trigger("click");
-	}
-	$scope.updatePinup = function(note){
-		var updateImage = notesService.editNotes(note);
 	}
 	$scope.deleteNote = function(id){
 		var deleteNote = notesService.deleteNotes(id);
