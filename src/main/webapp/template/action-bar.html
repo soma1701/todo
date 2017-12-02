@@ -1,7 +1,7 @@
 <div id="imageDiv">
 	<div>
 		<span class="label">
-			{{note.reminder | date:'EEE, dd MMM yyyy'}}
+			{{note.reminder | date:'medium'}}
 			<img class="remove" ng-if="note.reminder!='' && note.reminder!=null" src="images/remove.svg" ng-click="note.reminder=null; editNotes(note)">
 		</span>
 		
@@ -13,14 +13,16 @@
 				</span>
 			</a>
 		</span>
-		<span ng-repeat="noteUser in note.noteUser"><img ng-if="noteUser.user.id !== loginUserId" 
-		ng-click="removeUser(note, noteUser.user.email)" ng-src="{{noteUser.user.profileImage}}" height="20px" width="20px"></span>
+		<span ng-repeat="noteUser in note.noteUser">
+			<img ng-if="noteUser.user.id !== loginUserId"ng-click="removeUser(note, noteUser.user.email)"
+			 ng-src="{{noteUser.user.profileImage}}" height="20px" width="20px">
+	 	</span>
 	</div>
 	<div ng-mouseenter="hovering=true" ng-mouseleave="hovering=false" 
 			ng-class="{'action-bar-show': hovering === true, 'action-bar-hide': hovering === false}">
 		<div class="btn-group dropdown" dropdown>
 			<a  class="dropdown-toggle" id="reminder" role="button" data-toggle="dropdown" data-target="#">
-				<img class="dropdown-toggle" ng-click="openReminder()"  src="images/reminder.svg">
+				<img class="dropdown-toggle action-bar" ng-click="openReminder()"  src="images/reminder.svg">
 			</a>
 			<ul class="dropdown-menu" role="menu">
 	        	<datetimepicker data-ng-model="note.reminder" data-datetimepicker-config="{ dropdownSelector: '#reminder' }"/>
@@ -28,19 +30,21 @@
     	</div>
 		<img id="collaboratorOutput" alt="collaborator" ng-click="openCollaborator(note)" src="images/colaborator.svg" >
 		<div class="btn-group dropup colorDiv" uib-dropdown>
-			<img id="dropdown" class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" src="images/change-color.svg" uib-dropdown-toggle>
+			<img id="dropdown" class="dropdown-toggle action-bar" data-toggle="dropdown" alt="changeColor" src="images/change-color.svg" uib-dropdown-toggle>
 			<ul class="dropdown-menu"  style="opacity: 1;"uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
 				<a ng-style="{'background-color':'color.color'}" ng-repeat="color in colors" role="menuitem"> 
 					<img id="icons" ng-src="{{color.path}}" ng-click="note.color =color.color; editNotes(note)">
 				</a>
 			</ul>
 		</div>
-		<input style="display: none" type="file" ng-file-select="onFileSelect($files)" class="updateImage" ng-model="note.image"> 
-		<img ng-click="uploadImage($event,note)"src="images/add-image.svg"> 
-		<img ng-if="!state.isArchived" src="images/archive.svg" ng-click="note.pinned = false;note.isArchived=true;editNotes(note)">
-		<img ng-if="state.isArchived" src="images/archive.svg" ng-click="note.isArchived=false;editNotes(note)" >
+		<input style="display: none" type="file" ng-file-select="onFileSelect($files)" class="action-bar" ng-model="note.image"> 
+		<img class="add-image" ng-click="uploadImage($event,note)"src="images/add-image.svg"> 
+		<img class="action-bar" ng-if="!state.isArchived" src="images/archive.svg"
+		 	ng-click="note.pinned = false;note.isArchived=true;editNotes(note)">
+		<img class="action-bar" ng-if="state.isArchived" src="images/unarchive.svg" 
+			ng-click="note.isArchived=false;editNotes(note)">
 		<div class="btn-group" uib-dropdown>
-			<span id="dropdown" class="glyphicon glyphicon-option-vertical" uib-dropdown-toggle> </span>
+			<span id="dropdown" class="glyphicon glyphicon-option-vertical action-bar" uib-dropdown-toggle> </span>
 			<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
 				<li role="menuitem" ng-if="!state.isTrashed" ng-click="note.trashed=true;editNotes(note)">
 					<a href="">Delete</a>

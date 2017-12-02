@@ -23,6 +23,7 @@
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
 	<script type="text/javascript" src="bower_components/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
+	<script type="text/javascript" src="/todo/src/main/webapp/bower_components/angular-sanitize/angular-sanitize.js"></script>
 	<script src="services/RegistrationServices.js"></script>
 	<script src="controller/registrationController.js"></script>
 	<script type="text/javascript" src ="services/loginService.js"></script>
@@ -59,11 +60,11 @@
 	<script type="text/javascript" src="controller/googleController.js"></script>
 	<script type="text/javascript" src="controller/fbController.js"></script>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
             $(function () {
                 $('#datetimepicker1').datetimepicker();
             });
-     </script>
+     </script> -->
 	
 </head>
 <body ng-app="toDoApp">

@@ -127,7 +127,6 @@ toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibMo
 		obj.trigger("click");
 	}
 	$scope.updatePinup = function(note){
-		alert("note details")
 		var updateImage = notesService.editNotes(note);
 	}
 	/*$scope.openCollaborator = function(note){

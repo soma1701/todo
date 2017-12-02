@@ -130,12 +130,12 @@ body {
 	width: 20px;
 } */
 
-#collaboratorInput {
+/* #collaboratorInput {
 	height: 20px;
 	margin: 0 3px;
 	width: 20px;
 }
-
+ */
 #changeColorInput {
 	height: 20px;
 	margin: 0 3px;
@@ -187,19 +187,18 @@ body {
 	float: right;
 }
 
-.reminder {
+.action-bar {
 	height: 20px;
-	margin: 0 3px;
+	margin-right: 5px;
 	width: 20px;
 	display: inline-block;
 }
-
-#collaboratorOutput {
+/* #collaboratorOutput {
 	height: 20px;
 	margin: 0 5px;
 	width: 20px;
 	display: inline-block;
-}
+} */
 
 #changeColorOutput {
 	height: 20px;
