@@ -15,7 +15,7 @@
 <!-- 		<div class="dropdown"> -->
 		<div class="btn-group dropdown" dropdown>
 			<a  class="dropdown-toggle" id="reminder" role="button" data-toggle="dropdown" data-target="#">
-				<img class="dropdown-toggle reminderDiv" ng-click="openReminder()"  src="images/reminder.svg">
+				<img class="dropdown-toggle" ng-click="openReminder()"  src="images/reminder.svg">
 			</a>
 			<ul class="dropdown-menu" role="menu">
 	        	<datetimepicker data-ng-model="note.reminder" data-datetimepicker-config="{ dropdownSelector: '#reminder' }"/>
@@ -23,7 +23,7 @@
     	</div>
 		<img id="collaboratorOutput" alt="collaborator" ng-click="openCollaborator(note)" src="images/colaborator.svg" >
 		<div class="btn-group dropup colorDiv" uib-dropdown>
-			<img id="dropdown" class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" src="images/change-color.svg" uib-dropdown-toggle ng-mouseenter="hovering=true" ng-mouseleave="hovering=false" ng-class="{'action-bar-show': hovering === true, 'action-bar-hide': hovering === false}">
+			<img id="dropdown" class="dropdown-toggle" data-toggle="dropdown" alt="changeColor" src="images/change-color.svg" uib-dropdown-toggle>
 			<ul class="dropdown-menu"  style="opacity: 1;"uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
 				<a ng-style="{'background-color':'color.color'}" ng-repeat="color in colors" role="menuitem"> 
 					<img id="icons" ng-src="{{color.path}}" ng-click="note.color =color.color; editNotes(note)">

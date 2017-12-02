@@ -79,10 +79,10 @@ body {
 .imageDiv {
 	visibility: hidden;
 }
-.reminderDiv{
+/* .reminderDiv{
 	margin: 0 5;
 	display:inline block;
-}
+} */
 
 #takeNote {
 	background-color: white;
@@ -124,11 +124,11 @@ body {
 	outline: none;
 }
 
-#reminderInput {
+/* #reminderInput {
 	height: 20px;
 	margin: 0 3px;
 	width: 20px;
-}
+} */
 
 #collaboratorInput {
 	height: 20px;
@@ -187,7 +187,7 @@ body {
 	float: right;
 }
 
-#reminderOutput {
+.reminder {
 	height: 20px;
 	margin: 0 3px;
 	width: 20px;
@@ -254,12 +254,12 @@ body {
 	text-align: center;
 }
 
-#reminder {
+/* #reminder {
 	float: right;
 	margin-right: 26px;
 	margin-top: -20px;
 	position: relative;
-}
+} */
 
 #datetimepicker6 {
 	border: none;
@@ -442,7 +442,7 @@ body {
 }
 
 .action-bar-show {
-	opacity: 0.5;
+	opacity: 1;
 }
 
 .action-button-hover {
