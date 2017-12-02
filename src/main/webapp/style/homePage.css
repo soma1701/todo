@@ -199,7 +199,10 @@ body {
 	width: 20px;
 	display: inline-block;
 } */
-
+.collaborator{
+	height:50px;
+	 width:50px;
+}
 #changeColorOutput {
 	height: 20px;
 	margin: 0 5px;

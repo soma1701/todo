@@ -102,7 +102,7 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
 	};
 	$scope.shareNote = function(note){
 		var shareNote = notesService.shareNote(note, $scope.collaboratorEmail);
-// $scope.closeCollaborator;
+		$scope.closeCollaborator;
 	}
 	$scope.closeCollaborator = function(){
 		collaboratorPopup.close('resetModel');
