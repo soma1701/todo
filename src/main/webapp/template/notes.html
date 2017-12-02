@@ -2,15 +2,15 @@
 	<div class="main" style="margin:{{margin}}px;">
 		<div class="homecontainer container main" style="border: 1 px solid red">
 			<div class="CardContainer">
-				<div id="takeNote" ng-click="tabClicked()" ng-show="note.description == '' && !showNewNote">
-					<input id="noteTaken" type="text"  style="border:none" ng-model="note.description" focus="true" 
+				<div class="takeNote" ng-click="tabClicked()" ng-show="note.description == '' && !showNewNote">
+					<input class="noteTaken" type="text input" ng-model="note.description" focus="true" 
 						placeholder="Take a note">
 				</div>
 				<div class="cardInput" ng-show="note.description != '' || showNewNote">
-					<img id="pinInput" alt="pin" src="images/pin.svg">
-					<input type="text" focus="false" ng-model="note.title" id="cardInputitle" placeholder="Title"/><br>
-						<contenteditable class="test" contenteditable="true" ng-model="note.description" focus="true" id="cardInputDescription" 
-						placeholder="Take a note"></contenteditable>
+					<img id="pinInput" src="images/pin.svg">
+					<input type="text" focus="false" ng-model="note.title" class="cardInputitle input" placeholder="Title"/><br>
+						<contenteditable class="test input" contenteditable="true" ng-model="note.description" focus="true" 
+						class="cardInputDescription" placeholder="Take a note"></contenteditable>
 					<div>
 						<action-bar state="state" note="note"></action-bar>
 					</div>	

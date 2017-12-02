@@ -4,7 +4,7 @@
 		<div ng-repeat="noteUser in note.noteUser">
 			<div class="col-sm-12">
 				<div class="col-sm-6">
-					<img class="img-circle" alt="{{noteUser.user.firstName.charAt(0)}}" ng-src="{{noteUser.user.profileImage}}" height="50px" width="50px"></img>
+					<img class="img-circle collaborator" alt="{{noteUser.user.firstName.charAt(0)}}" ng-src="{{noteUser.user.profileImage}}" height="50px" width="50px"></img>
 				</div>
 				<div class="col-sm-6">
 					<span>{{noteUser.user.firstName}} {{noteUser.user.lastName}}<span ng-if="noteUser.owner">(Owner)</span></span>
@@ -13,11 +13,17 @@
 				</div>
 			</div>
 		</div>
-		<input class="input" type="text" ng-model="$parent.collaboratorEmail">
+		<div class="col-sm-12">
+			<div class="col-sm-6">
+				<img class="img-circle" src="images/colaborator.svg">
+			</div>
+			<div class="col-sm-6">
+				<input class="input" type="text" ng-model="$parent.collaboratorEmail" placeholder="enter mail to share with">
+			</div>
+		</div>
 	</div>
 	<div class="modal-footer">
 		<button type="btn" ng-click="closeCollaborator()">Cancel</button>
 		<button type="btn" ng-click="shareNote(note)">Done</button>	
 	</div>
-	
 </div>
