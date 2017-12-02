@@ -17,11 +17,11 @@
 					<button id="savebtn" type="button"  ng-click="saveNotes()">Done</button>
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-12" ng-if="(notes | filter : {pinned : true,isArchived : false, trashed: false}).length > 0">
 				<br>Pinned:<br>
 			</div>
 				<note-details state="statePinnedNote" notes="notes"></note-details>
-			<div  class="col-md-4">
+			<div  class="col-md-12" ng-if="(notes | filter : {pinned : false,isArchived : false, trashed: false}).length > 0">
 				<br>Others:<br>
 			</div>
 				<note-details state="stateUnPinnedNote" notes="notes"></note-details>
