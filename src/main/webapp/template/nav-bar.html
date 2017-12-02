@@ -15,9 +15,9 @@
 	          <span class="glyphicon glyphicon-th-list" id="list"  ng-click="callback1()" ng-show="$parent.view === 'list'"></span>
 	        <a href="">
 	          <div class="btn-group" uib-dropdown>
-				<img class="image" ng-src="{{$parent.user.image}}" uib-dropdown-toggle>
+				<img class="image img-circle" ng-src="{{$parent.user.image}}" uib-dropdown-toggle>
 					<ul class="dropdown-menu userDropdown" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
-						<div class="col-sm-6"><img class="image" alt="$parent.user.firstName.charAt(0)" ng-src="{{$parent.user.image}}"></div>
+						<div class="col-sm-6"><img class="profileImage img-circle" alt="$parent.user.firstName.charAt(0)" ng-src="{{$parent.user.image}}"></div>
 							<div class="col-sm-6 user">{{$parent.user.firstName}} {{$parent.user.lastName}}</div>
 							<div class="col-sm-6" id="userEmail">{{$parent.user.email}}</div>
 						<div id="logout"><button ng-click="logout()">logout</button></div>
