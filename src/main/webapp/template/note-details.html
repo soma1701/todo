@@ -2,8 +2,8 @@
 	<div  ng-repeat="note in notes | filter:searchText | filter : {pinned : state.isPinned,isArchived : state.isArchived, trashed: state.isTrashed}"  
 							 ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
 		<div class="showCards" style="background-color:{{note.color}}" >
-			<img ng-if="!state.isTrashed && !state.isArchived" ng-click="note.pinned=!note.pinned;editNotes(note);"src="images/pin.svg">
-			<img ng-if="state.isArchived" ng-click="note.pinned=true;note.isArchived= false;editNotes(note);"src="images/pin.svg"/>
+			<img ng-if="!state.isTrashed && !state.isArchived" ng-click="note.pinned=!note.pinned;editNotes(note);"ng-src="{{note.pinned ? 'images/pinned.svg' : 'images/pin.svg'}}"/>
+			<img ng-if="state.isArchived" ng-click="note.pinned=true;note.isArchived= false;editNotes(note);"ng-src="{{note.pinned ? 'images/pinned.svg' : 'images/pin.svg'}}"/>
 			<img ng-click="updatePinup(note)" ng-src="{{note.image}}" height="50px" weidth="50px">
 			<div ng-if="!state.isEditable" ng-click="open(note, state)">
 				<div>{{note.title}}</div><br>
