@@ -32,15 +32,7 @@ toDoApp.controller('reminderController', function($scope, fileReader,notesServic
 				$location.path('/loginPage')
 				console.log(response);
 		});
-	
-	
-	
-	
-	
-	
-	
 	$scope.imageSrc = "";
-    
 	var addNote={};
 	$scope.note = {
 			description : '',
@@ -53,7 +45,6 @@ toDoApp.controller('reminderController', function($scope, fileReader,notesServic
 		};
 	
 	$scope.notesTab = true;	
-	
 	
 	$scope.saveNotes = function() {
 		addNote.title=$scope.note.title;

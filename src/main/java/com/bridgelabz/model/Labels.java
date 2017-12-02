@@ -21,7 +21,7 @@ import org.hibernate.annotations.GenericGenerator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="labels", schema="soma")
+@Table(name="labels")
 public class Labels {
 	
 	@Id  

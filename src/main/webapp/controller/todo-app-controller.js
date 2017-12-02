@@ -8,11 +8,6 @@ toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, l
 	$scope.$watch('searchText', $scope.doSearch);
 	$scope.isGridView = true;
 	$scope.view = localStorage.getItem("view");
-//	if(localStorage.getItem("view")=="list"){
-//		$scope.view = "list";
-//	}else{
-//		$scope.view = "grid";
-//	}
 	$scope.width = 0;
 	$scope.editLabelFocus = false;
 	$scope.openSideBar = false;

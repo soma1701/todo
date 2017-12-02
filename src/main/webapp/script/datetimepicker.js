@@ -11,7 +11,6 @@
  */
 
 ;(function (root, factory) {
-	alert("time picker");
   'use strict'
   /* istanbul ignore if */
   if (typeof module !== 'undefined' && module.exports) {

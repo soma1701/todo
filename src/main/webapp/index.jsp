@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="style/registration.css">
 	<link rel="stylesheet" type="text/css" href="style/registration.css">
 	<link rel="stylesheet" type="text/css" href="style/homePage.css">
-	<link rel="stylesheet" type="text/css" href="style/datetimrpicker.css">
+	<link rel="stylesheet" type="text/css" href="style/datetimepicker.css">
 	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="bower_components/angular/angular-ui-router.min.js"></script>
 	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>

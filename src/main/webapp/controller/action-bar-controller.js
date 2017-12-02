@@ -171,7 +171,7 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
 			
 		});
 	}
-	$scope.datetimepicker=function(){
+	/*$scope.datetimepicker=function(){
     	$('#remider').datetimepicker();
     	var reminder = $('#remider').val();
     	console.log(reminder);
@@ -181,7 +181,7 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
     	note.reminder = reminder;
     	notesService.editNotes(note);
     }
-    
+    */
     $scope.$on("fileProgress", function(e, progress) {
         $scope.progress = progress.loaded / progress.total;
 	});
@@ -211,4 +211,10 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
         }*/
         notesService.removeUser(note.notesId, email);
       }
+    $scope.openReminder = function(){
+    	$scope.$watch('note.reminder', $scope.saveReminder);
+    }
+    $scope.saveReminder = function(){
+    	notesService.editNotes($scope.note);
+	}
 });

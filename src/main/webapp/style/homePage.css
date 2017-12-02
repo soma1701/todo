@@ -79,6 +79,10 @@ body {
 .imageDiv {
 	visibility: hidden;
 }
+.reminderDiv{
+	margin: 0 5;
+	display:inline block;
+}
 
 #takeNote {
 	background-color: white;

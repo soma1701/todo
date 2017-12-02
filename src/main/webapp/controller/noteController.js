@@ -75,7 +75,7 @@ toDoApp.controller('notesController', function($scope, fileReader,toastr,notesSe
 		addNote.image=$scope.note.image;
 //		addNote.reminder = reminder;
 		var saveNotes = notesService.saveNotes(addNote);
-		toastr.success('success', 'successfully added');
+//		toastr.success('success', 'successfully added');
 		$scope.showNewNote = false;
 		$scope.note.description='';
 		saveNotes.then(function(response){

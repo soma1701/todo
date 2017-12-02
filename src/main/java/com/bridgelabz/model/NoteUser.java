@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="note_user", schema="soma")
+@Table(name="note_user")
 public class NoteUser implements Serializable{
 
 	private static final long serialVersionUID = 1L;
