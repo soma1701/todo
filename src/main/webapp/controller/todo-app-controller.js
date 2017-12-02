@@ -36,14 +36,9 @@ toDoApp.controller('todoAppController', function($scope, dataStore, $uibModal, l
 	}
 //	getUser();
 //	function getUser(){
-		var httpGetUser = homeService.getUser();
-		httpGetUser.then(function(response) {
-			console.log(response.data);
-			$scope.user = response.data;
-		}, function(response) {
-			if(response.status=='400')
-				$location.path('/loginPage')
-		});
+	$scope.$on('loginUser-change',function(event, data){
+		$scope.user = dataStore.getLoginUser();
+	});
 //	}
 	$scope.saveLabel = function(label) {
 		var data = {};

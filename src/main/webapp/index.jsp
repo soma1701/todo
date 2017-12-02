@@ -5,12 +5,16 @@
 	<link rel="stylesheet" type="text/css" href="style/registration.css">
 	<link rel="stylesheet" type="text/css" href="style/registration.css">
 	<link rel="stylesheet" type="text/css" href="style/homePage.css">
+	<link rel="stylesheet" type="text/css" href="style/datetimrpicker.css">
 	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 	<script type="text/javascript" src="bower_components/angular/angular-ui-router.min.js"></script>
 	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 	<script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
 	<script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload-all.js"></script>
 	<script src="script/toDo.js"></script>
+	<script src="script/datetimepicker.js"></script>
+	<script src="script/datetimepicker.templates.js"></script>
+	<script src="script/moment.js"></script>
 	<script type="text/javascript" src="directive/nav-bar.js"></script>
 	<script type="text/javascript" src="directive/side-bar.js"></script>
 	<script type="text/javascript" src="directive/fileupload-directive.js"></script>

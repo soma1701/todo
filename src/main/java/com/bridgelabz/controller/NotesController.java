@@ -2,6 +2,7 @@ package com.bridgelabz.controller;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +13,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -124,13 +124,14 @@ public class NotesController {
 	 * @see this method is for editing notes
 	 */
 	@RequestMapping(value="/editNotes",method=RequestMethod.POST)
-	public ResponseEntity<MyResponse> editNotes(@RequestBody Notes objNotes,HttpServletRequest request){
+	public ResponseEntity<MyResponse> editNotes(@RequestBody Notes notes,HttpServletRequest request){
 //		User user = (User)request.getAttribute("user");
-//		Notes objNotes = notesService.getNoteById(note.getNotesId());
+//		Notes objNotes = notesService.getNoteById(notes.getNotesId());
 //		note.getUser().add(user);
+//		User user = userService.getUserByEmail("souravpoddar1992@gmail.com");
 		boolean isEdited;
-		for(NoteUser objNoteUser : objNotes.getNoteUser()) {
-			objNoteUser.setNote(objNotes );
+		for(NoteUser objNoteUser : notes.getNoteUser()) {
+			objNoteUser.setNote(notes );
 		}
 /*		objNotes.setNoteUser(note.getNoteUser());
 		objNotes.setTitle(note.getTitle());
@@ -142,7 +143,7 @@ public class NotesController {
 		objNotes.setImage(note.getImage());
 		Date resetDate = new Date();
 		note.setCreatedTime(resetDate);*/
-		isEdited = notesService.editNotes(objNotes);
+		isEdited = notesService.editNotes(notes);
 		if(isEdited){
 			myResponse.setResponseMessage("editing notes are successfull");
 			return ResponseEntity.ok(myResponse);
@@ -214,6 +215,32 @@ public class NotesController {
 			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(myResponse);
 		}
 	}
+	
+	@RequestMapping(value="/removeSharing", method=RequestMethod.POST)
+	public ResponseEntity<MyResponse> removingSharing(HttpServletRequest request){
+		String noteId = request.getParameter("noteId");
+		String email = request.getParameter("userEmail");
+		Notes objNotes = notesService.getNoteById(Integer.parseInt(noteId));
+		boolean isEdited;
+		Iterator<NoteUser> it = objNotes.getNoteUser().iterator();
+		while(it.hasNext()){
+			NoteUser objNoteUser = it.next();
+			if(email.equalsIgnoreCase(objNoteUser.getUser().getEmail())){
+				objNotes.getNoteUser().remove(objNoteUser);
+			}
+			objNoteUser.setNote(objNotes );
+		}
+		isEdited = notesService.editNotes(objNotes);
+		if(isEdited){
+			myResponse.setResponseMessage("editing notes are successfull");
+			return ResponseEntity.ok(myResponse);
+		}else
+		{
+			myResponse.setResponseMessage("edition is not possible");
+			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(myResponse);
+		}
+	}
+	
 	@RequestMapping(value="/getReminderNotes", method=RequestMethod.GET)
 	public List<Notes> getReminderNotes(HttpServletRequest request){
 		User user = (User) request.getAttribute("user");

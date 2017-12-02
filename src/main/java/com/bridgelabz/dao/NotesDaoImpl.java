@@ -2,7 +2,6 @@ package com.bridgelabz.dao;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -12,7 +11,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.bridgelabz.model.Labels;
+import com.bridgelabz.model.NoteUser;
 import com.bridgelabz.model.Notes;
 import com.bridgelabz.model.User;
 
@@ -100,6 +99,11 @@ public class NotesDaoImpl implements NotesDAO {
 		transaction = session.beginTransaction();
 		try {
 			objNote = (Notes) session.get(Notes.class,noteId);
+			objNote.getNoteUser();
+			for(NoteUser objNoteUSer : objNote.getNoteUser()) {
+				objNoteUSer.getNote();
+				objNoteUSer.getUser();
+			}
 			transaction.commit();
 			session.close();
 			

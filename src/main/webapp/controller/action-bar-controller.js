@@ -1,4 +1,4 @@
-toDoApp.controller('actionBarController',function(notesService, $scope, $uibModal, $location, labelService, dataStore){
+toDoApp.controller('actionBarController',function(notesService, $scope, $uibModal, $location, labelService, dataStore, homeService){
 	
 	var modalInstance;
 	var collaboratorPopup;
@@ -8,6 +8,16 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
 	$scope.hovering = false;
 	$scope.btnOvr = false;
 	
+	var httpGetUser = homeService.getUser();
+	httpGetUser.then(function(response) {
+		console.log(response.data);
+		$scope.user = response.data;
+		$scope.loginUserId = $scope.user.id;
+		dataStore.setLoginUser($scope.user);
+	}, function(response) {
+		if(response.status=='400')
+			$location.path('/loginPage')
+	});
 	httpGetLabels.then(function(response) {
 		$scope.labels = response.data;
 	}, function(response) {
@@ -188,9 +198,9 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
         }
       notesService.editNotes(note);
     }
-    $scope.removeUser = function (note, item) {
-    	$scope.note = note;
-    	var comparator = angular.equals;
+    $scope.removeUser = function (note, email) {
+//    	$scope.note = note;
+    	/*var comparator = angular.equals;
         if (angular.isArray($scope.note.noteUser)) {
           for (var i = $scope.note.noteUser.length; i--;) {
             if (comparator($scope.note.noteUser[i].user.email, item)) {
@@ -198,7 +208,7 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
               break;
             }
           }
-        }
-        notesService.editNotes(note);
+        }*/
+        notesService.removeUser(note.notesId, email);
       }
 });

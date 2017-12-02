@@ -74,5 +74,19 @@ toDoApp.factory('notesService',function($http,$location){
 			params:data,
 		})
 	}
+	note.removeUser = function(noteId, userEmail){
+		var data = {
+				noteId : noteId,
+				userEmail : userEmail
+		}
+		return $http({
+			method:"POST",
+			url:'notesCredential/removeSharing',
+			headers:{
+				'accessToken':localStorage.getItem("accessToken")
+			},
+			params:data,
+		})
+	}
 	return note;
 });

@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -62,7 +63,7 @@ public class Notes {
 	private String reminder;
 	
 
-	@OneToMany(mappedBy = "note", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "note",fetch= FetchType.LAZY, cascade= CascadeType.ALL, orphanRemoval = true)
 	
 //	@JoinTable(name = "note_user", joinColumns = { @JoinColumn(name = "note_id") },
 //									inverseJoinColumns = {@JoinColumn(name = "id") })

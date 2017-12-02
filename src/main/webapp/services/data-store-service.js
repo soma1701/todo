@@ -4,6 +4,7 @@ toDoApp.service('dataStore', function ($http, $rootScope) {
     	var width;
     	var margin;
     	var searchText;
+    	var loginUser;
 
         return {
             getView: getView,
@@ -12,7 +13,9 @@ toDoApp.service('dataStore', function ($http, $rootScope) {
             getWidth: getWidth,
             toggleSideBar: toggleSideBar,
             getSearchText: getSearchText,
-            searchData: searchData
+            searchData: searchData,
+            setLoginUser : setLoginUser,
+            getLoginUser : getLoginUser
         };
 
         function getView() {
@@ -42,5 +45,12 @@ toDoApp.service('dataStore', function ($http, $rootScope) {
         }
         function getSearchText(){
         	return searchText;
+        }
+        function setLoginUser(user){
+        	loginUser = user;
+        	$rootScope.$broadcast('loginUser-change');
+        }
+        function getLoginUser(){
+        	return loginUser;
         }
 });
