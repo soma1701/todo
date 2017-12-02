@@ -85,6 +85,16 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
 				console.log(response);
 		});
 	}
+	function getNotes(){
+		var httpGetNotes = notesService.getNotes('ALL');
+		httpGetNotes.then(function(response) {
+			$scope.notes = response.data;
+		}, function(response) {
+			if(response.status=='400')
+				$location.path('/loginPage')
+				console.log(response);
+		});
+	}
 	/*
 	 * $scope.open = function (note, state) { $scope.testState = state;
 	 * $scope.note = note; $scope.testState.isEditable = true; modalInstance =
@@ -102,7 +112,7 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
 	};
 	$scope.shareNote = function(note){
 		var shareNote = notesService.shareNote(note, $scope.collaboratorEmail);
-		$scope.closeCollaborator;
+		collaboratorPopup.close('resetModel');
 	}
 	$scope.closeCollaborator = function(){
 		collaboratorPopup.close('resetModel');
@@ -149,9 +159,9 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
 			})
 		}, function(response) {
 			if (response && !response.error_message) {
-				alert('Posting completed.');
+//				alert('Posting completed.');
 			} else {
-				alert('Error while posting.');
+//				alert('Error while posting.');
 			}
 		});
 	};
@@ -209,6 +219,7 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
           }
         }*/
         notesService.removeUser(note.notesId, email);
+        getNotes();
       }
     $scope.openReminder = function(){
     	$scope.$watch('note.reminder', $scope.saveReminder);

@@ -1,6 +1,6 @@
 <div class="body">
-	<div class="modal-header"><h1>Collborators</h1></div>
-	<div class="modal-body" >
+	<div class="modal-header" style="margin-top:5px;"><h1>Collborators</h1></div>
+	<div>
 		<div ng-repeat="noteUser in note.noteUser">
 			<div class="col-sm-12">
 				<div class="col-sm-6">
@@ -15,7 +15,7 @@
 		</div>
 		<div class="col-sm-12">
 			<div class="col-sm-6">
-				<img class="img-circle collaborator" src="images/colaborator.svg">
+				<img class="img-circle collaborator" style="opacity:0.5" src="images/colaborator.svg">
 			</div>
 			<div class="col-sm-6">
 				<input class="input" type="text" ng-model="$parent.collaboratorEmail" placeholder="enter mail to share with">
