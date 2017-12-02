@@ -1,11 +1,17 @@
 <div id="imageDiv">
 	<div>
-		<span>{{note.reminder | date:'EEE, dd MMM yyyy'}}</span>
-		<img class="remove" ng-if="note.reminder!='' && note.reminder!=null" src="images/remove.svg" ng-click="note.reminder=null; editNotes(note)">
+		<span class="label">
+			{{note.reminder | date:'EEE, dd MMM yyyy'}}
+			<img class="remove" ng-if="note.reminder!='' && note.reminder!=null" src="images/remove.svg" ng-click="note.reminder=null; editNotes(note)">
+		</span>
 		
-		<span ng-repeat="label in note.labels" style="background-color: #e8e8e8; margin: 2px 2px">
-			<a ui-sref=".labels({id: label.labelName})">{{label.labelName}}</a>
-			<span ng-click="removeLabel(note, label)" class="glyphicon glyphicon-remove"></span>
+		<span ng-repeat="label in note.labels">
+			<a ui-sref=".labels({id: label.labelName})" class="label">
+				{{label.labelName}}
+				<span ng-click="removeLabel(note, label)">
+					<img class="remove"src="images/remove.svg">
+				</span>
+			</a>
 		</span>
 		<span ng-repeat="noteUser in note.noteUser"><img ng-if="noteUser.user.id !== loginUserId" 
 		ng-click="removeUser(note, noteUser.user.email)" ng-src="{{noteUser.user.profileImage}}" height="20px" width="20px"></span>

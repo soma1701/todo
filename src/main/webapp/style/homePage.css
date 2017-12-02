@@ -452,3 +452,9 @@ body {
 .action-btn-leave {
 	opacity: 0;
 }
+.label {
+	background-color : #B6B1B0;
+	color : black;
+	opacity: 0.4;
+	margin-right : 5px;
+}
