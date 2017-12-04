@@ -148,7 +148,7 @@ public class UserController {
 		return ResponseEntity.ok(MyResponse);
 	}
 
-	@RequestMapping(value = "/getUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/getUser", method = RequestMethod.GET)
 	public ResponseEntity<User> getUser(HttpServletRequest request) {
 		int userId = VerifyJWT.verifyAccessToken(request.getHeader("accessToken").toString());
 		User user = userService.getUserById(userId);

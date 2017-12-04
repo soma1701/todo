@@ -3,11 +3,14 @@
 							 ng-class="{'col-md-4': view === 'grid', 'col-md-12': view === 'list'}">
 		<div class="showCards" style="background-color:{{note.color}}" >
 			<div>
-				<img ng-if="!state.isTrashed && !state.isArchived" ng-click="note.pinned=!note.pinned;editNotes(note);"ng-src="{{note.pinned ? 'images/pinned.svg' : 'images/pin.svg'}}">
-				<img ng-if="state.isArchived" ng-click="note.pinned=true;note.isArchived= false;editNotes(note);"ng-src="{{note.pinned ? 'images/pinned.svg' : 'images/pin.svg'}}"/>
+				<img ng-if="!state.isTrashed && !state.isArchived" ng-click="note.pinned=!note.pinned;editNotes(note);"
+				ng-src="{{note.pinned ? 'images/pinned.svg' : 'images/pin.svg'}}">
+				<img ng-if="state.isArchived" ng-click="note.pinned=true;note.isArchived= false;editNotes(note);"
+				ng-src="{{note.pinned ? 'images/pinned.svg' : 'images/pin.svg'}}"/>
 			</div>
-			<div>
-				<img class="img" ng-click="updatePinup(note)" ng-src="{{note.image}}">
+			<div ng-if="note.image!=null && note.image!=''">
+				<img  class="img" ng-click="updatePinup(note)" ng-src="{{note.image}}">
+				<img  ng-click="note.image=''; editNotes(note)" src="images/remove.svg">
 			</div>
 			<div ng-if="!state.isEditable" ng-click="open(note, state)">
 				<div>{{note.title}}</div><br>
@@ -15,7 +18,7 @@
 			</div>
 			<div ng-if="state.isEditable">
 				<input class="input" type="text" focus="false" ng-model="note.title" placeholder="Title"/><br>
-				<contenteditable class="test" contenteditable="true" ng-model="note.description" focus="true"
+				<contenteditable class="test input" contenteditable="true" ng-model="note.description" focus="true"
 										placeholder="Take a note">
 				</contenteditable>
 			</div>

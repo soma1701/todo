@@ -34,11 +34,11 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
 		"path":'images/blue.png'
 	},
 	{
-		"color":'#f1c40f',
+		"color":'#f1c40f96',
 		"path":'images/yellow.png'
 	},
 	{
-		"color":'#1abc9c',
+		"color":'#1abc7140',
 		"path":'images/green.png'
 	},
 	{
@@ -94,6 +94,14 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
 				$location.path('/loginPage')
 				console.log(response);
 		});
+	}
+	
+	$scope.uploadImage = function(env,note){
+		var obj = $(env.target).parent().find("#updateImage");
+		obj.trigger("click");
+	}
+	$scope.updatePinup = function(note){
+		var updateImage = notesService.editNotes(note);
 	}
 	/*
 	 * $scope.open = function (note, state) { $scope.testState = state;
@@ -172,11 +180,14 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
 	$scope.updatePinup = function(note){
 		var updateImage = notesService.editNotes(note);
 	}
+	$scope.$on("fileProgress", function(e, progress) {
+		$scope.progress = progress.loaded / progress.total;
+	});
 	$scope.deleteNote = function(id){
 		var deleteNote = notesService.deleteNotes(id);
 		modalInstance.close('resetModel');
 		deleteNote.then(function(response){
-			httpGetNotes;
+			 getNotes();
 			
 		});
 	}
@@ -191,9 +202,6 @@ toDoApp.controller('actionBarController',function(notesService, $scope, $uibModa
     	notesService.editNotes(note);
     }
     */
-    $scope.$on("fileProgress", function(e, progress) {
-        $scope.progress = progress.loaded / progress.total;
-	});
     $scope.removeLabel = function (note, item) {
     	$scope.note = note;
     	var comparator = angular.equals;

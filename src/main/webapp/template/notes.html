@@ -3,13 +3,13 @@
 		<div class="homecontainer container main" style="border: 1 px solid red">
 			<div class="CardContainer">
 				<div class="takeNote" ng-click="tabClicked()" ng-show="note.description == '' && !showNewNote">
-					<input class="noteTaken" type="text input" ng-model="note.description" focus="true" 
+					<input class="noteTaken" type="text" ng-model="note.description" focus="true" 
 						placeholder="Take a note">
 				</div>
 				<div class="cardInput" ng-show="note.description != '' || showNewNote">
 					<img id="pinInput" src="images/pin.svg">
-					<input type="text" focus="false" ng-model="note.title" class="cardInputitle input" placeholder="Title"/><br>
-						<contenteditable class="test input" contenteditable="true" ng-model="note.description" focus="true" 
+					<input type="text" class="input"  focus="false" ng-model="note.title" class="cardInputitle input" placeholder="Title" style="width:100%;border:none;outline:none"/><br>
+						<contenteditable focus="false" class="test input" contenteditable="true" ng-model="note.description" focus="true" 
 						class="cardInputDescription" placeholder="Take a note"></contenteditable>
 					<div>
 						<action-bar state="state" note="note"></action-bar>

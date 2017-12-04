@@ -123,6 +123,7 @@ toDoApp.controller('noteDetailsController',function(notesService, $scope, $uibMo
 		});
 	}
 	$scope.uploadImage = function(env,note){
+		alert("inside note-dtails controller");
 		var obj = $(env.target).parent().find(".updateImage");
 		obj.trigger("click");
 	}

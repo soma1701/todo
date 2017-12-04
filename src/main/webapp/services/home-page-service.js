@@ -2,7 +2,7 @@ toDoApp.factory('homeService',function($http,$location){
 	var user ={};
 	user.getUser= function(){
 		return $http({
-			method:"POST",
+			method:"GET",
 			url:'getUser',
 			headers:{
 				'accessToken' : localStorage.getItem("accessToken")

@@ -1,8 +1,8 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:{{$parent.background}};border-color:{{$parent.background}};">
 	 <div class="col-md-12 container-fluid">
-	    <div class="col-md-2 navbar-header">
+	    <div class="col-md-2 navbar-header" style="width:500px">
 	        <span class="navbar-brand" ng-click="callback()" style="font-family: Roboto,RobotoDraft,Arial,sans-serif;color:{{user.color}};font-weight:bold">&#9776;</span>
-	      <a class="navbar-brand" href="" style="font-weight:bold;font-family: Roboto,RobotoDraft,Arial,sans-serif;color:{{user.color}};">TODO <span style="font-weight: normal">APP</span></a>
+	      <a class="navbar-brand" href="" style="font-weight:bold;font-family: Roboto,RobotoDraft,Arial,sans-serif;color:{{user.color}};">FUNDOO <span style="font-weight: normal">NOTES</span></a>
 	    </div>
 	    <div class="col-md-6 navbar-form" id="navBarSearchForm">
 	            <input type="text" ng-model="$parent.searchText" class="form-control" placeholder="Search">
@@ -15,7 +15,7 @@
 	          <span class="glyphicon glyphicon-th-list" id="list"  ng-click="callback1()" ng-show="$parent.view === 'list'"></span>
 	        <a href="">
 	          <div class="btn-group" uib-dropdown>
-				<img class="image img-circle" ng-src="{{$parent.user.image}}" uib-dropdown-toggle>
+				<img class="image img-circle" alt="{{$parent.user.firstName.charAt(0)}}" ng-src="{{$parent.user.image}}" uib-dropdown-toggle>
 					<ul class="dropdown-menu userDropdown" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-body">
 						<div class="col-sm-6"><img class="profileImage img-circle" alt="$parent.user.firstName.charAt(0)" ng-src="{{$parent.user.image}}"></div>
 							<div class="col-sm-6 user">{{$parent.user.firstName}} {{$parent.user.lastName}}</div>

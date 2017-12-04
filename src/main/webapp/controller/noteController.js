@@ -87,6 +87,15 @@ toDoApp.controller('notesController', function($scope, fileReader,toastr,notesSe
 		});
 		
 	}
+	$scope.uploadImage = function(env,note){
+		alert("inside note controller");
+		var obj = $(env.target).parent().find(".updateImage");
+		obj.trigger("click");
+	}
+	$scope.updatePinup = function(note){
+		alert("inside note controller");
+		var updateImage = notesService.editNotes(note);
+	}
 	
 });
 toDoApp.directive('focus',
